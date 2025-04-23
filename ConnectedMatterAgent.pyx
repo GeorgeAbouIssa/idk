@@ -793,72 +793,81 @@ cdef class ConnectedMatterAgent:
         return path
     
     def search(self, double time_limit=1000):
-    try:
+        cdef double start_time
+        cdef double elapsed_time
+        cdef double block_time_limit
+        cdef double morphing_time_limit
+        cdef list path
+        cdef list block_path
+        cdef list morphing_path
+        cdef list block_final_state
+        cdef double distance_to_goal
+    
+        try:
         # Record start time
-        cdef double start_time = time.time()
-        cdef double elapsed_time = 0
-        cdef double block_time_limit = time_limit * 0.7  # Use 70% of time for block movement
-        cdef double morphing_time_limit = time_limit * 0.3  # Reserve 30% for morphing
-        cdef list path = []
-        cdef list block_path = []
-        cdef list morphing_path = []
+            start_time = time.time()
+            elapsed_time = 0
+            block_time_limit = time_limit * 0.7  # Use 70% of time for block movement
+            morphing_time_limit = time_limit * 0.3  # Reserve 30% for morphing
+            path = []
+            block_path = []
+            morphing_path = []
         
-        print("Starting Block Movement Phase...")
+            print("Starting Block Movement Phase...")
         
         # First try to move blocks close to goal without changing shape
-        block_path = self.block_movement_phase(block_time_limit)
+            block_path = self.block_movement_phase(block_time_limit)
         
-        if block_path:
-            path.extend(block_path)
+            if block_path:
+                path.extend(block_path)
             # Get final state after block movement
-            cdef list block_final_state = path[-1][1] if path else self.current_state
+                block_final_state = path[-1][1] if path else self.current_state
             
             # Calculate distance to goal centroid
-            cdef double distance_to_goal = self.calculate_centroid_distance(block_final_state, self.goal_state)
+                distance_to_goal = self.calculate_centroid_distance(block_final_state, self.goal_state)
             
-            if distance_to_goal <= 0.1:  # If close enough to goal, we're done
-                print(f"Goal reached with block movement alone! Distance: {distance_to_goal}")
-                return path
-            elif distance_to_goal <= 1.5:  # If reasonably close, try morphing
-                print(f"Block stopped {distance_to_goal} grid cells before goal centroid. Distance: {distance_to_goal}")
-                print("Starting Smarter Morphing Phase with 1-1 simultaneous moves...")
-                morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
-                if morphing_path:
-                    path.extend(morphing_path)
+                if distance_to_goal <= 0.1:  # If close enough to goal, we're done
+                    print(f"Goal reached with block movement alone! Distance: {distance_to_goal}")
                     return path
+                elif distance_to_goal <= 1.5:  # If reasonably close, try morphing
+                    print(f"Block stopped {distance_to_goal} grid cells before goal centroid. Distance: {distance_to_goal}")
+                    print("Starting Smarter Morphing Phase with 1-1 simultaneous moves...")
+                    morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
+                    if morphing_path:
+                        path.extend(morphing_path)
+                        return path
+                    else:
+                        print("Morphing phase could not find a path to goal.")
                 else:
-                    print("Morphing phase could not find a path to goal.")
+                    print(f"Best block position found with centroid distance: {distance_to_goal}")
+                    print("Starting Smarter Morphing Phase with 1-1 simultaneous moves...")
+                    morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
+                    if morphing_path:
+                        path.extend(morphing_path)
+                        return path
+                    else:
+                        print("Morphing phase could not find a path to goal.")
             else:
-                print(f"Best block position found with centroid distance: {distance_to_goal}")
-                print("Starting Smarter Morphing Phase with 1-1 simultaneous moves...")
-                morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
-                if morphing_path:
-                    path.extend(morphing_path)
-                    return path
-                else:
-                    print("Morphing phase could not find a path to goal.")
-        else:
-            print("Block movement phase could not find a path.")
+                print("Block movement phase could not find a path.")
             # Try morphing directly from initial state
-            print("Starting Smarter Morphing Phase from initial state...")
-            morphing_path = self.smarter_morphing_phase(self.current_state, time_limit)
-            if morphing_path:
-                path = morphing_path
-                return path
-            else:
-                print("Morphing phase could not find a path to goal.")
+                print("Starting Smarter Morphing Phase from initial state...")
+                morphing_path = self.smarter_morphing_phase(self.current_state, time_limit)
+                if morphing_path:
+                    path = morphing_path
+                    return path
+                else:
+                    print("Morphing phase could not find a path to goal.")
         
         # If we get here, no solution was found
-        print("No solution found within time limit. Returning best partial path if available.")
-        return path if path else None
+            print("No solution found within time limit. Returning best partial path if available.")
+            return path if path else None
         
-    except Exception as e:
-        import traceback
-        print(f"Error in search algorithm: {str(e)}")
-        print(traceback.format_exc())
+        except Exception as e:
+            import traceback
+            print(f"Error in search algorithm: {str(e)}")
+            print(traceback.format_exc())
         # Return whatever partial path we have instead of crashing
-        return []
-    
+            return []
     def visualize_path(self, list path, double interval=0.5):
         """
         Visualize the path as an animation
