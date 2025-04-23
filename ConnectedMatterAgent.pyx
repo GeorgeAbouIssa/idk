@@ -298,15 +298,15 @@ cdef class ConnectedMatterAgent:
     def check_component_connectivity(self, state):
         """
         Check if blocks for each component stay connected to each other
-        This is used for multi-component goals
+        This is used for multi-component goals - allows disconnection BETWEEN components
         """
         if not self.multi_component_goal or not self.allow_disconnection:
             return self.is_connected(state)
-        
-        # Extract target blocks
+    
+    # Extract target blocks
         target_blocks = [pos for pos in state if pos not in self.non_target_state]
-        
-        # Group blocks by their assigned component
+    
+    # Group blocks by their assigned component
         component_blocks = {}
         for pos in target_blocks:
             if pos in self.block_component_assignment:
@@ -314,12 +314,12 @@ cdef class ConnectedMatterAgent:
                 if comp_idx not in component_blocks:
                     component_blocks[comp_idx] = []
                 component_blocks[comp_idx].append(pos)
-        
-        # Check connectivity within each component
+    
+    # Check connectivity ONLY within each component (not between components)
         for comp_blocks in component_blocks.values():
             if len(comp_blocks) > 1 and not self.is_connected(comp_blocks):
                 return False
-        
+    
         return True
     
     def get_articulation_points(self, state_set):
@@ -420,75 +420,143 @@ cdef class ConnectedMatterAgent:
         Fixed blocks remain stationary
         """
         valid_moves = []
-        
-        # Skip states with overlapping blocks
+    
+    # Skip states with overlapping blocks
         if self.has_overlapping_blocks(state):
             return valid_moves
-            
-        # Extract movable blocks (target blocks)
-        state_list = list(state)
         
-        # If there are fixed blocks, they should remain stationary
+    # Extract movable blocks (target blocks)
+        state_list = list(state)
+    
+    # If there are fixed blocks, they should remain stationary
         if self.allow_disconnection and self.non_target_state:
-            # Only move target blocks
+        # Only move target blocks
             movable_blocks = [pos for pos in state_list if pos not in self.non_target_state]
             fixed_blocks = [pos for pos in state_list if pos in self.non_target_state]
         else:
-            # Move all blocks
+        # Move all blocks
             movable_blocks = state_list
             fixed_blocks = []
+    
+    # For multi-component goals, allow component-by-component movement
+        if self.allow_disconnection and self.multi_component_goal:
+        # Group blocks by component
+            component_blocks = {}
+            for pos in movable_blocks:
+                if pos in self.block_component_assignment:
+                    comp_idx = self.block_component_assignment[pos]
+                    if comp_idx not in component_blocks:
+                        component_blocks[comp_idx] = []
+                    component_blocks[comp_idx].append(pos)
         
-        # Try moving the movable blocks in each direction
-        for dx, dy in self.directions:
+        # Consider moves for each component independently
+            for comp_idx, blocks in component_blocks.items():
+            # Try moving this component in each direction
+                for dx, dy in self.directions:
+                # Calculate new positions after moving
+                    new_positions = [(pos[0] + dx, pos[1] + dy) for pos in blocks]
+                
+                # Check if all new positions are valid:
+                # 1. Within bounds
+                # 2. Not occupied by fixed blocks
+                # 3. Not occupied by blocks from other components
+                # 4. No position duplication (no overlap)
+                    all_valid = True
+                    new_pos_set = set()
+                
+                    for pos in new_positions:
+                    # Check bounds
+                        if not (0 <= pos[0] < self.grid_size[0] and 0 <= pos[1] < self.grid_size[1]):
+                            all_valid = False
+                            break
+                        
+                    # Check collision with fixed blocks
+                        if pos in fixed_blocks:
+                            all_valid = False
+                            break
+                        
+                    # Check collision with other components (which remain stationary)
+                        other_component_blocks = []
+                        for other_idx, other_blocks in component_blocks.items():
+                            if other_idx != comp_idx:
+                                other_component_blocks.extend(other_blocks)
+                    
+                        if pos in other_component_blocks:
+                            all_valid = False
+                            break
+                        
+                    # Check for duplicates (overlap)
+                        if pos in new_pos_set:
+                            all_valid = False
+                            break
+                        
+                        new_pos_set.add(pos)
+                
+                # Only consider moves that keep all positions valid
+                    if all_valid:
+                    # Create new state with this component's blocks moved
+                    # and all other blocks in their original positions
+                        new_state = []
+                    # Add fixed blocks
+                        new_state.extend(fixed_blocks)
+                    # Add blocks from other components
+                        for other_idx, other_blocks in component_blocks.items():
+                            if other_idx != comp_idx:
+                                new_state.extend(other_blocks)
+                    # Add moved blocks from this component
+                        new_state.extend(new_positions)
+                    
+                    # Check connectivity within each component
+                        new_state_frozenset = frozenset(new_state)
+                        if self.check_component_connectivity(new_state_frozenset):
+                            valid_moves.append(new_state_frozenset)
+        else:
+        # Standard movement for all blocks together
+            for dx, dy in self.directions:
             # Calculate new positions after moving
-            new_positions = [(pos[0] + dx, pos[1] + dy) for pos in movable_blocks]
+                new_positions = [(pos[0] + dx, pos[1] + dy) for pos in movable_blocks]
             
             # Check if all new positions are valid:
             # 1. Within bounds
             # 2. Not occupied by fixed blocks
             # 3. No position duplication (no overlap)
-            all_valid = True
-            new_pos_set = set()
+                all_valid = True
+                new_pos_set = set()
             
-            for pos in new_positions:
+                for pos in new_positions:
                 # Check bounds
-                if not (0 <= pos[0] < self.grid_size[0] and 0 <= pos[1] < self.grid_size[1]):
-                    all_valid = False
-                    break
+                    if not (0 <= pos[0] < self.grid_size[0] and 0 <= pos[1] < self.grid_size[1]):
+                        all_valid = False
+                        break
                     
                 # Check collision with fixed blocks
-                if pos in fixed_blocks:
-                    all_valid = False
-                    break
+                    if pos in fixed_blocks:
+                        all_valid = False
+                        break
                     
                 # Check for duplicates (overlap)
-                if pos in new_pos_set:
-                    all_valid = False
-                    break
+                    if pos in new_pos_set:
+                        all_valid = False
+                        break
                     
-                new_pos_set.add(pos)
+                    new_pos_set.add(pos)
             
             # Only consider moves that keep all positions valid
-            if all_valid:
+                if all_valid:
                 # Combine with fixed blocks to create the new state
-                new_state = frozenset(new_positions + fixed_blocks)
+                    new_state = frozenset(new_positions + fixed_blocks)
                 
                 # For connectivity check, adapt based on goal structure
-                if self.allow_disconnection:
-                    if self.multi_component_goal:
-                        # Check connectivity within each component
-                        if self.check_component_connectivity(new_state):
-                            valid_moves.append(new_state)
-                    else:
-                        # For single component with disconnection allowed
+                    if self.allow_disconnection:
+                    # For single component with disconnection allowed
                         target_blocks = [pos for pos in new_state if pos not in self.non_target_state]
                         if self.is_connected(target_blocks) or len(target_blocks) <= 1:
                             valid_moves.append(new_state)
-                else:
+                    else:   
                     # Standard connectivity check for regular goals
-                    if self.is_connected(new_state):
-                        valid_moves.append(new_state)
-        
+                        if self.is_connected(new_state):
+                            valid_moves.append(new_state)
+    
         return valid_moves
     
     def get_valid_morphing_moves(self, state):
@@ -1585,59 +1653,65 @@ cdef class ConnectedMatterAgent:
         cdef double best_heuristic, current_heuristic, last_improvement_time, f_score
         cdef int iterations = 0
         cdef int tentative_g
-        
-        # Skip states with overlapping blocks
+    
+    # Skip states with overlapping blocks
         if self.has_overlapping_blocks(start_state):
             print("WARNING: Starting state for morphing has overlapping blocks!")
             return [start_state]
-        
+    
         print(f"Starting Smarter Morphing Phase with {self.min_simultaneous_moves}-{self.max_simultaneous_moves} simultaneous moves...")
         if self.allow_disconnection:
             if self.multi_component_goal:
                 print(f"Morphing {len(self.target_block_list)} target blocks into {len(self.goal_components)} separate components")
+                print(f"Components will be allowed to disconnect from each other")
+                for i, component in enumerate(self.goal_components):
+                    blocks_for_component = [pos for pos in self.target_block_list 
+                                     if pos in self.block_component_assignment and 
+                                     self.block_component_assignment[pos] == i]
+                    print(f"  Component {i+1}: {len(component)} target positions, assigned {len(blocks_for_component)} blocks")
             else:
                 print(f"Morphing only {len(self.target_block_list)} target blocks, keeping {len(self.fixed_block_list)} blocks stationary")
-        
+    
         start_time = time.time()
-        
-        # Initialize beam search
+    
+    # Initialize beam search
         open_set = [(self.improved_morphing_heuristic(start_state), 0, start_state)]
         closed_set = set()
-        
-        # Track path, g-scores, and best state
+    
+    # Track path, g-scores, and best state
         g_score = {start_state: 0}
         came_from = {start_state: None}
-        
-        # Track best state seen so far
+    
+    # Track best state seen so far
         best_state = start_state
         best_heuristic = self.improved_morphing_heuristic(start_state)
         last_improvement_time = time.time()
-        
-        # Determine whether we're targeting a subset of blocks
+    
+    # Determine whether we're targeting a subset of blocks
         targeting_subset = self.allow_disconnection
-        
+    
         while open_set and time.time() - start_time < time_limit:
             iterations += 1
-            
-            # Get state with lowest f-score
+        
+        # Get state with lowest f-score
             f, g, current = heapq.heappop(open_set)
-            
-            # Skip if already processed
+        
+        # Skip if already processed
             if current in closed_set:
                 continue
-            
-            # Skip states with overlapping blocks
+        
+        # Skip states with overlapping blocks
             if self.has_overlapping_blocks(current):
                 continue
-            
-            # Check if goal reached
+        
+        # Check if goal reached
             if targeting_subset:
-                # For multi-component goals, we need to check each component individually
+            # For multi-component goals, we need to check each component individually
                 if self.multi_component_goal:
-                    # Extract target blocks from current state (exclude fixed blocks)
+                # Extract target blocks from current state (exclude fixed blocks)
                     target_blocks = [pos for pos in current if pos not in self.non_target_state]
-                    
-                    # Group blocks by their assigned component
+                
+                # Group blocks by their assigned component
                     component_blocks = {}
                     for pos in target_blocks:
                         if pos in self.block_component_assignment:
@@ -1645,139 +1719,171 @@ cdef class ConnectedMatterAgent:
                             if comp_idx not in component_blocks:
                                 component_blocks[comp_idx] = []
                             component_blocks[comp_idx].append(pos)
-                    
-                    # Check if each component matches its goal
+                
+                # Check if each component matches its goal
                     all_components_match = True
                     for comp_idx, blocks in component_blocks.items():
-                        goal_component = self.goal_components[comp_idx]
-                        
-                        # Check if this component matches its goal shape
-                        component_frozenset = frozenset(blocks)
-                        goal_component_frozenset = frozenset(goal_component)
-                        
-                        if not (component_frozenset.issubset(goal_component_frozenset) or 
-                                goal_component_frozenset.issubset(component_frozenset)):
+                        if comp_idx >= len(self.goal_components):
                             all_components_match = False
                             break
+                        
+                        goal_component = self.goal_components[comp_idx]
                     
+                    # Check if this component matches its goal shape
+                        component_set = set(blocks)
+                        goal_component_set = set(goal_component)
+                    
+                        if component_set != goal_component_set:
+                            all_components_match = False
+                            break
+                
                     if all_components_match:
                         print(f"All goal components matched after {iterations} iterations!")
                         return self.reconstruct_path(came_from, current)
-                    
-                    # Alternative goal check: count matching positions across all components
+                
+                # Alternative goal check: count matching positions across all components
                     total_matching = 0
                     for comp_idx, blocks in component_blocks.items():
-                        goal_component = self.goal_components[comp_idx]
-                        matching_positions = sum(1 for pos in blocks if pos in goal_component)
-                        total_matching += matching_positions
-                    
+                        if comp_idx < len(self.goal_components):
+                            goal_component = self.goal_components[comp_idx]
+                            matching_positions = sum(1 for pos in blocks if pos in goal_component)
+                            total_matching += matching_positions
+                
                     if total_matching == len(self.goal_positions):
                         print(f"All goal positions matched after {iterations} iterations!")
                         return self.reconstruct_path(came_from, current)
                 else:
-                    # For single-component goals with disconnection allowed
+                # For single-component goals with disconnection allowed
                     target_blocks = frozenset(pos for pos in current if pos not in self.non_target_state)
-                    
-                    # Check if all goal positions are filled by target blocks
-                    if self.goal_state.issubset(target_blocks) or target_blocks.issubset(self.goal_state):
-                        print(f"Goal approximation reached after {iterations} iterations!")
+                
+                # Check if all goal positions are filled by target blocks
+                    if target_blocks == self.goal_state:
+                        print(f"Goal state reached after {iterations} iterations!")
                         return self.reconstruct_path(came_from, current)
-                    
-                    # Alternative goal check: if enough blocks are in the right positions
+                
+                # Alternative goal check: if enough blocks are in the right positions
                     matching_positions = len(target_blocks.intersection(self.goal_state))
                     if matching_positions == len(self.goal_state):
                         print(f"Goal positions matched after {iterations} iterations!")
                         return self.reconstruct_path(came_from, current)
             else:
-                # For exact matching, use original goal check
+            # For exact matching, use original goal check
                 if current == self.goal_state:
                     print(f"Goal reached after {iterations} iterations!")
                     return self.reconstruct_path(came_from, current)
-            
-            # Check if this is the best state seen so far
+        
+        # Check if this is the best state seen so far
             current_heuristic = self.improved_morphing_heuristic(current)
             if current_heuristic < best_heuristic:
                 best_state = current
                 best_heuristic = current_heuristic
                 last_improvement_time = time.time()
-                
-                # Print progress occasionally
+            
+            # Print progress occasionally
                 if iterations % 500 == 0:
                     print(f"Progress: h={best_heuristic}, iterations={iterations}")
-            
-            # Check for stagnation
+        
+        # Check for stagnation
             if time.time() - last_improvement_time > time_limit * 0.3:
-                print("Search stagnated, restarting...")
-                # Clear the beam and start from the best state
+                print("Search stagnated, restarting from best state...")
+            # Clear the beam and start from the best state
                 open_set = [(best_heuristic, g_score[best_state], best_state)]
                 last_improvement_time = time.time()
-            
-            # Limit iterations to prevent infinite loops
+        
+        # Limit iterations to prevent infinite loops
             if iterations >= self.max_iterations:
                 print(f"Reached max iterations ({self.max_iterations})")
                 break
-            
+        
             closed_set.add(current)
-            
-            # Get all valid moves
+        
+        # Get all valid moves
             neighbors = self.get_all_valid_moves(current)
-            
-            # Process each neighbor
+        
+        # Process each neighbor
             for neighbor in neighbors:
-                # Skip states with overlapping blocks
+            # Skip states with overlapping blocks
                 if self.has_overlapping_blocks(neighbor):
                     continue
-                
-                # Additional validation for states with fewer blocks in goal
+            
+            # Additional validation for states with fewer blocks in goal
                 if self.allow_disconnection:
-                    # Extract only target blocks
+                # Extract only target blocks
                     target_blocks = [pos for pos in neighbor if pos not in self.non_target_state]
-                    
-                    # Skip if we don't have the right number of target blocks
+                
+                # Skip if we don't have the right number of target blocks
                     if len(target_blocks) != len(self.goal_positions):
                         continue
-                    
-                    # Skip if target blocks overlap with each other
+                
+                # Skip if target blocks overlap with each other
                     if len(target_blocks) != len(set(target_blocks)):
                         continue
-                    
-                    # Skip if any target block occupies the same position as a fixed block
+                
+                # Skip if any target block occupies the same position as a fixed block
                     fixed_blocks = [pos for pos in neighbor if pos in self.non_target_state]
                     if any(pos in fixed_blocks for pos in target_blocks):
                         continue
-                    
-                    # For multi-component goals, check connectivity within each component
-                    if self.multi_component_goal and not self.check_component_connectivity(neighbor):
-                        continue
-                    # For single component, check if target blocks stay connected
-                    elif not self.multi_component_goal and not (self.is_connected(target_blocks) or len(target_blocks) <= 1):
-                        continue
                 
+                # For multi-component goals with disconnection allowed:
+                # Only check connectivity WITHIN each component, not BETWEEN components
+                    if self.multi_component_goal:
+                        if not self.check_component_connectivity(neighbor):
+                            continue
+                # For single-component goals with disconnection allowed:
+                # Ensure target blocks stay connected to each other
+                    elif not (self.is_connected(target_blocks) or len(target_blocks) <= 1):
+                        continue
+            
                 if neighbor in closed_set:
                     continue
-                
-                # Calculate tentative g-score
+            
+            # Calculate tentative g-score
                 tentative_g = g_score[current] + 1
-                
+            
                 if neighbor not in g_score or tentative_g < g_score[neighbor]:
-                    # This is a better path
+                # This is a better path
                     came_from[neighbor] = current
                     g_score[neighbor] = tentative_g
                     f_score = tentative_g + self.improved_morphing_heuristic(neighbor)
-                    
-                    # Add to open set
+                
+                # Add to open set
                     heapq.heappush(open_set, (f_score, tentative_g, neighbor))
-            
-            # Beam search pruning: keep only the best states
+        
+        # Beam search pruning: keep only the best states
             if len(open_set) > self.beam_width:
                 open_set = heapq.nsmallest(self.beam_width, open_set)
                 heapq.heapify(open_set)
-        
-        # If we exit the loop, either no path was found or time limit reached
+    
+    # If we exit the loop, either no path was found or time limit reached
         if time.time() - start_time >= time_limit:
             print(f"Morphing phase timed out after {iterations} iterations!")
+    
+    # Print the best state's heuristic value
+        best_h = self.improved_morphing_heuristic(best_state)
+        print(f"Best state found with heuristic value: {best_h}")
+    
+    # For multi-component goals, check component matching
+        if self.allow_disconnection and self.multi_component_goal:
+        # Extract target blocks
+            target_blocks = [pos for pos in best_state if pos not in self.non_target_state]
         
-        # Return the best state found
+        # Group blocks by their assigned component
+            component_blocks = {}
+            for pos in target_blocks:
+                if pos in self.block_component_assignment:
+                    comp_idx = self.block_component_assignment[pos]
+                    if comp_idx not in component_blocks:
+                        component_blocks[comp_idx] = []
+                    component_blocks[comp_idx].append(pos)
+        
+        # Print statistics for each component
+            for comp_idx, blocks in component_blocks.items():
+                if comp_idx < len(self.goal_components):
+                    goal_component = self.goal_components[comp_idx]
+                    matching_positions = sum(1 for pos in blocks if pos in goal_component)
+                    print(f"Component {comp_idx+1}: {matching_positions}/{len(goal_component)} matching positions")
+    
+    # Return the best state found
         return self.reconstruct_path(came_from, best_state)
     
     def reconstruct_path(self, came_from, current):
