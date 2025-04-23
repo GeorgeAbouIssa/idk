@@ -331,35 +331,34 @@ cdef class SearchController:
         else:
             self.vis.handle_button_click(event)
 
-    cpdef void run_search(self, event):
-        """Runs the search when the Search button is clicked."""
-        cdef double start_time, search_time
+    # Find the run_search method in Controller.pyx and modify it like this:
+    cpdef run_search(self, event):
+        try:
+            self.log_message("Searching for optimal path with connectivity constraint...")
+            path = self.agent.search(self.time_limit)
         
-        # Clear goal shape highlight
-        self.vis.draw_grid()
-        self.vis.update_text("Searching for a path...", color="red")
-        plt.pause(1)  # Force update to show "Searching..." before search starts
-        
-        print("\nSearching for optimal path with connectivity constraint...")
-        start_time = time.time()
-        path = self.agent.search(self.time_limit)
-        search_time = time.time() - start_time
-        
-        self.search_completed = True
-
-        if path:
-            print(f"Path found with {len(path)-1} moves in {search_time:.2f} seconds")
-            print(f"Ready for visualization...")
-            self.vis.animation_speed = self.animation_speed  # Ensure animation speed is updated
-            self.vis.path = path  # Update path in visualizer
-            self.vis.button.label.set_text("Start")  # Set button text to Start
-            self.vis.update_text(f"Path found ({len(path)-1} moves)", color="green")
-            plt.draw()
-        else:
-            print(f"No path found after {search_time:.2f} seconds")
-            self.vis.button.label.set_text("Search")  # Reset button text
-            self.vis.update_text("No paths found", color="red")
-            plt.draw()
+            if path:
+                self.log_message(f"Solution found with {len(path)} steps!")
+                self.path = path
+                self.current_step = 0
+                self.visualizer.draw_grid()
+                self.visualizer.fig.canvas.draw_idle()
+                self.step_button.set_active(True)
+                self.animate_button.set_active(True)
+            else:
+                self.log_message("No solution found within time limit.")
+            # Don't close the application, just inform the user
+                self.visualizer.draw_grid()
+                self.visualizer.fig.canvas.draw_idle()
+        except Exception as e:
+        # Log the error but don't terminate
+            import traceback
+            error_msg = f"Error during search: {str(e)}\n{traceback.format_exc()}"
+            print(error_msg)
+            self.log_message(f"Error occurred: {str(e)}")
+        # Keep the UI running
+            self.visualizer.draw_grid()
+            self.visualizer.fig.canvas.draw_idle()
 
     cpdef update_max_simultaneous_moves(self, val):
         """Update the maximum number of simultaneous moves"""

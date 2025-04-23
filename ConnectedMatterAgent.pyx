@@ -792,35 +792,72 @@ cdef class ConnectedMatterAgent:
         path.reverse()
         return path
     
-    def search(self, double time_limit=30):
-        """
-        Main search method combining block movement and smarter morphing
-        """
-        # Allocate time for each phase
-        cdef double block_time_limit = time_limit * 0.3  # 30% for block movement
-        cdef double morphing_time_limit = time_limit * 0.7  # 70% for morphing
+    def search(self, double time_limit=1000):
+    try:
+        # Record start time
+        cdef double start_time = time.time()
+        cdef double elapsed_time = 0
+        cdef double block_time_limit = time_limit * 0.7  # Use 70% of time for block movement
+        cdef double morphing_time_limit = time_limit * 0.3  # Reserve 30% for morphing
+        cdef list path = []
+        cdef list block_path = []
+        cdef list morphing_path = []
         
-        # Phase 1: Block Movement
+        print("Starting Block Movement Phase...")
+        
+        # First try to move blocks close to goal without changing shape
         block_path = self.block_movement_phase(block_time_limit)
         
-        if not block_path:
-            print("Block movement phase failed!")
-            return None
+        if block_path:
+            path.extend(block_path)
+            # Get final state after block movement
+            cdef list block_final_state = path[-1][1] if path else self.current_state
+            
+            # Calculate distance to goal centroid
+            cdef double distance_to_goal = self.calculate_centroid_distance(block_final_state, self.goal_state)
+            
+            if distance_to_goal <= 0.1:  # If close enough to goal, we're done
+                print(f"Goal reached with block movement alone! Distance: {distance_to_goal}")
+                return path
+            elif distance_to_goal <= 1.5:  # If reasonably close, try morphing
+                print(f"Block stopped {distance_to_goal} grid cells before goal centroid. Distance: {distance_to_goal}")
+                print("Starting Smarter Morphing Phase with 1-1 simultaneous moves...")
+                morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
+                if morphing_path:
+                    path.extend(morphing_path)
+                    return path
+                else:
+                    print("Morphing phase could not find a path to goal.")
+            else:
+                print(f"Best block position found with centroid distance: {distance_to_goal}")
+                print("Starting Smarter Morphing Phase with 1-1 simultaneous moves...")
+                morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
+                if morphing_path:
+                    path.extend(morphing_path)
+                    return path
+                else:
+                    print("Morphing phase could not find a path to goal.")
+        else:
+            print("Block movement phase could not find a path.")
+            # Try morphing directly from initial state
+            print("Starting Smarter Morphing Phase from initial state...")
+            morphing_path = self.smarter_morphing_phase(self.current_state, time_limit)
+            if morphing_path:
+                path = morphing_path
+                return path
+            else:
+                print("Morphing phase could not find a path to goal.")
         
-        # Get the final state from block movement phase
-        cdef object block_final_state = frozenset(block_path[-1])
+        # If we get here, no solution was found
+        print("No solution found within time limit. Returning best partial path if available.")
+        return path if path else None
         
-        # Phase 2: Smarter Morphing
-        morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
-        
-        if not morphing_path:
-            print("Morphing phase failed!")
-            return block_path
-        
-        # Combine paths (remove duplicate state at transition)
-        cdef list combined_path = block_path[:-1] + morphing_path
-        
-        return combined_path
+    except Exception as e:
+        import traceback
+        print(f"Error in search algorithm: {str(e)}")
+        print(traceback.format_exc())
+        # Return whatever partial path we have instead of crashing
+        return []
     
     def visualize_path(self, list path, double interval=0.5):
         """

@@ -28,6 +28,15 @@ if __name__ == "__main__":
         max_simultaneous_moves=1,
         min_simultaneous_moves=1
     )
+    
+    def on_close(event):
+        print("Window closed. Exiting program gracefully.")
+    # You can add any cleanup code here
+    import sys
+    sys.exit(0)
 
+# Connect the close event to the handler
+    visualizer.fig.canvas.mpl_connect('close_event', on_close)
     plt.ioff()  # Disable interactive mode
-    plt.show()  # Keep window open until manually closed
+# Make sure your main.py ends with a proper main loop that doesn't terminate prematurely
+    plt.show()
