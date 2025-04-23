@@ -161,6 +161,20 @@ cdef class ConnectedMatterAgent:
         self.connectivity_check_cache[positions_hash] = is_connected
         return is_connected
     
+    def is_target_connected(self, state):
+        """
+        Check if target blocks in a state are connected to each other
+        This is used when allow_disconnection is True
+        """
+        if not self.allow_disconnection:
+            return self.is_connected(state)
+            
+        # Extract only target blocks
+        target_blocks = [pos for pos in state if pos not in self.non_target_state]
+        
+        # Check connectivity of just the target blocks
+        return self.is_connected(target_blocks)
+    
     def get_articulation_points(self, state_set):
         """
         Find articulation points (critical points that if removed would disconnect the structure)
@@ -218,6 +232,20 @@ cdef class ConnectedMatterAgent:
         self.articulation_points_cache[state_hash] = articulation_points
         return articulation_points
     
+    def get_target_articulation_points(self, state):
+        """
+        Find articulation points in just the target blocks
+        This is used when allow_disconnection is True
+        """
+        if not self.allow_disconnection:
+            return self.get_articulation_points(state)
+            
+        # Extract only target blocks
+        target_blocks = set(pos for pos in state if pos not in self.non_target_state)
+        
+        # Get articulation points of just the target blocks
+        return self.get_articulation_points(target_blocks)
+    
     def has_overlapping_blocks(self, state):
         """Check if a state has any overlapping blocks"""
         state_list = list(state)
@@ -241,7 +269,7 @@ cdef class ConnectedMatterAgent:
         # If there are fixed blocks, they should remain stationary
         if self.allow_disconnection and self.non_target_state:
             # Only move target blocks
-            movable_blocks = [pos for pos in state_list if pos in self.target_state]
+            movable_blocks = [pos for pos in state_list if pos not in self.non_target_state]
             fixed_blocks = [pos for pos in state_list if pos in self.non_target_state]
         else:
             # Move all blocks
@@ -282,7 +310,17 @@ cdef class ConnectedMatterAgent:
             if all_valid:
                 # Combine with fixed blocks to create the new state
                 new_state = frozenset(new_positions + fixed_blocks)
-                valid_moves.append(new_state)
+                
+                # For connectivity check, if we're allowing disconnection, we only
+                # care about target blocks staying connected to each other
+                if self.allow_disconnection:
+                    # Only check target block connectivity
+                    if self.is_target_connected(new_state):
+                        valid_moves.append(new_state)
+                else:
+                    # Regular connectivity check for all blocks
+                    if self.is_connected(new_state):
+                        valid_moves.append(new_state)
         
         return valid_moves
     
@@ -295,172 +333,201 @@ cdef class ConnectedMatterAgent:
         state_key = hash(state)
         if state_key in self.valid_moves_cache:
             return self.valid_moves_cache[state_key]
-        
-    # Skip states with overlapping blocks
+            
+        # Skip states with overlapping blocks
         if self.has_overlapping_blocks(state):
             self.valid_moves_cache[state_key] = []
             return []
-        
-    # Get single block moves first
+            
+        # Get single block moves first
         single_moves = []
         state_set = set(state)
-    
-    # Identify fixed blocks vs movable blocks
+        
+        # Identify fixed blocks vs movable blocks
         fixed_blocks = set()
         if self.allow_disconnection:
             fixed_blocks = state_set.intersection(self.non_target_state)
-    
-    # If there are fixed blocks, they should remain stationary
-        if self.allow_disconnection and fixed_blocks:
-        # Only consider target blocks as movable
-            movable_candidates = state_set - fixed_blocks
         
-        # All target blocks can move independently since disconnection is allowed
-            movable_points = movable_candidates
+        # If there are fixed blocks, they should remain stationary
+        if self.allow_disconnection and fixed_blocks:
+            # Only consider target blocks as movable
+            movable_candidates = state_set - fixed_blocks
+            
+            # Get articulation points among just the target blocks
+            target_blocks = [pos for pos in state_set if pos not in fixed_blocks]
+            if target_blocks:
+                target_articulation_points = self.get_articulation_points(set(target_blocks))
+                movable_points = set(target_blocks) - target_articulation_points
+                
+                # If all target points are critical, try moving one anyway but verify connectivity
+                if not movable_points and target_articulation_points:
+                    for point in target_articulation_points:
+                        # Try removing and see if structure remains connected
+                        temp_target_blocks = set(target_blocks)
+                        temp_target_blocks.remove(point)
+                        if self.is_connected(temp_target_blocks) or len(temp_target_blocks) <= 1:
+                            movable_points.add(point)
+            else:
+                movable_points = set()
         else:
-        # Standard connectivity rules apply to all blocks
-        # Find non-critical points that can move without breaking connectivity
+            # Standard connectivity rules apply to all blocks
+            # Find non-critical points that can move without breaking connectivity
             articulation_points = self.get_articulation_points(state_set)
             movable_points = state_set - articulation_points
-        
-        # If all points are critical, try moving one anyway but verify connectivity 
+            
+            # If all points are critical, try moving one anyway but verify connectivity 
             if not movable_points and articulation_points:
                 for point in articulation_points:
-                # Try removing and see if structure remains connected
+                    # Try removing and see if structure remains connected
                     temp_state = state_set.copy()
                     temp_state.remove(point)
                     if self.is_connected(temp_state):
                         movable_points.add(point)
-    
-    # Generate single block moves
+        
+        # Generate single block moves
         for point in movable_points:
-        # Skip fixed blocks
+            # Skip fixed blocks
             if point in fixed_blocks:
                 continue
-            
-        # Try moving in each direction
+                
+            # Try moving in each direction
             for dx, dy in self.directions:
                 new_pos = (point[0] + dx, point[1] + dy)
-            
-            # Skip if out of bounds
+                
+                # Skip if out of bounds
                 if not (0 <= new_pos[0] < self.grid_size[0] and 
                         0 <= new_pos[1] < self.grid_size[1]):
                     continue
-            
-            # Skip if already occupied
+                
+                # Skip if already occupied
                 if new_pos in state_set:
                     continue
-            
-            # Create new state by moving the point
+                
+                # Create new state by moving the point
                 new_state_set = state_set.copy()
                 new_state_set.remove(point)
                 new_state_set.add(new_pos)
-            
-            # Check for overlapping positions
+                
+                # Check for overlapping positions
                 if len(new_state_set) != len(state_set):
                     continue
-            
+                
                 if self.allow_disconnection:
-                # With disconnection allowed, we only need to check that the new position
-                # doesn't create overlaps between target and fixed blocks
+                    # With disconnection allowed, we only need to check:
+                    # 1. Target blocks stay connected to each other
+                    # 2. No overlap between target and fixed blocks
+                    
+                    # Extract target blocks
                     new_target_blocks = [pos for pos in new_state_set if pos not in self.non_target_state]
-                    new_fixed_blocks = [pos for pos in new_state_set if pos in self.non_target_state]
-                
-                # Skip if any target block occupies the same position as a fixed block
-                    if any(pos in new_fixed_blocks for pos in new_target_blocks):
-                        continue
-                
-                # Skip if the number of target blocks doesn't match the goal size
+                    
+                    # Skip if the number of target blocks doesn't match the goal size
                     if len(new_target_blocks) != len(self.goal_positions):
                         continue
-                
-                # Ensure no overlaps among target blocks
+                    
+                    # Ensure no overlaps between target blocks
                     if len(new_target_blocks) != len(set(new_target_blocks)):
                         continue
-                
-                    single_moves.append((point, new_pos))
+                    
+                    # Check if target blocks collide with fixed blocks
+                    new_fixed_blocks = [pos for pos in new_state_set if pos in self.non_target_state]
+                    if any(pos in new_fixed_blocks for pos in new_target_blocks):
+                        continue
+                        
+                    # Check target block connectivity
+                    if self.is_connected(new_target_blocks) or len(new_target_blocks) <= 1:
+                        single_moves.append((point, new_pos))
                 else:
-                # Check if new position is adjacent to at least one other point
+                    # Check if new position is adjacent to at least one other point
                     has_adjacent = False
                     for adj_dx, adj_dy in self.directions:
                         adj_pos = (new_pos[0] + adj_dx, new_pos[1] + adj_dy)
                         if adj_pos in new_state_set and adj_pos != new_pos:
                             has_adjacent = True
                             break
-                
-                # Only consider moves that maintain connectivity
+                    
+                    # Only consider moves that maintain connectivity
                     if has_adjacent and self.is_connected(new_state_set):
                         single_moves.append((point, new_pos))
-                
-    # Start with empty valid moves list
+                    
+        # Start with empty valid moves list
         valid_moves = []
-    
-    # Generate multi-block moves
+        
+        # Generate multi-block moves
         for k in range(self.min_simultaneous_moves, min(self.max_simultaneous_moves + 1, len(single_moves) + 1)):
-        # Generate combinations of k moves
+            # Generate combinations of k moves
             for combo in self._generate_move_combinations(single_moves, k):
                 # Check if the combination is valid (no conflicts)
                 if self._is_valid_move_combination(combo, state_set):
-                # Apply the combination
+                    # Apply the combination
                     new_state = self._apply_moves(state_set, combo)
-                
-                # Check for overlapping positions
+                    
+                    # Check for overlapping positions
                     if self.has_overlapping_blocks(new_state):
                         continue
-                
-                # Additional validation for goal with fewer blocks
+                    
+                    # Additional validation for goal with fewer blocks
                     if self.allow_disconnection:
-                    # Extract target and fixed blocks from the new state
+                        # Extract target and fixed blocks from the new state
                         new_target_blocks = [pos for pos in new_state if pos not in self.non_target_state]
                         new_fixed_blocks = [pos for pos in new_state if pos in self.non_target_state]
-                    
-                    # Skip if any target block occupies the same position as a fixed block
+                        
+                        # Skip if any target block occupies the same position as a fixed block
                         if any(pos in new_fixed_blocks for pos in new_target_blocks):
                             continue
-                    
-                    # Skip if the number of target blocks doesn't match the goal size
+                        
+                        # Skip if the number of target blocks doesn't match the goal size
                         if len(new_target_blocks) != len(self.goal_positions):
                             continue
-                    
-                    # Ensure no overlaps among target blocks
+                        
+                        # Ensure no overlaps among target blocks
                         if len(new_target_blocks) != len(set(new_target_blocks)):
                             continue
-                
-                # Check connectivity when required
-                    if self.allow_disconnection or self.is_connected(new_state):
-                        valid_moves.append(frozenset(new_state))
-    
-    # If no valid moves with min_simultaneous_moves, fallback to single moves if allowed
+                            
+                        # Check if target blocks remain connected to each other
+                        if self.is_connected(new_target_blocks) or len(new_target_blocks) <= 1:
+                            valid_moves.append(frozenset(new_state))
+                    else:
+                        # Check full connectivity for standard goal
+                        if self.is_connected(new_state):
+                            valid_moves.append(frozenset(new_state))
+        
+        # If no valid moves with min_simultaneous_moves, fallback to single moves if allowed
         if not valid_moves and self.min_simultaneous_moves == 1:
             valid_moves = []
             for move in single_moves:
                 new_state = self._apply_moves(state_set, [move])
-            
-            # Skip states with overlapping blocks
+                
+                # Skip states with overlapping blocks
                 if self.has_overlapping_blocks(new_state):
                     continue
-                
-            # Additional validation for goal with fewer blocks
+                    
+                # Additional validation for goal with fewer blocks
                 if self.allow_disconnection:
-                # Extract target and fixed blocks from the new state
+                    # Extract target and fixed blocks from the new state
                     new_target_blocks = [pos for pos in new_state if pos not in self.non_target_state]
                     new_fixed_blocks = [pos for pos in new_state if pos in self.non_target_state]
-                
-                # Skip if any target block occupies the same position as a fixed block
+                    
+                    # Skip if any target block occupies the same position as a fixed block
                     if any(pos in new_fixed_blocks for pos in new_target_blocks):
                         continue
-                
-                # Skip if the number of target blocks doesn't match the goal size
+                    
+                    # Skip if the number of target blocks doesn't match the goal size
                     if len(new_target_blocks) != len(self.goal_positions):
                         continue
-                
-                # Ensure no overlaps among target blocks
+                    
+                    # Ensure no overlaps among target blocks
                     if len(new_target_blocks) != len(set(new_target_blocks)):
                         continue
-            
-                valid_moves.append(frozenset(new_state))
-    
-    # Cache results
+                        
+                    # Check if target blocks remain connected to each other
+                    if self.is_connected(new_target_blocks) or len(new_target_blocks) <= 1:
+                        valid_moves.append(frozenset(new_state))
+                else:
+                    # Check full connectivity for standard goal
+                    if self.is_connected(new_state):
+                        valid_moves.append(frozenset(new_state))
+        
+        # Cache results
         self.valid_moves_cache[state_key] = valid_moves
         return valid_moves
     
@@ -479,32 +546,30 @@ cdef class ConnectedMatterAgent:
     
     def _is_valid_move_combination(self, moves, state_set):
         """Check if a combination of moves is valid (no conflicts)"""
-    # Extract source and target positions
+        # Extract source and target positions
         sources = set()
         targets = set()
-    
+        
         for src, tgt in moves:
-        # Check for overlapping sources or targets
+            # Check for overlapping sources or targets
             if src in sources or tgt in targets:
                 return False
             sources.add(src)
             targets.add(tgt)
-        
-        # Check that no target is also a source for another move
+            
+            # Check that no target is also a source for another move
             if tgt in sources or src in targets:
                 return False
-    
-    # Additional check: Make sure targets don't collide with fixed blocks
-        if self.allow_disconnection:
+        
+        # Additional check: Make sure targets don't collide with unmoved blocks
         # Identify blocks that won't be moving in this step
-            fixed_blocks = state_set.intersection(self.non_target_state)
-            remaining_blocks = state_set - sources
+        remaining_blocks = state_set - sources
         
         # Check that no target position collides with a block that isn't moving
-            for tgt in targets:
-                if tgt in remaining_blocks:
-                    return False
-    
+        for tgt in targets:
+            if tgt in remaining_blocks:
+                return False
+        
         return True
     
     def _apply_moves(self, state_set, moves):
@@ -596,9 +661,25 @@ cdef class ConnectedMatterAgent:
                     if len(new_state_set) != len(state_set):
                         continue
                     
-                    # Check connectivity when required
-                    if self.allow_disconnection or self.is_connected(new_state_set):
-                        valid_moves.append(frozenset(new_state_set))
+                    # Handle connectivity based on goal type
+                    if self.allow_disconnection:
+                        # Check connectivity among target blocks only
+                        new_target_blocks = [p for p in new_state_set if p not in self.non_target_state]
+                        
+                        # Extract target and fixed blocks from the new state
+                        new_fixed_blocks = [p for p in new_state_set if p in self.non_target_state]
+                        
+                        # Skip if any target block occupies the same position as a fixed block
+                        if any(p in new_fixed_blocks for p in new_target_blocks):
+                            continue
+                        
+                        # Check target block connectivity
+                        if self.is_connected(new_target_blocks) or len(new_target_blocks) <= 1:
+                            valid_moves.append(frozenset(new_state_set))
+                    else:
+                        # Standard connectivity for all blocks
+                        if self.is_connected(new_state_set):
+                            valid_moves.append(frozenset(new_state_set))
             
             # If next position is unoccupied, try direct move
             else:
@@ -610,9 +691,25 @@ cdef class ConnectedMatterAgent:
                 if len(new_state_set) != len(state_set):
                     continue
                 
-                # Check connectivity when required
-                if self.allow_disconnection or self.is_connected(new_state_set):
-                    valid_moves.append(frozenset(new_state_set))
+                # Handle connectivity based on goal type
+                if self.allow_disconnection:
+                    # Check connectivity among target blocks only
+                    new_target_blocks = [p for p in new_state_set if p not in self.non_target_state]
+                    
+                    # Extract target and fixed blocks from the new state
+                    new_fixed_blocks = [p for p in new_state_set if p in self.non_target_state]
+                    
+                    # Skip if any target block occupies the same position as a fixed block
+                    if any(p in new_fixed_blocks for p in new_target_blocks):
+                        continue
+                    
+                    # Check target block connectivity
+                    if self.is_connected(new_target_blocks) or len(new_target_blocks) <= 1:
+                        valid_moves.append(frozenset(new_state_set))
+                else:
+                    # Standard connectivity for all blocks
+                    if self.is_connected(new_state_set):
+                        valid_moves.append(frozenset(new_state_set))
         
         return valid_moves
     
@@ -645,6 +742,13 @@ cdef class ConnectedMatterAgent:
                 articulation_points = self.get_articulation_points(state_set)
                 if pos in articulation_points and len(articulation_points) <= 20:
                     continue
+            elif self.allow_disconnection:
+                # When allowing disconnection, check articulation points only among target blocks
+                target_blocks = [p for p in state_set if p not in fixed_blocks]
+                if target_blocks:
+                    target_articulation_points = self.get_articulation_points(set(target_blocks))
+                    if pos in target_articulation_points and len(target_articulation_points) <= 15:
+                        continue
                 
             # Try sliding in each direction
             for dx, dy in self.directions:
@@ -677,9 +781,25 @@ cdef class ConnectedMatterAgent:
                         if len(new_state_set) != len(state_set):
                             continue
                         
-                        # Check connectivity when required
-                        if self.allow_disconnection or self.is_connected(new_state_set):
-                            valid_moves.append(frozenset(new_state_set))
+                        # Handle connectivity based on goal type
+                        if self.allow_disconnection:
+                            # Check connectivity among target blocks only
+                            new_target_blocks = [p for p in new_state_set if p not in self.non_target_state]
+                            
+                            # Extract target and fixed blocks from the new state
+                            new_fixed_blocks = [p for p in new_state_set if p in self.non_target_state]
+                            
+                            # Skip if any target block occupies the same position as a fixed block
+                            if any(p in new_fixed_blocks for p in new_target_blocks):
+                                continue
+                            
+                            # Check target block connectivity
+                            if self.is_connected(new_target_blocks) or len(new_target_blocks) <= 1:
+                                valid_moves.append(frozenset(new_state_set))
+                        else:
+                            # Standard connectivity for all blocks
+                            if self.is_connected(new_state_set):
+                                valid_moves.append(frozenset(new_state_set))
                         
                         # No need to continue if we can't reach this position
                         break
@@ -1036,7 +1156,7 @@ cdef class ConnectedMatterAgent:
         cdef int iterations = 0
         cdef int tentative_g
     
-    # Skip states with overlapping blocks
+        # Skip states with overlapping blocks
         if self.has_overlapping_blocks(start_state):
             print("WARNING: Starting state for morphing has overlapping blocks!")
             return [start_state]
@@ -1047,135 +1167,139 @@ cdef class ConnectedMatterAgent:
     
         start_time = time.time()
     
-    # Initialize beam search
+        # Initialize beam search
         open_set = [(self.improved_morphing_heuristic(start_state), 0, start_state)]
         closed_set = set()
     
-    # Track path, g-scores, and best state
+        # Track path, g-scores, and best state
         g_score = {start_state: 0}
         came_from = {start_state: None}
     
-    # Track best state seen so far
+        # Track best state seen so far
         best_state = start_state
         best_heuristic = self.improved_morphing_heuristic(start_state)
         last_improvement_time = time.time()
     
-    # Determine whether we're targeting a subset of blocks
+        # Determine whether we're targeting a subset of blocks
         targeting_subset = self.allow_disconnection
     
         while open_set and time.time() - start_time < time_limit:
             iterations += 1
         
-        # Get state with lowest f-score
+            # Get state with lowest f-score
             f, g, current = heapq.heappop(open_set)
         
-        # Skip if already processed
+            # Skip if already processed
             if current in closed_set:
                 continue
         
-        # Skip states with overlapping blocks
+            # Skip states with overlapping blocks
             if self.has_overlapping_blocks(current):
                 continue
             
-        # Check if goal reached
+            # Check if goal reached
             if targeting_subset:
-            # For subset targeting, check if target blocks match goal positions
-            # Extract target blocks from current state (exclude fixed blocks)
+                # For subset targeting, check if target blocks match goal positions
+                # Extract target blocks from current state (exclude fixed blocks)
                 target_blocks = frozenset(pos for pos in current if pos not in self.non_target_state)
             
-            # Check if all goal positions are filled by target blocks
+                # Check if all goal positions are filled by target blocks
                 if self.goal_state.issubset(target_blocks) or target_blocks.issubset(self.goal_state):
                     print(f"Goal approximation reached after {iterations} iterations!")
                     return self.reconstruct_path(came_from, current)
                 
-            # Alternative goal check: if enough blocks are in the right positions
+                # Alternative goal check: if enough blocks are in the right positions
                 matching_positions = len(target_blocks.intersection(self.goal_state))
                 if matching_positions == len(self.goal_state):
                     print(f"Goal positions matched after {iterations} iterations!")
                     return self.reconstruct_path(came_from, current)
             else:
-            # For exact matching, use original goal check
+                # For exact matching, use original goal check
                 if current == self.goal_state:
                     print(f"Goal reached after {iterations} iterations!")
                     return self.reconstruct_path(came_from, current)
         
-        # Check if this is the best state seen so far
+            # Check if this is the best state seen so far
             current_heuristic = self.improved_morphing_heuristic(current)
             if current_heuristic < best_heuristic:
                 best_state = current
                 best_heuristic = current_heuristic
                 last_improvement_time = time.time()
             
-            # Print progress occasionally
+                # Print progress occasionally
                 if iterations % 500 == 0:
                     print(f"Progress: h={best_heuristic}, iterations={iterations}")
         
-        # Check for stagnation
+            # Check for stagnation
             if time.time() - last_improvement_time > time_limit * 0.3:
                 print("Search stagnated, restarting...")
-            # Clear the beam and start from the best state
+                # Clear the beam and start from the best state
                 open_set = [(best_heuristic, g_score[best_state], best_state)]
                 last_improvement_time = time.time()
         
-        # Limit iterations to prevent infinite loops
+            # Limit iterations to prevent infinite loops
             if iterations >= self.max_iterations:
                 print(f"Reached max iterations ({self.max_iterations})")
                 break
             
             closed_set.add(current)
         
-        # Get all valid moves
+            # Get all valid moves
             neighbors = self.get_all_valid_moves(current)
         
-        # Process each neighbor
+            # Process each neighbor
             for neighbor in neighbors:
-            # Skip states with overlapping blocks
+                # Skip states with overlapping blocks
                 if self.has_overlapping_blocks(neighbor):
                     continue
                 
-            # Additional validation for states with fewer blocks in goal
+                # Additional validation for states with fewer blocks in goal
                 if self.allow_disconnection:
-                # Extract only target blocks
+                    # Extract only target blocks
                     target_blocks = [pos for pos in neighbor if pos not in self.non_target_state]
                 
-                # Skip if we don't have the right number of target blocks
+                    # Skip if we don't have the right number of target blocks
                     if len(target_blocks) != len(self.goal_positions):
                         continue
                     
-                # Skip if target blocks overlap with each other
+                    # Skip if target blocks overlap with each other
                     if len(target_blocks) != len(set(target_blocks)):
                         continue
                 
-                # Skip if any target block occupies the same position as a fixed block
+                    # Skip if any target block occupies the same position as a fixed block
                     fixed_blocks = [pos for pos in neighbor if pos in self.non_target_state]
                     if any(pos in fixed_blocks for pos in target_blocks):
+                        continue
+                        
+                    # Check if target blocks remain connected to each other
+                    if not (self.is_connected(target_blocks) or len(target_blocks) <= 1):
                         continue
             
                 if neighbor in closed_set:
                     continue
             
-            # Calculate tentative g-score
+                # Calculate tentative g-score
                 tentative_g = g_score[current] + 1
             
                 if neighbor not in g_score or tentative_g < g_score[neighbor]:
-                # This is a better path
+                    # This is a better path
                     came_from[neighbor] = current
                     g_score[neighbor] = tentative_g
                     f_score = tentative_g + self.improved_morphing_heuristic(neighbor)
                 
-                # Add to open set
+                    # Add to open set
                     heapq.heappush(open_set, (f_score, tentative_g, neighbor))
         
-        # Beam search pruning: keep only the best states
+            # Beam search pruning: keep only the best states
             if len(open_set) > self.beam_width:
                 open_set = heapq.nsmallest(self.beam_width, open_set)
                 heapq.heapify(open_set)
     
-    # If we exit the loop, either no path was found or time limit reached
+        # If we exit the loop, either no path was found or time limit reached
         if time.time() - start_time >= time_limit:
             print(f"Morphing phase timed out after {iterations} iterations!")
     
-    # Return the best state found
+        # Return the best state found
         return self.reconstruct_path(came_from, best_state)
     
     def reconstruct_path(self, came_from, current):
