@@ -154,11 +154,7 @@ cdef class Visualizer:
         cdef float x, y
         for pos in goal_positions:
             x, y = pos
-            # Convert floating point positions to grid coordinates for display
-            if isinstance(x, float) and isinstance(y, float):
-                rect = plt.Rectangle((y - 0.5, x - 0.5), 1, 1, color='green', alpha=0.3)
-            else:
-                rect = plt.Rectangle((y, x), 1, 1, color='green', alpha=0.3)
+            rect = plt.Rectangle((y, x), 1, 1, color='green', alpha=0.3)
             self.ax.add_patch(rect)
         plt.draw()
 

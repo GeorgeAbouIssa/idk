@@ -20,6 +20,11 @@ cdef class ConnectedMatterAgent:
     cdef public dict connectivity_check_cache
     cdef public int beam_width
     cdef public int max_iterations
+    cdef public object target_state  # Subset of blocks to be used for goal
+    cdef public object non_target_state  # Blocks that won't move to goal
+    cdef public bint allow_disconnection  # Flag to allow blocks to disconnect
+    cdef public list target_block_list  # List of blocks that will be moved
+    cdef public list fixed_block_list  # List of blocks that won't be moved
 
     def __init__(self, tuple grid_size, list start_positions, list goal_positions, str topology="moore", 
                  int max_simultaneous_moves=1, int min_simultaneous_moves=1):
@@ -35,14 +40,50 @@ cdef class ConnectedMatterAgent:
             self.directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
         else:  # Von Neumann
             self.directions = [(-1, 0), (0, -1), (0, 1), (1, 0)]
+        
+        # Ensure no duplicates in goal positions
+        unique_goal_positions = []
+        goal_positions_set = set()
+        for pos in goal_positions:
+            if pos not in goal_positions_set:
+                goal_positions_set.add(pos)
+                unique_goal_positions.append(pos)
+                
+        if len(unique_goal_positions) != len(goal_positions):
+            print("WARNING: Duplicate positions detected in goal state. Removed duplicates.")
+            self.goal_positions = unique_goal_positions
             
         # Initialize the start and goal states
-        self.start_state = frozenset((x, y) for x, y in start_positions)
-        self.goal_state = frozenset((x, y) for x, y in goal_positions)
+        self.start_state = frozenset((x, y) for x, y in self.start_positions)
+        self.goal_state = frozenset((x, y) for x, y in self.goal_positions)
         
         # Calculate the centroid of the goal positions for block movement phase
-        # Using exact position calculation instead of average to ensure precise positioning
         self.goal_centroid = self.calculate_centroid(self.goal_positions)
+        
+        # Handle cases where goal has fewer blocks than start
+        if len(self.goal_positions) < len(start_positions):
+            # Flag to allow disconnection when goal has fewer blocks
+            self.allow_disconnection = True
+            
+            # Select the subset of blocks closest to the goal centroid
+            self.target_block_list = self.select_closest_blocks_to_goal()
+            self.fixed_block_list = [pos for pos in self.start_positions if pos not in self.target_block_list]
+            
+            # Convert to frozensets for state operations
+            self.target_state = frozenset((x, y) for x, y in self.target_block_list)
+            self.non_target_state = frozenset((x, y) for x, y in self.fixed_block_list)
+            
+            print(f"Goal has fewer blocks ({len(self.goal_positions)}) than start ({len(start_positions)})")
+            print(f"Selected {len(self.target_block_list)} blocks closest to the goal centroid")
+            print(f"Blocks will be allowed to disconnect during movement")
+            print(f"Fixed blocks: {len(self.fixed_block_list)} will remain stationary")
+        else:
+            # If goal has same or more blocks, all start blocks are target blocks
+            self.allow_disconnection = False
+            self.target_block_list = self.start_positions.copy()
+            self.fixed_block_list = []
+            self.target_state = self.start_state
+            self.non_target_state = frozenset()
         
         # Cache for valid moves to avoid recomputation
         self.valid_moves_cache = {}
@@ -54,6 +95,26 @@ cdef class ConnectedMatterAgent:
         # Enhanced parameters for improved search
         self.beam_width = 500  # Increased beam width for better exploration
         self.max_iterations = 10000  # Limit iterations to prevent infinite loops
+        
+    def select_closest_blocks_to_goal(self):
+        """
+        Select blocks from start state that are closest to the goal centroid
+        Returns a list of selected blocks
+        """
+        # Calculate distances from each start position to goal centroid
+        distances = []
+        for pos in self.start_positions:
+            # Manhattan distance to centroid
+            dist = abs(pos[0] - self.goal_centroid[0]) + abs(pos[1] - self.goal_centroid[1])
+            distances.append((dist, pos))
+        
+        # Sort by distance (ascending)
+        distances.sort()
+        
+        # Select the number of blocks needed for the goal
+        selected_blocks = [pos for _, pos in distances[:len(self.goal_positions)]]
+        
+        return selected_blocks
         
     def calculate_centroid(self, positions):
         """Calculate the centroid (average position) of a set of positions"""
@@ -157,58 +218,126 @@ cdef class ConnectedMatterAgent:
         self.articulation_points_cache[state_hash] = articulation_points
         return articulation_points
     
+    def has_overlapping_blocks(self, state):
+        """Check if a state has any overlapping blocks"""
+        state_list = list(state)
+        return len(state_list) != len(set(state_list))
+        
     def get_valid_block_moves(self, state):
         """
-        Generate valid moves for the entire block of elements
-        A valid block move shifts all elements in the same direction while maintaining connectivity
+        Generate valid moves for blocks
+        A valid block move shifts the target elements in the same direction
+        Fixed blocks remain stationary
         """
         valid_moves = []
+        
+        # Skip states with overlapping blocks
+        if self.has_overlapping_blocks(state):
+            return valid_moves
+            
+        # Extract movable blocks (target blocks)
         state_list = list(state)
         
-        # Try moving the entire block in each direction
+        # If there are fixed blocks, they should remain stationary
+        if self.allow_disconnection and self.non_target_state:
+            # Only move target blocks
+            movable_blocks = [pos for pos in state_list if pos in self.target_state]
+            fixed_blocks = [pos for pos in state_list if pos in self.non_target_state]
+        else:
+            # Move all blocks
+            movable_blocks = state_list
+            fixed_blocks = []
+        
+        # Try moving the movable blocks in each direction
         for dx, dy in self.directions:
             # Calculate new positions after moving
-            new_positions = [(pos[0] + dx, pos[1] + dy) for pos in state_list]
+            new_positions = [(pos[0] + dx, pos[1] + dy) for pos in movable_blocks]
             
-            # Check if all new positions are valid (within bounds and not occupied)
-            all_valid = all(0 <= pos[0] < self.grid_size[0] and 
-                            0 <= pos[1] < self.grid_size[1] for pos in new_positions)
+            # Check if all new positions are valid:
+            # 1. Within bounds
+            # 2. Not occupied by fixed blocks
+            # 3. No position duplication (no overlap)
+            all_valid = True
+            new_pos_set = set()
             
-            # Only consider moves that keep all positions within bounds
+            for pos in new_positions:
+                # Check bounds
+                if not (0 <= pos[0] < self.grid_size[0] and 0 <= pos[1] < self.grid_size[1]):
+                    all_valid = False
+                    break
+                    
+                # Check collision with fixed blocks
+                if pos in fixed_blocks:
+                    all_valid = False
+                    break
+                    
+                # Check for duplicates (overlap)
+                if pos in new_pos_set:
+                    all_valid = False
+                    break
+                    
+                new_pos_set.add(pos)
+            
+            # Only consider moves that keep all positions valid
             if all_valid:
-                new_state = frozenset(new_positions)
+                # Combine with fixed blocks to create the new state
+                new_state = frozenset(new_positions + fixed_blocks)
                 valid_moves.append(new_state)
         
         return valid_moves
     
     def get_valid_morphing_moves(self, state):
         """
-        Generate valid morphing moves that maintain connectivity
+        Generate valid morphing moves
         Supports multiple simultaneous block movements with minimum requirement
+        Fixed blocks remain stationary, only target blocks move
         """
         state_key = hash(state)
         if state_key in self.valid_moves_cache:
             return self.valid_moves_cache[state_key]
             
+        # Skip states with overlapping blocks
+        if self.has_overlapping_blocks(state):
+            self.valid_moves_cache[state_key] = []
+            return []
+            
         # Get single block moves first
         single_moves = []
         state_set = set(state)
         
-        # Find non-critical points that can move without breaking connectivity
-        articulation_points = self.get_articulation_points(state_set)
-        movable_points = state_set - articulation_points
+        # Identify fixed blocks vs movable blocks
+        fixed_blocks = set()
+        if self.allow_disconnection:
+            fixed_blocks = state_set.intersection(self.non_target_state)
         
-        # If all points are critical, try moving one anyway but verify connectivity 
-        if not movable_points and articulation_points:
-            for point in articulation_points:
-                # Try removing and see if structure remains connected
-                temp_state = state_set.copy()
-                temp_state.remove(point)
-                if self.is_connected(temp_state):
-                    movable_points.add(point)
+        # If there are fixed blocks, they should remain stationary
+        if self.allow_disconnection and fixed_blocks:
+            # Only consider target blocks as movable
+            movable_candidates = state_set - fixed_blocks
+            
+            # All target blocks can move independently since disconnection is allowed
+            movable_points = movable_candidates
+        else:
+            # Standard connectivity rules apply to all blocks
+            # Find non-critical points that can move without breaking connectivity
+            articulation_points = self.get_articulation_points(state_set)
+            movable_points = state_set - articulation_points
+            
+            # If all points are critical, try moving one anyway but verify connectivity 
+            if not movable_points and articulation_points:
+                for point in articulation_points:
+                    # Try removing and see if structure remains connected
+                    temp_state = state_set.copy()
+                    temp_state.remove(point)
+                    if self.is_connected(temp_state):
+                        movable_points.add(point)
         
         # Generate single block moves
         for point in movable_points:
+            # Skip fixed blocks
+            if point in fixed_blocks:
+                continue
+                
             # Try moving in each direction
             for dx, dy in self.directions:
                 new_pos = (point[0] + dx, point[1] + dy)
@@ -227,17 +356,25 @@ cdef class ConnectedMatterAgent:
                 new_state_set.remove(point)
                 new_state_set.add(new_pos)
                 
-                # Check if new position is adjacent to at least one other point
-                has_adjacent = False
-                for adj_dx, adj_dy in self.directions:
-                    adj_pos = (new_pos[0] + adj_dx, new_pos[1] + adj_dy)
-                    if adj_pos in new_state_set and adj_pos != new_pos:
-                        has_adjacent = True
-                        break
+                # Check for overlapping positions
+                if len(new_state_set) != len(state_set):
+                    continue
                 
-                # Only consider moves that maintain connectivity
-                if has_adjacent and self.is_connected(new_state_set):
+                if self.allow_disconnection:
+                    # With disconnection allowed, we only need to check for collisions
                     single_moves.append((point, new_pos))
+                else:
+                    # Check if new position is adjacent to at least one other point
+                    has_adjacent = False
+                    for adj_dx, adj_dy in self.directions:
+                        adj_pos = (new_pos[0] + adj_dx, new_pos[1] + adj_dy)
+                        if adj_pos in new_state_set and adj_pos != new_pos:
+                            has_adjacent = True
+                            break
+                    
+                    # Only consider moves that maintain connectivity
+                    if has_adjacent and self.is_connected(new_state_set):
+                        single_moves.append((point, new_pos))
                     
         # Start with empty valid moves list
         valid_moves = []
@@ -248,14 +385,24 @@ cdef class ConnectedMatterAgent:
             for combo in self._generate_move_combinations(single_moves, k):
                 # Check if the combination is valid (no conflicts)
                 if self._is_valid_move_combination(combo, state_set):
-                    # Apply the combination and check connectivity
+                    # Apply the combination
                     new_state = self._apply_moves(state_set, combo)
-                    if self.is_connected(new_state):
+                    
+                    # Check for overlapping positions
+                    if self.has_overlapping_blocks(new_state):
+                        continue
+                    
+                    # Check connectivity when required
+                    if self.allow_disconnection or self.is_connected(new_state):
                         valid_moves.append(frozenset(new_state))
         
         # If no valid moves with min_simultaneous_moves, fallback to single moves if allowed
         if not valid_moves and self.min_simultaneous_moves == 1:
-            valid_moves = [frozenset(self._apply_moves(state_set, [move])) for move in single_moves]
+            valid_moves = []
+            for move in single_moves:
+                new_state = self._apply_moves(state_set, [move])
+                if not self.has_overlapping_blocks(new_state):
+                    valid_moves.append(frozenset(new_state))
         
         # Cache results
         self.valid_moves_cache[state_key] = valid_moves
@@ -304,16 +451,30 @@ cdef class ConnectedMatterAgent:
     def get_smart_chain_moves(self, state):
         """
         Generate chain moves where one block moves into the space of another
-        while that block moves elsewhere, maintaining connectivity
+        while that block moves elsewhere
+        Fixed blocks remain stationary
         """
         cdef double min_dist
         cdef int dx, dy
         
+        # Skip states with overlapping blocks
+        if self.has_overlapping_blocks(state):
+            return []
+            
         state_set = set(state)
         valid_moves = []
         
-        # For each block, try to move it toward a goal position
+        # Identify fixed blocks
+        fixed_blocks = set()
+        if self.allow_disconnection:
+            fixed_blocks = state_set.intersection(self.non_target_state)
+        
+        # For each movable block, try to move it toward a goal position
         for pos in state_set:
+            # Skip fixed blocks
+            if pos in fixed_blocks:
+                continue
+                
             # Find closest goal position
             min_dist = float('inf')
             closest_goal = None
@@ -342,6 +503,10 @@ cdef class ConnectedMatterAgent:
             
             # If next position is occupied, try chain move
             if next_pos in state_set:
+                # Skip if the occupied position is a fixed block
+                if next_pos in fixed_blocks:
+                    continue
+                    
                 # Try moving the blocking block elsewhere
                 for chain_dx, chain_dy in self.directions:
                     chain_pos = (next_pos[0] + chain_dx, next_pos[1] + chain_dy)
@@ -360,8 +525,12 @@ cdef class ConnectedMatterAgent:
                     new_state_set.add(next_pos)
                     new_state_set.add(chain_pos)
                     
-                    # Check if new state is connected
-                    if self.is_connected(new_state_set):
+                    # Check for overlapping positions
+                    if len(new_state_set) != len(state_set):
+                        continue
+                    
+                    # Check connectivity when required
+                    if self.allow_disconnection or self.is_connected(new_state_set):
                         valid_moves.append(frozenset(new_state_set))
             
             # If next position is unoccupied, try direct move
@@ -370,8 +539,12 @@ cdef class ConnectedMatterAgent:
                 new_state_set.remove(pos)
                 new_state_set.add(next_pos)
                 
-                # Check if new state is connected
-                if self.is_connected(new_state_set):
+                # Check for overlapping positions
+                if len(new_state_set) != len(state_set):
+                    continue
+                
+                # Check connectivity when required
+                if self.allow_disconnection or self.is_connected(new_state_set):
                     valid_moves.append(frozenset(new_state_set))
         
         return valid_moves
@@ -380,16 +553,31 @@ cdef class ConnectedMatterAgent:
         """
         Generate sliding chain moves where multiple blocks move in sequence
         to navigate tight spaces
+        Fixed blocks remain stationary
         """
+        # Skip states with overlapping blocks
+        if self.has_overlapping_blocks(state):
+            return []
+            
         state_set = set(state)
         valid_moves = []
         
-        # For each block, try to initiate a sliding chain
+        # Identify fixed blocks
+        fixed_blocks = set()
+        if self.allow_disconnection:
+            fixed_blocks = state_set.intersection(self.non_target_state)
+        
+        # For each movable block, try to initiate a sliding chain
         for pos in state_set:
-            # Skip if it's a critical articulation point
-            articulation_points = self.get_articulation_points(state_set)
-            if pos in articulation_points and len(articulation_points) <= 20:
+            # Skip fixed blocks
+            if pos in fixed_blocks:
                 continue
+                
+            # Skip if it's a critical articulation point (unless disconnection allowed)
+            if not self.allow_disconnection:
+                articulation_points = self.get_articulation_points(state_set)
+                if pos in articulation_points and len(articulation_points) <= 20:
+                    continue
                 
             # Try sliding in each direction
             for dx, dy in self.directions:
@@ -418,8 +606,12 @@ cdef class ConnectedMatterAgent:
                         new_state_set.remove(pos)
                         new_state_set.add(target_pos)
                         
-                        # Check if new state is connected
-                        if self.is_connected(new_state_set):
+                        # Check for overlapping positions
+                        if len(new_state_set) != len(state_set):
+                            continue
+                        
+                        # Check connectivity when required
+                        if self.allow_disconnection or self.is_connected(new_state_set):
                             valid_moves.append(frozenset(new_state_set))
                         
                         # No need to continue if we can't reach this position
@@ -431,6 +623,10 @@ cdef class ConnectedMatterAgent:
         """
         Combine all move generation methods to maximize options
         """
+        # Skip states with overlapping blocks
+        if self.has_overlapping_blocks(state):
+            return []
+            
         # Start with basic morphing moves
         basic_moves = self.get_valid_morphing_moves(state)
         
@@ -448,20 +644,38 @@ cdef class ConnectedMatterAgent:
     def block_heuristic(self, state):
         """
         Heuristic for block movement phase:
-        Calculate Manhattan distance from current centroid to goal centroid
+        Calculate Manhattan distance from current target blocks to goal centroid
         """
         if not state:
             return float('inf')
-            
-        current_centroid = self.calculate_centroid(state)
         
-        # Pure Manhattan distance between centroids without the +1 offset
-        return abs(current_centroid[0] - self.goal_centroid[0]) + abs(current_centroid[1] - self.goal_centroid[1])
+        # Skip states with overlapping blocks
+        if self.has_overlapping_blocks(state):
+            return float('inf')
+            
+        if self.allow_disconnection:
+            # Extract target blocks from current state
+            target_blocks = [pos for pos in state if pos not in self.non_target_state]
+            if not target_blocks:
+                return float('inf')
+                
+            # Calculate centroid of target blocks only
+            target_centroid = self.calculate_centroid(target_blocks)
+            
+            # Pure Manhattan distance between centroids
+            return abs(target_centroid[0] - self.goal_centroid[0]) + abs(target_centroid[1] - self.goal_centroid[1])
+        else:
+            # Standard centroid calculation for all blocks
+            current_centroid = self.calculate_centroid(state)
+            
+            # Pure Manhattan distance between centroids
+            return abs(current_centroid[0] - self.goal_centroid[0]) + abs(current_centroid[1] - self.goal_centroid[1])
     
     def improved_morphing_heuristic(self, state):
         """
         Improved heuristic for morphing phase:
         Uses bipartite matching to find optimal assignment of blocks to goal positions
+        When goal has fewer blocks, only consider target blocks
         """
         cdef double total_distance = 0
         cdef double min_dist
@@ -472,58 +686,107 @@ cdef class ConnectedMatterAgent:
         if not state:
             return float('inf')
             
-        state_list = list(state)
-        goal_list = list(self.goal_state)
-        
-        # Early exit if states have different sizes
-        if len(state_list) != len(goal_list):
+        # Skip states with overlapping blocks
+        if self.has_overlapping_blocks(state):
             return float('inf')
         
-        # Build distance matrix
-        distances = []
-        for pos in state_list:
-            row = []
-            for goal_pos in goal_list:
-                # Manhattan distance
-                dist = abs(pos[0] - goal_pos[0]) + abs(pos[1] - goal_pos[1])
-                row.append(dist)
-            distances.append(row)
-        
-        # Use greedy assignment algorithm
-        assigned_cols = set()
-        
-        # Sort rows by minimum distance
-        row_indices = list(range(len(state_list)))
-        row_indices.sort(key=lambda i: min(distances[i]))
-        
-        for i in row_indices:
-            # Find closest unassigned goal position
-            min_dist = float('inf')
-            best_j = -1
+        # If we're targeting a subset of blocks (goal has fewer blocks)
+        if self.allow_disconnection:
+            # Extract target blocks (exclude fixed blocks)
+            target_blocks = [pos for pos in state if pos not in self.non_target_state]
             
-            for j in range(len(goal_list)):
-                if j not in assigned_cols and distances[i][j] < min_dist:
-                    min_dist = distances[i][j]
-                    best_j = j
-            
-            if best_j != -1:
-                assigned_cols.add(best_j)
-                total_distance += min_dist
-            else:
-                # No assignment possible
+            # If number of target blocks doesn't match goal positions, this shouldn't happen
+            if len(target_blocks) != len(self.goal_positions):
                 return float('inf')
-        
-        # Add connectivity bonus: prefer states that have more blocks in goal positions
-        matching_positions = len(state.intersection(self.goal_state))
-        connectivity_bonus = -matching_positions * 0.5  # Negative to encourage more matches
-        
-        return total_distance + connectivity_bonus
+                
+            goal_list = list(self.goal_state)
+            
+            # Build distance matrix only for target blocks
+            distance_matrix = []
+            for pos in target_blocks:
+                row = []
+                for goal_pos in goal_list:
+                    # Manhattan distance
+                    dist = abs(pos[0] - goal_pos[0]) + abs(pos[1] - goal_pos[1])
+                    row.append(dist)
+                distance_matrix.append(row)
+            
+            # Greedy assignment
+            assigned_cols = set()
+            
+            for i in range(len(target_blocks)):
+                # Find closest unassigned goal position
+                min_dist = float('inf')
+                best_j = -1
+                
+                for j in range(len(goal_list)):
+                    if j not in assigned_cols and distance_matrix[i][j] < min_dist:
+                        min_dist = distance_matrix[i][j]
+                        best_j = j
+                
+                if best_j != -1:
+                    assigned_cols.add(best_j)
+                    total_distance += min_dist
+                else:
+                    # No assignment possible
+                    return float('inf')
+            
+            # Add connectivity bonus: prefer states that have more blocks in goal positions
+            matching_positions = sum(1 for pos in target_blocks if pos in self.goal_state)
+            connectivity_bonus = -matching_positions * 0.5  # Negative to encourage more matches
+            
+            return total_distance + connectivity_bonus
+            
+        else:
+            # Original logic for when goal has same number of blocks as start
+            state_list = list(state)
+            goal_list = list(self.goal_state)
+            
+            # Build distance matrix
+            distances = []
+            for pos in state_list:
+                row = []
+                for goal_pos in goal_list:
+                    # Manhattan distance
+                    dist = abs(pos[0] - goal_pos[0]) + abs(pos[1] - goal_pos[1])
+                    row.append(dist)
+                distances.append(row)
+            
+            # Use greedy assignment algorithm
+            assigned_cols = set()
+            
+            # Sort rows by minimum distance
+            row_indices = list(range(len(state_list)))
+            row_indices.sort(key=lambda i: min(distances[i]))
+            
+            for i in row_indices:
+                # Find closest unassigned goal position
+                min_dist = float('inf')
+                best_j = -1
+                
+                for j in range(len(goal_list)):
+                    if j not in assigned_cols and distances[i][j] < min_dist:
+                        min_dist = distances[i][j]
+                        best_j = j
+                
+                if best_j != -1:
+                    assigned_cols.add(best_j)
+                    total_distance += min_dist
+                else:
+                    # No assignment possible
+                    return float('inf')
+            
+            # Add connectivity bonus: prefer states that have more blocks in goal positions
+            matching_positions = len(state.intersection(self.goal_state))
+            connectivity_bonus = -matching_positions * 0.5  # Negative to encourage more matches
+            
+            return total_distance + connectivity_bonus
     
     def block_movement_phase(self, double time_limit=15):
         """
-        Phase 1: Move the entire block toward the goal centroid
-        Returns the path of states to get near the goal area
-        Modified to stop 1 grid cell before reaching the goal centroid
+        Phase 1: Move blocks toward the goal centroid
+        If goal has fewer blocks than start, only move the target blocks
+        Fixed blocks remain stationary throughout
         """
         cdef double start_time
         cdef double min_distance = 1.0
@@ -533,15 +796,21 @@ cdef class ConnectedMatterAgent:
         cdef int tentative_g
         
         print("Starting Block Movement Phase...")
+        if self.allow_disconnection:
+            print(f"Moving only {len(self.target_block_list)} target blocks, keeping {len(self.fixed_block_list)} blocks stationary")
+        
         start_time = time.time()
 
+        # Create initial state - if disconnection is allowed, we need to include fixed blocks
+        initial_state = self.start_state
+
         # Initialize A* search
-        open_set = [(self.block_heuristic(self.start_state), 0, self.start_state)]
+        open_set = [(self.block_heuristic(initial_state), 0, initial_state)]
         closed_set = set()
 
         # Track path and g-scores
-        g_score = {self.start_state: 0}
-        came_from = {self.start_state: None}
+        g_score = {initial_state: 0}
+        came_from = {initial_state: None}
 
         while open_set and time.time() - start_time < time_limit:
             # Get state with lowest f-score
@@ -550,20 +819,41 @@ cdef class ConnectedMatterAgent:
             # Skip if already processed
             if current in closed_set:
                 continue
+            
+            # Skip states with overlapping blocks
+            if self.has_overlapping_blocks(current):
+                continue
         
             # Check if we're at the desired distance from the goal centroid
-            current_centroid = self.calculate_centroid(current)
-            centroid_distance = (abs(current_centroid[0] - self.goal_centroid[0]) + 
-                                abs(current_centroid[1] - self.goal_centroid[1]))
+            if self.allow_disconnection:
+                # Extract target blocks
+                target_blocks = [pos for pos in current if pos not in self.non_target_state]
+                
+                # Calculate centroid of target blocks only
+                if target_blocks:
+                    target_centroid = self.calculate_centroid(target_blocks)
+                    centroid_distance = (abs(target_centroid[0] - self.goal_centroid[0]) + 
+                                        abs(target_centroid[1] - self.goal_centroid[1]))
+                else:
+                    centroid_distance = float('inf')
+            else:
+                # Standard centroid calculation
+                current_centroid = self.calculate_centroid(current)
+                centroid_distance = (abs(current_centroid[0] - self.goal_centroid[0]) + 
+                                    abs(current_centroid[1] - self.goal_centroid[1]))
                         
             if min_distance <= centroid_distance <= max_distance:
-                print(f"Block stopped 1 grid cell before goal centroid. Distance: {centroid_distance}")
+                print(f"Blocks stopped 1 grid cell before goal centroid. Distance: {centroid_distance}")
                 return self.reconstruct_path(came_from, current)
         
             closed_set.add(current)
     
             # Process neighbor states (block moves)
             for neighbor in self.get_valid_block_moves(current):
+                # Skip states with overlapping blocks
+                if self.has_overlapping_blocks(neighbor):
+                    continue
+                    
                 if neighbor in closed_set:
                     continue
                 
@@ -575,10 +865,22 @@ cdef class ConnectedMatterAgent:
                     came_from[neighbor] = current
                     g_score[neighbor] = tentative_g
                 
-                    # Modified: Adjust heuristic to prefer states that are close to but not at the centroid
-                    neighbor_centroid = self.calculate_centroid(neighbor)
-                    neighbor_distance = (abs(neighbor_centroid[0] - self.goal_centroid[0]) + 
-                                        abs(neighbor_centroid[1] - self.goal_centroid[1]))
+                    # Adjusted heuristic to prefer states near but not at centroid
+                    if self.allow_disconnection:
+                        # Extract target blocks for distance calculation
+                        neighbor_target_blocks = [pos for pos in neighbor if pos not in self.non_target_state]
+                        if neighbor_target_blocks:
+                            neighbor_centroid = self.calculate_centroid(neighbor_target_blocks)
+                            neighbor_distance = (abs(neighbor_centroid[0] - self.goal_centroid[0]) + 
+                                               abs(neighbor_centroid[1] - self.goal_centroid[1]))
+                        else:
+                            # This shouldn't happen with our algorithm
+                            neighbor_distance = float('inf')
+                    else:
+                        # Standard centroid calculation
+                        neighbor_centroid = self.calculate_centroid(neighbor)
+                        neighbor_distance = (abs(neighbor_centroid[0] - self.goal_centroid[0]) + 
+                                           abs(neighbor_centroid[1] - self.goal_centroid[1]))
                 
                     # Penalize distances that are too small (< 1.0)
                     distance_penalty = 0
@@ -602,9 +904,24 @@ cdef class ConnectedMatterAgent:
             best_distance_diff = float('inf')
         
             for state in came_from.keys():
-                state_centroid = self.calculate_centroid(state)
-                distance = (abs(state_centroid[0] - self.goal_centroid[0]) + 
-                            abs(state_centroid[1] - self.goal_centroid[1]))
+                # Skip states with overlapping blocks
+                if self.has_overlapping_blocks(state):
+                    continue
+                    
+                if self.allow_disconnection:
+                    # Calculate distance for target blocks only
+                    target_blocks = [pos for pos in state if pos not in self.non_target_state]
+                    if target_blocks:
+                        state_centroid = self.calculate_centroid(target_blocks)
+                        distance = (abs(state_centroid[0] - self.goal_centroid[0]) + 
+                                  abs(state_centroid[1] - self.goal_centroid[1]))
+                    else:
+                        distance = float('inf')
+                else:
+                    # Standard centroid calculation
+                    state_centroid = self.calculate_centroid(state)
+                    distance = (abs(state_centroid[0] - self.goal_centroid[0]) + 
+                              abs(state_centroid[1] - self.goal_centroid[1]))
             
                 # We want a state that's as close as possible to our target distance range
                 if distance < min_distance:
@@ -621,9 +938,21 @@ cdef class ConnectedMatterAgent:
                     best_state = state
         
             if best_state:
-                best_centroid = self.calculate_centroid(best_state)
-                best_distance = (abs(best_centroid[0] - self.goal_centroid[0]) + 
-                                abs(best_centroid[1] - self.goal_centroid[1]))
+                if self.allow_disconnection:
+                    # Calculate distance for target blocks only
+                    target_blocks = [pos for pos in best_state if pos not in self.non_target_state]
+                    if target_blocks:
+                        best_centroid = self.calculate_centroid(target_blocks)
+                        best_distance = (abs(best_centroid[0] - self.goal_centroid[0]) + 
+                                       abs(best_centroid[1] - self.goal_centroid[1]))
+                    else:
+                        best_distance = float('inf')
+                else:
+                    # Standard centroid calculation
+                    best_centroid = self.calculate_centroid(best_state)
+                    best_distance = (abs(best_centroid[0] - self.goal_centroid[0]) + 
+                                   abs(best_centroid[1] - self.goal_centroid[1]))
+                                   
                 print(f"Best block position found with centroid distance: {best_distance}")
                 return self.reconstruct_path(came_from, best_state)
     
@@ -631,15 +960,24 @@ cdef class ConnectedMatterAgent:
     
     def smarter_morphing_phase(self, start_state, double time_limit=15):
         """
-        Improved Phase 2: Morph the block into the goal shape while maintaining connectivity
-        Uses beam search and intelligent move generation with support for simultaneous moves
+        Improved Phase 2: Morph the blocks into the goal shape
+        With disconnection allowed, only target blocks are morphed
+        Fixed blocks remain stationary
         """
         cdef double start_time
         cdef double best_heuristic, current_heuristic, last_improvement_time, f_score
         cdef int iterations = 0
         cdef int tentative_g
         
+        # Skip states with overlapping blocks
+        if self.has_overlapping_blocks(start_state):
+            print("WARNING: Starting state for morphing has overlapping blocks!")
+            return [start_state]
+            
         print(f"Starting Smarter Morphing Phase with {self.min_simultaneous_moves}-{self.max_simultaneous_moves} simultaneous moves...")
+        if self.allow_disconnection:
+            print(f"Morphing only {len(self.target_block_list)} target blocks, keeping {len(self.fixed_block_list)} blocks stationary")
+        
         start_time = time.time()
         
         # Initialize beam search
@@ -655,6 +993,9 @@ cdef class ConnectedMatterAgent:
         best_heuristic = self.improved_morphing_heuristic(start_state)
         last_improvement_time = time.time()
         
+        # Determine whether we're targeting a subset of blocks
+        targeting_subset = self.allow_disconnection
+        
         while open_set and time.time() - start_time < time_limit:
             iterations += 1
             
@@ -665,10 +1006,31 @@ cdef class ConnectedMatterAgent:
             if current in closed_set:
                 continue
             
+            # Skip states with overlapping blocks
+            if self.has_overlapping_blocks(current):
+                continue
+                
             # Check if goal reached
-            if current == self.goal_state:
-                print(f"Goal reached after {iterations} iterations!")
-                return self.reconstruct_path(came_from, current)
+            if targeting_subset:
+                # For subset targeting, check if target blocks match goal positions
+                # Extract target blocks from current state (exclude fixed blocks)
+                target_blocks = frozenset(pos for pos in current if pos not in self.non_target_state)
+                
+                # Check if all goal positions are filled by target blocks
+                if self.goal_state.issubset(target_blocks) or target_blocks.issubset(self.goal_state):
+                    print(f"Goal approximation reached after {iterations} iterations!")
+                    return self.reconstruct_path(came_from, current)
+                    
+                # Alternative goal check: if enough blocks are in the right positions
+                matching_positions = len(target_blocks.intersection(self.goal_state))
+                if matching_positions == len(self.goal_state):
+                    print(f"Goal positions matched after {iterations} iterations!")
+                    return self.reconstruct_path(came_from, current)
+            else:
+                # For exact matching, use original goal check
+                if current == self.goal_state:
+                    print(f"Goal reached after {iterations} iterations!")
+                    return self.reconstruct_path(came_from, current)
             
             # Check if this is the best state seen so far
             current_heuristic = self.improved_morphing_heuristic(current)
@@ -700,6 +1062,10 @@ cdef class ConnectedMatterAgent:
             
             # Process each neighbor
             for neighbor in neighbors:
+                # Skip states with overlapping blocks
+                if self.has_overlapping_blocks(neighbor):
+                    continue
+                    
                 if neighbor in closed_set:
                     continue
                 
@@ -733,7 +1099,12 @@ cdef class ConnectedMatterAgent:
         """
         path = []
         while current:
-            path.append(list(current))
+            # Convert frozenset to list
+            if isinstance(current, frozenset):
+                path.append(list(current))
+            else:
+                path.append(list(current))
+                
             current = came_from.get(current)
         
         path.reverse()
@@ -754,8 +1125,16 @@ cdef class ConnectedMatterAgent:
             print("Block movement phase failed!")
             return None
         
+        # Verify the final state from block movement has no overlapping blocks
+        block_final_list = block_path[-1]
+        if len(block_final_list) != len(set(block_final_list)):
+            print("WARNING: Block movement produced a state with overlapping blocks!")
+            # Try to fix it by removing duplicates
+            block_final_list = list(set(block_final_list))
+            block_path[-1] = block_final_list
+        
         # Get the final state from block movement phase
-        block_final_state = frozenset(block_path[-1])
+        block_final_state = frozenset(block_final_list)
         
         # Phase 2: Smarter Morphing
         morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
@@ -766,6 +1145,12 @@ cdef class ConnectedMatterAgent:
         
         # Combine paths (remove duplicate state at transition)
         combined_path = block_path[:-1] + morphing_path
+        
+        # Final check for overlapping blocks in any state
+        for i, state in enumerate(combined_path):
+            if len(state) != len(set(state)):
+                print(f"WARNING: State {i} in path has overlapping blocks!")
+                # We could fix it, but that would alter the path - let's leave it as a warning
         
         return combined_path
     
@@ -793,14 +1178,24 @@ cdef class ConnectedMatterAgent:
     
         # Draw goal positions (as outlines)
         for pos in self.goal_positions:
-            rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, fill=False, edgecolor='green', linewidth=2)
+            rect = plt.Rectangle((pos[1], pos[0]), 1, 1, fill=False, edgecolor='green', linewidth=2)
             ax.add_patch(rect)
     
         # Draw current positions (blue squares)
         current_positions = path[0]
         rects = []
+        
+        # Check for duplicates
+        if len(current_positions) != len(set(current_positions)):
+            print("WARNING: Initial state has overlapping blocks!")
+        
         for pos in current_positions:
-            rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, facecolor='blue', alpha=0.7)
+            if pos in self.fixed_block_list:
+                # Fixed blocks in light blue
+                rect = plt.Rectangle((pos[1], pos[0]), 1, 1, facecolor='lightblue', alpha=0.7)
+            else:
+                # Target blocks in blue
+                rect = plt.Rectangle((pos[1], pos[0]), 1, 1, facecolor='blue', alpha=0.7)
             ax.add_patch(rect)
             rects.append(rect)
         
@@ -812,6 +1207,10 @@ cdef class ConnectedMatterAgent:
         for i in range(1, len(path)):
             # Update positions
             new_positions = path[i]
+            
+            # Check for duplicates
+            if len(new_positions) != len(set(new_positions)):
+                print(f"WARNING: State {i} has overlapping blocks!")
         
             # Clear previous positions
             for rect in rects:
@@ -820,7 +1219,12 @@ cdef class ConnectedMatterAgent:
             # Draw new positions
             rects = []
             for pos in new_positions:
-                rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, facecolor='blue', alpha=0.7)
+                if pos in self.fixed_block_list:
+                    # Fixed blocks in light blue
+                    rect = plt.Rectangle((pos[1], pos[0]), 1, 1, facecolor='lightblue', alpha=0.7)
+                else:
+                    # Target blocks in blue
+                    rect = plt.Rectangle((pos[1], pos[0]), 1, 1, facecolor='blue', alpha=0.7)
                 ax.add_patch(rect)
                 rects.append(rect)
             

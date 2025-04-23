@@ -1556,7 +1556,7 @@ struct __pyx_obj_10Controller_SearchController {
 };
 
 
-/* "Controller.pyx":482
+/* "Controller.pyx":488
  *             self.vis.update_text("Invalid grid size. Enter a number between 10-200", color="red")
  * 
  *     def on_mouse_press(self, event):             # <<<<<<<<<<<<<<
@@ -1570,7 +1570,7 @@ struct __pyx_obj_10Controller___pyx_scope_struct__on_mouse_press {
 };
 
 
-/* "Controller.pyx":502
+/* "Controller.pyx":508
  * 
  *         # Check if click is within the goal shape
  *         if any(abs(gx - x) < 1 and abs(gy - y) < 1 for gx, gy in self.goal_positions):             # <<<<<<<<<<<<<<
@@ -2069,38 +2069,6 @@ static CYTHON_INLINE int __Pyx_PyList_Append(PyObject* list, PyObject* x) {
 #define __Pyx_PyList_Append(L,x) PyList_Append(L,x)
 #endif
 
-/* PyObjectCall2Args.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
-
-/* PyObjectGetMethod.proto */
-static int __Pyx_PyObject_GetMethod(PyObject *obj, PyObject *name, PyObject **method);
-
-/* PyObjectCallMethod1.proto */
-static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg);
-
-/* pop_index.proto */
-static PyObject* __Pyx__PyObject_PopNewIndex(PyObject* L, PyObject* py_ix);
-static PyObject* __Pyx__PyObject_PopIndex(PyObject* L, PyObject* py_ix);
-#if CYTHON_USE_PYLIST_INTERNALS && CYTHON_ASSUME_SAFE_MACROS
-static PyObject* __Pyx__PyList_PopIndex(PyObject* L, PyObject* py_ix, Py_ssize_t ix);
-#define __Pyx_PyObject_PopIndex(L, py_ix, ix, is_signed, type, to_py_func) (\
-    (likely(PyList_CheckExact(L) && __Pyx_fits_Py_ssize_t(ix, type, is_signed))) ?\
-        __Pyx__PyList_PopIndex(L, py_ix, ix) : (\
-        (unlikely((py_ix) == Py_None)) ? __Pyx__PyObject_PopNewIndex(L, to_py_func(ix)) :\
-            __Pyx__PyObject_PopIndex(L, py_ix)))
-#define __Pyx_PyList_PopIndex(L, py_ix, ix, is_signed, type, to_py_func) (\
-    __Pyx_fits_Py_ssize_t(ix, type, is_signed) ?\
-        __Pyx__PyList_PopIndex(L, py_ix, ix) : (\
-        (unlikely((py_ix) == Py_None)) ? __Pyx__PyObject_PopNewIndex(L, to_py_func(ix)) :\
-            __Pyx__PyObject_PopIndex(L, py_ix)))
-#else
-#define __Pyx_PyList_PopIndex(L, py_ix, ix, is_signed, type, to_py_func)\
-    __Pyx_PyObject_PopIndex(L, py_ix, ix, is_signed, type, to_py_func)
-#define __Pyx_PyObject_PopIndex(L, py_ix, ix, is_signed, type, to_py_func) (\
-    (unlikely((py_ix) == Py_None)) ? __Pyx__PyObject_PopNewIndex(L, to_py_func(ix)) :\
-        __Pyx__PyObject_PopIndex(L, py_ix))
-#endif
-
 /* RaiseTooManyValuesToUnpack.proto */
 static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected);
 
@@ -2236,6 +2204,9 @@ static int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject
 
 /* PyObjectCallNoArg.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+
+/* PyObjectGetMethod.proto */
+static int __Pyx_PyObject_GetMethod(PyObject *obj, PyObject *name, PyObject **method);
 
 /* PyObjectCallMethod0.proto */
 static PyObject* __Pyx_PyObject_CallMethod0(PyObject* obj, PyObject* method_name);
@@ -2491,6 +2462,12 @@ static CYTHON_INLINE void __Pyx__ExceptionSwap(PyThreadState *tstate, PyObject *
 static CYTHON_INLINE void __Pyx_ExceptionSwap(PyObject **type, PyObject **value, PyObject **tb);
 #endif
 
+/* PyObjectCall2Args.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
+
+/* PyObjectCallMethod1.proto */
+static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg);
+
 /* CoroutineBase.proto */
 struct __pyx_CoroutineObject;
 typedef PyObject *(*__pyx_coroutine_body_t)(struct __pyx_CoroutineObject *, PyThreadState *, PyObject *);
@@ -2605,7 +2582,6 @@ static const char __pyx_k_np[] = "np";
 static const char __pyx_k_va[] = "va";
 static const char __pyx_k_xi[] = "xi";
 static const char __pyx_k_yi[] = "yi";
-static const char __pyx_k__10[] = "/";
 static const char __pyx_k__16[] = "-";
 static const char __pyx_k__22[] = ".";
 static const char __pyx_k__23[] = "*";
@@ -2617,7 +2593,6 @@ static const char __pyx_k_min[] = "min";
 static const char __pyx_k_new[] = "__new__";
 static const char __pyx_k_off[] = "off";
 static const char __pyx_k_plt[] = "plt";
-static const char __pyx_k_pop[] = "pop";
 static const char __pyx_k_pos[] = "pos";
 static const char __pyx_k_red[] = "red";
 static const char __pyx_k_sys[] = "sys";
@@ -2665,7 +2640,7 @@ static const char __pyx_k_numpy[] = "numpy";
 static const char __pyx_k_patch[] = "patch";
 static const char __pyx_k_pause[] = "pause";
 static const char __pyx_k_print[] = "print";
-static const char __pyx_k_shape[] = " shape";
+static const char __pyx_k_shape[] = " shape (";
 static const char __pyx_k_start[] = "start";
 static const char __pyx_k_state[] = "state";
 static const char __pyx_k_throw[] = "throw";
@@ -2692,6 +2667,7 @@ static const char __pyx_k_search[] = "search";
 static const char __pyx_k_update[] = "update";
 static const char __pyx_k_valfmt[] = "valfmt";
 static const char __pyx_k_TextBox[] = "TextBox";
+static const char __pyx_k_block_s[] = " block(s)";
 static const char __pyx_k_disable[] = "disable";
 static const char __pyx_k_genexpr[] = "genexpr";
 static const char __pyx_k_initial[] = "initial";
@@ -2702,6 +2678,7 @@ static const char __pyx_k_valstep[] = "valstep";
 static const char __pyx_k_Selected[] = "Selected ";
 static const char __pyx_k_Topology[] = "Topology: ";
 static const char __pyx_k_add_axes[] = "add_axes";
+static const char __pyx_k_blocks_2[] = " blocks)";
 static const char __pyx_k_cell_pos[] = "cell_pos";
 static const char __pyx_k_fontsize[] = "fontsize";
 static const char __pyx_k_getstate[] = "__getstate__";
@@ -2813,9 +2790,10 @@ static const char __pyx_k_max_simultaneous_moves[] = "max_simultaneous_moves";
 static const char __pyx_k_min_simultaneous_moves[] = "min_simultaneous_moves";
 static const char __pyx_k_update_animation_speed[] = "update_animation_speed";
 static const char __pyx_k_Ready_for_visualization[] = "Ready for visualization...";
+static const char __pyx_k_blocks_fewer_than_start[] = " blocks (fewer than start)";
 static const char __pyx_k_constrain_to_boundaries[] = "constrain_to_boundaries";
-static const char __pyx_k_Invalid_goal_Need_exactly[] = "Invalid goal: Need exactly ";
 static const char __pyx_k_SearchController_on_close[] = "SearchController.on_close";
+static const char __pyx_k_blocks_fewer_than_start_2[] = " blocks, fewer than start)";
 static const char __pyx_k_Grid_size_cannot_exceed_200[] = "Grid size cannot exceed 200";
 static const char __pyx_k_SearchController_run_search[] = "SearchController.run_search";
 static const char __pyx_k_Grid_size_must_be_at_least_10[] = "Grid size must be at least 10";
@@ -2835,6 +2813,7 @@ static const char __pyx_k_Click_on_grid_cells_to_define_go[] = "Click on grid ce
 static const char __pyx_k_Constraint_All_elements_must_rem[] = "Constraint: All elements must remain connected during movement";
 static const char __pyx_k_Incompatible_checksums_0x_x_vs_0[] = "Incompatible checksums (0x%x vs (0x3b3e2bd, 0xcebfb2b, 0xb36e042) = (agent, anim_speed_panel_ax, anim_speed_slider, anim_speed_slider_ax, animation_speed, bound_bottom, bound_left, bound_right, bound_top, current_shape, custom_goal, drag_offset, drag_start, dragging, formations, goal_positions, grid_button, grid_button_ax, grid_size, grid_text_ax, grid_text_box, max_moves_panel_ax, max_simultaneous_moves, min_moves_panel_ax, min_moves_slider, min_moves_slider_ax, min_simultaneous_moves, radio, radio_ax, search_completed, select_button, select_button_ax, selection_active, selection_mode, shape_max_x, shape_max_y, shape_min_x, shape_min_y, sim_moves_slider, sim_moves_slider_ax, start_positions, time_limit, topology, vis))";
 static const char __pyx_k_Initializing_Connected_Programma[] = "Initializing Connected Programmable Matter Agent...";
+static const char __pyx_k_Invalid_goal_Need_at_least_1_blo[] = "Invalid goal: Need at least 1 block";
 static const char __pyx_k_Invalid_grid_size_Enter_a_number[] = "Invalid grid size. Enter a number between 10-200";
 static const char __pyx_k_SearchController___reduce_cython[] = "SearchController.__reduce_cython__";
 static const char __pyx_k_SearchController___setstate_cyth[] = "SearchController.__setstate_cython__";
@@ -3046,7 +3025,7 @@ typedef struct {
   PyObject *__pyx_kp_u_Grid_size_updated_to;
   PyObject *__pyx_kp_s_Incompatible_checksums_0x_x_vs_0;
   PyObject *__pyx_kp_u_Initializing_Connected_Programma;
-  PyObject *__pyx_kp_u_Invalid_goal_Need_exactly;
+  PyObject *__pyx_kp_u_Invalid_goal_Need_at_least_1_blo;
   PyObject *__pyx_kp_u_Invalid_grid_size_Enter_a_number;
   PyObject *__pyx_kp_u_MAX_Simultaneous_Moves;
   PyObject *__pyx_kp_u_MIN_Simultaneous_Moves;
@@ -3096,7 +3075,6 @@ typedef struct {
   PyObject *__pyx_n_s_ValueError;
   PyObject *__pyx_n_s_Visualizer;
   PyObject *__pyx_kp_u_Window_closed_Exiting_program;
-  PyObject *__pyx_kp_u__10;
   PyObject *__pyx_kp_u__16;
   PyObject *__pyx_kp_u__2;
   PyObject *__pyx_kp_u__22;
@@ -3114,7 +3092,11 @@ typedef struct {
   PyObject *__pyx_n_s_ax;
   PyObject *__pyx_n_s_axis;
   PyObject *__pyx_n_s_block;
+  PyObject *__pyx_kp_u_block_s;
   PyObject *__pyx_kp_u_blocks;
+  PyObject *__pyx_kp_u_blocks_2;
+  PyObject *__pyx_kp_u_blocks_fewer_than_start;
+  PyObject *__pyx_kp_u_blocks_fewer_than_start_2;
   PyObject *__pyx_n_u_blue;
   PyObject *__pyx_n_u_bold;
   PyObject *__pyx_n_s_button;
@@ -3211,7 +3193,6 @@ typedef struct {
   PyObject *__pyx_n_s_pause;
   PyObject *__pyx_n_s_pickle;
   PyObject *__pyx_n_s_plt;
-  PyObject *__pyx_n_s_pop;
   PyObject *__pyx_n_s_pos;
   PyObject *__pyx_n_s_print;
   PyObject *__pyx_n_s_pyplot;
@@ -3328,6 +3309,7 @@ typedef struct {
   PyObject *__pyx_tuple__7;
   PyObject *__pyx_tuple__8;
   PyObject *__pyx_tuple__9;
+  PyObject *__pyx_tuple__10;
   PyObject *__pyx_tuple__11;
   PyObject *__pyx_tuple__12;
   PyObject *__pyx_tuple__13;
@@ -3445,7 +3427,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_kp_u_Grid_size_updated_to);
   Py_CLEAR(clear_module_state->__pyx_kp_s_Incompatible_checksums_0x_x_vs_0);
   Py_CLEAR(clear_module_state->__pyx_kp_u_Initializing_Connected_Programma);
-  Py_CLEAR(clear_module_state->__pyx_kp_u_Invalid_goal_Need_exactly);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_Invalid_goal_Need_at_least_1_blo);
   Py_CLEAR(clear_module_state->__pyx_kp_u_Invalid_grid_size_Enter_a_number);
   Py_CLEAR(clear_module_state->__pyx_kp_u_MAX_Simultaneous_Moves);
   Py_CLEAR(clear_module_state->__pyx_kp_u_MIN_Simultaneous_Moves);
@@ -3495,7 +3477,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_ValueError);
   Py_CLEAR(clear_module_state->__pyx_n_s_Visualizer);
   Py_CLEAR(clear_module_state->__pyx_kp_u_Window_closed_Exiting_program);
-  Py_CLEAR(clear_module_state->__pyx_kp_u__10);
   Py_CLEAR(clear_module_state->__pyx_kp_u__16);
   Py_CLEAR(clear_module_state->__pyx_kp_u__2);
   Py_CLEAR(clear_module_state->__pyx_kp_u__22);
@@ -3513,7 +3494,11 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_ax);
   Py_CLEAR(clear_module_state->__pyx_n_s_axis);
   Py_CLEAR(clear_module_state->__pyx_n_s_block);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_block_s);
   Py_CLEAR(clear_module_state->__pyx_kp_u_blocks);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_blocks_2);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_blocks_fewer_than_start);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_blocks_fewer_than_start_2);
   Py_CLEAR(clear_module_state->__pyx_n_u_blue);
   Py_CLEAR(clear_module_state->__pyx_n_u_bold);
   Py_CLEAR(clear_module_state->__pyx_n_s_button);
@@ -3610,7 +3595,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_pause);
   Py_CLEAR(clear_module_state->__pyx_n_s_pickle);
   Py_CLEAR(clear_module_state->__pyx_n_s_plt);
-  Py_CLEAR(clear_module_state->__pyx_n_s_pop);
   Py_CLEAR(clear_module_state->__pyx_n_s_pos);
   Py_CLEAR(clear_module_state->__pyx_n_s_print);
   Py_CLEAR(clear_module_state->__pyx_n_s_pyplot);
@@ -3727,6 +3711,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_tuple__7);
   Py_CLEAR(clear_module_state->__pyx_tuple__8);
   Py_CLEAR(clear_module_state->__pyx_tuple__9);
+  Py_CLEAR(clear_module_state->__pyx_tuple__10);
   Py_CLEAR(clear_module_state->__pyx_tuple__11);
   Py_CLEAR(clear_module_state->__pyx_tuple__12);
   Py_CLEAR(clear_module_state->__pyx_tuple__13);
@@ -3822,7 +3807,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_kp_u_Grid_size_updated_to);
   Py_VISIT(traverse_module_state->__pyx_kp_s_Incompatible_checksums_0x_x_vs_0);
   Py_VISIT(traverse_module_state->__pyx_kp_u_Initializing_Connected_Programma);
-  Py_VISIT(traverse_module_state->__pyx_kp_u_Invalid_goal_Need_exactly);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_Invalid_goal_Need_at_least_1_blo);
   Py_VISIT(traverse_module_state->__pyx_kp_u_Invalid_grid_size_Enter_a_number);
   Py_VISIT(traverse_module_state->__pyx_kp_u_MAX_Simultaneous_Moves);
   Py_VISIT(traverse_module_state->__pyx_kp_u_MIN_Simultaneous_Moves);
@@ -3872,7 +3857,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_ValueError);
   Py_VISIT(traverse_module_state->__pyx_n_s_Visualizer);
   Py_VISIT(traverse_module_state->__pyx_kp_u_Window_closed_Exiting_program);
-  Py_VISIT(traverse_module_state->__pyx_kp_u__10);
   Py_VISIT(traverse_module_state->__pyx_kp_u__16);
   Py_VISIT(traverse_module_state->__pyx_kp_u__2);
   Py_VISIT(traverse_module_state->__pyx_kp_u__22);
@@ -3890,7 +3874,11 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_ax);
   Py_VISIT(traverse_module_state->__pyx_n_s_axis);
   Py_VISIT(traverse_module_state->__pyx_n_s_block);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_block_s);
   Py_VISIT(traverse_module_state->__pyx_kp_u_blocks);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_blocks_2);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_blocks_fewer_than_start);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_blocks_fewer_than_start_2);
   Py_VISIT(traverse_module_state->__pyx_n_u_blue);
   Py_VISIT(traverse_module_state->__pyx_n_u_bold);
   Py_VISIT(traverse_module_state->__pyx_n_s_button);
@@ -3987,7 +3975,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_pause);
   Py_VISIT(traverse_module_state->__pyx_n_s_pickle);
   Py_VISIT(traverse_module_state->__pyx_n_s_plt);
-  Py_VISIT(traverse_module_state->__pyx_n_s_pop);
   Py_VISIT(traverse_module_state->__pyx_n_s_pos);
   Py_VISIT(traverse_module_state->__pyx_n_s_print);
   Py_VISIT(traverse_module_state->__pyx_n_s_pyplot);
@@ -4104,6 +4091,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_tuple__7);
   Py_VISIT(traverse_module_state->__pyx_tuple__8);
   Py_VISIT(traverse_module_state->__pyx_tuple__9);
+  Py_VISIT(traverse_module_state->__pyx_tuple__10);
   Py_VISIT(traverse_module_state->__pyx_tuple__11);
   Py_VISIT(traverse_module_state->__pyx_tuple__12);
   Py_VISIT(traverse_module_state->__pyx_tuple__13);
@@ -4209,7 +4197,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_kp_u_Grid_size_updated_to __pyx_mstate_global->__pyx_kp_u_Grid_size_updated_to
 #define __pyx_kp_s_Incompatible_checksums_0x_x_vs_0 __pyx_mstate_global->__pyx_kp_s_Incompatible_checksums_0x_x_vs_0
 #define __pyx_kp_u_Initializing_Connected_Programma __pyx_mstate_global->__pyx_kp_u_Initializing_Connected_Programma
-#define __pyx_kp_u_Invalid_goal_Need_exactly __pyx_mstate_global->__pyx_kp_u_Invalid_goal_Need_exactly
+#define __pyx_kp_u_Invalid_goal_Need_at_least_1_blo __pyx_mstate_global->__pyx_kp_u_Invalid_goal_Need_at_least_1_blo
 #define __pyx_kp_u_Invalid_grid_size_Enter_a_number __pyx_mstate_global->__pyx_kp_u_Invalid_grid_size_Enter_a_number
 #define __pyx_kp_u_MAX_Simultaneous_Moves __pyx_mstate_global->__pyx_kp_u_MAX_Simultaneous_Moves
 #define __pyx_kp_u_MIN_Simultaneous_Moves __pyx_mstate_global->__pyx_kp_u_MIN_Simultaneous_Moves
@@ -4259,7 +4247,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_ValueError __pyx_mstate_global->__pyx_n_s_ValueError
 #define __pyx_n_s_Visualizer __pyx_mstate_global->__pyx_n_s_Visualizer
 #define __pyx_kp_u_Window_closed_Exiting_program __pyx_mstate_global->__pyx_kp_u_Window_closed_Exiting_program
-#define __pyx_kp_u__10 __pyx_mstate_global->__pyx_kp_u__10
 #define __pyx_kp_u__16 __pyx_mstate_global->__pyx_kp_u__16
 #define __pyx_kp_u__2 __pyx_mstate_global->__pyx_kp_u__2
 #define __pyx_kp_u__22 __pyx_mstate_global->__pyx_kp_u__22
@@ -4277,7 +4264,11 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_ax __pyx_mstate_global->__pyx_n_s_ax
 #define __pyx_n_s_axis __pyx_mstate_global->__pyx_n_s_axis
 #define __pyx_n_s_block __pyx_mstate_global->__pyx_n_s_block
+#define __pyx_kp_u_block_s __pyx_mstate_global->__pyx_kp_u_block_s
 #define __pyx_kp_u_blocks __pyx_mstate_global->__pyx_kp_u_blocks
+#define __pyx_kp_u_blocks_2 __pyx_mstate_global->__pyx_kp_u_blocks_2
+#define __pyx_kp_u_blocks_fewer_than_start __pyx_mstate_global->__pyx_kp_u_blocks_fewer_than_start
+#define __pyx_kp_u_blocks_fewer_than_start_2 __pyx_mstate_global->__pyx_kp_u_blocks_fewer_than_start_2
 #define __pyx_n_u_blue __pyx_mstate_global->__pyx_n_u_blue
 #define __pyx_n_u_bold __pyx_mstate_global->__pyx_n_u_bold
 #define __pyx_n_s_button __pyx_mstate_global->__pyx_n_s_button
@@ -4374,7 +4365,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_pause __pyx_mstate_global->__pyx_n_s_pause
 #define __pyx_n_s_pickle __pyx_mstate_global->__pyx_n_s_pickle
 #define __pyx_n_s_plt __pyx_mstate_global->__pyx_n_s_plt
-#define __pyx_n_s_pop __pyx_mstate_global->__pyx_n_s_pop
 #define __pyx_n_s_pos __pyx_mstate_global->__pyx_n_s_pos
 #define __pyx_n_s_print __pyx_mstate_global->__pyx_n_s_print
 #define __pyx_n_s_pyplot __pyx_mstate_global->__pyx_n_s_pyplot
@@ -4491,6 +4481,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_tuple__7 __pyx_mstate_global->__pyx_tuple__7
 #define __pyx_tuple__8 __pyx_mstate_global->__pyx_tuple__8
 #define __pyx_tuple__9 __pyx_mstate_global->__pyx_tuple__9
+#define __pyx_tuple__10 __pyx_mstate_global->__pyx_tuple__10
 #define __pyx_tuple__11 __pyx_mstate_global->__pyx_tuple__11
 #define __pyx_tuple__12 __pyx_mstate_global->__pyx_tuple__12
 #define __pyx_tuple__13 __pyx_mstate_global->__pyx_tuple__13
@@ -7748,8 +7739,8 @@ static PyObject *__pyx_pf_10Controller_16SearchController_2toggle_selection_mode
   PyObject *__pyx_t_4 = NULL;
   unsigned int __pyx_t_5;
   Py_ssize_t __pyx_t_6;
-  Py_ssize_t __pyx_t_7;
-  PyObject *__pyx_t_8 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  Py_ssize_t __pyx_t_8;
   Py_UCS4 __pyx_t_9;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -7910,10 +7901,10 @@ static PyObject *__pyx_pf_10Controller_16SearchController_2toggle_selection_mode
     goto __pyx_L4;
   }
 
-  /* "Controller.pyx":234
- *         else:
+  /* "Controller.pyx":235
  *             # Exiting selection mode
- *             if len(self.custom_goal) == len(self.start_positions):             # <<<<<<<<<<<<<<
+ *             # MODIFIED: Remove constraint that custom goal must have same number of blocks as start
+ *             if len(self.custom_goal) > 0:  # Just require at least one block             # <<<<<<<<<<<<<<
  *                 self.goal_positions = self.custom_goal.copy()  # Make a copy of the custom goal
  *                 self.agent = ConnectedMatterAgent(
  */
@@ -7922,29 +7913,21 @@ static PyObject *__pyx_pf_10Controller_16SearchController_2toggle_selection_mode
     __Pyx_INCREF(__pyx_t_2);
     if (unlikely(__pyx_t_2 == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      __PYX_ERR(0, 234, __pyx_L1_error)
+      __PYX_ERR(0, 235, __pyx_L1_error)
     }
-    __pyx_t_6 = __Pyx_PyList_GET_SIZE(__pyx_t_2); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 234, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyList_GET_SIZE(__pyx_t_2); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 235, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __pyx_v_self->start_positions;
-    __Pyx_INCREF(__pyx_t_2);
-    if (unlikely(__pyx_t_2 == Py_None)) {
-      PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      __PYX_ERR(0, 234, __pyx_L1_error)
-    }
-    __pyx_t_7 = __Pyx_PyList_GET_SIZE(__pyx_t_2); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 234, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_1 = (__pyx_t_6 == __pyx_t_7);
+    __pyx_t_1 = (__pyx_t_6 > 0);
     if (__pyx_t_1) {
 
-      /* "Controller.pyx":235
- *             # Exiting selection mode
- *             if len(self.custom_goal) == len(self.start_positions):
+      /* "Controller.pyx":236
+ *             # MODIFIED: Remove constraint that custom goal must have same number of blocks as start
+ *             if len(self.custom_goal) > 0:  # Just require at least one block
  *                 self.goal_positions = self.custom_goal.copy()  # Make a copy of the custom goal             # <<<<<<<<<<<<<<
  *                 self.agent = ConnectedMatterAgent(
  *                     self.grid_size,
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->custom_goal, __pyx_n_s_copy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 235, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->custom_goal, __pyx_n_s_copy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 236, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_3 = NULL;
       __pyx_t_5 = 0;
@@ -7964,103 +7947,103 @@ static PyObject *__pyx_pf_10Controller_16SearchController_2toggle_selection_mode
         PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
         __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 235, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 236, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
-      if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 235, __pyx_L1_error)
+      if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 236, __pyx_L1_error)
       __Pyx_GIVEREF(__pyx_t_2);
       __Pyx_GOTREF(__pyx_v_self->goal_positions);
       __Pyx_DECREF(__pyx_v_self->goal_positions);
       __pyx_v_self->goal_positions = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "Controller.pyx":236
- *             if len(self.custom_goal) == len(self.start_positions):
+      /* "Controller.pyx":237
+ *             if len(self.custom_goal) > 0:  # Just require at least one block
  *                 self.goal_positions = self.custom_goal.copy()  # Make a copy of the custom goal
  *                 self.agent = ConnectedMatterAgent(             # <<<<<<<<<<<<<<
  *                     self.grid_size,
  *                     self.start_positions,
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ConnectedMatterAgent); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 236, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ConnectedMatterAgent); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 237, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
 
-      /* "Controller.pyx":240
+      /* "Controller.pyx":241
  *                     self.start_positions,
  *                     self.goal_positions,
  *                     self.topology,             # <<<<<<<<<<<<<<
  *                     max_simultaneous_moves=self.max_simultaneous_moves,
  *                     min_simultaneous_moves=self.min_simultaneous_moves
  */
-      __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 236, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 237, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_v_self->grid_size);
       __Pyx_GIVEREF(__pyx_v_self->grid_size);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_self->grid_size)) __PYX_ERR(0, 236, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_self->grid_size)) __PYX_ERR(0, 237, __pyx_L1_error);
       __Pyx_INCREF(__pyx_v_self->start_positions);
       __Pyx_GIVEREF(__pyx_v_self->start_positions);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_self->start_positions)) __PYX_ERR(0, 236, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_self->start_positions)) __PYX_ERR(0, 237, __pyx_L1_error);
       __Pyx_INCREF(__pyx_v_self->goal_positions);
       __Pyx_GIVEREF(__pyx_v_self->goal_positions);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_v_self->goal_positions)) __PYX_ERR(0, 236, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_v_self->goal_positions)) __PYX_ERR(0, 237, __pyx_L1_error);
       __Pyx_INCREF(__pyx_v_self->topology);
       __Pyx_GIVEREF(__pyx_v_self->topology);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_v_self->topology)) __PYX_ERR(0, 236, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_v_self->topology)) __PYX_ERR(0, 237, __pyx_L1_error);
 
-      /* "Controller.pyx":241
+      /* "Controller.pyx":242
  *                     self.goal_positions,
  *                     self.topology,
  *                     max_simultaneous_moves=self.max_simultaneous_moves,             # <<<<<<<<<<<<<<
  *                     min_simultaneous_moves=self.min_simultaneous_moves
  *                 )
  */
-      __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 241, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 241, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_max_simultaneous_moves, __pyx_t_8) < 0) __PYX_ERR(0, 241, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 242, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_max_simultaneous_moves, __pyx_t_7) < 0) __PYX_ERR(0, 242, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "Controller.pyx":242
+      /* "Controller.pyx":243
  *                     self.topology,
  *                     max_simultaneous_moves=self.max_simultaneous_moves,
  *                     min_simultaneous_moves=self.min_simultaneous_moves             # <<<<<<<<<<<<<<
  *                 )
  *                 self.select_button.label.set_text("Select Goal")
  */
-      __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 242, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_min_simultaneous_moves, __pyx_t_8) < 0) __PYX_ERR(0, 241, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 243, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_min_simultaneous_moves, __pyx_t_7) < 0) __PYX_ERR(0, 242, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "Controller.pyx":236
- *             if len(self.custom_goal) == len(self.start_positions):
+      /* "Controller.pyx":237
+ *             if len(self.custom_goal) > 0:  # Just require at least one block
  *                 self.goal_positions = self.custom_goal.copy()  # Make a copy of the custom goal
  *                 self.agent = ConnectedMatterAgent(             # <<<<<<<<<<<<<<
  *                     self.grid_size,
  *                     self.start_positions,
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 236, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
+      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 237, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_GIVEREF(__pyx_t_8);
+      __Pyx_GIVEREF(__pyx_t_7);
       __Pyx_GOTREF(__pyx_v_self->agent);
       __Pyx_DECREF(__pyx_v_self->agent);
-      __pyx_v_self->agent = __pyx_t_8;
-      __pyx_t_8 = 0;
+      __pyx_v_self->agent = __pyx_t_7;
+      __pyx_t_7 = 0;
 
-      /* "Controller.pyx":244
+      /* "Controller.pyx":245
  *                     min_simultaneous_moves=self.min_simultaneous_moves
  *                 )
  *                 self.select_button.label.set_text("Select Goal")             # <<<<<<<<<<<<<<
  * 
  *                 # Update visualization with the new goal shape
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->select_button, __pyx_n_s_label); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 244, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->select_button, __pyx_n_s_label); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 245, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_set_text); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 244, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_set_text); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_3 = NULL;
@@ -8079,22 +8062,22 @@ static PyObject *__pyx_pf_10Controller_16SearchController_2toggle_selection_mode
       #endif
       {
         PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_kp_u_Select_Goal};
-        __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+        __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 244, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
+        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 245, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "Controller.pyx":247
+      /* "Controller.pyx":248
  * 
  *                 # Update visualization with the new goal shape
  *                 self.vis.draw_grid()             # <<<<<<<<<<<<<<
  *                 self.vis.highlight_goal_shape(self.goal_positions)
- *                 self.vis.update_text(f"Custom goal set with {len(self.goal_positions)} blocks", color="green")
+ * 
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 247, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 248, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_3 = NULL;
       __pyx_t_5 = 0;
@@ -8112,22 +8095,22 @@ static PyObject *__pyx_pf_10Controller_16SearchController_2toggle_selection_mode
       #endif
       {
         PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
-        __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
+        __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 247, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
+        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 248, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "Controller.pyx":248
+      /* "Controller.pyx":249
  *                 # Update visualization with the new goal shape
  *                 self.vis.draw_grid()
  *                 self.vis.highlight_goal_shape(self.goal_positions)             # <<<<<<<<<<<<<<
- *                 self.vis.update_text(f"Custom goal set with {len(self.goal_positions)} blocks", color="green")
  * 
+ *                 if len(self.goal_positions) < len(self.start_positions):
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_highlight_goal_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 248, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_highlight_goal_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 249, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_3 = NULL;
       __pyx_t_5 = 0;
@@ -8145,68 +8128,160 @@ static PyObject *__pyx_pf_10Controller_16SearchController_2toggle_selection_mode
       #endif
       {
         PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_self->goal_positions};
-        __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+        __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 248, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_8);
+        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "Controller.pyx":249
- *                 self.vis.draw_grid()
+      /* "Controller.pyx":251
  *                 self.vis.highlight_goal_shape(self.goal_positions)
- *                 self.vis.update_text(f"Custom goal set with {len(self.goal_positions)} blocks", color="green")             # <<<<<<<<<<<<<<
+ * 
+ *                 if len(self.goal_positions) < len(self.start_positions):             # <<<<<<<<<<<<<<
+ *                     self.vis.update_text(f"Custom goal set with {len(self.goal_positions)} blocks (fewer than start)", color="green")
+ *                 else:
+ */
+      __pyx_t_7 = __pyx_v_self->goal_positions;
+      __Pyx_INCREF(__pyx_t_7);
+      if (unlikely(__pyx_t_7 == Py_None)) {
+        PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+        __PYX_ERR(0, 251, __pyx_L1_error)
+      }
+      __pyx_t_6 = __Pyx_PyList_GET_SIZE(__pyx_t_7); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 251, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __pyx_t_7 = __pyx_v_self->start_positions;
+      __Pyx_INCREF(__pyx_t_7);
+      if (unlikely(__pyx_t_7 == Py_None)) {
+        PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+        __PYX_ERR(0, 251, __pyx_L1_error)
+      }
+      __pyx_t_8 = __Pyx_PyList_GET_SIZE(__pyx_t_7); if (unlikely(__pyx_t_8 == ((Py_ssize_t)-1))) __PYX_ERR(0, 251, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __pyx_t_1 = (__pyx_t_6 < __pyx_t_8);
+      if (__pyx_t_1) {
+
+        /* "Controller.pyx":252
+ * 
+ *                 if len(self.goal_positions) < len(self.start_positions):
+ *                     self.vis.update_text(f"Custom goal set with {len(self.goal_positions)} blocks (fewer than start)", color="green")             # <<<<<<<<<<<<<<
+ *                 else:
+ *                     self.vis.update_text(f"Custom goal set with {len(self.goal_positions)} blocks", color="green")
+ */
+        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 252, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 252, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __pyx_t_8 = 0;
+        __pyx_t_9 = 127;
+        __Pyx_INCREF(__pyx_kp_u_Custom_goal_set_with);
+        __pyx_t_8 += 21;
+        __Pyx_GIVEREF(__pyx_kp_u_Custom_goal_set_with);
+        PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_kp_u_Custom_goal_set_with);
+        __pyx_t_3 = __pyx_v_self->goal_positions;
+        __Pyx_INCREF(__pyx_t_3);
+        if (unlikely(__pyx_t_3 == Py_None)) {
+          PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+          __PYX_ERR(0, 252, __pyx_L1_error)
+        }
+        __pyx_t_6 = __Pyx_PyList_GET_SIZE(__pyx_t_3); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 252, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __pyx_t_3 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_6, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 252, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __pyx_t_8 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
+        __Pyx_GIVEREF(__pyx_t_3);
+        PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3);
+        __pyx_t_3 = 0;
+        __Pyx_INCREF(__pyx_kp_u_blocks_fewer_than_start);
+        __pyx_t_8 += 26;
+        __Pyx_GIVEREF(__pyx_kp_u_blocks_fewer_than_start);
+        PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_kp_u_blocks_fewer_than_start);
+        __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_4, 3, __pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 252, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 252, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __Pyx_GIVEREF(__pyx_t_3);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3)) __PYX_ERR(0, 252, __pyx_L1_error);
+        __pyx_t_3 = 0;
+        __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 252, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_color, __pyx_n_u_green) < 0) __PYX_ERR(0, 252, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 252, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+        /* "Controller.pyx":251
+ *                 self.vis.highlight_goal_shape(self.goal_positions)
+ * 
+ *                 if len(self.goal_positions) < len(self.start_positions):             # <<<<<<<<<<<<<<
+ *                     self.vis.update_text(f"Custom goal set with {len(self.goal_positions)} blocks (fewer than start)", color="green")
+ *                 else:
+ */
+        goto __pyx_L6;
+      }
+
+      /* "Controller.pyx":254
+ *                     self.vis.update_text(f"Custom goal set with {len(self.goal_positions)} blocks (fewer than start)", color="green")
+ *                 else:
+ *                     self.vis.update_text(f"Custom goal set with {len(self.goal_positions)} blocks", color="green")             # <<<<<<<<<<<<<<
  * 
  *                 # Reset search state
  */
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 249, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 249, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_7 = 0;
-      __pyx_t_9 = 127;
-      __Pyx_INCREF(__pyx_kp_u_Custom_goal_set_with);
-      __pyx_t_7 += 21;
-      __Pyx_GIVEREF(__pyx_kp_u_Custom_goal_set_with);
-      PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_kp_u_Custom_goal_set_with);
-      __pyx_t_3 = __pyx_v_self->goal_positions;
-      __Pyx_INCREF(__pyx_t_3);
-      if (unlikely(__pyx_t_3 == Py_None)) {
-        PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-        __PYX_ERR(0, 249, __pyx_L1_error)
+      /*else*/ {
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 254, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 254, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __pyx_t_8 = 0;
+        __pyx_t_9 = 127;
+        __Pyx_INCREF(__pyx_kp_u_Custom_goal_set_with);
+        __pyx_t_8 += 21;
+        __Pyx_GIVEREF(__pyx_kp_u_Custom_goal_set_with);
+        PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_kp_u_Custom_goal_set_with);
+        __pyx_t_4 = __pyx_v_self->goal_positions;
+        __Pyx_INCREF(__pyx_t_4);
+        if (unlikely(__pyx_t_4 == Py_None)) {
+          PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+          __PYX_ERR(0, 254, __pyx_L1_error)
+        }
+        __pyx_t_6 = __Pyx_PyList_GET_SIZE(__pyx_t_4); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 254, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __pyx_t_4 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_6, 0, ' ', 'd'); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 254, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __pyx_t_8 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_4);
+        __Pyx_GIVEREF(__pyx_t_4);
+        PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_4);
+        __pyx_t_4 = 0;
+        __Pyx_INCREF(__pyx_kp_u_blocks);
+        __pyx_t_8 += 7;
+        __Pyx_GIVEREF(__pyx_kp_u_blocks);
+        PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_kp_u_blocks);
+        __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_3, 3, __pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 254, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 254, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __Pyx_GIVEREF(__pyx_t_4);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 254, __pyx_L1_error);
+        __pyx_t_4 = 0;
+        __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 254, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_color, __pyx_n_u_green) < 0) __PYX_ERR(0, 254, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 254, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
-      __pyx_t_6 = __Pyx_PyList_GET_SIZE(__pyx_t_3); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 249, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_6, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
-      __Pyx_GIVEREF(__pyx_t_3);
-      PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3);
-      __pyx_t_3 = 0;
-      __Pyx_INCREF(__pyx_kp_u_blocks);
-      __pyx_t_7 += 7;
-      __Pyx_GIVEREF(__pyx_kp_u_blocks);
-      PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_kp_u_blocks);
-      __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_4, 3, __pyx_t_7, __pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 249, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_GIVEREF(__pyx_t_3);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3)) __PYX_ERR(0, 249, __pyx_L1_error);
-      __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_color, __pyx_n_u_green) < 0) __PYX_ERR(0, 249, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 249, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_L6:;
 
-      /* "Controller.pyx":252
+      /* "Controller.pyx":257
  * 
  *                 # Reset search state
  *                 self.search_completed = False             # <<<<<<<<<<<<<<
@@ -8215,150 +8290,115 @@ static PyObject *__pyx_pf_10Controller_16SearchController_2toggle_selection_mode
  */
       __pyx_v_self->search_completed = 0;
 
-      /* "Controller.pyx":253
+      /* "Controller.pyx":258
  *                 # Reset search state
  *                 self.search_completed = False
  *                 self.vis.animation_started = False             # <<<<<<<<<<<<<<
  *                 self.vis.animation_done = False
  *                 self.vis.current_step = 0
  */
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_started, Py_False) < 0) __PYX_ERR(0, 253, __pyx_L1_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_started, Py_False) < 0) __PYX_ERR(0, 258, __pyx_L1_error)
 
-      /* "Controller.pyx":254
+      /* "Controller.pyx":259
  *                 self.search_completed = False
  *                 self.vis.animation_started = False
  *                 self.vis.animation_done = False             # <<<<<<<<<<<<<<
  *                 self.vis.current_step = 0
  *                 self.vis.path = None
  */
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_done, Py_False) < 0) __PYX_ERR(0, 254, __pyx_L1_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_done, Py_False) < 0) __PYX_ERR(0, 259, __pyx_L1_error)
 
-      /* "Controller.pyx":255
+      /* "Controller.pyx":260
  *                 self.vis.animation_started = False
  *                 self.vis.animation_done = False
  *                 self.vis.current_step = 0             # <<<<<<<<<<<<<<
  *                 self.vis.path = None
  *             else:
  */
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_current_step, __pyx_int_0) < 0) __PYX_ERR(0, 255, __pyx_L1_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_current_step, __pyx_int_0) < 0) __PYX_ERR(0, 260, __pyx_L1_error)
 
-      /* "Controller.pyx":256
+      /* "Controller.pyx":261
  *                 self.vis.animation_done = False
  *                 self.vis.current_step = 0
  *                 self.vis.path = None             # <<<<<<<<<<<<<<
  *             else:
  *                 self.selection_mode = True  # Stay in selection mode if invalid
  */
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_path, Py_None) < 0) __PYX_ERR(0, 256, __pyx_L1_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_path, Py_None) < 0) __PYX_ERR(0, 261, __pyx_L1_error)
 
-      /* "Controller.pyx":234
- *         else:
+      /* "Controller.pyx":235
  *             # Exiting selection mode
- *             if len(self.custom_goal) == len(self.start_positions):             # <<<<<<<<<<<<<<
+ *             # MODIFIED: Remove constraint that custom goal must have same number of blocks as start
+ *             if len(self.custom_goal) > 0:  # Just require at least one block             # <<<<<<<<<<<<<<
  *                 self.goal_positions = self.custom_goal.copy()  # Make a copy of the custom goal
  *                 self.agent = ConnectedMatterAgent(
  */
       goto __pyx_L5;
     }
 
-    /* "Controller.pyx":258
+    /* "Controller.pyx":263
  *                 self.vis.path = None
  *             else:
  *                 self.selection_mode = True  # Stay in selection mode if invalid             # <<<<<<<<<<<<<<
  *                 self.select_button.label.set_text("Select Goal")
- *                 self.vis.update_text(f"Invalid goal: Need exactly {len(self.start_positions)} blocks", color="red")
+ *                 self.vis.update_text(f"Invalid goal: Need at least 1 block", color="red")
  */
     /*else*/ {
       __pyx_v_self->selection_mode = 1;
 
-      /* "Controller.pyx":259
+      /* "Controller.pyx":264
  *             else:
  *                 self.selection_mode = True  # Stay in selection mode if invalid
  *                 self.select_button.label.set_text("Select Goal")             # <<<<<<<<<<<<<<
- *                 self.vis.update_text(f"Invalid goal: Need exactly {len(self.start_positions)} blocks", color="red")
+ *                 self.vis.update_text(f"Invalid goal: Need at least 1 block", color="red")
  * 
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->select_button, __pyx_n_s_label); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 259, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_set_text); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 259, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->select_button, __pyx_n_s_label); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = NULL;
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_set_text); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 264, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __pyx_t_4 = NULL;
       __pyx_t_5 = 0;
       #if CYTHON_UNPACK_METHODS
-      if (likely(PyMethod_Check(__pyx_t_4))) {
-        __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
-        if (likely(__pyx_t_3)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-          __Pyx_INCREF(__pyx_t_3);
+      if (likely(PyMethod_Check(__pyx_t_3))) {
+        __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+        if (likely(__pyx_t_4)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+          __Pyx_INCREF(__pyx_t_4);
           __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_4, function);
+          __Pyx_DECREF_SET(__pyx_t_3, function);
           __pyx_t_5 = 1;
         }
       }
       #endif
       {
-        PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_kp_u_Select_Goal};
-        __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
-        __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_kp_u_Select_Goal};
+        __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+        __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       }
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "Controller.pyx":260
+      /* "Controller.pyx":265
  *                 self.selection_mode = True  # Stay in selection mode if invalid
  *                 self.select_button.label.set_text("Select Goal")
- *                 self.vis.update_text(f"Invalid goal: Need exactly {len(self.start_positions)} blocks", color="red")             # <<<<<<<<<<<<<<
+ *                 self.vis.update_text(f"Invalid goal: Need at least 1 block", color="red")             # <<<<<<<<<<<<<<
  * 
  *     def on_grid_click(self, event, int x, int y):
  */
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 260, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 260, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 265, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 265, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_color, __pyx_n_u_red) < 0) __PYX_ERR(0, 265, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_tuple__10, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 265, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_7 = 0;
-      __pyx_t_9 = 127;
-      __Pyx_INCREF(__pyx_kp_u_Invalid_goal_Need_exactly);
-      __pyx_t_7 += 27;
-      __Pyx_GIVEREF(__pyx_kp_u_Invalid_goal_Need_exactly);
-      PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_kp_u_Invalid_goal_Need_exactly);
-      __pyx_t_3 = __pyx_v_self->start_positions;
-      __Pyx_INCREF(__pyx_t_3);
-      if (unlikely(__pyx_t_3 == Py_None)) {
-        PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-        __PYX_ERR(0, 260, __pyx_L1_error)
-      }
-      __pyx_t_6 = __Pyx_PyList_GET_SIZE(__pyx_t_3); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 260, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_6, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
-      __Pyx_GIVEREF(__pyx_t_3);
-      PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3);
-      __pyx_t_3 = 0;
-      __Pyx_INCREF(__pyx_kp_u_blocks);
-      __pyx_t_7 += 7;
-      __Pyx_GIVEREF(__pyx_kp_u_blocks);
-      PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_kp_u_blocks);
-      __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_4, 3, __pyx_t_7, __pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 260, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_GIVEREF(__pyx_t_3);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error);
-      __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_color, __pyx_n_u_red) < 0) __PYX_ERR(0, 260, __pyx_L1_error)
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 260, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __pyx_L5:;
   }
@@ -8379,7 +8419,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_2toggle_selection_mode
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_7);
   __Pyx_AddTraceback("Controller.SearchController.toggle_selection_mode", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -8388,8 +8428,8 @@ static PyObject *__pyx_pf_10Controller_16SearchController_2toggle_selection_mode
   return __pyx_r;
 }
 
-/* "Controller.pyx":262
- *                 self.vis.update_text(f"Invalid goal: Need exactly {len(self.start_positions)} blocks", color="red")
+/* "Controller.pyx":267
+ *                 self.vis.update_text(f"Invalid goal: Need at least 1 block", color="red")
  * 
  *     def on_grid_click(self, event, int x, int y):             # <<<<<<<<<<<<<<
  *         """Handle grid cell clicks for goal selection"""
@@ -8456,7 +8496,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 262, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 267, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -8464,9 +8504,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 262, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 267, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("on_grid_click", 1, 3, 3, 1); __PYX_ERR(0, 262, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("on_grid_click", 1, 3, 3, 1); __PYX_ERR(0, 267, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -8474,14 +8514,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 262, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 267, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("on_grid_click", 1, 3, 3, 2); __PYX_ERR(0, 262, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("on_grid_click", 1, 3, 3, 2); __PYX_ERR(0, 267, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_grid_click") < 0)) __PYX_ERR(0, 262, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_grid_click") < 0)) __PYX_ERR(0, 267, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
@@ -8491,12 +8531,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
     }
     __pyx_v_event = values[0];
-    __pyx_v_x = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 262, __pyx_L3_error)
-    __pyx_v_y = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 262, __pyx_L3_error)
+    __pyx_v_x = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 267, __pyx_L3_error)
+    __pyx_v_y = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 267, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("on_grid_click", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 262, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("on_grid_click", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 267, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -8534,18 +8574,18 @@ static PyObject *__pyx_pf_10Controller_16SearchController_4on_grid_click(struct 
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
   unsigned int __pyx_t_6;
-  Py_ssize_t __pyx_t_7;
+  int __pyx_t_7;
   Py_ssize_t __pyx_t_8;
-  int __pyx_t_9;
+  PyObject *__pyx_t_9 = NULL;
   PyObject *__pyx_t_10 = NULL;
-  PyObject *__pyx_t_11 = NULL;
-  Py_UCS4 __pyx_t_12;
+  Py_UCS4 __pyx_t_11;
+  Py_ssize_t __pyx_t_12;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("on_grid_click", 1);
 
-  /* "Controller.pyx":264
+  /* "Controller.pyx":269
  *     def on_grid_click(self, event, int x, int y):
  *         """Handle grid cell clicks for goal selection"""
  *         if not self.selection_mode or not self.selection_active:             # <<<<<<<<<<<<<<
@@ -8563,7 +8603,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_4on_grid_click(struct 
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "Controller.pyx":265
+    /* "Controller.pyx":270
  *         """Handle grid cell clicks for goal selection"""
  *         if not self.selection_mode or not self.selection_active:
  *             return             # <<<<<<<<<<<<<<
@@ -8574,7 +8614,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_4on_grid_click(struct 
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "Controller.pyx":264
+    /* "Controller.pyx":269
  *     def on_grid_click(self, event, int x, int y):
  *         """Handle grid cell clicks for goal selection"""
  *         if not self.selection_mode or not self.selection_active:             # <<<<<<<<<<<<<<
@@ -8583,96 +8623,96 @@ static PyObject *__pyx_pf_10Controller_16SearchController_4on_grid_click(struct 
  */
   }
 
-  /* "Controller.pyx":267
+  /* "Controller.pyx":272
  *             return
  * 
  *         pos = (x, y)             # <<<<<<<<<<<<<<
  * 
  *         if 0 <= x < self.grid_size[0] and 0 <= y < self.grid_size[1]:
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3)) __PYX_ERR(0, 267, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3)) __PYX_ERR(0, 272, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_4)) __PYX_ERR(0, 267, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_4)) __PYX_ERR(0, 272, __pyx_L1_error);
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
   __pyx_v_pos = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "Controller.pyx":269
+  /* "Controller.pyx":274
  *         pos = (x, y)
  * 
  *         if 0 <= x < self.grid_size[0] and 0 <= y < self.grid_size[1]:             # <<<<<<<<<<<<<<
  *             if pos in self.custom_goal:
  *                 # Remove this position
  */
-  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = PyObject_RichCompare(__pyx_int_0, __pyx_t_5, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_int_0, __pyx_t_5, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 274, __pyx_L1_error)
   if (__Pyx_PyObject_IsTrue(__pyx_t_4)) {
     __Pyx_DECREF(__pyx_t_4);
     if (unlikely(__pyx_v_self->grid_size == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 269, __pyx_L1_error)
+      __PYX_ERR(0, 274, __pyx_L1_error)
     }
-    __pyx_t_3 = __Pyx_GetItemInt_Tuple(__pyx_v_self->grid_size, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 269, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetItemInt_Tuple(__pyx_v_self->grid_size, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyObject_RichCompare(__pyx_t_5, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 269, __pyx_L1_error)
+    __pyx_t_4 = PyObject_RichCompare(__pyx_t_5, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 274, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_2) {
   } else {
     __pyx_t_1 = __pyx_t_2;
     goto __pyx_L7_bool_binop_done;
   }
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_int_0, __pyx_t_4, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_5 = PyObject_RichCompare(__pyx_int_0, __pyx_t_4, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 274, __pyx_L1_error)
   if (__Pyx_PyObject_IsTrue(__pyx_t_5)) {
     __Pyx_DECREF(__pyx_t_5);
     if (unlikely(__pyx_v_self->grid_size == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 269, __pyx_L1_error)
+      __PYX_ERR(0, 274, __pyx_L1_error)
     }
-    __pyx_t_3 = __Pyx_GetItemInt_Tuple(__pyx_v_self->grid_size, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 269, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetItemInt_Tuple(__pyx_v_self->grid_size, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_4, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 269, __pyx_L1_error)
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_4, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 274, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_1 = __pyx_t_2;
   __pyx_L7_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "Controller.pyx":270
+    /* "Controller.pyx":275
  * 
  *         if 0 <= x < self.grid_size[0] and 0 <= y < self.grid_size[1]:
  *             if pos in self.custom_goal:             # <<<<<<<<<<<<<<
  *                 # Remove this position
  *                 self.custom_goal.remove(pos)
  */
-    __pyx_t_1 = (__Pyx_PySequence_ContainsTF(__pyx_v_pos, __pyx_v_self->custom_goal, Py_EQ)); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 270, __pyx_L1_error)
+    __pyx_t_1 = (__Pyx_PySequence_ContainsTF(__pyx_v_pos, __pyx_v_self->custom_goal, Py_EQ)); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 275, __pyx_L1_error)
     if (__pyx_t_1) {
 
-      /* "Controller.pyx":272
+      /* "Controller.pyx":277
  *             if pos in self.custom_goal:
  *                 # Remove this position
  *                 self.custom_goal.remove(pos)             # <<<<<<<<<<<<<<
  *             else:
- *                 # Add this position if we haven't reached the limit
+ *                 # Add this position
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->custom_goal, __pyx_n_s_remove); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 272, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->custom_goal, __pyx_n_s_remove); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 277, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_3 = NULL;
       __pyx_t_6 = 0;
@@ -8692,13 +8732,13 @@ static PyObject *__pyx_pf_10Controller_16SearchController_4on_grid_click(struct 
         PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_pos};
         __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 272, __pyx_L1_error)
+        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 277, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "Controller.pyx":270
+      /* "Controller.pyx":275
  * 
  *         if 0 <= x < self.grid_size[0] and 0 <= y < self.grid_size[1]:
  *             if pos in self.custom_goal:             # <<<<<<<<<<<<<<
@@ -8708,108 +8748,41 @@ static PyObject *__pyx_pf_10Controller_16SearchController_4on_grid_click(struct 
       goto __pyx_L9;
     }
 
-    /* "Controller.pyx":275
- *             else:
- *                 # Add this position if we haven't reached the limit
- *                 if len(self.custom_goal) < len(self.start_positions):             # <<<<<<<<<<<<<<
- *                     self.custom_goal.append(pos)
- *                 else:
- */
-    /*else*/ {
-      __pyx_t_5 = __pyx_v_self->custom_goal;
-      __Pyx_INCREF(__pyx_t_5);
-      if (unlikely(__pyx_t_5 == Py_None)) {
-        PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-        __PYX_ERR(0, 275, __pyx_L1_error)
-      }
-      __pyx_t_7 = __Pyx_PyList_GET_SIZE(__pyx_t_5); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 275, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = __pyx_v_self->start_positions;
-      __Pyx_INCREF(__pyx_t_5);
-      if (unlikely(__pyx_t_5 == Py_None)) {
-        PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-        __PYX_ERR(0, 275, __pyx_L1_error)
-      }
-      __pyx_t_8 = __Pyx_PyList_GET_SIZE(__pyx_t_5); if (unlikely(__pyx_t_8 == ((Py_ssize_t)-1))) __PYX_ERR(0, 275, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_1 = (__pyx_t_7 < __pyx_t_8);
-      if (__pyx_t_1) {
-
-        /* "Controller.pyx":276
- *                 # Add this position if we haven't reached the limit
- *                 if len(self.custom_goal) < len(self.start_positions):
- *                     self.custom_goal.append(pos)             # <<<<<<<<<<<<<<
- *                 else:
- *                     # Replace the first position
- */
-        if (unlikely(__pyx_v_self->custom_goal == Py_None)) {
-          PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-          __PYX_ERR(0, 276, __pyx_L1_error)
-        }
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_self->custom_goal, __pyx_v_pos); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 276, __pyx_L1_error)
-
-        /* "Controller.pyx":275
- *             else:
- *                 # Add this position if we haven't reached the limit
- *                 if len(self.custom_goal) < len(self.start_positions):             # <<<<<<<<<<<<<<
- *                     self.custom_goal.append(pos)
- *                 else:
- */
-        goto __pyx_L10;
-      }
-
-      /* "Controller.pyx":279
- *                 else:
- *                     # Replace the first position
- *                     self.custom_goal.pop(0)             # <<<<<<<<<<<<<<
- *                     self.custom_goal.append(pos)
- * 
- */
-      /*else*/ {
-        if (unlikely(__pyx_v_self->custom_goal == Py_None)) {
-          PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "pop");
-          __PYX_ERR(0, 279, __pyx_L1_error)
-        }
-        __pyx_t_5 = __Pyx_PyList_PopIndex(__pyx_v_self->custom_goal, __pyx_int_0, 0, 1, Py_ssize_t, PyInt_FromSsize_t); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 279, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_5);
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-        /* "Controller.pyx":280
- *                     # Replace the first position
- *                     self.custom_goal.pop(0)
- *                     self.custom_goal.append(pos)             # <<<<<<<<<<<<<<
+    /* "Controller.pyx":281
+ *                 # Add this position
+ *                 # MODIFIED: Remove the limit on maximum number of blocks
+ *                 self.custom_goal.append(pos)             # <<<<<<<<<<<<<<
  * 
  *             # Redraw the grid with current selection
  */
-        if (unlikely(__pyx_v_self->custom_goal == Py_None)) {
-          PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-          __PYX_ERR(0, 280, __pyx_L1_error)
-        }
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_self->custom_goal, __pyx_v_pos); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 280, __pyx_L1_error)
+    /*else*/ {
+      if (unlikely(__pyx_v_self->custom_goal == Py_None)) {
+        PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
+        __PYX_ERR(0, 281, __pyx_L1_error)
       }
-      __pyx_L10:;
+      __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_self->custom_goal, __pyx_v_pos); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 281, __pyx_L1_error)
     }
     __pyx_L9:;
 
-    /* "Controller.pyx":283
+    /* "Controller.pyx":284
  * 
  *             # Redraw the grid with current selection
  *             self.vis.draw_grid(highlight_goal=False)             # <<<<<<<<<<<<<<
  *             for cell_pos in self.custom_goal:
  *                 self.highlight_cell(cell_pos, color='green')
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 283, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 283, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_highlight_goal, Py_False) < 0) __PYX_ERR(0, 283, __pyx_L1_error)
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 283, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_highlight_goal, Py_False) < 0) __PYX_ERR(0, 284, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "Controller.pyx":284
+    /* "Controller.pyx":285
  *             # Redraw the grid with current selection
  *             self.vis.draw_grid(highlight_goal=False)
  *             for cell_pos in self.custom_goal:             # <<<<<<<<<<<<<<
@@ -8818,7 +8791,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_4on_grid_click(struct 
  */
     if (unlikely(__pyx_v_self->custom_goal == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 284, __pyx_L1_error)
+      __PYX_ERR(0, 285, __pyx_L1_error)
     }
     __pyx_t_3 = __pyx_v_self->custom_goal; __Pyx_INCREF(__pyx_t_3);
     __pyx_t_8 = 0;
@@ -8826,44 +8799,44 @@ static PyObject *__pyx_pf_10Controller_16SearchController_4on_grid_click(struct 
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
         #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 284, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 285, __pyx_L1_error)
         #endif
         if (__pyx_t_8 >= __pyx_temp) break;
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_4); __pyx_t_8++; if (unlikely((0 < 0))) __PYX_ERR(0, 284, __pyx_L1_error)
+      __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_4); __pyx_t_8++; if (unlikely((0 < 0))) __PYX_ERR(0, 285, __pyx_L1_error)
       #else
-      __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 284, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 285, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       #endif
       __Pyx_XDECREF_SET(__pyx_v_cell_pos, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "Controller.pyx":285
+      /* "Controller.pyx":286
  *             self.vis.draw_grid(highlight_goal=False)
  *             for cell_pos in self.custom_goal:
  *                 self.highlight_cell(cell_pos, color='green')             # <<<<<<<<<<<<<<
  * 
  *             # Update the counter
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_highlight_cell); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 285, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_highlight_cell); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 286, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 285, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 286, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_v_cell_pos);
       __Pyx_GIVEREF(__pyx_v_cell_pos);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_cell_pos)) __PYX_ERR(0, 285, __pyx_L1_error);
-      __pyx_t_10 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 285, __pyx_L1_error)
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_cell_pos)) __PYX_ERR(0, 286, __pyx_L1_error);
+      __pyx_t_9 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 286, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_9);
+      if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_color, __pyx_n_u_green) < 0) __PYX_ERR(0, 286, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 286, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      if (PyDict_SetItem(__pyx_t_10, __pyx_n_s_color, __pyx_n_u_green) < 0) __PYX_ERR(0, 285, __pyx_L1_error)
-      __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_10); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 285, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
 
-      /* "Controller.pyx":284
+      /* "Controller.pyx":285
  *             # Redraw the grid with current selection
  *             self.vis.draw_grid(highlight_goal=False)
  *             for cell_pos in self.custom_goal:             # <<<<<<<<<<<<<<
@@ -8873,78 +8846,60 @@ static PyObject *__pyx_pf_10Controller_16SearchController_4on_grid_click(struct 
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "Controller.pyx":288
+    /* "Controller.pyx":289
  * 
  *             # Update the counter
- *             self.vis.update_text(f"Selected {len(self.custom_goal)}/{len(self.start_positions)} blocks", color="blue")             # <<<<<<<<<<<<<<
+ *             self.vis.update_text(f"Selected {len(self.custom_goal)} block(s)", color="blue")             # <<<<<<<<<<<<<<
  * 
  *     def highlight_cell(self, tuple pos, str color='green'):
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 288, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 289, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_11 = PyTuple_New(5); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 288, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_11);
+    __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 289, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_10);
     __pyx_t_8 = 0;
-    __pyx_t_12 = 127;
+    __pyx_t_11 = 127;
     __Pyx_INCREF(__pyx_kp_u_Selected);
     __pyx_t_8 += 9;
     __Pyx_GIVEREF(__pyx_kp_u_Selected);
-    PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_kp_u_Selected);
-    __pyx_t_10 = __pyx_v_self->custom_goal;
-    __Pyx_INCREF(__pyx_t_10);
-    if (unlikely(__pyx_t_10 == Py_None)) {
+    PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_kp_u_Selected);
+    __pyx_t_9 = __pyx_v_self->custom_goal;
+    __Pyx_INCREF(__pyx_t_9);
+    if (unlikely(__pyx_t_9 == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      __PYX_ERR(0, 288, __pyx_L1_error)
+      __PYX_ERR(0, 289, __pyx_L1_error)
     }
-    __pyx_t_7 = __Pyx_PyList_GET_SIZE(__pyx_t_10); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 288, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyList_GET_SIZE(__pyx_t_9); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 289, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+    __pyx_t_9 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_12, 0, ' ', 'd'); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 289, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_9);
+    __pyx_t_8 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_9);
+    __Pyx_GIVEREF(__pyx_t_9);
+    PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_t_9);
+    __pyx_t_9 = 0;
+    __Pyx_INCREF(__pyx_kp_u_block_s);
+    __pyx_t_8 += 9;
+    __Pyx_GIVEREF(__pyx_kp_u_block_s);
+    PyTuple_SET_ITEM(__pyx_t_10, 2, __pyx_kp_u_block_s);
+    __pyx_t_9 = __Pyx_PyUnicode_Join(__pyx_t_10, 3, __pyx_t_8, __pyx_t_11); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 289, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    __pyx_t_10 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_7, 0, ' ', 'd'); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 288, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_New(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 289, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_8 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_10);
-    __Pyx_GIVEREF(__pyx_t_10);
-    PyTuple_SET_ITEM(__pyx_t_11, 1, __pyx_t_10);
-    __pyx_t_10 = 0;
-    __Pyx_INCREF(__pyx_kp_u__10);
-    __pyx_t_8 += 1;
-    __Pyx_GIVEREF(__pyx_kp_u__10);
-    PyTuple_SET_ITEM(__pyx_t_11, 2, __pyx_kp_u__10);
-    __pyx_t_10 = __pyx_v_self->start_positions;
-    __Pyx_INCREF(__pyx_t_10);
-    if (unlikely(__pyx_t_10 == Py_None)) {
-      PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      __PYX_ERR(0, 288, __pyx_L1_error)
-    }
-    __pyx_t_7 = __Pyx_PyList_GET_SIZE(__pyx_t_10); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 288, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    __pyx_t_10 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_7, 0, ' ', 'd'); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 288, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_8 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_10);
-    __Pyx_GIVEREF(__pyx_t_10);
-    PyTuple_SET_ITEM(__pyx_t_11, 3, __pyx_t_10);
-    __pyx_t_10 = 0;
-    __Pyx_INCREF(__pyx_kp_u_blocks);
-    __pyx_t_8 += 7;
-    __Pyx_GIVEREF(__pyx_kp_u_blocks);
-    PyTuple_SET_ITEM(__pyx_t_11, 4, __pyx_kp_u_blocks);
-    __pyx_t_10 = __Pyx_PyUnicode_Join(__pyx_t_11, 5, __pyx_t_8, __pyx_t_12); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 288, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_10);
-    __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    __pyx_t_11 = PyTuple_New(1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 288, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_11);
-    __Pyx_GIVEREF(__pyx_t_10);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_10)) __PYX_ERR(0, 288, __pyx_L1_error);
-    __pyx_t_10 = 0;
-    __pyx_t_10 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 288, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_10);
-    if (PyDict_SetItem(__pyx_t_10, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 288, __pyx_L1_error)
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_11, __pyx_t_10); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 288, __pyx_L1_error)
+    __Pyx_GIVEREF(__pyx_t_9);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_9)) __PYX_ERR(0, 289, __pyx_L1_error);
+    __pyx_t_9 = 0;
+    __pyx_t_9 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 289, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_9);
+    if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 289, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, __pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 289, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "Controller.pyx":269
+    /* "Controller.pyx":274
  *         pos = (x, y)
  * 
  *         if 0 <= x < self.grid_size[0] and 0 <= y < self.grid_size[1]:             # <<<<<<<<<<<<<<
@@ -8953,8 +8908,8 @@ static PyObject *__pyx_pf_10Controller_16SearchController_4on_grid_click(struct 
  */
   }
 
-  /* "Controller.pyx":262
- *                 self.vis.update_text(f"Invalid goal: Need exactly {len(self.start_positions)} blocks", color="red")
+  /* "Controller.pyx":267
+ *                 self.vis.update_text(f"Invalid goal: Need at least 1 block", color="red")
  * 
  *     def on_grid_click(self, event, int x, int y):             # <<<<<<<<<<<<<<
  *         """Handle grid cell clicks for goal selection"""
@@ -8968,8 +8923,8 @@ static PyObject *__pyx_pf_10Controller_16SearchController_4on_grid_click(struct 
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_XDECREF(__pyx_t_11);
   __Pyx_AddTraceback("Controller.SearchController.on_grid_click", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -8980,8 +8935,8 @@ static PyObject *__pyx_pf_10Controller_16SearchController_4on_grid_click(struct 
   return __pyx_r;
 }
 
-/* "Controller.pyx":290
- *             self.vis.update_text(f"Selected {len(self.custom_goal)}/{len(self.start_positions)} blocks", color="blue")
+/* "Controller.pyx":291
+ *             self.vis.update_text(f"Selected {len(self.custom_goal)} block(s)", color="blue")
  * 
  *     def highlight_cell(self, tuple pos, str color='green'):             # <<<<<<<<<<<<<<
  *         """Highlight a grid cell with the specified color"""
@@ -9046,19 +9001,19 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 290, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 291, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_color);
           if (value) { values[1] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 290, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 291, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "highlight_cell") < 0)) __PYX_ERR(0, 290, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "highlight_cell") < 0)) __PYX_ERR(0, 291, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -9074,7 +9029,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("highlight_cell", 0, 1, 2, __pyx_nargs); __PYX_ERR(0, 290, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("highlight_cell", 0, 1, 2, __pyx_nargs); __PYX_ERR(0, 291, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9088,8 +9043,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_pos), (&PyTuple_Type), 1, "pos", 1))) __PYX_ERR(0, 290, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_color), (&PyUnicode_Type), 1, "color", 1))) __PYX_ERR(0, 290, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_pos), (&PyTuple_Type), 1, "pos", 1))) __PYX_ERR(0, 291, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_color), (&PyUnicode_Type), 1, "color", 1))) __PYX_ERR(0, 291, __pyx_L1_error)
   __pyx_r = __pyx_pf_10Controller_16SearchController_6highlight_cell(((struct __pyx_obj_10Controller_SearchController *)__pyx_v_self), __pyx_v_pos, __pyx_v_color);
 
   /* function exit code */
@@ -9126,7 +9081,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_6highlight_cell(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("highlight_cell", 1);
 
-  /* "Controller.pyx":293
+  /* "Controller.pyx":294
  *         """Highlight a grid cell with the specified color"""
  *         cdef int x, y
  *         x, y = pos             # <<<<<<<<<<<<<<
@@ -9139,7 +9094,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_6highlight_cell(struct
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 293, __pyx_L1_error)
+      __PYX_ERR(0, 294, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     __pyx_t_1 = PyTuple_GET_ITEM(sequence, 0); 
@@ -9147,66 +9102,66 @@ static PyObject *__pyx_pf_10Controller_16SearchController_6highlight_cell(struct
     __Pyx_INCREF(__pyx_t_1);
     __Pyx_INCREF(__pyx_t_2);
     #else
-    __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 293, __pyx_L1_error)
+    __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 293, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 294, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
   } else {
-    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 293, __pyx_L1_error)
+    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 294, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 293, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 293, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_x = __pyx_t_3;
   __pyx_v_y = __pyx_t_4;
 
-  /* "Controller.pyx":294
+  /* "Controller.pyx":295
  *         cdef int x, y
  *         x, y = pos
  *         self.vis.ax.add_patch(plt.Rectangle((y, x), 1, 1, color=color, alpha=0.7))             # <<<<<<<<<<<<<<
  *         plt.draw()
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_ax); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_ax); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_add_patch); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_add_patch); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_plt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_plt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Rectangle); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Rectangle); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_7)) __PYX_ERR(0, 294, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_7)) __PYX_ERR(0, 295, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_7 = 0;
-  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_8);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_8)) __PYX_ERR(0, 294, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_8)) __PYX_ERR(0, 295, __pyx_L1_error);
   __Pyx_INCREF(__pyx_int_1);
   __Pyx_GIVEREF(__pyx_int_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_int_1)) __PYX_ERR(0, 294, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_int_1)) __PYX_ERR(0, 295, __pyx_L1_error);
   __Pyx_INCREF(__pyx_int_1);
   __Pyx_GIVEREF(__pyx_int_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_int_1)) __PYX_ERR(0, 294, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_int_1)) __PYX_ERR(0, 295, __pyx_L1_error);
   __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_color, __pyx_v_color) < 0) __PYX_ERR(0, 294, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_alpha, __pyx_float_0_7) < 0) __PYX_ERR(0, 294, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_color, __pyx_v_color) < 0) __PYX_ERR(0, 295, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_alpha, __pyx_float_0_7) < 0) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -9230,22 +9185,22 @@ static PyObject *__pyx_pf_10Controller_16SearchController_6highlight_cell(struct
     __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_5, __pyx_callargs+1-__pyx_t_9, 1+__pyx_t_9);
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 294, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Controller.pyx":295
+  /* "Controller.pyx":296
  *         x, y = pos
  *         self.vis.ax.add_patch(plt.Rectangle((y, x), 1, 1, color=color, alpha=0.7))
  *         plt.draw()             # <<<<<<<<<<<<<<
  * 
  *     def on_close(self, event):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_plt); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_plt); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_draw); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_draw); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -9266,14 +9221,14 @@ static PyObject *__pyx_pf_10Controller_16SearchController_6highlight_cell(struct
     PyObject *__pyx_callargs[2] = {__pyx_t_5, NULL};
     __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_9, 0+__pyx_t_9);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 296, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Controller.pyx":290
- *             self.vis.update_text(f"Selected {len(self.custom_goal)}/{len(self.start_positions)} blocks", color="blue")
+  /* "Controller.pyx":291
+ *             self.vis.update_text(f"Selected {len(self.custom_goal)} block(s)", color="blue")
  * 
  *     def highlight_cell(self, tuple pos, str color='green'):             # <<<<<<<<<<<<<<
  *         """Highlight a grid cell with the specified color"""
@@ -9298,7 +9253,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_6highlight_cell(struct
   return __pyx_r;
 }
 
-/* "Controller.pyx":297
+/* "Controller.pyx":298
  *         plt.draw()
  * 
  *     def on_close(self, event):             # <<<<<<<<<<<<<<
@@ -9360,12 +9315,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 297, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 298, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_close") < 0)) __PYX_ERR(0, 297, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_close") < 0)) __PYX_ERR(0, 298, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -9376,7 +9331,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("on_close", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 297, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("on_close", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 298, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9415,27 +9370,27 @@ static PyObject *__pyx_pf_10Controller_16SearchController_8on_close(CYTHON_UNUSE
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("on_close", 1);
 
-  /* "Controller.pyx":299
+  /* "Controller.pyx":300
  *     def on_close(self, event):
  *         """Stops execution when the Matplotlib window is closed."""
  *         print("\nWindow closed. Exiting program.")             # <<<<<<<<<<<<<<
  *         sys.exit()  # Forcefully stop the script
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Controller.pyx":300
+  /* "Controller.pyx":301
  *         """Stops execution when the Matplotlib window is closed."""
  *         print("\nWindow closed. Exiting program.")
  *         sys.exit()  # Forcefully stop the script             # <<<<<<<<<<<<<<
  * 
  *     def on_shape_selected(self, str label):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_sys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 300, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_sys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exit); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 300, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exit); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -9456,13 +9411,13 @@ static PyObject *__pyx_pf_10Controller_16SearchController_8on_close(CYTHON_UNUSE
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Controller.pyx":297
+  /* "Controller.pyx":298
  *         plt.draw()
  * 
  *     def on_close(self, event):             # <<<<<<<<<<<<<<
@@ -9485,7 +9440,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_8on_close(CYTHON_UNUSE
   return __pyx_r;
 }
 
-/* "Controller.pyx":302
+/* "Controller.pyx":303
  *         sys.exit()  # Forcefully stop the script
  * 
  *     def on_shape_selected(self, str label):             # <<<<<<<<<<<<<<
@@ -9547,12 +9502,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 302, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 303, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_shape_selected") < 0)) __PYX_ERR(0, 302, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_shape_selected") < 0)) __PYX_ERR(0, 303, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -9563,7 +9518,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("on_shape_selected", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 302, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("on_shape_selected", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 303, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9577,7 +9532,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_label), (&PyUnicode_Type), 1, "label", 1))) __PYX_ERR(0, 302, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_label), (&PyUnicode_Type), 1, "label", 1))) __PYX_ERR(0, 303, __pyx_L1_error)
   __pyx_r = __pyx_pf_10Controller_16SearchController_10on_shape_selected(((struct __pyx_obj_10Controller_SearchController *)__pyx_v_self), __pyx_v_label);
 
   /* function exit code */
@@ -9604,13 +9559,15 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
   unsigned int __pyx_t_4;
   PyObject *__pyx_t_5 = NULL;
   Py_ssize_t __pyx_t_6;
-  Py_UCS4 __pyx_t_7;
+  Py_ssize_t __pyx_t_7;
+  int __pyx_t_8;
+  Py_UCS4 __pyx_t_9;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("on_shape_selected", 1);
 
-  /* "Controller.pyx":305
+  /* "Controller.pyx":306
  *         """Handle shape selection from radio buttons"""
  *         # Cancel selection mode if active when changing shapes
  *         if self.selection_mode:             # <<<<<<<<<<<<<<
@@ -9619,7 +9576,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
  */
   if (__pyx_v_self->selection_mode) {
 
-    /* "Controller.pyx":306
+    /* "Controller.pyx":307
  *         # Cancel selection mode if active when changing shapes
  *         if self.selection_mode:
  *             self.selection_mode = False             # <<<<<<<<<<<<<<
@@ -9628,7 +9585,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
  */
     __pyx_v_self->selection_mode = 0;
 
-    /* "Controller.pyx":307
+    /* "Controller.pyx":308
  *         if self.selection_mode:
  *             self.selection_mode = False
  *             self.selection_active = False             # <<<<<<<<<<<<<<
@@ -9637,16 +9594,16 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
  */
     __pyx_v_self->selection_active = 0;
 
-    /* "Controller.pyx":308
+    /* "Controller.pyx":309
  *             self.selection_mode = False
  *             self.selection_active = False
  *             self.select_button.label.set_text("Select Goal")             # <<<<<<<<<<<<<<
  * 
  *         self.current_shape = label
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->select_button, __pyx_n_s_label); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 308, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->select_button, __pyx_n_s_label); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 309, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_set_text); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 308, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_set_text); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 309, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_2 = NULL;
@@ -9667,13 +9624,13 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
       PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_kp_u_Select_Goal};
       __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "Controller.pyx":305
+    /* "Controller.pyx":306
  *         """Handle shape selection from radio buttons"""
  *         # Cancel selection mode if active when changing shapes
  *         if self.selection_mode:             # <<<<<<<<<<<<<<
@@ -9682,7 +9639,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
  */
   }
 
-  /* "Controller.pyx":310
+  /* "Controller.pyx":311
  *             self.select_button.label.set_text("Select Goal")
  * 
  *         self.current_shape = label             # <<<<<<<<<<<<<<
@@ -9695,7 +9652,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
   __Pyx_DECREF(__pyx_v_self->current_shape);
   __pyx_v_self->current_shape = __pyx_v_label;
 
-  /* "Controller.pyx":311
+  /* "Controller.pyx":312
  * 
  *         self.current_shape = label
  *         self.goal_positions = self.formations[self.current_shape]             # <<<<<<<<<<<<<<
@@ -9704,83 +9661,83 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
  */
   if (unlikely(__pyx_v_self->formations == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 311, __pyx_L1_error)
+    __PYX_ERR(0, 312, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_self->formations, __pyx_v_self->current_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_self->formations, __pyx_v_self->current_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(PyList_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_1))) __PYX_ERR(0, 311, __pyx_L1_error)
+  if (!(likely(PyList_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_1))) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->goal_positions);
   __Pyx_DECREF(__pyx_v_self->goal_positions);
   __pyx_v_self->goal_positions = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Controller.pyx":314
+  /* "Controller.pyx":315
  * 
  *         # Update agent with new goal positions
  *         self.agent = ConnectedMatterAgent(             # <<<<<<<<<<<<<<
  *             self.grid_size,
  *             self.start_positions,
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_ConnectedMatterAgent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_ConnectedMatterAgent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "Controller.pyx":318
+  /* "Controller.pyx":319
  *             self.start_positions,
  *             self.goal_positions,
  *             self.topology,             # <<<<<<<<<<<<<<
  *             max_simultaneous_moves=self.max_simultaneous_moves,
  *             min_simultaneous_moves=self.min_simultaneous_moves
  */
-  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_self->grid_size);
   __Pyx_GIVEREF(__pyx_v_self->grid_size);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_self->grid_size)) __PYX_ERR(0, 314, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_self->grid_size)) __PYX_ERR(0, 315, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->start_positions);
   __Pyx_GIVEREF(__pyx_v_self->start_positions);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_self->start_positions)) __PYX_ERR(0, 314, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_self->start_positions)) __PYX_ERR(0, 315, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->goal_positions);
   __Pyx_GIVEREF(__pyx_v_self->goal_positions);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_self->goal_positions)) __PYX_ERR(0, 314, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_self->goal_positions)) __PYX_ERR(0, 315, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->topology);
   __Pyx_GIVEREF(__pyx_v_self->topology);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_v_self->topology)) __PYX_ERR(0, 314, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_v_self->topology)) __PYX_ERR(0, 315, __pyx_L1_error);
 
-  /* "Controller.pyx":319
+  /* "Controller.pyx":320
  *             self.goal_positions,
  *             self.topology,
  *             max_simultaneous_moves=self.max_simultaneous_moves,             # <<<<<<<<<<<<<<
  *             min_simultaneous_moves=self.min_simultaneous_moves
  *         )
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 319, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 320, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 319, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 320, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_max_simultaneous_moves, __pyx_t_5) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_max_simultaneous_moves, __pyx_t_5) < 0) __PYX_ERR(0, 320, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "Controller.pyx":320
+  /* "Controller.pyx":321
  *             self.topology,
  *             max_simultaneous_moves=self.max_simultaneous_moves,
  *             min_simultaneous_moves=self.min_simultaneous_moves             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 320, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_min_simultaneous_moves, __pyx_t_5) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_min_simultaneous_moves, __pyx_t_5) < 0) __PYX_ERR(0, 320, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "Controller.pyx":314
+  /* "Controller.pyx":315
  * 
  *         # Update agent with new goal positions
  *         self.agent = ConnectedMatterAgent(             # <<<<<<<<<<<<<<
  *             self.grid_size,
  *             self.start_positions,
  */
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9791,33 +9748,16 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
   __pyx_v_self->agent = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "Controller.pyx":323
+  /* "Controller.pyx":324
  *         )
  * 
  *         print(f"Selected shape: {self.current_shape}")             # <<<<<<<<<<<<<<
  *         print(f"Goal positions: {self.goal_positions}")
  * 
  */
-  __pyx_t_5 = __Pyx_PyUnicode_Unicode(__pyx_v_self->current_shape); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyUnicode_Unicode(__pyx_v_self->current_shape); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 324, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Selected_shape, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 323, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-  /* "Controller.pyx":324
- * 
- *         print(f"Selected shape: {self.current_shape}")
- *         print(f"Goal positions: {self.goal_positions}")             # <<<<<<<<<<<<<<
- * 
- *         # Reset search state
- */
-  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_v_self->goal_positions, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 324, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Goal_positions, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 324, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Selected_shape, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 324, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 324, __pyx_L1_error)
@@ -9825,7 +9765,24 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "Controller.pyx":327
+  /* "Controller.pyx":325
+ * 
+ *         print(f"Selected shape: {self.current_shape}")
+ *         print(f"Goal positions: {self.goal_positions}")             # <<<<<<<<<<<<<<
+ * 
+ *         # Reset search state
+ */
+  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_v_self->goal_positions, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Goal_positions, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "Controller.pyx":328
  * 
  *         # Reset search state
  *         self.search_completed = False             # <<<<<<<<<<<<<<
@@ -9834,50 +9791,50 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
  */
   __pyx_v_self->search_completed = 0;
 
-  /* "Controller.pyx":328
+  /* "Controller.pyx":329
  *         # Reset search state
  *         self.search_completed = False
  *         self.vis.animation_started = False             # <<<<<<<<<<<<<<
  *         self.vis.animation_done = False
  *         self.vis.current_step = 0
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_started, Py_False) < 0) __PYX_ERR(0, 328, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_started, Py_False) < 0) __PYX_ERR(0, 329, __pyx_L1_error)
 
-  /* "Controller.pyx":329
+  /* "Controller.pyx":330
  *         self.search_completed = False
  *         self.vis.animation_started = False
  *         self.vis.animation_done = False             # <<<<<<<<<<<<<<
  *         self.vis.current_step = 0
  *         self.vis.path = None
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_done, Py_False) < 0) __PYX_ERR(0, 329, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_done, Py_False) < 0) __PYX_ERR(0, 330, __pyx_L1_error)
 
-  /* "Controller.pyx":330
+  /* "Controller.pyx":331
  *         self.vis.animation_started = False
  *         self.vis.animation_done = False
  *         self.vis.current_step = 0             # <<<<<<<<<<<<<<
  *         self.vis.path = None
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_current_step, __pyx_int_0) < 0) __PYX_ERR(0, 330, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_current_step, __pyx_int_0) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
 
-  /* "Controller.pyx":331
+  /* "Controller.pyx":332
  *         self.vis.animation_done = False
  *         self.vis.current_step = 0
  *         self.vis.path = None             # <<<<<<<<<<<<<<
  * 
  *         # Update visualization with highlighted goal shape
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_path, Py_None) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_path, Py_None) < 0) __PYX_ERR(0, 332, __pyx_L1_error)
 
-  /* "Controller.pyx":334
+  /* "Controller.pyx":335
  * 
  *         # Update visualization with highlighted goal shape
  *         self.vis.draw_grid()             # <<<<<<<<<<<<<<
  *         self.vis.highlight_goal_shape(self.goal_positions)
  *         self.vis.button.label.set_text("Search")
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 335, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -9897,20 +9854,20 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
     PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
     __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 334, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 335, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "Controller.pyx":335
+  /* "Controller.pyx":336
  *         # Update visualization with highlighted goal shape
  *         self.vis.draw_grid()
  *         self.vis.highlight_goal_shape(self.goal_positions)             # <<<<<<<<<<<<<<
  *         self.vis.button.label.set_text("Search")
- *         self.vis.update_text(f"Selected {self.current_shape} shape", color="blue")
+ * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_highlight_goal_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 335, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_highlight_goal_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 336, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -9930,25 +9887,25 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_self->goal_positions};
     __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 335, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 336, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "Controller.pyx":336
+  /* "Controller.pyx":337
  *         self.vis.draw_grid()
  *         self.vis.highlight_goal_shape(self.goal_positions)
  *         self.vis.button.label.set_text("Search")             # <<<<<<<<<<<<<<
- *         self.vis.update_text(f"Selected {self.current_shape} shape", color="blue")
  * 
+ *         # Display message about number of blocks
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_button); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_button); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 337, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_label); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_label); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 337, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_set_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_set_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 337, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -9969,59 +9926,180 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_n_u_Search};
     __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 336, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 337, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "Controller.pyx":337
- *         self.vis.highlight_goal_shape(self.goal_positions)
- *         self.vis.button.label.set_text("Search")
- *         self.vis.update_text(f"Selected {self.current_shape} shape", color="blue")             # <<<<<<<<<<<<<<
+  /* "Controller.pyx":340
+ * 
+ *         # Display message about number of blocks
+ *         if len(self.goal_positions) < len(self.start_positions):             # <<<<<<<<<<<<<<
+ *             self.vis.update_text(f"Selected {self.current_shape} shape ({len(self.goal_positions)} blocks, fewer than start)", color="blue")
+ *         else:
+ */
+  __pyx_t_5 = __pyx_v_self->goal_positions;
+  __Pyx_INCREF(__pyx_t_5);
+  if (unlikely(__pyx_t_5 == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+    __PYX_ERR(0, 340, __pyx_L1_error)
+  }
+  __pyx_t_6 = __Pyx_PyList_GET_SIZE(__pyx_t_5); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = __pyx_v_self->start_positions;
+  __Pyx_INCREF(__pyx_t_5);
+  if (unlikely(__pyx_t_5 == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+    __PYX_ERR(0, 340, __pyx_L1_error)
+  }
+  __pyx_t_7 = __Pyx_PyList_GET_SIZE(__pyx_t_5); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_8 = (__pyx_t_6 < __pyx_t_7);
+  if (__pyx_t_8) {
+
+    /* "Controller.pyx":341
+ *         # Display message about number of blocks
+ *         if len(self.goal_positions) < len(self.start_positions):
+ *             self.vis.update_text(f"Selected {self.current_shape} shape ({len(self.goal_positions)} blocks, fewer than start)", color="blue")             # <<<<<<<<<<<<<<
+ *         else:
+ *             self.vis.update_text(f"Selected {self.current_shape} shape ({len(self.goal_positions)} blocks)", color="blue")
+ */
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 341, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_2 = PyTuple_New(5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 341, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_7 = 0;
+    __pyx_t_9 = 127;
+    __Pyx_INCREF(__pyx_kp_u_Selected);
+    __pyx_t_7 += 9;
+    __Pyx_GIVEREF(__pyx_kp_u_Selected);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_kp_u_Selected);
+    __pyx_t_3 = __Pyx_PyUnicode_Unicode(__pyx_v_self->current_shape); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 341, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_9 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) > __pyx_t_9) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) : __pyx_t_9;
+    __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_3);
+    __pyx_t_3 = 0;
+    __Pyx_INCREF(__pyx_kp_u_shape);
+    __pyx_t_7 += 8;
+    __Pyx_GIVEREF(__pyx_kp_u_shape);
+    PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_kp_u_shape);
+    __pyx_t_3 = __pyx_v_self->goal_positions;
+    __Pyx_INCREF(__pyx_t_3);
+    if (unlikely(__pyx_t_3 == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+      __PYX_ERR(0, 341, __pyx_L1_error)
+    }
+    __pyx_t_6 = __Pyx_PyList_GET_SIZE(__pyx_t_3); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 341, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_t_3 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_6, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 341, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_2, 3, __pyx_t_3);
+    __pyx_t_3 = 0;
+    __Pyx_INCREF(__pyx_kp_u_blocks_fewer_than_start_2);
+    __pyx_t_7 += 26;
+    __Pyx_GIVEREF(__pyx_kp_u_blocks_fewer_than_start_2);
+    PyTuple_SET_ITEM(__pyx_t_2, 4, __pyx_kp_u_blocks_fewer_than_start_2);
+    __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_2, 5, __pyx_t_7, __pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 341, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 341, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_3);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3)) __PYX_ERR(0, 341, __pyx_L1_error);
+    __pyx_t_3 = 0;
+    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 341, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 341, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "Controller.pyx":340
+ * 
+ *         # Display message about number of blocks
+ *         if len(self.goal_positions) < len(self.start_positions):             # <<<<<<<<<<<<<<
+ *             self.vis.update_text(f"Selected {self.current_shape} shape ({len(self.goal_positions)} blocks, fewer than start)", color="blue")
+ *         else:
+ */
+    goto __pyx_L4;
+  }
+
+  /* "Controller.pyx":343
+ *             self.vis.update_text(f"Selected {self.current_shape} shape ({len(self.goal_positions)} blocks, fewer than start)", color="blue")
+ *         else:
+ *             self.vis.update_text(f"Selected {self.current_shape} shape ({len(self.goal_positions)} blocks)", color="blue")             # <<<<<<<<<<<<<<
  * 
  *     def handle_button(self, event):
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 337, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 337, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = 0;
-  __pyx_t_7 = 127;
-  __Pyx_INCREF(__pyx_kp_u_Selected);
-  __pyx_t_6 += 9;
-  __Pyx_GIVEREF(__pyx_kp_u_Selected);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_kp_u_Selected);
-  __pyx_t_3 = __Pyx_PyUnicode_Unicode(__pyx_v_self->current_shape); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 337, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) > __pyx_t_7) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) : __pyx_t_7;
-  __pyx_t_6 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
-  __Pyx_GIVEREF(__pyx_t_3);
-  PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_3);
-  __pyx_t_3 = 0;
-  __Pyx_INCREF(__pyx_kp_u_shape);
-  __pyx_t_6 += 6;
-  __Pyx_GIVEREF(__pyx_kp_u_shape);
-  PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_kp_u_shape);
-  __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_2, 3, __pyx_t_6, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 337, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 337, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3)) __PYX_ERR(0, 337, __pyx_L1_error);
-  __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 337, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 337, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 337, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  /*else*/ {
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 343, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = PyTuple_New(5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 343, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_7 = 0;
+    __pyx_t_9 = 127;
+    __Pyx_INCREF(__pyx_kp_u_Selected);
+    __pyx_t_7 += 9;
+    __Pyx_GIVEREF(__pyx_kp_u_Selected);
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_kp_u_Selected);
+    __pyx_t_2 = __Pyx_PyUnicode_Unicode(__pyx_v_self->current_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 343, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_9 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2) > __pyx_t_9) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2) : __pyx_t_9;
+    __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2);
+    __pyx_t_2 = 0;
+    __Pyx_INCREF(__pyx_kp_u_shape);
+    __pyx_t_7 += 8;
+    __Pyx_GIVEREF(__pyx_kp_u_shape);
+    PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_kp_u_shape);
+    __pyx_t_2 = __pyx_v_self->goal_positions;
+    __Pyx_INCREF(__pyx_t_2);
+    if (unlikely(__pyx_t_2 == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+      __PYX_ERR(0, 343, __pyx_L1_error)
+    }
+    __pyx_t_6 = __Pyx_PyList_GET_SIZE(__pyx_t_2); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 343, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_6, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 343, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_t_2);
+    __pyx_t_2 = 0;
+    __Pyx_INCREF(__pyx_kp_u_blocks_2);
+    __pyx_t_7 += 8;
+    __Pyx_GIVEREF(__pyx_kp_u_blocks_2);
+    PyTuple_SET_ITEM(__pyx_t_3, 4, __pyx_kp_u_blocks_2);
+    __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_3, 5, __pyx_t_7, __pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 343, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 343, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_2);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2)) __PYX_ERR(0, 343, __pyx_L1_error);
+    __pyx_t_2 = 0;
+    __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 343, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 343, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 343, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  }
+  __pyx_L4:;
 
-  /* "Controller.pyx":302
+  /* "Controller.pyx":303
  *         sys.exit()  # Forcefully stop the script
  * 
  *     def on_shape_selected(self, str label):             # <<<<<<<<<<<<<<
@@ -10045,8 +10123,8 @@ static PyObject *__pyx_pf_10Controller_16SearchController_10on_shape_selected(st
   return __pyx_r;
 }
 
-/* "Controller.pyx":339
- *         self.vis.update_text(f"Selected {self.current_shape} shape", color="blue")
+/* "Controller.pyx":345
+ *             self.vis.update_text(f"Selected {self.current_shape} shape ({len(self.goal_positions)} blocks)", color="blue")
  * 
  *     def handle_button(self, event):             # <<<<<<<<<<<<<<
  *         """Handle button clicks based on current state"""
@@ -10107,12 +10185,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 339, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 345, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "handle_button") < 0)) __PYX_ERR(0, 339, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "handle_button") < 0)) __PYX_ERR(0, 345, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -10123,7 +10201,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("handle_button", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 339, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("handle_button", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 345, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -10163,7 +10241,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_12handle_button(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("handle_button", 1);
 
-  /* "Controller.pyx":341
+  /* "Controller.pyx":347
  *     def handle_button(self, event):
  *         """Handle button clicks based on current state"""
  *         if not self.search_completed:             # <<<<<<<<<<<<<<
@@ -10173,14 +10251,14 @@ static PyObject *__pyx_pf_10Controller_16SearchController_12handle_button(struct
   __pyx_t_1 = (!__pyx_v_self->search_completed);
   if (__pyx_t_1) {
 
-    /* "Controller.pyx":342
+    /* "Controller.pyx":348
  *         """Handle button clicks based on current state"""
  *         if not self.search_completed:
  *             self.run_search(event)             # <<<<<<<<<<<<<<
  *         else:
  *             self.vis.handle_button_click(event)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_run_search); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 342, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_run_search); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 348, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     __pyx_t_5 = 0;
@@ -10200,13 +10278,13 @@ static PyObject *__pyx_pf_10Controller_16SearchController_12handle_button(struct
       PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_event};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 342, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 348, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Controller.pyx":341
+    /* "Controller.pyx":347
  *     def handle_button(self, event):
  *         """Handle button clicks based on current state"""
  *         if not self.search_completed:             # <<<<<<<<<<<<<<
@@ -10216,7 +10294,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_12handle_button(struct
     goto __pyx_L3;
   }
 
-  /* "Controller.pyx":344
+  /* "Controller.pyx":350
  *             self.run_search(event)
  *         else:
  *             self.vis.handle_button_click(event)             # <<<<<<<<<<<<<<
@@ -10224,7 +10302,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_12handle_button(struct
  *     def run_search(self, event):
  */
   /*else*/ {
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_handle_button_click); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 344, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_handle_button_click); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     __pyx_t_5 = 0;
@@ -10244,7 +10322,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_12handle_button(struct
       PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_event};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 344, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
@@ -10252,8 +10330,8 @@ static PyObject *__pyx_pf_10Controller_16SearchController_12handle_button(struct
   }
   __pyx_L3:;
 
-  /* "Controller.pyx":339
- *         self.vis.update_text(f"Selected {self.current_shape} shape", color="blue")
+  /* "Controller.pyx":345
+ *             self.vis.update_text(f"Selected {self.current_shape} shape ({len(self.goal_positions)} blocks)", color="blue")
  * 
  *     def handle_button(self, event):             # <<<<<<<<<<<<<<
  *         """Handle button clicks based on current state"""
@@ -10275,7 +10353,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_12handle_button(struct
   return __pyx_r;
 }
 
-/* "Controller.pyx":346
+/* "Controller.pyx":352
  *             self.vis.handle_button_click(event)
  * 
  *     def run_search(self, event):             # <<<<<<<<<<<<<<
@@ -10337,12 +10415,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 346, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 352, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "run_search") < 0)) __PYX_ERR(0, 346, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "run_search") < 0)) __PYX_ERR(0, 352, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -10353,7 +10431,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("run_search", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 346, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("run_search", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 352, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -10401,14 +10479,14 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("run_search", 1);
 
-  /* "Controller.pyx":349
+  /* "Controller.pyx":355
  *         """Runs the search when the Search button is clicked."""
  *         # Clear goal shape highlight
  *         self.vis.draw_grid()             # <<<<<<<<<<<<<<
  *         self.vis.update_text("Searching for a path...", color="red")
  *         plt.pause(1)  # Force update to show "Searching..." before search starts
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 349, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -10428,40 +10506,40 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 349, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 355, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Controller.pyx":350
+  /* "Controller.pyx":356
  *         # Clear goal shape highlight
  *         self.vis.draw_grid()
  *         self.vis.update_text("Searching for a path...", color="red")             # <<<<<<<<<<<<<<
  *         plt.pause(1)  # Force update to show "Searching..." before search starts
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_color, __pyx_n_u_red) < 0) __PYX_ERR(0, 350, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__12, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 350, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_color, __pyx_n_u_red) < 0) __PYX_ERR(0, 356, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__12, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "Controller.pyx":351
+  /* "Controller.pyx":357
  *         self.vis.draw_grid()
  *         self.vis.update_text("Searching for a path...", color="red")
  *         plt.pause(1)  # Force update to show "Searching..." before search starts             # <<<<<<<<<<<<<<
  * 
  *         print("\nSearching for optimal path with connectivity constraint...")
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_plt); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_plt); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 357, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_pause); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_pause); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 357, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -10482,33 +10560,33 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_int_1};
     __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 351, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 357, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "Controller.pyx":353
+  /* "Controller.pyx":359
  *         plt.pause(1)  # Force update to show "Searching..." before search starts
  * 
  *         print("\nSearching for optimal path with connectivity constraint...")             # <<<<<<<<<<<<<<
  *         cdef double start_time = time.time()
  *         path = self.agent.search(self.time_limit)
  */
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 359, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "Controller.pyx":354
+  /* "Controller.pyx":360
  * 
  *         print("\nSearching for optimal path with connectivity constraint...")
  *         cdef double start_time = time.time()             # <<<<<<<<<<<<<<
  *         path = self.agent.search(self.time_limit)
  *         cdef double search_time = time.time() - start_time
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 354, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 360, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 354, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 360, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -10529,24 +10607,24 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     PyObject *__pyx_callargs[2] = {__pyx_t_1, NULL};
     __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 354, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 354, __pyx_L1_error)
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 360, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_start_time = __pyx_t_5;
 
-  /* "Controller.pyx":355
+  /* "Controller.pyx":361
  *         print("\nSearching for optimal path with connectivity constraint...")
  *         cdef double start_time = time.time()
  *         path = self.agent.search(self.time_limit)             # <<<<<<<<<<<<<<
  *         cdef double search_time = time.time() - start_time
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->agent, __pyx_n_s_search); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 355, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->agent, __pyx_n_s_search); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->time_limit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 355, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->time_limit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 361, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_6 = NULL;
   __pyx_t_4 = 0;
@@ -10567,23 +10645,23 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 355, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 361, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __pyx_v_path = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "Controller.pyx":356
+  /* "Controller.pyx":362
  *         cdef double start_time = time.time()
  *         path = self.agent.search(self.time_limit)
  *         cdef double search_time = time.time() - start_time             # <<<<<<<<<<<<<<
  * 
  *         self.search_completed = True
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 356, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 362, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 356, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 362, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -10604,21 +10682,21 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 356, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 362, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_start_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 356, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_start_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 362, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Subtract(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 356, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 362, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 356, __pyx_L1_error)
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 362, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_search_time = __pyx_t_5;
 
-  /* "Controller.pyx":358
+  /* "Controller.pyx":364
  *         cdef double search_time = time.time() - start_time
  * 
  *         self.search_completed = True             # <<<<<<<<<<<<<<
@@ -10627,24 +10705,24 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
  */
   __pyx_v_self->search_completed = 1;
 
-  /* "Controller.pyx":360
+  /* "Controller.pyx":366
  *         self.search_completed = True
  * 
  *         if path:             # <<<<<<<<<<<<<<
  *             print(f"Path found with {len(path)-1} moves in {search_time:.2f} seconds")
  *             print(f"Ready for visualization...")
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_path); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 360, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_path); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 366, __pyx_L1_error)
   if (__pyx_t_7) {
 
-    /* "Controller.pyx":361
+    /* "Controller.pyx":367
  * 
  *         if path:
  *             print(f"Path found with {len(path)-1} moves in {search_time:.2f} seconds")             # <<<<<<<<<<<<<<
  *             print(f"Ready for visualization...")
  *             self.vis.animation_speed = self.animation_speed  # Ensure animation speed is updated
  */
-    __pyx_t_2 = PyTuple_New(5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 367, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_8 = 0;
     __pyx_t_9 = 127;
@@ -10652,8 +10730,8 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     __pyx_t_8 += 16;
     __Pyx_GIVEREF(__pyx_kp_u_Path_found_with);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_kp_u_Path_found_with);
-    __pyx_t_10 = PyObject_Length(__pyx_v_path); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 361, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_PyUnicode_From_Py_ssize_t((__pyx_t_10 - 1), 0, ' ', 'd'); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_10 = PyObject_Length(__pyx_v_path); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyUnicode_From_Py_ssize_t((__pyx_t_10 - 1), 0, ' ', 'd'); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_8 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
@@ -10663,9 +10741,9 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     __pyx_t_8 += 10;
     __Pyx_GIVEREF(__pyx_kp_u_moves_in);
     PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_kp_u_moves_in);
-    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_search_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_search_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_Format(__pyx_t_1, __pyx_kp_u_2f_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Format(__pyx_t_1, __pyx_kp_u_2f_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 367, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_9 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) > __pyx_t_9) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) : __pyx_t_9;
@@ -10677,59 +10755,59 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     __pyx_t_8 += 8;
     __Pyx_GIVEREF(__pyx_kp_u_seconds);
     PyTuple_SET_ITEM(__pyx_t_2, 4, __pyx_kp_u_seconds);
-    __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_2, 5, __pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_2, 5, __pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 367, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 367, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Controller.pyx":362
+    /* "Controller.pyx":368
  *         if path:
  *             print(f"Path found with {len(path)-1} moves in {search_time:.2f} seconds")
  *             print(f"Ready for visualization...")             # <<<<<<<<<<<<<<
  *             self.vis.animation_speed = self.animation_speed  # Ensure animation speed is updated
  *             self.vis.path = path  # Update path in visualizer
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 362, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 368, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Controller.pyx":363
+    /* "Controller.pyx":369
  *             print(f"Path found with {len(path)-1} moves in {search_time:.2f} seconds")
  *             print(f"Ready for visualization...")
  *             self.vis.animation_speed = self.animation_speed  # Ensure animation speed is updated             # <<<<<<<<<<<<<<
  *             self.vis.path = path  # Update path in visualizer
  *             self.vis.button.label.set_text("Start")  # Set button text to Start
  */
-    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->animation_speed); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->animation_speed); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 369, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_speed, __pyx_t_2) < 0) __PYX_ERR(0, 363, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_speed, __pyx_t_2) < 0) __PYX_ERR(0, 369, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Controller.pyx":364
+    /* "Controller.pyx":370
  *             print(f"Ready for visualization...")
  *             self.vis.animation_speed = self.animation_speed  # Ensure animation speed is updated
  *             self.vis.path = path  # Update path in visualizer             # <<<<<<<<<<<<<<
  *             self.vis.button.label.set_text("Start")  # Set button text to Start
  *             self.vis.update_text(f"Path found ({len(path)-1} moves)", color="green")
  */
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_path, __pyx_v_path) < 0) __PYX_ERR(0, 364, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_path, __pyx_v_path) < 0) __PYX_ERR(0, 370, __pyx_L1_error)
 
-    /* "Controller.pyx":365
+    /* "Controller.pyx":371
  *             self.vis.animation_speed = self.animation_speed  # Ensure animation speed is updated
  *             self.vis.path = path  # Update path in visualizer
  *             self.vis.button.label.set_text("Start")  # Set button text to Start             # <<<<<<<<<<<<<<
  *             self.vis.update_text(f"Path found ({len(path)-1} moves)", color="green")
  *             plt.draw()
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_button); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_button); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 371, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_label); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_label); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 371, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_set_text); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_set_text); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 371, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_1 = NULL;
@@ -10750,22 +10828,22 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
       PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_n_u_Start};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 365, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 371, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Controller.pyx":366
+    /* "Controller.pyx":372
  *             self.vis.path = path  # Update path in visualizer
  *             self.vis.button.label.set_text("Start")  # Set button text to Start
  *             self.vis.update_text(f"Path found ({len(path)-1} moves)", color="green")             # <<<<<<<<<<<<<<
  *             plt.draw()
  *         else:
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 366, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 372, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 366, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 372, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_8 = 0;
     __pyx_t_9 = 127;
@@ -10773,8 +10851,8 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     __pyx_t_8 += 12;
     __Pyx_GIVEREF(__pyx_kp_u_Path_found);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_kp_u_Path_found);
-    __pyx_t_10 = PyObject_Length(__pyx_v_path); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 366, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_PyUnicode_From_Py_ssize_t((__pyx_t_10 - 1), 0, ' ', 'd'); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 366, __pyx_L1_error)
+    __pyx_t_10 = PyObject_Length(__pyx_v_path); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 372, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyUnicode_From_Py_ssize_t((__pyx_t_10 - 1), 0, ' ', 'd'); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 372, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_8 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
@@ -10784,34 +10862,34 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     __pyx_t_8 += 7;
     __Pyx_GIVEREF(__pyx_kp_u_moves);
     PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_kp_u_moves);
-    __pyx_t_1 = __Pyx_PyUnicode_Join(__pyx_t_3, 3, __pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 366, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyUnicode_Join(__pyx_t_3, 3, __pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 372, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 366, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 372, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_1);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 366, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 372, __pyx_L1_error);
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 366, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 372, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_color, __pyx_n_u_green) < 0) __PYX_ERR(0, 366, __pyx_L1_error)
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 366, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_color, __pyx_n_u_green) < 0) __PYX_ERR(0, 372, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 372, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "Controller.pyx":367
+    /* "Controller.pyx":373
  *             self.vis.button.label.set_text("Start")  # Set button text to Start
  *             self.vis.update_text(f"Path found ({len(path)-1} moves)", color="green")
  *             plt.draw()             # <<<<<<<<<<<<<<
  *         else:
  *             print(f"No path found after {search_time:.2f} seconds")
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_plt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_plt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 373, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_draw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_draw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 373, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_1 = NULL;
@@ -10832,13 +10910,13 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
       PyObject *__pyx_callargs[2] = {__pyx_t_1, NULL};
       __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 367, __pyx_L1_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 373, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "Controller.pyx":360
+    /* "Controller.pyx":366
  *         self.search_completed = True
  * 
  *         if path:             # <<<<<<<<<<<<<<
@@ -10848,7 +10926,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     goto __pyx_L3;
   }
 
-  /* "Controller.pyx":369
+  /* "Controller.pyx":375
  *             plt.draw()
  *         else:
  *             print(f"No path found after {search_time:.2f} seconds")             # <<<<<<<<<<<<<<
@@ -10856,7 +10934,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
  *             self.vis.update_text("No paths found", color="red")
  */
   /*else*/ {
-    __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 375, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_8 = 0;
     __pyx_t_9 = 127;
@@ -10864,9 +10942,9 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     __pyx_t_8 += 20;
     __Pyx_GIVEREF(__pyx_kp_u_No_path_found_after);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_kp_u_No_path_found_after);
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_search_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_search_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 375, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyObject_Format(__pyx_t_3, __pyx_kp_u_2f_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Format(__pyx_t_3, __pyx_kp_u_2f_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 375, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_9 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_1) > __pyx_t_9) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_1) : __pyx_t_9;
@@ -10878,27 +10956,27 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
     __pyx_t_8 += 8;
     __Pyx_GIVEREF(__pyx_kp_u_seconds);
     PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_kp_u_seconds);
-    __pyx_t_1 = __Pyx_PyUnicode_Join(__pyx_t_6, 3, __pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyUnicode_Join(__pyx_t_6, 3, __pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 375, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 375, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "Controller.pyx":370
+    /* "Controller.pyx":376
  *         else:
  *             print(f"No path found after {search_time:.2f} seconds")
  *             self.vis.button.label.set_text("Search")  # Reset button text             # <<<<<<<<<<<<<<
  *             self.vis.update_text("No paths found", color="red")
  *             plt.draw()
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_button); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_button); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_label); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 370, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_label); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 376, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_set_text); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_set_text); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -10919,40 +10997,40 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
       PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_n_u_Search};
       __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 370, __pyx_L1_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 376, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     }
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "Controller.pyx":371
+    /* "Controller.pyx":377
  *             print(f"No path found after {search_time:.2f} seconds")
  *             self.vis.button.label.set_text("Search")  # Reset button text
  *             self.vis.update_text("No paths found", color="red")             # <<<<<<<<<<<<<<
  *             plt.draw()
  * 
  */
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 371, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 377, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 371, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 377, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_color, __pyx_n_u_red) < 0) __PYX_ERR(0, 371, __pyx_L1_error)
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__15, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 371, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_color, __pyx_n_u_red) < 0) __PYX_ERR(0, 377, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__15, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 377, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "Controller.pyx":372
+    /* "Controller.pyx":378
  *             self.vis.button.label.set_text("Search")  # Reset button text
  *             self.vis.update_text("No paths found", color="red")
  *             plt.draw()             # <<<<<<<<<<<<<<
  * 
  *     def update_max_simultaneous_moves(self, val):
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_plt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 372, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_plt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 378, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_draw); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 372, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_draw); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 378, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_1 = NULL;
@@ -10973,7 +11051,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
       PyObject *__pyx_callargs[2] = {__pyx_t_1, NULL};
       __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 372, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 378, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
@@ -10981,7 +11059,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
   }
   __pyx_L3:;
 
-  /* "Controller.pyx":346
+  /* "Controller.pyx":352
  *             self.vis.handle_button_click(event)
  * 
  *     def run_search(self, event):             # <<<<<<<<<<<<<<
@@ -11006,7 +11084,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14run_search(struct __
   return __pyx_r;
 }
 
-/* "Controller.pyx":374
+/* "Controller.pyx":380
  *             plt.draw()
  * 
  *     def update_max_simultaneous_moves(self, val):             # <<<<<<<<<<<<<<
@@ -11068,12 +11146,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 374, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 380, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "update_max_simultaneous_moves") < 0)) __PYX_ERR(0, 374, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "update_max_simultaneous_moves") < 0)) __PYX_ERR(0, 380, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -11084,7 +11162,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("update_max_simultaneous_moves", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 374, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("update_max_simultaneous_moves", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 380, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -11128,20 +11206,20 @@ static PyObject *__pyx_pf_10Controller_16SearchController_16update_max_simultane
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("update_max_simultaneous_moves", 1);
 
-  /* "Controller.pyx":376
+  /* "Controller.pyx":382
  *     def update_max_simultaneous_moves(self, val):
  *         """Update the maximum number of simultaneous moves"""
  *         self.max_simultaneous_moves = int(val)             # <<<<<<<<<<<<<<
  * 
  *         # Ensure min doesn't exceed max
  */
-  __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 382, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 376, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 382, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->max_simultaneous_moves = __pyx_t_2;
 
-  /* "Controller.pyx":379
+  /* "Controller.pyx":385
  * 
  *         # Ensure min doesn't exceed max
  *         if self.min_simultaneous_moves > self.max_simultaneous_moves:             # <<<<<<<<<<<<<<
@@ -11151,7 +11229,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_16update_max_simultane
   __pyx_t_3 = (__pyx_v_self->min_simultaneous_moves > __pyx_v_self->max_simultaneous_moves);
   if (__pyx_t_3) {
 
-    /* "Controller.pyx":380
+    /* "Controller.pyx":386
  *         # Ensure min doesn't exceed max
  *         if self.min_simultaneous_moves > self.max_simultaneous_moves:
  *             self.min_simultaneous_moves = self.max_simultaneous_moves             # <<<<<<<<<<<<<<
@@ -11161,16 +11239,16 @@ static PyObject *__pyx_pf_10Controller_16SearchController_16update_max_simultane
     __pyx_t_2 = __pyx_v_self->max_simultaneous_moves;
     __pyx_v_self->min_simultaneous_moves = __pyx_t_2;
 
-    /* "Controller.pyx":381
+    /* "Controller.pyx":387
  *         if self.min_simultaneous_moves > self.max_simultaneous_moves:
  *             self.min_simultaneous_moves = self.max_simultaneous_moves
  *             self.min_moves_slider.set_val(self.min_simultaneous_moves)             # <<<<<<<<<<<<<<
  * 
  *         self.vis.update_text(f"Simultaneous moves: {self.min_simultaneous_moves}-{self.max_simultaneous_moves}", color="blue")
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->min_moves_slider, __pyx_n_s_set_val); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->min_moves_slider, __pyx_n_s_set_val); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 387, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 387, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     __pyx_t_7 = 0;
@@ -11191,13 +11269,13 @@ static PyObject *__pyx_pf_10Controller_16SearchController_16update_max_simultane
       __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_7, 1+__pyx_t_7);
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 381, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "Controller.pyx":379
+    /* "Controller.pyx":385
  * 
  *         # Ensure min doesn't exceed max
  *         if self.min_simultaneous_moves > self.max_simultaneous_moves:             # <<<<<<<<<<<<<<
@@ -11206,16 +11284,16 @@ static PyObject *__pyx_pf_10Controller_16SearchController_16update_max_simultane
  */
   }
 
-  /* "Controller.pyx":383
+  /* "Controller.pyx":389
  *             self.min_moves_slider.set_val(self.min_simultaneous_moves)
  * 
  *         self.vis.update_text(f"Simultaneous moves: {self.min_simultaneous_moves}-{self.max_simultaneous_moves}", color="blue")             # <<<<<<<<<<<<<<
  * 
  *         # Update agent with new parameter
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_8 = 0;
   __pyx_t_9 = 127;
@@ -11223,7 +11301,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_16update_max_simultane
   __pyx_t_8 += 20;
   __Pyx_GIVEREF(__pyx_kp_u_Simultaneous_moves);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_kp_u_Simultaneous_moves);
-  __pyx_t_5 = __Pyx_PyUnicode_From_int(__pyx_v_self->min_simultaneous_moves, 0, ' ', 'd'); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyUnicode_From_int(__pyx_v_self->min_simultaneous_moves, 0, ' ', 'd'); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_8 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_5);
@@ -11233,96 +11311,96 @@ static PyObject *__pyx_pf_10Controller_16SearchController_16update_max_simultane
   __pyx_t_8 += 1;
   __Pyx_GIVEREF(__pyx_kp_u__16);
   PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_kp_u__16);
-  __pyx_t_5 = __Pyx_PyUnicode_From_int(__pyx_v_self->max_simultaneous_moves, 0, ' ', 'd'); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyUnicode_From_int(__pyx_v_self->max_simultaneous_moves, 0, ' ', 'd'); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_8 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyUnicode_Join(__pyx_t_4, 4, __pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyUnicode_Join(__pyx_t_4, 4, __pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5)) __PYX_ERR(0, 383, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5)) __PYX_ERR(0, 389, __pyx_L1_error);
   __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 383, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 383, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 389, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "Controller.pyx":386
+  /* "Controller.pyx":392
  * 
  *         # Update agent with new parameter
  *         self.agent = ConnectedMatterAgent(             # <<<<<<<<<<<<<<
  *             self.grid_size,
  *             self.start_positions,
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_ConnectedMatterAgent); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_ConnectedMatterAgent); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
 
-  /* "Controller.pyx":390
+  /* "Controller.pyx":396
  *             self.start_positions,
  *             self.goal_positions,
  *             self.topology,             # <<<<<<<<<<<<<<
  *             max_simultaneous_moves=self.max_simultaneous_moves,
  *             min_simultaneous_moves=self.min_simultaneous_moves
  */
-  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_self->grid_size);
   __Pyx_GIVEREF(__pyx_v_self->grid_size);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_self->grid_size)) __PYX_ERR(0, 386, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_self->grid_size)) __PYX_ERR(0, 392, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->start_positions);
   __Pyx_GIVEREF(__pyx_v_self->start_positions);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_v_self->start_positions)) __PYX_ERR(0, 386, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_v_self->start_positions)) __PYX_ERR(0, 392, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->goal_positions);
   __Pyx_GIVEREF(__pyx_v_self->goal_positions);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_v_self->goal_positions)) __PYX_ERR(0, 386, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_v_self->goal_positions)) __PYX_ERR(0, 392, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->topology);
   __Pyx_GIVEREF(__pyx_v_self->topology);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_v_self->topology)) __PYX_ERR(0, 386, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_v_self->topology)) __PYX_ERR(0, 392, __pyx_L1_error);
 
-  /* "Controller.pyx":391
+  /* "Controller.pyx":397
  *             self.goal_positions,
  *             self.topology,
  *             max_simultaneous_moves=self.max_simultaneous_moves,             # <<<<<<<<<<<<<<
  *             min_simultaneous_moves=self.min_simultaneous_moves
  *         )
  */
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 391, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 391, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_max_simultaneous_moves, __pyx_t_1) < 0) __PYX_ERR(0, 391, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_max_simultaneous_moves, __pyx_t_1) < 0) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Controller.pyx":392
+  /* "Controller.pyx":398
  *             self.topology,
  *             max_simultaneous_moves=self.max_simultaneous_moves,
  *             min_simultaneous_moves=self.min_simultaneous_moves             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 392, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 398, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_min_simultaneous_moves, __pyx_t_1) < 0) __PYX_ERR(0, 391, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_min_simultaneous_moves, __pyx_t_1) < 0) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Controller.pyx":386
+  /* "Controller.pyx":392
  * 
  *         # Update agent with new parameter
  *         self.agent = ConnectedMatterAgent(             # <<<<<<<<<<<<<<
  *             self.grid_size,
  *             self.start_positions,
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -11333,7 +11411,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_16update_max_simultane
   __pyx_v_self->agent = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Controller.pyx":396
+  /* "Controller.pyx":402
  * 
  *         # Reset search state
  *         self.search_completed = False             # <<<<<<<<<<<<<<
@@ -11342,43 +11420,43 @@ static PyObject *__pyx_pf_10Controller_16SearchController_16update_max_simultane
  */
   __pyx_v_self->search_completed = 0;
 
-  /* "Controller.pyx":397
+  /* "Controller.pyx":403
  *         # Reset search state
  *         self.search_completed = False
  *         self.vis.animation_started = False             # <<<<<<<<<<<<<<
  *         self.vis.animation_done = False
  *         self.vis.current_step = 0
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_started, Py_False) < 0) __PYX_ERR(0, 397, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_started, Py_False) < 0) __PYX_ERR(0, 403, __pyx_L1_error)
 
-  /* "Controller.pyx":398
+  /* "Controller.pyx":404
  *         self.search_completed = False
  *         self.vis.animation_started = False
  *         self.vis.animation_done = False             # <<<<<<<<<<<<<<
  *         self.vis.current_step = 0
  *         self.vis.path = None
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_done, Py_False) < 0) __PYX_ERR(0, 398, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_done, Py_False) < 0) __PYX_ERR(0, 404, __pyx_L1_error)
 
-  /* "Controller.pyx":399
+  /* "Controller.pyx":405
  *         self.vis.animation_started = False
  *         self.vis.animation_done = False
  *         self.vis.current_step = 0             # <<<<<<<<<<<<<<
  *         self.vis.path = None
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_current_step, __pyx_int_0) < 0) __PYX_ERR(0, 399, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_current_step, __pyx_int_0) < 0) __PYX_ERR(0, 405, __pyx_L1_error)
 
-  /* "Controller.pyx":400
+  /* "Controller.pyx":406
  *         self.vis.animation_done = False
  *         self.vis.current_step = 0
  *         self.vis.path = None             # <<<<<<<<<<<<<<
  * 
  *     def update_min_simultaneous_moves(self, val):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_path, Py_None) < 0) __PYX_ERR(0, 400, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_path, Py_None) < 0) __PYX_ERR(0, 406, __pyx_L1_error)
 
-  /* "Controller.pyx":374
+  /* "Controller.pyx":380
  *             plt.draw()
  * 
  *     def update_max_simultaneous_moves(self, val):             # <<<<<<<<<<<<<<
@@ -11402,7 +11480,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_16update_max_simultane
   return __pyx_r;
 }
 
-/* "Controller.pyx":402
+/* "Controller.pyx":408
  *         self.vis.path = None
  * 
  *     def update_min_simultaneous_moves(self, val):             # <<<<<<<<<<<<<<
@@ -11464,12 +11542,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 402, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 408, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "update_min_simultaneous_moves") < 0)) __PYX_ERR(0, 402, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "update_min_simultaneous_moves") < 0)) __PYX_ERR(0, 408, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -11480,7 +11558,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("update_min_simultaneous_moves", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 402, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("update_min_simultaneous_moves", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 408, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -11524,20 +11602,20 @@ static PyObject *__pyx_pf_10Controller_16SearchController_18update_min_simultane
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("update_min_simultaneous_moves", 1);
 
-  /* "Controller.pyx":404
+  /* "Controller.pyx":410
  *     def update_min_simultaneous_moves(self, val):
  *         """Update the minimum number of simultaneous moves"""
  *         self.min_simultaneous_moves = int(val)             # <<<<<<<<<<<<<<
  * 
  *         # Ensure min doesn't exceed max
  */
-  __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 404, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 410, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 404, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 410, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->min_simultaneous_moves = __pyx_t_2;
 
-  /* "Controller.pyx":407
+  /* "Controller.pyx":413
  * 
  *         # Ensure min doesn't exceed max
  *         if self.min_simultaneous_moves > self.max_simultaneous_moves:             # <<<<<<<<<<<<<<
@@ -11547,7 +11625,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_18update_min_simultane
   __pyx_t_3 = (__pyx_v_self->min_simultaneous_moves > __pyx_v_self->max_simultaneous_moves);
   if (__pyx_t_3) {
 
-    /* "Controller.pyx":408
+    /* "Controller.pyx":414
  *         # Ensure min doesn't exceed max
  *         if self.min_simultaneous_moves > self.max_simultaneous_moves:
  *             self.max_simultaneous_moves = self.min_simultaneous_moves             # <<<<<<<<<<<<<<
@@ -11557,16 +11635,16 @@ static PyObject *__pyx_pf_10Controller_16SearchController_18update_min_simultane
     __pyx_t_2 = __pyx_v_self->min_simultaneous_moves;
     __pyx_v_self->max_simultaneous_moves = __pyx_t_2;
 
-    /* "Controller.pyx":409
+    /* "Controller.pyx":415
  *         if self.min_simultaneous_moves > self.max_simultaneous_moves:
  *             self.max_simultaneous_moves = self.min_simultaneous_moves
  *             self.sim_moves_slider.set_val(self.max_simultaneous_moves)             # <<<<<<<<<<<<<<
  * 
  *         self.vis.update_text(f"Simultaneous moves: {self.min_simultaneous_moves}-{self.max_simultaneous_moves}", color="blue")
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->sim_moves_slider, __pyx_n_s_set_val); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 409, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->sim_moves_slider, __pyx_n_s_set_val); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 415, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 409, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 415, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     __pyx_t_7 = 0;
@@ -11587,13 +11665,13 @@ static PyObject *__pyx_pf_10Controller_16SearchController_18update_min_simultane
       __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_7, 1+__pyx_t_7);
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 409, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 415, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "Controller.pyx":407
+    /* "Controller.pyx":413
  * 
  *         # Ensure min doesn't exceed max
  *         if self.min_simultaneous_moves > self.max_simultaneous_moves:             # <<<<<<<<<<<<<<
@@ -11602,16 +11680,16 @@ static PyObject *__pyx_pf_10Controller_16SearchController_18update_min_simultane
  */
   }
 
-  /* "Controller.pyx":411
+  /* "Controller.pyx":417
  *             self.sim_moves_slider.set_val(self.max_simultaneous_moves)
  * 
  *         self.vis.update_text(f"Simultaneous moves: {self.min_simultaneous_moves}-{self.max_simultaneous_moves}", color="blue")             # <<<<<<<<<<<<<<
  * 
  *         # Update agent with new parameter
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_8 = 0;
   __pyx_t_9 = 127;
@@ -11619,7 +11697,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_18update_min_simultane
   __pyx_t_8 += 20;
   __Pyx_GIVEREF(__pyx_kp_u_Simultaneous_moves);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_kp_u_Simultaneous_moves);
-  __pyx_t_5 = __Pyx_PyUnicode_From_int(__pyx_v_self->min_simultaneous_moves, 0, ' ', 'd'); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyUnicode_From_int(__pyx_v_self->min_simultaneous_moves, 0, ' ', 'd'); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_8 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_5);
@@ -11629,96 +11707,96 @@ static PyObject *__pyx_pf_10Controller_16SearchController_18update_min_simultane
   __pyx_t_8 += 1;
   __Pyx_GIVEREF(__pyx_kp_u__16);
   PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_kp_u__16);
-  __pyx_t_5 = __Pyx_PyUnicode_From_int(__pyx_v_self->max_simultaneous_moves, 0, ' ', 'd'); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyUnicode_From_int(__pyx_v_self->max_simultaneous_moves, 0, ' ', 'd'); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_8 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyUnicode_Join(__pyx_t_4, 4, __pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyUnicode_Join(__pyx_t_4, 4, __pyx_t_8, __pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5)) __PYX_ERR(0, 411, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5)) __PYX_ERR(0, 417, __pyx_L1_error);
   __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 411, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 411, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 417, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "Controller.pyx":414
+  /* "Controller.pyx":420
  * 
  *         # Update agent with new parameter
  *         self.agent = ConnectedMatterAgent(             # <<<<<<<<<<<<<<
  *             self.grid_size,
  *             self.start_positions,
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_ConnectedMatterAgent); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 414, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_ConnectedMatterAgent); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 420, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
 
-  /* "Controller.pyx":418
+  /* "Controller.pyx":424
  *             self.start_positions,
  *             self.goal_positions,
  *             self.topology,             # <<<<<<<<<<<<<<
  *             max_simultaneous_moves=self.max_simultaneous_moves,
  *             min_simultaneous_moves=self.min_simultaneous_moves
  */
-  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 414, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 420, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_self->grid_size);
   __Pyx_GIVEREF(__pyx_v_self->grid_size);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_self->grid_size)) __PYX_ERR(0, 414, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_self->grid_size)) __PYX_ERR(0, 420, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->start_positions);
   __Pyx_GIVEREF(__pyx_v_self->start_positions);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_v_self->start_positions)) __PYX_ERR(0, 414, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_v_self->start_positions)) __PYX_ERR(0, 420, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->goal_positions);
   __Pyx_GIVEREF(__pyx_v_self->goal_positions);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_v_self->goal_positions)) __PYX_ERR(0, 414, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_v_self->goal_positions)) __PYX_ERR(0, 420, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->topology);
   __Pyx_GIVEREF(__pyx_v_self->topology);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_v_self->topology)) __PYX_ERR(0, 414, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_v_self->topology)) __PYX_ERR(0, 420, __pyx_L1_error);
 
-  /* "Controller.pyx":419
+  /* "Controller.pyx":425
  *             self.goal_positions,
  *             self.topology,
  *             max_simultaneous_moves=self.max_simultaneous_moves,             # <<<<<<<<<<<<<<
  *             min_simultaneous_moves=self.min_simultaneous_moves
  *         )
  */
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_max_simultaneous_moves, __pyx_t_1) < 0) __PYX_ERR(0, 419, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_max_simultaneous_moves, __pyx_t_1) < 0) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Controller.pyx":420
+  /* "Controller.pyx":426
  *             self.topology,
  *             max_simultaneous_moves=self.max_simultaneous_moves,
  *             min_simultaneous_moves=self.min_simultaneous_moves             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_min_simultaneous_moves, __pyx_t_1) < 0) __PYX_ERR(0, 419, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_min_simultaneous_moves, __pyx_t_1) < 0) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Controller.pyx":414
+  /* "Controller.pyx":420
  * 
  *         # Update agent with new parameter
  *         self.agent = ConnectedMatterAgent(             # <<<<<<<<<<<<<<
  *             self.grid_size,
  *             self.start_positions,
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 414, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -11729,7 +11807,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_18update_min_simultane
   __pyx_v_self->agent = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Controller.pyx":424
+  /* "Controller.pyx":430
  * 
  *         # Reset search state
  *         self.search_completed = False             # <<<<<<<<<<<<<<
@@ -11738,43 +11816,43 @@ static PyObject *__pyx_pf_10Controller_16SearchController_18update_min_simultane
  */
   __pyx_v_self->search_completed = 0;
 
-  /* "Controller.pyx":425
+  /* "Controller.pyx":431
  *         # Reset search state
  *         self.search_completed = False
  *         self.vis.animation_started = False             # <<<<<<<<<<<<<<
  *         self.vis.animation_done = False
  *         self.vis.current_step = 0
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_started, Py_False) < 0) __PYX_ERR(0, 425, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_started, Py_False) < 0) __PYX_ERR(0, 431, __pyx_L1_error)
 
-  /* "Controller.pyx":426
+  /* "Controller.pyx":432
  *         self.search_completed = False
  *         self.vis.animation_started = False
  *         self.vis.animation_done = False             # <<<<<<<<<<<<<<
  *         self.vis.current_step = 0
  *         self.vis.path = None
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_done, Py_False) < 0) __PYX_ERR(0, 426, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_done, Py_False) < 0) __PYX_ERR(0, 432, __pyx_L1_error)
 
-  /* "Controller.pyx":427
+  /* "Controller.pyx":433
  *         self.vis.animation_started = False
  *         self.vis.animation_done = False
  *         self.vis.current_step = 0             # <<<<<<<<<<<<<<
  *         self.vis.path = None
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_current_step, __pyx_int_0) < 0) __PYX_ERR(0, 427, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_current_step, __pyx_int_0) < 0) __PYX_ERR(0, 433, __pyx_L1_error)
 
-  /* "Controller.pyx":428
+  /* "Controller.pyx":434
  *         self.vis.animation_done = False
  *         self.vis.current_step = 0
  *         self.vis.path = None             # <<<<<<<<<<<<<<
  * 
  *     def update_animation_speed(self, val):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_path, Py_None) < 0) __PYX_ERR(0, 428, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_path, Py_None) < 0) __PYX_ERR(0, 434, __pyx_L1_error)
 
-  /* "Controller.pyx":402
+  /* "Controller.pyx":408
  *         self.vis.path = None
  * 
  *     def update_min_simultaneous_moves(self, val):             # <<<<<<<<<<<<<<
@@ -11798,7 +11876,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_18update_min_simultane
   return __pyx_r;
 }
 
-/* "Controller.pyx":430
+/* "Controller.pyx":436
  *         self.vis.path = None
  * 
  *     def update_animation_speed(self, val):             # <<<<<<<<<<<<<<
@@ -11860,12 +11938,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 430, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 436, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "update_animation_speed") < 0)) __PYX_ERR(0, 430, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "update_animation_speed") < 0)) __PYX_ERR(0, 436, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -11876,7 +11954,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("update_animation_speed", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 430, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("update_animation_speed", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 436, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -11919,24 +11997,24 @@ static PyObject *__pyx_pf_10Controller_16SearchController_20update_animation_spe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("update_animation_speed", 1);
 
-  /* "Controller.pyx":432
+  /* "Controller.pyx":438
  *     def update_animation_speed(self, val):
  *         """Update the animation speed (seconds between frames)"""
  *         self.animation_speed = val             # <<<<<<<<<<<<<<
  *         self.vis.set_animation_speed(val)
  *         self.vis.update_text(f"Animation speed: {val:.2f} sec/step", color="blue")
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 432, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 438, __pyx_L1_error)
   __pyx_v_self->animation_speed = __pyx_t_1;
 
-  /* "Controller.pyx":433
+  /* "Controller.pyx":439
  *         """Update the animation speed (seconds between frames)"""
  *         self.animation_speed = val
  *         self.vis.set_animation_speed(val)             # <<<<<<<<<<<<<<
  *         self.vis.update_text(f"Animation speed: {val:.2f} sec/step", color="blue")
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_set_animation_speed); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 433, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_set_animation_speed); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 439, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -11956,22 +12034,22 @@ static PyObject *__pyx_pf_10Controller_16SearchController_20update_animation_spe
     PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_val};
     __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 433, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 439, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Controller.pyx":434
+  /* "Controller.pyx":440
  *         self.animation_speed = val
  *         self.vis.set_animation_speed(val)
  *         self.vis.update_text(f"Animation speed: {val:.2f} sec/step", color="blue")             # <<<<<<<<<<<<<<
  * 
  *     def on_text_submit(self, text):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 434, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 434, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_6 = 0;
   __pyx_t_7 = 127;
@@ -11979,7 +12057,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_20update_animation_spe
   __pyx_t_6 += 17;
   __Pyx_GIVEREF(__pyx_kp_u_Animation_speed);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_kp_u_Animation_speed);
-  __pyx_t_4 = __Pyx_PyObject_Format(__pyx_v_val, __pyx_kp_u_2f_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 434, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Format(__pyx_v_val, __pyx_kp_u_2f_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_7 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_7) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_7;
   __pyx_t_6 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_4);
@@ -11990,25 +12068,25 @@ static PyObject *__pyx_pf_10Controller_16SearchController_20update_animation_spe
   __pyx_t_6 += 9;
   __Pyx_GIVEREF(__pyx_kp_u_sec_step);
   PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_kp_u_sec_step);
-  __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_3, 3, __pyx_t_6, __pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 434, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_3, 3, __pyx_t_6, __pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 434, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 434, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(0, 440, __pyx_L1_error);
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 434, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 434, __pyx_L1_error)
-  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 434, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "Controller.pyx":430
+  /* "Controller.pyx":436
  *         self.vis.path = None
  * 
  *     def update_animation_speed(self, val):             # <<<<<<<<<<<<<<
@@ -12032,7 +12110,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_20update_animation_spe
   return __pyx_r;
 }
 
-/* "Controller.pyx":436
+/* "Controller.pyx":442
  *         self.vis.update_text(f"Animation speed: {val:.2f} sec/step", color="blue")
  * 
  *     def on_text_submit(self, text):             # <<<<<<<<<<<<<<
@@ -12094,12 +12172,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 436, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 442, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_text_submit") < 0)) __PYX_ERR(0, 436, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_text_submit") < 0)) __PYX_ERR(0, 442, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -12110,7 +12188,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("on_text_submit", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 436, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("on_text_submit", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 442, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -12149,14 +12227,14 @@ static PyObject *__pyx_pf_10Controller_16SearchController_22on_text_submit(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("on_text_submit", 1);
 
-  /* "Controller.pyx":438
+  /* "Controller.pyx":444
  *     def on_text_submit(self, text):
  *         """Handle grid size text submission"""
  *         self.change_grid_size(None)  # Call change_grid_size when Enter is pressed             # <<<<<<<<<<<<<<
  * 
  *     def change_grid_size(self, event):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_change_grid_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 438, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_change_grid_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 444, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -12176,13 +12254,13 @@ static PyObject *__pyx_pf_10Controller_16SearchController_22on_text_submit(struc
     PyObject *__pyx_callargs[2] = {__pyx_t_3, Py_None};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 438, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 444, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Controller.pyx":436
+  /* "Controller.pyx":442
  *         self.vis.update_text(f"Animation speed: {val:.2f} sec/step", color="blue")
  * 
  *     def on_text_submit(self, text):             # <<<<<<<<<<<<<<
@@ -12205,7 +12283,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_22on_text_submit(struc
   return __pyx_r;
 }
 
-/* "Controller.pyx":440
+/* "Controller.pyx":446
  *         self.change_grid_size(None)  # Call change_grid_size when Enter is pressed
  * 
  *     def change_grid_size(self, event):             # <<<<<<<<<<<<<<
@@ -12267,12 +12345,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 440, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 446, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "change_grid_size") < 0)) __PYX_ERR(0, 440, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "change_grid_size") < 0)) __PYX_ERR(0, 446, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -12283,7 +12361,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("change_grid_size", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 440, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("change_grid_size", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 446, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -12333,7 +12411,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("change_grid_size", 1);
 
-  /* "Controller.pyx":442
+  /* "Controller.pyx":448
  *     def change_grid_size(self, event):
  *         """Handle grid size change"""
  *         try:             # <<<<<<<<<<<<<<
@@ -12349,52 +12427,52 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "Controller.pyx":443
+      /* "Controller.pyx":449
  *         """Handle grid size change"""
  *         try:
  *             n = int(self.grid_text_box.text)             # <<<<<<<<<<<<<<
  *             if n < 10:
  *                 self.vis.update_text("Grid size must be at least 10", color="red")
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->grid_text_box, __pyx_n_s_text); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 443, __pyx_L3_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->grid_text_box, __pyx_n_s_text); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 449, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = __Pyx_PyNumber_Int(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 443, __pyx_L3_error)
+      __pyx_t_5 = __Pyx_PyNumber_Int(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 449, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_v_n = __pyx_t_5;
       __pyx_t_5 = 0;
 
-      /* "Controller.pyx":444
+      /* "Controller.pyx":450
  *         try:
  *             n = int(self.grid_text_box.text)
  *             if n < 10:             # <<<<<<<<<<<<<<
  *                 self.vis.update_text("Grid size must be at least 10", color="red")
  *                 return
  */
-      __pyx_t_5 = PyObject_RichCompare(__pyx_v_n, __pyx_int_10, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 444, __pyx_L3_error)
-      __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 444, __pyx_L3_error)
+      __pyx_t_5 = PyObject_RichCompare(__pyx_v_n, __pyx_int_10, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 450, __pyx_L3_error)
+      __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 450, __pyx_L3_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       if (__pyx_t_6) {
 
-        /* "Controller.pyx":445
+        /* "Controller.pyx":451
  *             n = int(self.grid_text_box.text)
  *             if n < 10:
  *                 self.vis.update_text("Grid size must be at least 10", color="red")             # <<<<<<<<<<<<<<
  *                 return
  *             if n > 200:
  */
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 445, __pyx_L3_error)
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 451, __pyx_L3_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 445, __pyx_L3_error)
+        __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 451, __pyx_L3_error)
         __Pyx_GOTREF(__pyx_t_4);
-        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_color, __pyx_n_u_red) < 0) __PYX_ERR(0, 445, __pyx_L3_error)
-        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_tuple__17, __pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 445, __pyx_L3_error)
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_color, __pyx_n_u_red) < 0) __PYX_ERR(0, 451, __pyx_L3_error)
+        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_tuple__17, __pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 451, __pyx_L3_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "Controller.pyx":446
+        /* "Controller.pyx":452
  *             if n < 10:
  *                 self.vis.update_text("Grid size must be at least 10", color="red")
  *                 return             # <<<<<<<<<<<<<<
@@ -12405,7 +12483,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
         __pyx_r = Py_None; __Pyx_INCREF(Py_None);
         goto __pyx_L7_try_return;
 
-        /* "Controller.pyx":444
+        /* "Controller.pyx":450
  *         try:
  *             n = int(self.grid_text_box.text)
  *             if n < 10:             # <<<<<<<<<<<<<<
@@ -12414,37 +12492,37 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
  */
       }
 
-      /* "Controller.pyx":447
+      /* "Controller.pyx":453
  *                 self.vis.update_text("Grid size must be at least 10", color="red")
  *                 return
  *             if n > 200:             # <<<<<<<<<<<<<<
  *                 self.vis.update_text("Grid size cannot exceed 200", color="red")
  *                 return
  */
-      __pyx_t_7 = PyObject_RichCompare(__pyx_v_n, __pyx_int_200, Py_GT); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 447, __pyx_L3_error)
-      __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 447, __pyx_L3_error)
+      __pyx_t_7 = PyObject_RichCompare(__pyx_v_n, __pyx_int_200, Py_GT); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 453, __pyx_L3_error)
+      __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 453, __pyx_L3_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       if (__pyx_t_6) {
 
-        /* "Controller.pyx":448
+        /* "Controller.pyx":454
  *                 return
  *             if n > 200:
  *                 self.vis.update_text("Grid size cannot exceed 200", color="red")             # <<<<<<<<<<<<<<
  *                 return
  * 
  */
-        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 448, __pyx_L3_error)
+        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 454, __pyx_L3_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 448, __pyx_L3_error)
+        __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 454, __pyx_L3_error)
         __Pyx_GOTREF(__pyx_t_4);
-        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_color, __pyx_n_u_red) < 0) __PYX_ERR(0, 448, __pyx_L3_error)
-        __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_tuple__18, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 448, __pyx_L3_error)
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_color, __pyx_n_u_red) < 0) __PYX_ERR(0, 454, __pyx_L3_error)
+        __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_tuple__18, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 454, __pyx_L3_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-        /* "Controller.pyx":449
+        /* "Controller.pyx":455
  *             if n > 200:
  *                 self.vis.update_text("Grid size cannot exceed 200", color="red")
  *                 return             # <<<<<<<<<<<<<<
@@ -12455,7 +12533,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
         __pyx_r = Py_None; __Pyx_INCREF(Py_None);
         goto __pyx_L7_try_return;
 
-        /* "Controller.pyx":447
+        /* "Controller.pyx":453
  *                 self.vis.update_text("Grid size must be at least 10", color="red")
  *                 return
  *             if n > 200:             # <<<<<<<<<<<<<<
@@ -12464,37 +12542,37 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
  */
       }
 
-      /* "Controller.pyx":452
+      /* "Controller.pyx":458
  * 
  *             # Update grid size
  *             self.grid_size = (n, n)             # <<<<<<<<<<<<<<
  * 
  *             # Update text box to show clean number
  */
-      __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 452, __pyx_L3_error)
+      __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 458, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_v_n);
       __Pyx_GIVEREF(__pyx_v_n);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_n)) __PYX_ERR(0, 452, __pyx_L3_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_n)) __PYX_ERR(0, 458, __pyx_L3_error);
       __Pyx_INCREF(__pyx_v_n);
       __Pyx_GIVEREF(__pyx_v_n);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_v_n)) __PYX_ERR(0, 452, __pyx_L3_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_v_n)) __PYX_ERR(0, 458, __pyx_L3_error);
       __Pyx_GIVEREF(__pyx_t_5);
       __Pyx_GOTREF(__pyx_v_self->grid_size);
       __Pyx_DECREF(__pyx_v_self->grid_size);
       __pyx_v_self->grid_size = ((PyObject*)__pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "Controller.pyx":455
+      /* "Controller.pyx":461
  * 
  *             # Update text box to show clean number
  *             self.grid_text_box.set_val(str(n))             # <<<<<<<<<<<<<<
  * 
  *             # Reinitialize agent with new grid size
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->grid_text_box, __pyx_n_s_set_val); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 455, __pyx_L3_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->grid_text_box, __pyx_n_s_set_val); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 461, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_7 = __Pyx_PyObject_Unicode(__pyx_v_n); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 455, __pyx_L3_error)
+      __pyx_t_7 = __Pyx_PyObject_Unicode(__pyx_v_n); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 461, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_7);
       __pyx_t_8 = NULL;
       __pyx_t_9 = 0;
@@ -12515,78 +12593,78 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
         __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_9, 1+__pyx_t_9);
         __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 455, __pyx_L3_error)
+        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 461, __pyx_L3_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "Controller.pyx":458
+      /* "Controller.pyx":464
  * 
  *             # Reinitialize agent with new grid size
  *             self.agent = ConnectedMatterAgent(             # <<<<<<<<<<<<<<
  *                 self.grid_size,
  *                 self.start_positions,
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_ConnectedMatterAgent); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 458, __pyx_L3_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_ConnectedMatterAgent); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 464, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_5);
 
-      /* "Controller.pyx":462
+      /* "Controller.pyx":468
  *                 self.start_positions,
  *                 self.goal_positions,
  *                 self.topology,             # <<<<<<<<<<<<<<
  *                 max_simultaneous_moves=self.max_simultaneous_moves,
  *                 min_simultaneous_moves=self.min_simultaneous_moves
  */
-      __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 458, __pyx_L3_error)
+      __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 464, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_v_self->grid_size);
       __Pyx_GIVEREF(__pyx_v_self->grid_size);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_self->grid_size)) __PYX_ERR(0, 458, __pyx_L3_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_self->grid_size)) __PYX_ERR(0, 464, __pyx_L3_error);
       __Pyx_INCREF(__pyx_v_self->start_positions);
       __Pyx_GIVEREF(__pyx_v_self->start_positions);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_self->start_positions)) __PYX_ERR(0, 458, __pyx_L3_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_self->start_positions)) __PYX_ERR(0, 464, __pyx_L3_error);
       __Pyx_INCREF(__pyx_v_self->goal_positions);
       __Pyx_GIVEREF(__pyx_v_self->goal_positions);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_v_self->goal_positions)) __PYX_ERR(0, 458, __pyx_L3_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_v_self->goal_positions)) __PYX_ERR(0, 464, __pyx_L3_error);
       __Pyx_INCREF(__pyx_v_self->topology);
       __Pyx_GIVEREF(__pyx_v_self->topology);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_v_self->topology)) __PYX_ERR(0, 458, __pyx_L3_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_v_self->topology)) __PYX_ERR(0, 464, __pyx_L3_error);
 
-      /* "Controller.pyx":463
+      /* "Controller.pyx":469
  *                 self.goal_positions,
  *                 self.topology,
  *                 max_simultaneous_moves=self.max_simultaneous_moves,             # <<<<<<<<<<<<<<
  *                 min_simultaneous_moves=self.min_simultaneous_moves
  *             )
  */
-      __pyx_t_7 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 463, __pyx_L3_error)
+      __pyx_t_7 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 469, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 463, __pyx_L3_error)
+      __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 469, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_8);
-      if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_max_simultaneous_moves, __pyx_t_8) < 0) __PYX_ERR(0, 463, __pyx_L3_error)
+      if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_max_simultaneous_moves, __pyx_t_8) < 0) __PYX_ERR(0, 469, __pyx_L3_error)
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "Controller.pyx":464
+      /* "Controller.pyx":470
  *                 self.topology,
  *                 max_simultaneous_moves=self.max_simultaneous_moves,
  *                 min_simultaneous_moves=self.min_simultaneous_moves             # <<<<<<<<<<<<<<
  *             )
  * 
  */
-      __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 464, __pyx_L3_error)
+      __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 470, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_8);
-      if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_min_simultaneous_moves, __pyx_t_8) < 0) __PYX_ERR(0, 463, __pyx_L3_error)
+      if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_min_simultaneous_moves, __pyx_t_8) < 0) __PYX_ERR(0, 469, __pyx_L3_error)
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "Controller.pyx":458
+      /* "Controller.pyx":464
  * 
  *             # Reinitialize agent with new grid size
  *             self.agent = ConnectedMatterAgent(             # <<<<<<<<<<<<<<
  *                 self.grid_size,
  *                 self.start_positions,
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, __pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 458, __pyx_L3_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, __pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 464, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -12597,7 +12675,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
       __pyx_v_self->agent = __pyx_t_8;
       __pyx_t_8 = 0;
 
-      /* "Controller.pyx":468
+      /* "Controller.pyx":474
  * 
  *             # Update visualization
  *             self.vis.grid_size = self.grid_size             # <<<<<<<<<<<<<<
@@ -12606,17 +12684,17 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
  */
       __pyx_t_8 = __pyx_v_self->grid_size;
       __Pyx_INCREF(__pyx_t_8);
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_grid_size, __pyx_t_8) < 0) __PYX_ERR(0, 468, __pyx_L3_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_grid_size, __pyx_t_8) < 0) __PYX_ERR(0, 474, __pyx_L3_error)
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "Controller.pyx":469
+      /* "Controller.pyx":475
  *             # Update visualization
  *             self.vis.grid_size = self.grid_size
  *             self.vis.draw_grid()             # <<<<<<<<<<<<<<
  *             self.vis.update_text(f"Grid size updated to {n}x{n}", color="green")
  * 
  */
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 469, __pyx_L3_error)
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 475, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_7);
       __pyx_t_4 = NULL;
       __pyx_t_9 = 0;
@@ -12636,22 +12714,22 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
         PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
         __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_9, 0+__pyx_t_9);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 469, __pyx_L3_error)
+        if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 475, __pyx_L3_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "Controller.pyx":470
+      /* "Controller.pyx":476
  *             self.vis.grid_size = self.grid_size
  *             self.vis.draw_grid()
  *             self.vis.update_text(f"Grid size updated to {n}x{n}", color="green")             # <<<<<<<<<<<<<<
  * 
  *             # Reset search state
  */
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 470, __pyx_L3_error)
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 476, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_7 = PyTuple_New(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 470, __pyx_L3_error)
+      __pyx_t_7 = PyTuple_New(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 476, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_7);
       __pyx_t_10 = 0;
       __pyx_t_11 = 127;
@@ -12659,7 +12737,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
       __pyx_t_10 += 21;
       __Pyx_GIVEREF(__pyx_kp_u_Grid_size_updated_to);
       PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_kp_u_Grid_size_updated_to);
-      __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_v_n, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 470, __pyx_L3_error)
+      __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_v_n, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 476, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_11 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_11) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_11;
       __pyx_t_10 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_4);
@@ -12670,32 +12748,32 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
       __pyx_t_10 += 1;
       __Pyx_GIVEREF(__pyx_n_u_x);
       PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_n_u_x);
-      __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_v_n, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 470, __pyx_L3_error)
+      __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_v_n, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 476, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_11 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_11) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_11;
       __pyx_t_10 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
       PyTuple_SET_ITEM(__pyx_t_7, 3, __pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_7, 4, __pyx_t_10, __pyx_t_11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 470, __pyx_L3_error)
+      __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_7, 4, __pyx_t_10, __pyx_t_11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 476, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 470, __pyx_L3_error)
+      __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 476, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_GIVEREF(__pyx_t_4);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4)) __PYX_ERR(0, 470, __pyx_L3_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4)) __PYX_ERR(0, 476, __pyx_L3_error);
       __pyx_t_4 = 0;
-      __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 470, __pyx_L3_error)
+      __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 476, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_color, __pyx_n_u_green) < 0) __PYX_ERR(0, 470, __pyx_L3_error)
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_7, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 470, __pyx_L3_error)
+      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_color, __pyx_n_u_green) < 0) __PYX_ERR(0, 476, __pyx_L3_error)
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_7, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 476, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "Controller.pyx":473
+      /* "Controller.pyx":479
  * 
  *             # Reset search state
  *             self.search_completed = False             # <<<<<<<<<<<<<<
@@ -12704,43 +12782,43 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
  */
       __pyx_v_self->search_completed = 0;
 
-      /* "Controller.pyx":474
+      /* "Controller.pyx":480
  *             # Reset search state
  *             self.search_completed = False
  *             self.vis.animation_started = False             # <<<<<<<<<<<<<<
  *             self.vis.animation_done = False
  *             self.vis.current_step = 0
  */
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_started, Py_False) < 0) __PYX_ERR(0, 474, __pyx_L3_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_started, Py_False) < 0) __PYX_ERR(0, 480, __pyx_L3_error)
 
-      /* "Controller.pyx":475
+      /* "Controller.pyx":481
  *             self.search_completed = False
  *             self.vis.animation_started = False
  *             self.vis.animation_done = False             # <<<<<<<<<<<<<<
  *             self.vis.current_step = 0
  *             self.vis.path = None
  */
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_done, Py_False) < 0) __PYX_ERR(0, 475, __pyx_L3_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_animation_done, Py_False) < 0) __PYX_ERR(0, 481, __pyx_L3_error)
 
-      /* "Controller.pyx":476
+      /* "Controller.pyx":482
  *             self.vis.animation_started = False
  *             self.vis.animation_done = False
  *             self.vis.current_step = 0             # <<<<<<<<<<<<<<
  *             self.vis.path = None
  * 
  */
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_current_step, __pyx_int_0) < 0) __PYX_ERR(0, 476, __pyx_L3_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_current_step, __pyx_int_0) < 0) __PYX_ERR(0, 482, __pyx_L3_error)
 
-      /* "Controller.pyx":477
+      /* "Controller.pyx":483
  *             self.vis.animation_done = False
  *             self.vis.current_step = 0
  *             self.vis.path = None             # <<<<<<<<<<<<<<
  * 
  *         except ValueError:
  */
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_path, Py_None) < 0) __PYX_ERR(0, 477, __pyx_L3_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->vis, __pyx_n_s_path, Py_None) < 0) __PYX_ERR(0, 483, __pyx_L3_error)
 
-      /* "Controller.pyx":442
+      /* "Controller.pyx":448
  *     def change_grid_size(self, event):
  *         """Handle grid size change"""
  *         try:             # <<<<<<<<<<<<<<
@@ -12758,7 +12836,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "Controller.pyx":479
+    /* "Controller.pyx":485
  *             self.vis.path = None
  * 
  *         except ValueError:             # <<<<<<<<<<<<<<
@@ -12768,24 +12846,24 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
     __pyx_t_12 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
     if (__pyx_t_12) {
       __Pyx_AddTraceback("Controller.SearchController.change_grid_size", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_4, &__pyx_t_7) < 0) __PYX_ERR(0, 479, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_4, &__pyx_t_7) < 0) __PYX_ERR(0, 485, __pyx_L5_except_error)
       __Pyx_XGOTREF(__pyx_t_5);
       __Pyx_XGOTREF(__pyx_t_4);
       __Pyx_XGOTREF(__pyx_t_7);
 
-      /* "Controller.pyx":480
+      /* "Controller.pyx":486
  * 
  *         except ValueError:
  *             self.vis.update_text("Invalid grid size. Enter a number between 10-200", color="red")             # <<<<<<<<<<<<<<
  * 
  *     def on_mouse_press(self, event):
  */
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 480, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 486, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_13 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 480, __pyx_L5_except_error)
+      __pyx_t_13 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 486, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_13);
-      if (PyDict_SetItem(__pyx_t_13, __pyx_n_s_color, __pyx_n_u_red) < 0) __PYX_ERR(0, 480, __pyx_L5_except_error)
-      __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_tuple__19, __pyx_t_13); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 480, __pyx_L5_except_error)
+      if (PyDict_SetItem(__pyx_t_13, __pyx_n_s_color, __pyx_n_u_red) < 0) __PYX_ERR(0, 486, __pyx_L5_except_error)
+      __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_tuple__19, __pyx_t_13); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 486, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_14);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
@@ -12797,7 +12875,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
     }
     goto __pyx_L5_except_error;
 
-    /* "Controller.pyx":442
+    /* "Controller.pyx":448
  *     def change_grid_size(self, event):
  *         """Handle grid size change"""
  *         try:             # <<<<<<<<<<<<<<
@@ -12824,7 +12902,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
     __pyx_L8_try_end:;
   }
 
-  /* "Controller.pyx":440
+  /* "Controller.pyx":446
  *         self.change_grid_size(None)  # Call change_grid_size when Enter is pressed
  * 
  *     def change_grid_size(self, event):             # <<<<<<<<<<<<<<
@@ -12851,7 +12929,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_24change_grid_size(str
   return __pyx_r;
 }
 
-/* "Controller.pyx":482
+/* "Controller.pyx":488
  *             self.vis.update_text("Invalid grid size. Enter a number between 10-200", color="red")
  * 
  *     def on_mouse_press(self, event):             # <<<<<<<<<<<<<<
@@ -12913,12 +12991,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 482, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 488, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_mouse_press") < 0)) __PYX_ERR(0, 482, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_mouse_press") < 0)) __PYX_ERR(0, 488, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -12929,7 +13007,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("on_mouse_press", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 482, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("on_mouse_press", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 488, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -12957,7 +13035,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 }
 static PyObject *__pyx_gb_10Controller_16SearchController_14on_mouse_press_2generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
 
-/* "Controller.pyx":502
+/* "Controller.pyx":508
  * 
  *         # Check if click is within the goal shape
  *         if any(abs(gx - x) < 1 and abs(gy - y) < 1 for gx, gy in self.goal_positions):             # <<<<<<<<<<<<<<
@@ -12977,7 +13055,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14on_mouse_press_genex
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_10Controller___pyx_scope_struct_1_genexpr *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 502, __pyx_L1_error)
+    __PYX_ERR(0, 508, __pyx_L1_error)
   } else {
     __Pyx_GOTREF((PyObject *)__pyx_cur_scope);
   }
@@ -12988,7 +13066,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_14on_mouse_press_genex
   __Pyx_INCREF(__pyx_cur_scope->__pyx_genexpr_arg_0);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_genexpr_arg_0);
   {
-    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_10Controller_16SearchController_14on_mouse_press_2generator, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_genexpr, __pyx_n_s_on_mouse_press_locals_genexpr, __pyx_n_s_Controller); if (unlikely(!gen)) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_10Controller_16SearchController_14on_mouse_press_2generator, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_genexpr, __pyx_n_s_on_mouse_press_locals_genexpr, __pyx_n_s_Controller); if (unlikely(!gen)) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -13029,11 +13107,11 @@ static PyObject *__pyx_gb_10Controller_16SearchController_14on_mouse_press_2gene
     return NULL;
   }
   __pyx_L3_first_run:;
-  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 502, __pyx_L1_error)
-  if (unlikely(!__pyx_cur_scope->__pyx_genexpr_arg_0)) { __Pyx_RaiseUnboundLocalError(".0"); __PYX_ERR(0, 502, __pyx_L1_error) }
+  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 508, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_genexpr_arg_0)) { __Pyx_RaiseUnboundLocalError(".0"); __PYX_ERR(0, 508, __pyx_L1_error) }
   if (unlikely(__pyx_cur_scope->__pyx_genexpr_arg_0 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 502, __pyx_L1_error)
+    __PYX_ERR(0, 508, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_cur_scope->__pyx_genexpr_arg_0; __Pyx_INCREF(__pyx_t_1);
   __pyx_t_2 = 0;
@@ -13041,14 +13119,14 @@ static PyObject *__pyx_gb_10Controller_16SearchController_14on_mouse_press_2gene
     {
       Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
       #if !CYTHON_ASSUME_SAFE_MACROS
-      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 502, __pyx_L1_error)
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 508, __pyx_L1_error)
       #endif
       if (__pyx_t_2 >= __pyx_temp) break;
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely((0 < 0))) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely((0 < 0))) __PYX_ERR(0, 508, __pyx_L1_error)
     #else
-    __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_3))) || (PyList_CheckExact(__pyx_t_3))) {
@@ -13057,7 +13135,7 @@ static PyObject *__pyx_gb_10Controller_16SearchController_14on_mouse_press_2gene
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 502, __pyx_L1_error)
+        __PYX_ERR(0, 508, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -13070,15 +13148,15 @@ static PyObject *__pyx_gb_10Controller_16SearchController_14on_mouse_press_2gene
       __Pyx_INCREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_t_5);
       #else
-      __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 502, __pyx_L1_error)
+      __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 508, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 502, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 508, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       #endif
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_6 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 502, __pyx_L1_error)
+      __pyx_t_6 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 508, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_7 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_6);
@@ -13086,7 +13164,7 @@ static PyObject *__pyx_gb_10Controller_16SearchController_14on_mouse_press_2gene
       __Pyx_GOTREF(__pyx_t_4);
       index = 1; __pyx_t_5 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_5)) goto __pyx_L6_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_5);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 2) < 0) __PYX_ERR(0, 502, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 2) < 0) __PYX_ERR(0, 508, __pyx_L1_error)
       __pyx_t_7 = NULL;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       goto __pyx_L7_unpacking_done;
@@ -13094,7 +13172,7 @@ static PyObject *__pyx_gb_10Controller_16SearchController_14on_mouse_press_2gene
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_t_7 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 502, __pyx_L1_error)
+      __PYX_ERR(0, 508, __pyx_L1_error)
       __pyx_L7_unpacking_done:;
     }
     __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_gx);
@@ -13105,34 +13183,34 @@ static PyObject *__pyx_gb_10Controller_16SearchController_14on_mouse_press_2gene
     __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_gy, __pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_outer_scope->__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_outer_scope->__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = PyNumber_Subtract(__pyx_cur_scope->__pyx_v_gx, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Subtract(__pyx_cur_scope->__pyx_v_gx, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyNumber_Absolute(__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyNumber_Absolute(__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_int_1, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_int_1, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_9) {
     } else {
       __pyx_t_8 = __pyx_t_9;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_outer_scope->__pyx_v_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_outer_scope->__pyx_v_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_3 = PyNumber_Subtract(__pyx_cur_scope->__pyx_v_gy, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(__pyx_cur_scope->__pyx_v_gy, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyNumber_Absolute(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyNumber_Absolute(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_int_1, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_int_1, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 502, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_8 = __pyx_t_9;
     __pyx_L9_bool_binop_done:;
@@ -13174,7 +13252,7 @@ static PyObject *__pyx_gb_10Controller_16SearchController_14on_mouse_press_2gene
   return __pyx_r;
 }
 
-/* "Controller.pyx":482
+/* "Controller.pyx":488
  *             self.vis.update_text("Invalid grid size. Enter a number between 10-200", color="red")
  * 
  *     def on_mouse_press(self, event):             # <<<<<<<<<<<<<<
@@ -13215,30 +13293,30 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_10Controller___pyx_scope_struct__on_mouse_press *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 482, __pyx_L1_error)
+    __PYX_ERR(0, 488, __pyx_L1_error)
   } else {
     __Pyx_GOTREF((PyObject *)__pyx_cur_scope);
   }
 
-  /* "Controller.pyx":486
+  /* "Controller.pyx":492
  *         cdef int x, y
  * 
  *         if event.inaxes != self.vis.ax:             # <<<<<<<<<<<<<<
  *             return
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_inaxes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 486, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_inaxes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 492, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_ax); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 486, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_ax); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 492, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_NE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 486, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_NE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 486, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 492, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_4) {
 
-    /* "Controller.pyx":487
+    /* "Controller.pyx":493
  * 
  *         if event.inaxes != self.vis.ax:
  *             return             # <<<<<<<<<<<<<<
@@ -13249,7 +13327,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "Controller.pyx":486
+    /* "Controller.pyx":492
  *         cdef int x, y
  * 
  *         if event.inaxes != self.vis.ax:             # <<<<<<<<<<<<<<
@@ -13258,39 +13336,39 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  */
   }
 
-  /* "Controller.pyx":490
+  /* "Controller.pyx":496
  * 
  *         # Convert click coordinates to grid cell
  *         x = int(event.ydata)             # <<<<<<<<<<<<<<
  *         y = int(event.xdata)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_ydata); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 490, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_ydata); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 490, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 490, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_cur_scope->__pyx_v_x = __pyx_t_5;
 
-  /* "Controller.pyx":491
+  /* "Controller.pyx":497
  *         # Convert click coordinates to grid cell
  *         x = int(event.ydata)
  *         y = int(event.xdata)             # <<<<<<<<<<<<<<
  * 
  *         # Handle selection mode separately from dragging
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_xdata); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 491, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_xdata); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 497, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyNumber_Int(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 491, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyNumber_Int(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 497, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 491, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 497, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_cur_scope->__pyx_v_y = __pyx_t_5;
 
-  /* "Controller.pyx":494
+  /* "Controller.pyx":500
  * 
  *         # Handle selection mode separately from dragging
  *         if self.selection_mode and self.selection_active:             # <<<<<<<<<<<<<<
@@ -13306,18 +13384,18 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
   __pyx_L5_bool_binop_done:;
   if (__pyx_t_4) {
 
-    /* "Controller.pyx":495
+    /* "Controller.pyx":501
  *         # Handle selection mode separately from dragging
  *         if self.selection_mode and self.selection_active:
  *             self.on_grid_click(event, x, y)             # <<<<<<<<<<<<<<
  *             return
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_on_grid_click); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 495, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_on_grid_click); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 501, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 495, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 501, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_v_y); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 495, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_v_y); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 501, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     __pyx_t_8 = 0;
@@ -13339,13 +13417,13 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 495, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 501, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "Controller.pyx":496
+    /* "Controller.pyx":502
  *         if self.selection_mode and self.selection_active:
  *             self.on_grid_click(event, x, y)
  *             return             # <<<<<<<<<<<<<<
@@ -13356,7 +13434,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "Controller.pyx":494
+    /* "Controller.pyx":500
  * 
  *         # Handle selection mode separately from dragging
  *         if self.selection_mode and self.selection_active:             # <<<<<<<<<<<<<<
@@ -13365,45 +13443,45 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  */
   }
 
-  /* "Controller.pyx":499
+  /* "Controller.pyx":505
  * 
  *         # Only allow dragging when not in selection mode
  *         click_pos = (x, y)             # <<<<<<<<<<<<<<
  * 
  *         # Check if click is within the goal shape
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 499, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 505, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_v_y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 499, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_v_y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 505, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 499, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 505, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3)) __PYX_ERR(0, 499, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3)) __PYX_ERR(0, 505, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_2)) __PYX_ERR(0, 499, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_2)) __PYX_ERR(0, 505, __pyx_L1_error);
   __pyx_t_3 = 0;
   __pyx_t_2 = 0;
   __pyx_v_click_pos = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "Controller.pyx":502
+  /* "Controller.pyx":508
  * 
  *         # Check if click is within the goal shape
  *         if any(abs(gx - x) < 1 and abs(gy - y) < 1 for gx, gy in self.goal_positions):             # <<<<<<<<<<<<<<
  *             self.dragging = True
  *             self.drag_start = click_pos
  */
-  __pyx_t_6 = __pyx_pf_10Controller_16SearchController_14on_mouse_press_genexpr(((PyObject*)__pyx_cur_scope), __pyx_v_self->goal_positions); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 502, __pyx_L1_error)
+  __pyx_t_6 = __pyx_pf_10Controller_16SearchController_14on_mouse_press_genexpr(((PyObject*)__pyx_cur_scope), __pyx_v_self->goal_positions); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 508, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = __Pyx_Generator_Next(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 502, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Generator_Next(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 508, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 502, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 508, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_4) {
 
-    /* "Controller.pyx":503
+    /* "Controller.pyx":509
  *         # Check if click is within the goal shape
  *         if any(abs(gx - x) < 1 and abs(gy - y) < 1 for gx, gy in self.goal_positions):
  *             self.dragging = True             # <<<<<<<<<<<<<<
@@ -13412,14 +13490,14 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  */
     __pyx_v_self->dragging = 1;
 
-    /* "Controller.pyx":504
+    /* "Controller.pyx":510
  *         if any(abs(gx - x) < 1 and abs(gy - y) < 1 for gx, gy in self.goal_positions):
  *             self.dragging = True
  *             self.drag_start = click_pos             # <<<<<<<<<<<<<<
  *             self.drag_offset = []
  * 
  */
-    if (!(likely(PyTuple_CheckExact(__pyx_v_click_pos)) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v_click_pos))) __PYX_ERR(0, 504, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_v_click_pos)) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v_click_pos))) __PYX_ERR(0, 510, __pyx_L1_error)
     __pyx_t_2 = __pyx_v_click_pos;
     __Pyx_INCREF(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
@@ -13428,14 +13506,14 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
     __pyx_v_self->drag_start = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "Controller.pyx":505
+    /* "Controller.pyx":511
  *             self.dragging = True
  *             self.drag_start = click_pos
  *             self.drag_offset = []             # <<<<<<<<<<<<<<
  * 
  *             # Calculate offsets for all points relative to click position
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 505, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 511, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __Pyx_GOTREF(__pyx_v_self->drag_offset);
@@ -13443,7 +13521,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
     __pyx_v_self->drag_offset = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "Controller.pyx":508
+    /* "Controller.pyx":514
  * 
  *             # Calculate offsets for all points relative to click position
  *             for gx, gy in self.goal_positions:             # <<<<<<<<<<<<<<
@@ -13452,7 +13530,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  */
     if (unlikely(__pyx_v_self->goal_positions == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 508, __pyx_L1_error)
+      __PYX_ERR(0, 514, __pyx_L1_error)
     }
     __pyx_t_2 = __pyx_v_self->goal_positions; __Pyx_INCREF(__pyx_t_2);
     __pyx_t_9 = 0;
@@ -13460,14 +13538,14 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
         #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 508, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 514, __pyx_L1_error)
         #endif
         if (__pyx_t_9 >= __pyx_temp) break;
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_6 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_9); __Pyx_INCREF(__pyx_t_6); __pyx_t_9++; if (unlikely((0 < 0))) __PYX_ERR(0, 508, __pyx_L1_error)
+      __pyx_t_6 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_9); __Pyx_INCREF(__pyx_t_6); __pyx_t_9++; if (unlikely((0 < 0))) __PYX_ERR(0, 514, __pyx_L1_error)
       #else
-      __pyx_t_6 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 508, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 514, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       if ((likely(PyTuple_CheckExact(__pyx_t_6))) || (PyList_CheckExact(__pyx_t_6))) {
@@ -13476,7 +13554,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 508, __pyx_L1_error)
+          __PYX_ERR(0, 514, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -13489,15 +13567,15 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
         __Pyx_INCREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         #else
-        __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 508, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 514, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 508, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 514, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_7 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 508, __pyx_L1_error)
+        __pyx_t_7 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 514, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         __pyx_t_10 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_7);
@@ -13505,7 +13583,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
         __Pyx_GOTREF(__pyx_t_3);
         index = 1; __pyx_t_1 = __pyx_t_10(__pyx_t_7); if (unlikely(!__pyx_t_1)) goto __pyx_L10_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_1);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_7), 2) < 0) __PYX_ERR(0, 508, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_7), 2) < 0) __PYX_ERR(0, 514, __pyx_L1_error)
         __pyx_t_10 = NULL;
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         goto __pyx_L11_unpacking_done;
@@ -13513,7 +13591,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __pyx_t_10 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 508, __pyx_L1_error)
+        __PYX_ERR(0, 514, __pyx_L1_error)
         __pyx_L11_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_gx, __pyx_t_3);
@@ -13521,7 +13599,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
       __Pyx_XDECREF_SET(__pyx_v_gy, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "Controller.pyx":509
+      /* "Controller.pyx":515
  *             # Calculate offsets for all points relative to click position
  *             for gx, gy in self.goal_positions:
  *                 self.drag_offset.append((gx - x, gy - y))             # <<<<<<<<<<<<<<
@@ -13530,30 +13608,30 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  */
       if (unlikely(__pyx_v_self->drag_offset == Py_None)) {
         PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-        __PYX_ERR(0, 509, __pyx_L1_error)
+        __PYX_ERR(0, 515, __pyx_L1_error)
       }
-      __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_v_x); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 509, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_v_x); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 515, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_1 = PyNumber_Subtract(__pyx_v_gx, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 509, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Subtract(__pyx_v_gx, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 515, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_v_y); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 509, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_cur_scope->__pyx_v_y); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 515, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_3 = PyNumber_Subtract(__pyx_v_gy, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 509, __pyx_L1_error)
+      __pyx_t_3 = PyNumber_Subtract(__pyx_v_gy, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 515, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 509, __pyx_L1_error)
+      __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 515, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GIVEREF(__pyx_t_1);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1)) __PYX_ERR(0, 509, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1)) __PYX_ERR(0, 515, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_3);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_3)) __PYX_ERR(0, 509, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_3)) __PYX_ERR(0, 515, __pyx_L1_error);
       __pyx_t_1 = 0;
       __pyx_t_3 = 0;
-      __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_self->drag_offset, __pyx_t_6); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 509, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_self->drag_offset, __pyx_t_6); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 515, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "Controller.pyx":508
+      /* "Controller.pyx":514
  * 
  *             # Calculate offsets for all points relative to click position
  *             for gx, gy in self.goal_positions:             # <<<<<<<<<<<<<<
@@ -13563,7 +13641,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Controller.pyx":512
+    /* "Controller.pyx":518
  * 
  *             # Calculate shape boundaries for edge checking
  *             x_coords = [pos[0] for pos in self.goal_positions]             # <<<<<<<<<<<<<<
@@ -13571,11 +13649,11 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  *             self.shape_min_x = min(x_coords)
  */
     { /* enter inner scope */
-      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 512, __pyx_L15_error)
+      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 518, __pyx_L15_error)
       __Pyx_GOTREF(__pyx_t_2);
       if (unlikely(__pyx_v_self->goal_positions == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-        __PYX_ERR(0, 512, __pyx_L15_error)
+        __PYX_ERR(0, 518, __pyx_L15_error)
       }
       __pyx_t_6 = __pyx_v_self->goal_positions; __Pyx_INCREF(__pyx_t_6);
       __pyx_t_9 = 0;
@@ -13583,21 +13661,21 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_6);
           #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 512, __pyx_L15_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 518, __pyx_L15_error)
           #endif
           if (__pyx_t_9 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_9); __Pyx_INCREF(__pyx_t_3); __pyx_t_9++; if (unlikely((0 < 0))) __PYX_ERR(0, 512, __pyx_L15_error)
+        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_9); __Pyx_INCREF(__pyx_t_3); __pyx_t_9++; if (unlikely((0 < 0))) __PYX_ERR(0, 518, __pyx_L15_error)
         #else
-        __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_6, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 512, __pyx_L15_error)
+        __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_6, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 518, __pyx_L15_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
         __Pyx_XDECREF_SET(__pyx_8genexpr1__pyx_v_pos, __pyx_t_3);
         __pyx_t_3 = 0;
-        __pyx_t_3 = __Pyx_GetItemInt(__pyx_8genexpr1__pyx_v_pos, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 512, __pyx_L15_error)
+        __pyx_t_3 = __Pyx_GetItemInt(__pyx_8genexpr1__pyx_v_pos, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 518, __pyx_L15_error)
         __Pyx_GOTREF(__pyx_t_3);
-        if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_3))) __PYX_ERR(0, 512, __pyx_L15_error)
+        if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_3))) __PYX_ERR(0, 518, __pyx_L15_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       }
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -13611,7 +13689,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
     __pyx_v_x_coords = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "Controller.pyx":513
+    /* "Controller.pyx":519
  *             # Calculate shape boundaries for edge checking
  *             x_coords = [pos[0] for pos in self.goal_positions]
  *             y_coords = [pos[1] for pos in self.goal_positions]             # <<<<<<<<<<<<<<
@@ -13619,11 +13697,11 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  *             self.shape_max_x = max(x_coords)
  */
     { /* enter inner scope */
-      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 513, __pyx_L22_error)
+      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 519, __pyx_L22_error)
       __Pyx_GOTREF(__pyx_t_2);
       if (unlikely(__pyx_v_self->goal_positions == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-        __PYX_ERR(0, 513, __pyx_L22_error)
+        __PYX_ERR(0, 519, __pyx_L22_error)
       }
       __pyx_t_6 = __pyx_v_self->goal_positions; __Pyx_INCREF(__pyx_t_6);
       __pyx_t_9 = 0;
@@ -13631,21 +13709,21 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_6);
           #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 513, __pyx_L22_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 519, __pyx_L22_error)
           #endif
           if (__pyx_t_9 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_9); __Pyx_INCREF(__pyx_t_3); __pyx_t_9++; if (unlikely((0 < 0))) __PYX_ERR(0, 513, __pyx_L22_error)
+        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_9); __Pyx_INCREF(__pyx_t_3); __pyx_t_9++; if (unlikely((0 < 0))) __PYX_ERR(0, 519, __pyx_L22_error)
         #else
-        __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_6, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 513, __pyx_L22_error)
+        __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_6, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 519, __pyx_L22_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
         __Pyx_XDECREF_SET(__pyx_8genexpr2__pyx_v_pos, __pyx_t_3);
         __pyx_t_3 = 0;
-        __pyx_t_3 = __Pyx_GetItemInt(__pyx_8genexpr2__pyx_v_pos, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 513, __pyx_L22_error)
+        __pyx_t_3 = __Pyx_GetItemInt(__pyx_8genexpr2__pyx_v_pos, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 519, __pyx_L22_error)
         __Pyx_GOTREF(__pyx_t_3);
-        if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_3))) __PYX_ERR(0, 513, __pyx_L22_error)
+        if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_3))) __PYX_ERR(0, 519, __pyx_L22_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       }
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -13659,59 +13737,59 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
     __pyx_v_y_coords = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "Controller.pyx":514
+    /* "Controller.pyx":520
  *             x_coords = [pos[0] for pos in self.goal_positions]
  *             y_coords = [pos[1] for pos in self.goal_positions]
  *             self.shape_min_x = min(x_coords)             # <<<<<<<<<<<<<<
  *             self.shape_max_x = max(x_coords)
  *             self.shape_min_y = min(y_coords)
  */
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_min, __pyx_v_x_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 514, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_min, __pyx_v_x_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 520, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 514, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 520, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_self->shape_min_x = __pyx_t_5;
 
-    /* "Controller.pyx":515
+    /* "Controller.pyx":521
  *             y_coords = [pos[1] for pos in self.goal_positions]
  *             self.shape_min_x = min(x_coords)
  *             self.shape_max_x = max(x_coords)             # <<<<<<<<<<<<<<
  *             self.shape_min_y = min(y_coords)
  *             self.shape_max_y = max(y_coords)
  */
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_max, __pyx_v_x_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 515, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_max, __pyx_v_x_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 521, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 515, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 521, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_self->shape_max_x = __pyx_t_5;
 
-    /* "Controller.pyx":516
+    /* "Controller.pyx":522
  *             self.shape_min_x = min(x_coords)
  *             self.shape_max_x = max(x_coords)
  *             self.shape_min_y = min(y_coords)             # <<<<<<<<<<<<<<
  *             self.shape_max_y = max(y_coords)
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_min, __pyx_v_y_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 516, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_min, __pyx_v_y_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 522, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 516, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 522, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_self->shape_min_y = __pyx_t_5;
 
-    /* "Controller.pyx":517
+    /* "Controller.pyx":523
  *             self.shape_max_x = max(x_coords)
  *             self.shape_min_y = min(y_coords)
  *             self.shape_max_y = max(y_coords)             # <<<<<<<<<<<<<<
  * 
  *             # Calculate shape dimensions
  */
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_max, __pyx_v_y_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 517, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_max, __pyx_v_y_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 523, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 517, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 523, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_self->shape_max_y = __pyx_t_5;
 
-    /* "Controller.pyx":520
+    /* "Controller.pyx":526
  * 
  *             # Calculate shape dimensions
  *             shape_width = self.shape_max_x - self.shape_min_x             # <<<<<<<<<<<<<<
@@ -13720,7 +13798,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  */
     __pyx_v_shape_width = (__pyx_v_self->shape_max_x - __pyx_v_self->shape_min_x);
 
-    /* "Controller.pyx":521
+    /* "Controller.pyx":527
  *             # Calculate shape dimensions
  *             shape_width = self.shape_max_x - self.shape_min_x
  *             shape_height = self.shape_max_y - self.shape_min_y             # <<<<<<<<<<<<<<
@@ -13729,7 +13807,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  */
     __pyx_v_shape_height = (__pyx_v_self->shape_max_y - __pyx_v_self->shape_min_y);
 
-    /* "Controller.pyx":524
+    /* "Controller.pyx":530
  * 
  *             # Calculate distance from click to shape bounds
  *             self.bound_left = x - self.shape_min_x             # <<<<<<<<<<<<<<
@@ -13738,7 +13816,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  */
     __pyx_v_self->bound_left = (__pyx_cur_scope->__pyx_v_x - __pyx_v_self->shape_min_x);
 
-    /* "Controller.pyx":525
+    /* "Controller.pyx":531
  *             # Calculate distance from click to shape bounds
  *             self.bound_left = x - self.shape_min_x
  *             self.bound_right = self.shape_max_x - x             # <<<<<<<<<<<<<<
@@ -13747,7 +13825,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  */
     __pyx_v_self->bound_right = (__pyx_v_self->shape_max_x - __pyx_cur_scope->__pyx_v_x);
 
-    /* "Controller.pyx":526
+    /* "Controller.pyx":532
  *             self.bound_left = x - self.shape_min_x
  *             self.bound_right = self.shape_max_x - x
  *             self.bound_top = y - self.shape_min_y             # <<<<<<<<<<<<<<
@@ -13756,7 +13834,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  */
     __pyx_v_self->bound_top = (__pyx_cur_scope->__pyx_v_y - __pyx_v_self->shape_min_y);
 
-    /* "Controller.pyx":527
+    /* "Controller.pyx":533
  *             self.bound_right = self.shape_max_x - x
  *             self.bound_top = y - self.shape_min_y
  *             self.bound_bottom = self.shape_max_y - y             # <<<<<<<<<<<<<<
@@ -13765,7 +13843,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  */
     __pyx_v_self->bound_bottom = (__pyx_v_self->shape_max_y - __pyx_cur_scope->__pyx_v_y);
 
-    /* "Controller.pyx":502
+    /* "Controller.pyx":508
  * 
  *         # Check if click is within the goal shape
  *         if any(abs(gx - x) < 1 and abs(gy - y) < 1 for gx, gy in self.goal_positions):             # <<<<<<<<<<<<<<
@@ -13774,7 +13852,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
  */
   }
 
-  /* "Controller.pyx":482
+  /* "Controller.pyx":488
  *             self.vis.update_text("Invalid grid size. Enter a number between 10-200", color="red")
  * 
  *     def on_mouse_press(self, event):             # <<<<<<<<<<<<<<
@@ -13808,7 +13886,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_26on_mouse_press(struc
   return __pyx_r;
 }
 
-/* "Controller.pyx":529
+/* "Controller.pyx":535
  *             self.bound_bottom = self.shape_max_y - y
  * 
  *     def on_mouse_release(self, event):             # <<<<<<<<<<<<<<
@@ -13870,12 +13948,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 529, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 535, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_mouse_release") < 0)) __PYX_ERR(0, 529, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_mouse_release") < 0)) __PYX_ERR(0, 535, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -13886,7 +13964,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("on_mouse_release", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 529, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("on_mouse_release", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 535, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -13942,7 +14020,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("on_mouse_release", 1);
 
-  /* "Controller.pyx":533
+  /* "Controller.pyx":539
  *         cdef int x, y, new_x, new_y
  * 
  *         if self.dragging and not self.selection_mode:             # <<<<<<<<<<<<<<
@@ -13959,7 +14037,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "Controller.pyx":534
+    /* "Controller.pyx":540
  * 
  *         if self.dragging and not self.selection_mode:
  *             self.dragging = False             # <<<<<<<<<<<<<<
@@ -13968,68 +14046,68 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
  */
     __pyx_v_self->dragging = 0;
 
-    /* "Controller.pyx":535
+    /* "Controller.pyx":541
  *         if self.dragging and not self.selection_mode:
  *             self.dragging = False
  *             if event.inaxes == self.vis.ax:             # <<<<<<<<<<<<<<
  *                 # Snap to grid
  *                 x = int(event.ydata)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_inaxes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 535, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_inaxes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 541, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_ax); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 535, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_ax); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 541, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 535, __pyx_L1_error)
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 541, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 535, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 541, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_1) {
 
-      /* "Controller.pyx":537
+      /* "Controller.pyx":543
  *             if event.inaxes == self.vis.ax:
  *                 # Snap to grid
  *                 x = int(event.ydata)             # <<<<<<<<<<<<<<
  *                 y = int(event.xdata)
  *                 # Apply boundary constraints
  */
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_ydata); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 537, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_ydata); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 543, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 537, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 543, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 537, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 543, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_v_x = __pyx_t_6;
 
-      /* "Controller.pyx":538
+      /* "Controller.pyx":544
  *                 # Snap to grid
  *                 x = int(event.ydata)
  *                 y = int(event.xdata)             # <<<<<<<<<<<<<<
  *                 # Apply boundary constraints
  *                 x, y = self.constrain_to_boundaries(x, y)
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_xdata); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 538, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_xdata); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 544, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = __Pyx_PyNumber_Int(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 538, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyNumber_Int(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 544, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 538, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 544, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_v_y = __pyx_t_6;
 
-      /* "Controller.pyx":540
+      /* "Controller.pyx":546
  *                 y = int(event.xdata)
  *                 # Apply boundary constraints
  *                 x, y = self.constrain_to_boundaries(x, y)             # <<<<<<<<<<<<<<
  * 
  *                 new_positions = []
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_constrain_to_boundaries); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 540, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_constrain_to_boundaries); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 546, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 540, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 546, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 540, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 546, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __pyx_t_8 = NULL;
       __pyx_t_9 = 0;
@@ -14051,7 +14129,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
         __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 540, __pyx_L1_error)
+        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 546, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
@@ -14061,7 +14139,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 540, __pyx_L1_error)
+          __PYX_ERR(0, 546, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -14074,15 +14152,15 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
         __Pyx_INCREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_7);
         #else
-        __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 540, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 546, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 540, __pyx_L1_error)
+        __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 546, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         #endif
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_3 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 540, __pyx_L1_error)
+        __pyx_t_3 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 546, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __pyx_t_10 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_3);
@@ -14090,7 +14168,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
         __Pyx_GOTREF(__pyx_t_4);
         index = 1; __pyx_t_7 = __pyx_t_10(__pyx_t_3); if (unlikely(!__pyx_t_7)) goto __pyx_L7_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_7);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_3), 2) < 0) __PYX_ERR(0, 540, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_3), 2) < 0) __PYX_ERR(0, 546, __pyx_L1_error)
         __pyx_t_10 = NULL;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         goto __pyx_L8_unpacking_done;
@@ -14098,29 +14176,29 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_t_10 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 540, __pyx_L1_error)
+        __PYX_ERR(0, 546, __pyx_L1_error)
         __pyx_L8_unpacking_done:;
       }
-      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 540, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 546, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 540, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 546, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_v_x = __pyx_t_6;
       __pyx_v_y = __pyx_t_11;
 
-      /* "Controller.pyx":542
+      /* "Controller.pyx":548
  *                 x, y = self.constrain_to_boundaries(x, y)
  * 
  *                 new_positions = []             # <<<<<<<<<<<<<<
  *                 for offset_x, offset_y in self.drag_offset:
  *                     new_x = x + offset_x
  */
-      __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 542, __pyx_L1_error)
+      __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 548, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __pyx_v_new_positions = ((PyObject*)__pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "Controller.pyx":543
+      /* "Controller.pyx":549
  * 
  *                 new_positions = []
  *                 for offset_x, offset_y in self.drag_offset:             # <<<<<<<<<<<<<<
@@ -14129,7 +14207,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
  */
       if (unlikely(__pyx_v_self->drag_offset == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-        __PYX_ERR(0, 543, __pyx_L1_error)
+        __PYX_ERR(0, 549, __pyx_L1_error)
       }
       __pyx_t_5 = __pyx_v_self->drag_offset; __Pyx_INCREF(__pyx_t_5);
       __pyx_t_12 = 0;
@@ -14137,14 +14215,14 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_5);
           #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 543, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 549, __pyx_L1_error)
           #endif
           if (__pyx_t_12 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_7 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_12); __Pyx_INCREF(__pyx_t_7); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 543, __pyx_L1_error)
+        __pyx_t_7 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_12); __Pyx_INCREF(__pyx_t_7); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 549, __pyx_L1_error)
         #else
-        __pyx_t_7 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 543, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 549, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         #endif
         if ((likely(PyTuple_CheckExact(__pyx_t_7))) || (PyList_CheckExact(__pyx_t_7))) {
@@ -14153,7 +14231,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
           if (unlikely(size != 2)) {
             if (size > 2) __Pyx_RaiseTooManyValuesError(2);
             else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-            __PYX_ERR(0, 543, __pyx_L1_error)
+            __PYX_ERR(0, 549, __pyx_L1_error)
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
           if (likely(PyTuple_CheckExact(sequence))) {
@@ -14166,15 +14244,15 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
           __Pyx_INCREF(__pyx_t_4);
           __Pyx_INCREF(__pyx_t_3);
           #else
-          __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 543, __pyx_L1_error)
+          __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 549, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 543, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 549, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         } else {
           Py_ssize_t index = -1;
-          __pyx_t_8 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 543, __pyx_L1_error)
+          __pyx_t_8 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 549, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           __pyx_t_10 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_8);
@@ -14182,7 +14260,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
           __Pyx_GOTREF(__pyx_t_4);
           index = 1; __pyx_t_3 = __pyx_t_10(__pyx_t_8); if (unlikely(!__pyx_t_3)) goto __pyx_L11_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_3);
-          if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_8), 2) < 0) __PYX_ERR(0, 543, __pyx_L1_error)
+          if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_8), 2) < 0) __PYX_ERR(0, 549, __pyx_L1_error)
           __pyx_t_10 = NULL;
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           goto __pyx_L12_unpacking_done;
@@ -14190,7 +14268,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           __pyx_t_10 = NULL;
           if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-          __PYX_ERR(0, 543, __pyx_L1_error)
+          __PYX_ERR(0, 549, __pyx_L1_error)
           __pyx_L12_unpacking_done:;
         }
         __Pyx_XDECREF_SET(__pyx_v_offset_x, __pyx_t_4);
@@ -14198,111 +14276,111 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
         __Pyx_XDECREF_SET(__pyx_v_offset_y, __pyx_t_3);
         __pyx_t_3 = 0;
 
-        /* "Controller.pyx":544
+        /* "Controller.pyx":550
  *                 new_positions = []
  *                 for offset_x, offset_y in self.drag_offset:
  *                     new_x = x + offset_x             # <<<<<<<<<<<<<<
  *                     new_y = y + offset_y
  *                     if 0 <= new_x < self.grid_size[0] and 0 <= new_y < self.grid_size[1]:
  */
-        __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 544, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 550, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_3 = PyNumber_Add(__pyx_t_7, __pyx_v_offset_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 544, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(__pyx_t_7, __pyx_v_offset_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 550, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 544, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 550, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_v_new_x = __pyx_t_11;
 
-        /* "Controller.pyx":545
+        /* "Controller.pyx":551
  *                 for offset_x, offset_y in self.drag_offset:
  *                     new_x = x + offset_x
  *                     new_y = y + offset_y             # <<<<<<<<<<<<<<
  *                     if 0 <= new_x < self.grid_size[0] and 0 <= new_y < self.grid_size[1]:
  *                         new_positions.append((new_x, new_y))
  */
-        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 545, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 551, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_7 = PyNumber_Add(__pyx_t_3, __pyx_v_offset_y); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 545, __pyx_L1_error)
+        __pyx_t_7 = PyNumber_Add(__pyx_t_3, __pyx_v_offset_y); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 551, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 545, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 551, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __pyx_v_new_y = __pyx_t_11;
 
-        /* "Controller.pyx":546
+        /* "Controller.pyx":552
  *                     new_x = x + offset_x
  *                     new_y = y + offset_y
  *                     if 0 <= new_x < self.grid_size[0] and 0 <= new_y < self.grid_size[1]:             # <<<<<<<<<<<<<<
  *                         new_positions.append((new_x, new_y))
  * 
  */
-        __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_new_x); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 546, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_new_x); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 552, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_3 = PyObject_RichCompare(__pyx_int_0, __pyx_t_7, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 546, __pyx_L1_error)
+        __pyx_t_3 = PyObject_RichCompare(__pyx_int_0, __pyx_t_7, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 552, __pyx_L1_error)
         if (__Pyx_PyObject_IsTrue(__pyx_t_3)) {
           __Pyx_DECREF(__pyx_t_3);
           if (unlikely(__pyx_v_self->grid_size == Py_None)) {
             PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-            __PYX_ERR(0, 546, __pyx_L1_error)
+            __PYX_ERR(0, 552, __pyx_L1_error)
           }
-          __pyx_t_4 = __Pyx_GetItemInt_Tuple(__pyx_v_self->grid_size, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 546, __pyx_L1_error)
+          __pyx_t_4 = __Pyx_GetItemInt_Tuple(__pyx_v_self->grid_size, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 552, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_3 = PyObject_RichCompare(__pyx_t_7, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 546, __pyx_L1_error)
+          __pyx_t_3 = PyObject_RichCompare(__pyx_t_7, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 552, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         }
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 546, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 552, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         if (__pyx_t_2) {
         } else {
           __pyx_t_1 = __pyx_t_2;
           goto __pyx_L14_bool_binop_done;
         }
-        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_new_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 546, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_new_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 552, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_7 = PyObject_RichCompare(__pyx_int_0, __pyx_t_3, Py_LE); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 546, __pyx_L1_error)
+        __pyx_t_7 = PyObject_RichCompare(__pyx_int_0, __pyx_t_3, Py_LE); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 552, __pyx_L1_error)
         if (__Pyx_PyObject_IsTrue(__pyx_t_7)) {
           __Pyx_DECREF(__pyx_t_7);
           if (unlikely(__pyx_v_self->grid_size == Py_None)) {
             PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-            __PYX_ERR(0, 546, __pyx_L1_error)
+            __PYX_ERR(0, 552, __pyx_L1_error)
           }
-          __pyx_t_4 = __Pyx_GetItemInt_Tuple(__pyx_v_self->grid_size, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 546, __pyx_L1_error)
+          __pyx_t_4 = __Pyx_GetItemInt_Tuple(__pyx_v_self->grid_size, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 552, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_7 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 546, __pyx_L1_error)
+          __pyx_t_7 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 552, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 546, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 552, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __pyx_t_1 = __pyx_t_2;
         __pyx_L14_bool_binop_done:;
         if (__pyx_t_1) {
 
-          /* "Controller.pyx":547
+          /* "Controller.pyx":553
  *                     new_y = y + offset_y
  *                     if 0 <= new_x < self.grid_size[0] and 0 <= new_y < self.grid_size[1]:
  *                         new_positions.append((new_x, new_y))             # <<<<<<<<<<<<<<
  * 
  *                 if len(new_positions) == len(self.goal_positions):
  */
-          __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_new_x); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 547, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_new_x); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 553, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_new_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 547, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_new_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 553, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 547, __pyx_L1_error)
+          __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 553, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           __Pyx_GIVEREF(__pyx_t_7);
-          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7)) __PYX_ERR(0, 547, __pyx_L1_error);
+          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7)) __PYX_ERR(0, 553, __pyx_L1_error);
           __Pyx_GIVEREF(__pyx_t_3);
-          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 547, __pyx_L1_error);
+          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 553, __pyx_L1_error);
           __pyx_t_7 = 0;
           __pyx_t_3 = 0;
-          __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_new_positions, __pyx_t_4); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 547, __pyx_L1_error)
+          __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_new_positions, __pyx_t_4); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 553, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-          /* "Controller.pyx":546
+          /* "Controller.pyx":552
  *                     new_x = x + offset_x
  *                     new_y = y + offset_y
  *                     if 0 <= new_x < self.grid_size[0] and 0 <= new_y < self.grid_size[1]:             # <<<<<<<<<<<<<<
@@ -14311,7 +14389,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
  */
         }
 
-        /* "Controller.pyx":543
+        /* "Controller.pyx":549
  * 
  *                 new_positions = []
  *                 for offset_x, offset_y in self.drag_offset:             # <<<<<<<<<<<<<<
@@ -14321,26 +14399,26 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
       }
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "Controller.pyx":549
+      /* "Controller.pyx":555
  *                         new_positions.append((new_x, new_y))
  * 
  *                 if len(new_positions) == len(self.goal_positions):             # <<<<<<<<<<<<<<
  *                     self.goal_positions = new_positions
  *                     self.agent = ConnectedMatterAgent(
  */
-      __pyx_t_12 = __Pyx_PyList_GET_SIZE(__pyx_v_new_positions); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 549, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyList_GET_SIZE(__pyx_v_new_positions); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 555, __pyx_L1_error)
       __pyx_t_5 = __pyx_v_self->goal_positions;
       __Pyx_INCREF(__pyx_t_5);
       if (unlikely(__pyx_t_5 == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-        __PYX_ERR(0, 549, __pyx_L1_error)
+        __PYX_ERR(0, 555, __pyx_L1_error)
       }
-      __pyx_t_14 = __Pyx_PyList_GET_SIZE(__pyx_t_5); if (unlikely(__pyx_t_14 == ((Py_ssize_t)-1))) __PYX_ERR(0, 549, __pyx_L1_error)
+      __pyx_t_14 = __Pyx_PyList_GET_SIZE(__pyx_t_5); if (unlikely(__pyx_t_14 == ((Py_ssize_t)-1))) __PYX_ERR(0, 555, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_1 = (__pyx_t_12 == __pyx_t_14);
       if (__pyx_t_1) {
 
-        /* "Controller.pyx":550
+        /* "Controller.pyx":556
  * 
  *                 if len(new_positions) == len(self.goal_positions):
  *                     self.goal_positions = new_positions             # <<<<<<<<<<<<<<
@@ -14353,72 +14431,72 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
         __Pyx_DECREF(__pyx_v_self->goal_positions);
         __pyx_v_self->goal_positions = __pyx_v_new_positions;
 
-        /* "Controller.pyx":551
+        /* "Controller.pyx":557
  *                 if len(new_positions) == len(self.goal_positions):
  *                     self.goal_positions = new_positions
  *                     self.agent = ConnectedMatterAgent(             # <<<<<<<<<<<<<<
  *                         self.grid_size,
  *                         self.start_positions,
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_ConnectedMatterAgent); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 551, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_ConnectedMatterAgent); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 557, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
 
-        /* "Controller.pyx":555
+        /* "Controller.pyx":561
  *                         self.start_positions,
  *                         self.goal_positions,
  *                         self.topology,             # <<<<<<<<<<<<<<
  *                         max_simultaneous_moves=self.max_simultaneous_moves,
  *                         min_simultaneous_moves=self.min_simultaneous_moves
  */
-        __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 551, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_New(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 557, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_v_self->grid_size);
         __Pyx_GIVEREF(__pyx_v_self->grid_size);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_self->grid_size)) __PYX_ERR(0, 551, __pyx_L1_error);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_self->grid_size)) __PYX_ERR(0, 557, __pyx_L1_error);
         __Pyx_INCREF(__pyx_v_self->start_positions);
         __Pyx_GIVEREF(__pyx_v_self->start_positions);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_self->start_positions)) __PYX_ERR(0, 551, __pyx_L1_error);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_self->start_positions)) __PYX_ERR(0, 557, __pyx_L1_error);
         __Pyx_INCREF(__pyx_v_self->goal_positions);
         __Pyx_GIVEREF(__pyx_v_self->goal_positions);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_v_self->goal_positions)) __PYX_ERR(0, 551, __pyx_L1_error);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_v_self->goal_positions)) __PYX_ERR(0, 557, __pyx_L1_error);
         __Pyx_INCREF(__pyx_v_self->topology);
         __Pyx_GIVEREF(__pyx_v_self->topology);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_v_self->topology)) __PYX_ERR(0, 551, __pyx_L1_error);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 3, __pyx_v_self->topology)) __PYX_ERR(0, 557, __pyx_L1_error);
 
-        /* "Controller.pyx":556
+        /* "Controller.pyx":562
  *                         self.goal_positions,
  *                         self.topology,
  *                         max_simultaneous_moves=self.max_simultaneous_moves,             # <<<<<<<<<<<<<<
  *                         min_simultaneous_moves=self.min_simultaneous_moves
  *                     )
  */
-        __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 556, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 562, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 556, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_self->max_simultaneous_moves); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 562, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_max_simultaneous_moves, __pyx_t_7) < 0) __PYX_ERR(0, 556, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_max_simultaneous_moves, __pyx_t_7) < 0) __PYX_ERR(0, 562, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "Controller.pyx":557
+        /* "Controller.pyx":563
  *                         self.topology,
  *                         max_simultaneous_moves=self.max_simultaneous_moves,
  *                         min_simultaneous_moves=self.min_simultaneous_moves             # <<<<<<<<<<<<<<
  *                     )
  *                     self.search_completed = False
  */
-        __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 557, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_self->min_simultaneous_moves); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 563, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_min_simultaneous_moves, __pyx_t_7) < 0) __PYX_ERR(0, 556, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_min_simultaneous_moves, __pyx_t_7) < 0) __PYX_ERR(0, 562, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "Controller.pyx":551
+        /* "Controller.pyx":557
  *                 if len(new_positions) == len(self.goal_positions):
  *                     self.goal_positions = new_positions
  *                     self.agent = ConnectedMatterAgent(             # <<<<<<<<<<<<<<
  *                         self.grid_size,
  *                         self.start_positions,
  */
-        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 551, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 557, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -14429,7 +14507,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
         __pyx_v_self->agent = __pyx_t_7;
         __pyx_t_7 = 0;
 
-        /* "Controller.pyx":559
+        /* "Controller.pyx":565
  *                         min_simultaneous_moves=self.min_simultaneous_moves
  *                     )
  *                     self.search_completed = False             # <<<<<<<<<<<<<<
@@ -14438,14 +14516,14 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
  */
         __pyx_v_self->search_completed = 0;
 
-        /* "Controller.pyx":560
+        /* "Controller.pyx":566
  *                     )
  *                     self.search_completed = False
  *                     self.vis.draw_grid()             # <<<<<<<<<<<<<<
  *                     self.vis.highlight_goal_shape(self.goal_positions)
  *                     self.vis.update_text("Goal shape moved", color="blue")
  */
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 560, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 566, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __pyx_t_4 = NULL;
         __pyx_t_9 = 0;
@@ -14465,20 +14543,20 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
           PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
           __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_9, 0+__pyx_t_9);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 560, __pyx_L1_error)
+          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 566, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "Controller.pyx":561
+        /* "Controller.pyx":567
  *                     self.search_completed = False
  *                     self.vis.draw_grid()
  *                     self.vis.highlight_goal_shape(self.goal_positions)             # <<<<<<<<<<<<<<
  *                     self.vis.update_text("Goal shape moved", color="blue")
  * 
  */
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_highlight_goal_shape); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 561, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_highlight_goal_shape); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 567, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __pyx_t_4 = NULL;
         __pyx_t_9 = 0;
@@ -14498,31 +14576,31 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
           PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_self->goal_positions};
           __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_9, 1+__pyx_t_9);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 561, __pyx_L1_error)
+          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 567, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "Controller.pyx":562
+        /* "Controller.pyx":568
  *                     self.vis.draw_grid()
  *                     self.vis.highlight_goal_shape(self.goal_positions)
  *                     self.vis.update_text("Goal shape moved", color="blue")             # <<<<<<<<<<<<<<
  * 
  *     def constrain_to_boundaries(self, int x, int y):
  */
-        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 562, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_update_text); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 568, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 562, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 568, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 562, __pyx_L1_error)
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_tuple__20, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 562, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_color, __pyx_n_u_blue) < 0) __PYX_ERR(0, 568, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_tuple__20, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 568, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-        /* "Controller.pyx":549
+        /* "Controller.pyx":555
  *                         new_positions.append((new_x, new_y))
  * 
  *                 if len(new_positions) == len(self.goal_positions):             # <<<<<<<<<<<<<<
@@ -14531,7 +14609,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
  */
       }
 
-      /* "Controller.pyx":535
+      /* "Controller.pyx":541
  *         if self.dragging and not self.selection_mode:
  *             self.dragging = False
  *             if event.inaxes == self.vis.ax:             # <<<<<<<<<<<<<<
@@ -14540,7 +14618,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
  */
     }
 
-    /* "Controller.pyx":533
+    /* "Controller.pyx":539
  *         cdef int x, y, new_x, new_y
  * 
  *         if self.dragging and not self.selection_mode:             # <<<<<<<<<<<<<<
@@ -14549,7 +14627,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
  */
   }
 
-  /* "Controller.pyx":529
+  /* "Controller.pyx":535
  *             self.bound_bottom = self.shape_max_y - y
  * 
  *     def on_mouse_release(self, event):             # <<<<<<<<<<<<<<
@@ -14577,7 +14655,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_28on_mouse_release(str
   return __pyx_r;
 }
 
-/* "Controller.pyx":564
+/* "Controller.pyx":570
  *                     self.vis.update_text("Goal shape moved", color="blue")
  * 
  *     def constrain_to_boundaries(self, int x, int y):             # <<<<<<<<<<<<<<
@@ -14642,7 +14720,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 564, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 570, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -14650,14 +14728,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 564, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 570, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("constrain_to_boundaries", 1, 2, 2, 1); __PYX_ERR(0, 564, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("constrain_to_boundaries", 1, 2, 2, 1); __PYX_ERR(0, 570, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "constrain_to_boundaries") < 0)) __PYX_ERR(0, 564, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "constrain_to_boundaries") < 0)) __PYX_ERR(0, 570, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -14665,12 +14743,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
       values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
     }
-    __pyx_v_x = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 564, __pyx_L3_error)
-    __pyx_v_y = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 564, __pyx_L3_error)
+    __pyx_v_x = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 570, __pyx_L3_error)
+    __pyx_v_y = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 570, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("constrain_to_boundaries", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 564, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("constrain_to_boundaries", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 570, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -14716,7 +14794,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_30constrain_to_boundar
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("constrain_to_boundaries", 1);
 
-  /* "Controller.pyx":567
+  /* "Controller.pyx":573
  *         """Constrain the drag point to keep the shape within grid boundaries"""
  *         # Constrain x-coordinate
  *         cdef int min_x = self.bound_left  # Minimum allowed x (to keep left edge in bounds)             # <<<<<<<<<<<<<<
@@ -14726,7 +14804,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_30constrain_to_boundar
   __pyx_t_1 = __pyx_v_self->bound_left;
   __pyx_v_min_x = __pyx_t_1;
 
-  /* "Controller.pyx":568
+  /* "Controller.pyx":574
  *         # Constrain x-coordinate
  *         cdef int min_x = self.bound_left  # Minimum allowed x (to keep left edge in bounds)
  *         cdef int max_x = self.grid_size[0] - 1 - self.bound_right  # Maximum allowed x (to keep right edge in bounds)             # <<<<<<<<<<<<<<
@@ -14735,24 +14813,24 @@ static PyObject *__pyx_pf_10Controller_16SearchController_30constrain_to_boundar
  */
   if (unlikely(__pyx_v_self->grid_size == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 568, __pyx_L1_error)
+    __PYX_ERR(0, 574, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_GetItemInt_Tuple(__pyx_v_self->grid_size, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 568, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt_Tuple(__pyx_v_self->grid_size, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 574, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_SubtractObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 568, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_SubtractObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 574, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->bound_right); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 568, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->bound_right); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 574, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyNumber_Subtract(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 568, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Subtract(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 574, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 568, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 574, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_max_x = __pyx_t_1;
 
-  /* "Controller.pyx":569
+  /* "Controller.pyx":575
  *         cdef int min_x = self.bound_left  # Minimum allowed x (to keep left edge in bounds)
  *         cdef int max_x = self.grid_size[0] - 1 - self.bound_right  # Maximum allowed x (to keep right edge in bounds)
  *         x = max(min_x, min(x, max_x))             # <<<<<<<<<<<<<<
@@ -14777,7 +14855,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_30constrain_to_boundar
   }
   __pyx_v_x = __pyx_t_5;
 
-  /* "Controller.pyx":572
+  /* "Controller.pyx":578
  * 
  *         # Constrain y-coordinate
  *         cdef int min_y = self.bound_top  # Minimum allowed y (to keep top edge in bounds)             # <<<<<<<<<<<<<<
@@ -14787,7 +14865,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_30constrain_to_boundar
   __pyx_t_5 = __pyx_v_self->bound_top;
   __pyx_v_min_y = __pyx_t_5;
 
-  /* "Controller.pyx":573
+  /* "Controller.pyx":579
  *         # Constrain y-coordinate
  *         cdef int min_y = self.bound_top  # Minimum allowed y (to keep top edge in bounds)
  *         cdef int max_y = self.grid_size[1] - 1 - self.bound_bottom  # Maximum allowed y (to keep bottom edge in bounds)             # <<<<<<<<<<<<<<
@@ -14796,24 +14874,24 @@ static PyObject *__pyx_pf_10Controller_16SearchController_30constrain_to_boundar
  */
   if (unlikely(__pyx_v_self->grid_size == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 573, __pyx_L1_error)
+    __PYX_ERR(0, 579, __pyx_L1_error)
   }
-  __pyx_t_4 = __Pyx_GetItemInt_Tuple(__pyx_v_self->grid_size, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 573, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetItemInt_Tuple(__pyx_v_self->grid_size, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 573, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_self->bound_bottom); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 573, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_self->bound_bottom); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 573, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 573, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 579, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_max_y = __pyx_t_5;
 
-  /* "Controller.pyx":574
+  /* "Controller.pyx":580
  *         cdef int min_y = self.bound_top  # Minimum allowed y (to keep top edge in bounds)
  *         cdef int max_y = self.grid_size[1] - 1 - self.bound_bottom  # Maximum allowed y (to keep bottom edge in bounds)
  *         y = max(min_y, min(y, max_y))             # <<<<<<<<<<<<<<
@@ -14838,7 +14916,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_30constrain_to_boundar
   }
   __pyx_v_y = __pyx_t_1;
 
-  /* "Controller.pyx":576
+  /* "Controller.pyx":582
  *         y = max(min_y, min(y, max_y))
  * 
  *         return x, y             # <<<<<<<<<<<<<<
@@ -14846,23 +14924,23 @@ static PyObject *__pyx_pf_10Controller_16SearchController_30constrain_to_boundar
  *     def on_mouse_move(self, event):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 576, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 582, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 576, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 582, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 576, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 582, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3)) __PYX_ERR(0, 576, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3)) __PYX_ERR(0, 582, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_4)) __PYX_ERR(0, 576, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_4)) __PYX_ERR(0, 582, __pyx_L1_error);
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "Controller.pyx":564
+  /* "Controller.pyx":570
  *                     self.vis.update_text("Goal shape moved", color="blue")
  * 
  *     def constrain_to_boundaries(self, int x, int y):             # <<<<<<<<<<<<<<
@@ -14883,7 +14961,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_30constrain_to_boundar
   return __pyx_r;
 }
 
-/* "Controller.pyx":578
+/* "Controller.pyx":584
  *         return x, y
  * 
  *     def on_mouse_move(self, event):             # <<<<<<<<<<<<<<
@@ -14945,12 +15023,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 578, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 584, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_mouse_move") < 0)) __PYX_ERR(0, 578, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "on_mouse_move") < 0)) __PYX_ERR(0, 584, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -14961,7 +15039,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("on_mouse_move", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 578, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("on_mouse_move", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 584, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -15019,7 +15097,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("on_mouse_move", 1);
 
-  /* "Controller.pyx":583
+  /* "Controller.pyx":589
  *         cdef int xi, yi, new_x, new_y
  * 
  *         if self.dragging and not self.selection_mode and event.inaxes == self.vis.ax:             # <<<<<<<<<<<<<<
@@ -15037,46 +15115,46 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
     __pyx_t_1 = __pyx_t_2;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_inaxes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 583, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_inaxes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 589, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_ax); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 583, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_ax); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 589, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 583, __pyx_L1_error)
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 589, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 583, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 589, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_1 = __pyx_t_2;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "Controller.pyx":585
+    /* "Controller.pyx":591
  *         if self.dragging and not self.selection_mode and event.inaxes == self.vis.ax:
  *             # Get cursor position with boundary constraints
  *             x = event.ydata             # <<<<<<<<<<<<<<
  *             y = event.xdata
  *             xi = int(x)
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_ydata); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 585, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_ydata); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 591, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 585, __pyx_L1_error)
+    __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 591, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_x = __pyx_t_6;
 
-    /* "Controller.pyx":586
+    /* "Controller.pyx":592
  *             # Get cursor position with boundary constraints
  *             x = event.ydata
  *             y = event.xdata             # <<<<<<<<<<<<<<
  *             xi = int(x)
  *             yi = int(y)
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_xdata); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 586, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_n_s_xdata); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 592, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 586, __pyx_L1_error)
+    __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 592, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_y = __pyx_t_6;
 
-    /* "Controller.pyx":587
+    /* "Controller.pyx":593
  *             x = event.ydata
  *             y = event.xdata
  *             xi = int(x)             # <<<<<<<<<<<<<<
@@ -15085,7 +15163,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
  */
     __pyx_v_xi = ((int)__pyx_v_x);
 
-    /* "Controller.pyx":588
+    /* "Controller.pyx":594
  *             y = event.xdata
  *             xi = int(x)
  *             yi = int(y)             # <<<<<<<<<<<<<<
@@ -15094,18 +15172,18 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
  */
     __pyx_v_yi = ((int)__pyx_v_y);
 
-    /* "Controller.pyx":589
+    /* "Controller.pyx":595
  *             xi = int(x)
  *             yi = int(y)
  *             xi, yi = self.constrain_to_boundaries(xi, yi)             # <<<<<<<<<<<<<<
  * 
  *             # Clear and redraw the grid
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_constrain_to_boundaries); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 589, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_constrain_to_boundaries); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 595, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_xi); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 589, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_xi); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 595, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_yi); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 589, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_yi); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 595, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_8 = NULL;
     __pyx_t_9 = 0;
@@ -15127,7 +15205,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 589, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 595, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -15137,7 +15215,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 589, __pyx_L1_error)
+        __PYX_ERR(0, 595, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -15150,15 +15228,15 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
       __Pyx_INCREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_t_7);
       #else
-      __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 589, __pyx_L1_error)
+      __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 595, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 589, __pyx_L1_error)
+      __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 595, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       #endif
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_3 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 589, __pyx_L1_error)
+      __pyx_t_3 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 595, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_10 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_3);
@@ -15166,7 +15244,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
       __Pyx_GOTREF(__pyx_t_4);
       index = 1; __pyx_t_7 = __pyx_t_10(__pyx_t_3); if (unlikely(!__pyx_t_7)) goto __pyx_L7_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_7);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_3), 2) < 0) __PYX_ERR(0, 589, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_3), 2) < 0) __PYX_ERR(0, 595, __pyx_L1_error)
       __pyx_t_10 = NULL;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       goto __pyx_L8_unpacking_done;
@@ -15174,24 +15252,24 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_10 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 589, __pyx_L1_error)
+      __PYX_ERR(0, 595, __pyx_L1_error)
       __pyx_L8_unpacking_done:;
     }
-    __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 589, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 595, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 589, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 595, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_v_xi = __pyx_t_11;
     __pyx_v_yi = __pyx_t_12;
 
-    /* "Controller.pyx":592
+    /* "Controller.pyx":598
  * 
  *             # Clear and redraw the grid
  *             self.vis.draw_grid()             # <<<<<<<<<<<<<<
  * 
  *             # Draw the shape at the new position
  */
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 592, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_draw_grid); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 598, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_4 = NULL;
     __pyx_t_9 = 0;
@@ -15211,25 +15289,25 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
       PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
       __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_9, 0+__pyx_t_9);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 592, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 598, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "Controller.pyx":595
+    /* "Controller.pyx":601
  * 
  *             # Draw the shape at the new position
  *             temp_positions = []             # <<<<<<<<<<<<<<
  *             for offset_x, offset_y in self.drag_offset:
  *                 new_x = xi + offset_x
  */
-    __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 595, __pyx_L1_error)
+    __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 601, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_v_temp_positions = ((PyObject*)__pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "Controller.pyx":596
+    /* "Controller.pyx":602
  *             # Draw the shape at the new position
  *             temp_positions = []
  *             for offset_x, offset_y in self.drag_offset:             # <<<<<<<<<<<<<<
@@ -15238,7 +15316,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
  */
     if (unlikely(__pyx_v_self->drag_offset == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 596, __pyx_L1_error)
+      __PYX_ERR(0, 602, __pyx_L1_error)
     }
     __pyx_t_5 = __pyx_v_self->drag_offset; __Pyx_INCREF(__pyx_t_5);
     __pyx_t_13 = 0;
@@ -15246,14 +15324,14 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_5);
         #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 596, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 602, __pyx_L1_error)
         #endif
         if (__pyx_t_13 >= __pyx_temp) break;
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_7 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_13); __Pyx_INCREF(__pyx_t_7); __pyx_t_13++; if (unlikely((0 < 0))) __PYX_ERR(0, 596, __pyx_L1_error)
+      __pyx_t_7 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_13); __Pyx_INCREF(__pyx_t_7); __pyx_t_13++; if (unlikely((0 < 0))) __PYX_ERR(0, 602, __pyx_L1_error)
       #else
-      __pyx_t_7 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_13); __pyx_t_13++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 596, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_13); __pyx_t_13++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 602, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       #endif
       if ((likely(PyTuple_CheckExact(__pyx_t_7))) || (PyList_CheckExact(__pyx_t_7))) {
@@ -15262,7 +15340,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 596, __pyx_L1_error)
+          __PYX_ERR(0, 602, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -15275,15 +15353,15 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
         __Pyx_INCREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_3);
         #else
-        __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 596, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 602, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 596, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 602, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_8 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 596, __pyx_L1_error)
+        __pyx_t_8 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 602, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __pyx_t_10 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_8);
@@ -15291,7 +15369,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
         __Pyx_GOTREF(__pyx_t_4);
         index = 1; __pyx_t_3 = __pyx_t_10(__pyx_t_8); if (unlikely(!__pyx_t_3)) goto __pyx_L11_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_3);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_8), 2) < 0) __PYX_ERR(0, 596, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_8), 2) < 0) __PYX_ERR(0, 602, __pyx_L1_error)
         __pyx_t_10 = NULL;
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         goto __pyx_L12_unpacking_done;
@@ -15299,7 +15377,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __pyx_t_10 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 596, __pyx_L1_error)
+        __PYX_ERR(0, 602, __pyx_L1_error)
         __pyx_L12_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_offset_x, __pyx_t_4);
@@ -15307,61 +15385,61 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
       __Pyx_XDECREF_SET(__pyx_v_offset_y, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "Controller.pyx":597
+      /* "Controller.pyx":603
  *             temp_positions = []
  *             for offset_x, offset_y in self.drag_offset:
  *                 new_x = xi + offset_x             # <<<<<<<<<<<<<<
  *                 new_y = yi + offset_y
  *                 temp_positions.append((new_x, new_y))
  */
-      __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_xi); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 597, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_xi); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 603, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_3 = PyNumber_Add(__pyx_t_7, __pyx_v_offset_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 597, __pyx_L1_error)
+      __pyx_t_3 = PyNumber_Add(__pyx_t_7, __pyx_v_offset_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 603, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 597, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 603, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_v_new_x = __pyx_t_12;
 
-      /* "Controller.pyx":598
+      /* "Controller.pyx":604
  *             for offset_x, offset_y in self.drag_offset:
  *                 new_x = xi + offset_x
  *                 new_y = yi + offset_y             # <<<<<<<<<<<<<<
  *                 temp_positions.append((new_x, new_y))
  * 
  */
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_yi); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 598, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_yi); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 604, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 = PyNumber_Add(__pyx_t_3, __pyx_v_offset_y); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 598, __pyx_L1_error)
+      __pyx_t_7 = PyNumber_Add(__pyx_t_3, __pyx_v_offset_y); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 604, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 598, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 604, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_v_new_y = __pyx_t_12;
 
-      /* "Controller.pyx":599
+      /* "Controller.pyx":605
  *                 new_x = xi + offset_x
  *                 new_y = yi + offset_y
  *                 temp_positions.append((new_x, new_y))             # <<<<<<<<<<<<<<
  * 
  *             # Highlight the shape at its temporary position
  */
-      __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_new_x); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 599, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_new_x); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 605, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_new_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 599, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_new_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 605, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 599, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 605, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_7);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7)) __PYX_ERR(0, 599, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7)) __PYX_ERR(0, 605, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_3);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 599, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 605, __pyx_L1_error);
       __pyx_t_7 = 0;
       __pyx_t_3 = 0;
-      __pyx_t_14 = __Pyx_PyList_Append(__pyx_v_temp_positions, __pyx_t_4); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 599, __pyx_L1_error)
+      __pyx_t_14 = __Pyx_PyList_Append(__pyx_v_temp_positions, __pyx_t_4); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 605, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "Controller.pyx":596
+      /* "Controller.pyx":602
  *             # Draw the shape at the new position
  *             temp_positions = []
  *             for offset_x, offset_y in self.drag_offset:             # <<<<<<<<<<<<<<
@@ -15371,12 +15449,12 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "Controller.pyx":602
+    /* "Controller.pyx":608
  * 
  *             # Highlight the shape at its temporary position
  *             self.vis.highlight_goal_shape(temp_positions)             # <<<<<<<<<<<<<<
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_highlight_goal_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 602, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->vis, __pyx_n_s_highlight_goal_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 608, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_3 = NULL;
     __pyx_t_9 = 0;
@@ -15396,13 +15474,13 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
       PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_temp_positions};
       __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_9, 1+__pyx_t_9);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 602, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 608, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "Controller.pyx":583
+    /* "Controller.pyx":589
  *         cdef int xi, yi, new_x, new_y
  * 
  *         if self.dragging and not self.selection_mode and event.inaxes == self.vis.ax:             # <<<<<<<<<<<<<<
@@ -15411,7 +15489,7 @@ static PyObject *__pyx_pf_10Controller_16SearchController_32on_mouse_move(struct
  */
   }
 
-  /* "Controller.pyx":578
+  /* "Controller.pyx":584
  *         return x, y
  * 
  *     def on_mouse_move(self, event):             # <<<<<<<<<<<<<<
@@ -22751,7 +22829,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_kp_u_Grid_size_updated_to, __pyx_k_Grid_size_updated_to, sizeof(__pyx_k_Grid_size_updated_to), 0, 1, 0, 0},
     {&__pyx_kp_s_Incompatible_checksums_0x_x_vs_0, __pyx_k_Incompatible_checksums_0x_x_vs_0, sizeof(__pyx_k_Incompatible_checksums_0x_x_vs_0), 0, 0, 1, 0},
     {&__pyx_kp_u_Initializing_Connected_Programma, __pyx_k_Initializing_Connected_Programma, sizeof(__pyx_k_Initializing_Connected_Programma), 0, 1, 0, 0},
-    {&__pyx_kp_u_Invalid_goal_Need_exactly, __pyx_k_Invalid_goal_Need_exactly, sizeof(__pyx_k_Invalid_goal_Need_exactly), 0, 1, 0, 0},
+    {&__pyx_kp_u_Invalid_goal_Need_at_least_1_blo, __pyx_k_Invalid_goal_Need_at_least_1_blo, sizeof(__pyx_k_Invalid_goal_Need_at_least_1_blo), 0, 1, 0, 0},
     {&__pyx_kp_u_Invalid_grid_size_Enter_a_number, __pyx_k_Invalid_grid_size_Enter_a_number, sizeof(__pyx_k_Invalid_grid_size_Enter_a_number), 0, 1, 0, 0},
     {&__pyx_kp_u_MAX_Simultaneous_Moves, __pyx_k_MAX_Simultaneous_Moves, sizeof(__pyx_k_MAX_Simultaneous_Moves), 0, 1, 0, 0},
     {&__pyx_kp_u_MIN_Simultaneous_Moves, __pyx_k_MIN_Simultaneous_Moves, sizeof(__pyx_k_MIN_Simultaneous_Moves), 0, 1, 0, 0},
@@ -22801,7 +22879,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_ValueError, __pyx_k_ValueError, sizeof(__pyx_k_ValueError), 0, 0, 1, 1},
     {&__pyx_n_s_Visualizer, __pyx_k_Visualizer, sizeof(__pyx_k_Visualizer), 0, 0, 1, 1},
     {&__pyx_kp_u_Window_closed_Exiting_program, __pyx_k_Window_closed_Exiting_program, sizeof(__pyx_k_Window_closed_Exiting_program), 0, 1, 0, 0},
-    {&__pyx_kp_u__10, __pyx_k__10, sizeof(__pyx_k__10), 0, 1, 0, 0},
     {&__pyx_kp_u__16, __pyx_k__16, sizeof(__pyx_k__16), 0, 1, 0, 0},
     {&__pyx_kp_u__2, __pyx_k__2, sizeof(__pyx_k__2), 0, 1, 0, 0},
     {&__pyx_kp_u__22, __pyx_k__22, sizeof(__pyx_k__22), 0, 1, 0, 0},
@@ -22819,7 +22896,11 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_ax, __pyx_k_ax, sizeof(__pyx_k_ax), 0, 0, 1, 1},
     {&__pyx_n_s_axis, __pyx_k_axis, sizeof(__pyx_k_axis), 0, 0, 1, 1},
     {&__pyx_n_s_block, __pyx_k_block, sizeof(__pyx_k_block), 0, 0, 1, 1},
+    {&__pyx_kp_u_block_s, __pyx_k_block_s, sizeof(__pyx_k_block_s), 0, 1, 0, 0},
     {&__pyx_kp_u_blocks, __pyx_k_blocks, sizeof(__pyx_k_blocks), 0, 1, 0, 0},
+    {&__pyx_kp_u_blocks_2, __pyx_k_blocks_2, sizeof(__pyx_k_blocks_2), 0, 1, 0, 0},
+    {&__pyx_kp_u_blocks_fewer_than_start, __pyx_k_blocks_fewer_than_start, sizeof(__pyx_k_blocks_fewer_than_start), 0, 1, 0, 0},
+    {&__pyx_kp_u_blocks_fewer_than_start_2, __pyx_k_blocks_fewer_than_start_2, sizeof(__pyx_k_blocks_fewer_than_start_2), 0, 1, 0, 0},
     {&__pyx_n_u_blue, __pyx_k_blue, sizeof(__pyx_k_blue), 0, 1, 0, 1},
     {&__pyx_n_u_bold, __pyx_k_bold, sizeof(__pyx_k_bold), 0, 1, 0, 1},
     {&__pyx_n_s_button, __pyx_k_button, sizeof(__pyx_k_button), 0, 0, 1, 1},
@@ -22916,7 +22997,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_pause, __pyx_k_pause, sizeof(__pyx_k_pause), 0, 0, 1, 1},
     {&__pyx_n_s_pickle, __pyx_k_pickle, sizeof(__pyx_k_pickle), 0, 0, 1, 1},
     {&__pyx_n_s_plt, __pyx_k_plt, sizeof(__pyx_k_plt), 0, 0, 1, 1},
-    {&__pyx_n_s_pop, __pyx_k_pop, sizeof(__pyx_k_pop), 0, 0, 1, 1},
     {&__pyx_n_s_pos, __pyx_k_pos, sizeof(__pyx_k_pos), 0, 0, 1, 1},
     {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
     {&__pyx_n_s_pyplot, __pyx_k_pyplot, sizeof(__pyx_k_pyplot), 0, 0, 1, 1},
@@ -22991,9 +23071,9 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
 /* #### Code section: cached_builtins ### */
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 179, __pyx_L1_error)
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 479, __pyx_L1_error)
-  __pyx_builtin_min = __Pyx_GetBuiltinName(__pyx_n_s_min); if (!__pyx_builtin_min) __PYX_ERR(0, 514, __pyx_L1_error)
-  __pyx_builtin_max = __Pyx_GetBuiltinName(__pyx_n_s_max); if (!__pyx_builtin_max) __PYX_ERR(0, 515, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 485, __pyx_L1_error)
+  __pyx_builtin_min = __Pyx_GetBuiltinName(__pyx_n_s_min); if (!__pyx_builtin_min) __PYX_ERR(0, 520, __pyx_L1_error)
+  __pyx_builtin_max = __Pyx_GetBuiltinName(__pyx_n_s_max); if (!__pyx_builtin_max) __PYX_ERR(0, 521, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -23092,102 +23172,113 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "Controller.pyx":299
+  /* "Controller.pyx":265
+ *                 self.selection_mode = True  # Stay in selection mode if invalid
+ *                 self.select_button.label.set_text("Select Goal")
+ *                 self.vis.update_text(f"Invalid goal: Need at least 1 block", color="red")             # <<<<<<<<<<<<<<
+ * 
+ *     def on_grid_click(self, event, int x, int y):
+ */
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_u_Invalid_goal_Need_at_least_1_blo); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 265, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__10);
+  __Pyx_GIVEREF(__pyx_tuple__10);
+
+  /* "Controller.pyx":300
  *     def on_close(self, event):
  *         """Stops execution when the Matplotlib window is closed."""
  *         print("\nWindow closed. Exiting program.")             # <<<<<<<<<<<<<<
  *         sys.exit()  # Forcefully stop the script
  * 
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_Window_closed_Exiting_program); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_Window_closed_Exiting_program); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 300, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "Controller.pyx":350
+  /* "Controller.pyx":356
  *         # Clear goal shape highlight
  *         self.vis.draw_grid()
  *         self.vis.update_text("Searching for a path...", color="red")             # <<<<<<<<<<<<<<
  *         plt.pause(1)  # Force update to show "Searching..." before search starts
  * 
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_Searching_for_a_path); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_Searching_for_a_path); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
 
-  /* "Controller.pyx":353
+  /* "Controller.pyx":359
  *         plt.pause(1)  # Force update to show "Searching..." before search starts
  * 
  *         print("\nSearching for optimal path with connectivity constraint...")             # <<<<<<<<<<<<<<
  *         cdef double start_time = time.time()
  *         path = self.agent.search(self.time_limit)
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_Searching_for_optimal_path_with); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_Searching_for_optimal_path_with); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 359, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
   __Pyx_GIVEREF(__pyx_tuple__13);
 
-  /* "Controller.pyx":362
+  /* "Controller.pyx":368
  *         if path:
  *             print(f"Path found with {len(path)-1} moves in {search_time:.2f} seconds")
  *             print(f"Ready for visualization...")             # <<<<<<<<<<<<<<
  *             self.vis.animation_speed = self.animation_speed  # Ensure animation speed is updated
  *             self.vis.path = path  # Update path in visualizer
  */
-  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_u_Ready_for_visualization); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_u_Ready_for_visualization); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 368, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
 
-  /* "Controller.pyx":371
+  /* "Controller.pyx":377
  *             print(f"No path found after {search_time:.2f} seconds")
  *             self.vis.button.label.set_text("Search")  # Reset button text
  *             self.vis.update_text("No paths found", color="red")             # <<<<<<<<<<<<<<
  *             plt.draw()
  * 
  */
-  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_u_No_paths_found); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 371, __pyx_L1_error)
+  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_u_No_paths_found); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 377, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__15);
   __Pyx_GIVEREF(__pyx_tuple__15);
 
-  /* "Controller.pyx":445
+  /* "Controller.pyx":451
  *             n = int(self.grid_text_box.text)
  *             if n < 10:
  *                 self.vis.update_text("Grid size must be at least 10", color="red")             # <<<<<<<<<<<<<<
  *                 return
  *             if n > 200:
  */
-  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_u_Grid_size_must_be_at_least_10); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 445, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_u_Grid_size_must_be_at_least_10); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 451, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
 
-  /* "Controller.pyx":448
+  /* "Controller.pyx":454
  *                 return
  *             if n > 200:
  *                 self.vis.update_text("Grid size cannot exceed 200", color="red")             # <<<<<<<<<<<<<<
  *                 return
  * 
  */
-  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_u_Grid_size_cannot_exceed_200); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 448, __pyx_L1_error)
+  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_u_Grid_size_cannot_exceed_200); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 454, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__18);
   __Pyx_GIVEREF(__pyx_tuple__18);
 
-  /* "Controller.pyx":480
+  /* "Controller.pyx":486
  * 
  *         except ValueError:
  *             self.vis.update_text("Invalid grid size. Enter a number between 10-200", color="red")             # <<<<<<<<<<<<<<
  * 
  *     def on_mouse_press(self, event):
  */
-  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_u_Invalid_grid_size_Enter_a_number); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 480, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_u_Invalid_grid_size_Enter_a_number); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 486, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
 
-  /* "Controller.pyx":562
+  /* "Controller.pyx":568
  *                     self.vis.draw_grid()
  *                     self.vis.highlight_goal_shape(self.goal_positions)
  *                     self.vis.update_text("Goal shape moved", color="blue")             # <<<<<<<<<<<<<<
  * 
  *     def constrain_to_boundaries(self, int x, int y):
  */
-  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_kp_u_Goal_shape_moved); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 562, __pyx_L1_error)
+  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_kp_u_Goal_shape_moved); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 568, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__20);
   __Pyx_GIVEREF(__pyx_tuple__20);
 
@@ -23224,176 +23315,176 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__25);
   __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_toggle_selection_mode, 216, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 216, __pyx_L1_error)
 
-  /* "Controller.pyx":262
- *                 self.vis.update_text(f"Invalid goal: Need exactly {len(self.start_positions)} blocks", color="red")
+  /* "Controller.pyx":267
+ *                 self.vis.update_text(f"Invalid goal: Need at least 1 block", color="red")
  * 
  *     def on_grid_click(self, event, int x, int y):             # <<<<<<<<<<<<<<
  *         """Handle grid cell clicks for goal selection"""
  *         if not self.selection_mode or not self.selection_active:
  */
-  __pyx_tuple__27 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_event, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_pos, __pyx_n_s_cell_pos); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_tuple__27 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_event, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_pos, __pyx_n_s_cell_pos); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 267, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__27);
   __Pyx_GIVEREF(__pyx_tuple__27);
-  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_grid_click, 262, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_grid_click, 267, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 267, __pyx_L1_error)
 
-  /* "Controller.pyx":290
- *             self.vis.update_text(f"Selected {len(self.custom_goal)}/{len(self.start_positions)} blocks", color="blue")
+  /* "Controller.pyx":291
+ *             self.vis.update_text(f"Selected {len(self.custom_goal)} block(s)", color="blue")
  * 
  *     def highlight_cell(self, tuple pos, str color='green'):             # <<<<<<<<<<<<<<
  *         """Highlight a grid cell with the specified color"""
  *         cdef int x, y
  */
-  __pyx_tuple__29 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_pos, __pyx_n_s_color, __pyx_n_s_x, __pyx_n_s_y); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_tuple__29 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_pos, __pyx_n_s_color, __pyx_n_s_x, __pyx_n_s_y); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__29);
   __Pyx_GIVEREF(__pyx_tuple__29);
-  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__29, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_highlight_cell, 290, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 290, __pyx_L1_error)
-  __pyx_tuple__31 = PyTuple_Pack(1, __pyx_n_u_green); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__29, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_highlight_cell, 291, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_tuple__31 = PyTuple_Pack(1, __pyx_n_u_green); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__31);
   __Pyx_GIVEREF(__pyx_tuple__31);
 
-  /* "Controller.pyx":297
+  /* "Controller.pyx":298
  *         plt.draw()
  * 
  *     def on_close(self, event):             # <<<<<<<<<<<<<<
  *         """Stops execution when the Matplotlib window is closed."""
  *         print("\nWindow closed. Exiting program.")
  */
-  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_close, 297, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_close, 298, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(0, 298, __pyx_L1_error)
 
-  /* "Controller.pyx":302
+  /* "Controller.pyx":303
  *         sys.exit()  # Forcefully stop the script
  * 
  *     def on_shape_selected(self, str label):             # <<<<<<<<<<<<<<
  *         """Handle shape selection from radio buttons"""
  *         # Cancel selection mode if active when changing shapes
  */
-  __pyx_tuple__33 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_label); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_tuple__33 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_label); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__33);
   __Pyx_GIVEREF(__pyx_tuple__33);
-  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_shape_selected, 302, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_shape_selected, 303, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(0, 303, __pyx_L1_error)
 
-  /* "Controller.pyx":339
- *         self.vis.update_text(f"Selected {self.current_shape} shape", color="blue")
+  /* "Controller.pyx":345
+ *             self.vis.update_text(f"Selected {self.current_shape} shape ({len(self.goal_positions)} blocks)", color="blue")
  * 
  *     def handle_button(self, event):             # <<<<<<<<<<<<<<
  *         """Handle button clicks based on current state"""
  *         if not self.search_completed:
  */
-  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_handle_button, 339, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(0, 339, __pyx_L1_error)
+  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_handle_button, 345, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(0, 345, __pyx_L1_error)
 
-  /* "Controller.pyx":346
+  /* "Controller.pyx":352
  *             self.vis.handle_button_click(event)
  * 
  *     def run_search(self, event):             # <<<<<<<<<<<<<<
  *         """Runs the search when the Search button is clicked."""
  *         # Clear goal shape highlight
  */
-  __pyx_tuple__36 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_event, __pyx_n_s_start_time, __pyx_n_s_path, __pyx_n_s_search_time); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(0, 346, __pyx_L1_error)
+  __pyx_tuple__36 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_event, __pyx_n_s_start_time, __pyx_n_s_path, __pyx_n_s_search_time); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(0, 352, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__36);
   __Pyx_GIVEREF(__pyx_tuple__36);
-  __pyx_codeobj__37 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__36, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_run_search, 346, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__37)) __PYX_ERR(0, 346, __pyx_L1_error)
+  __pyx_codeobj__37 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__36, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_run_search, 352, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__37)) __PYX_ERR(0, 352, __pyx_L1_error)
 
-  /* "Controller.pyx":374
+  /* "Controller.pyx":380
  *             plt.draw()
  * 
  *     def update_max_simultaneous_moves(self, val):             # <<<<<<<<<<<<<<
  *         """Update the maximum number of simultaneous moves"""
  *         self.max_simultaneous_moves = int(val)
  */
-  __pyx_tuple__38 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_val); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_tuple__38 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_val); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__38);
   __Pyx_GIVEREF(__pyx_tuple__38);
-  __pyx_codeobj__39 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__38, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_update_max_simultaneous_moves, 374, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__39)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_codeobj__39 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__38, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_update_max_simultaneous_moves, 380, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__39)) __PYX_ERR(0, 380, __pyx_L1_error)
 
-  /* "Controller.pyx":402
+  /* "Controller.pyx":408
  *         self.vis.path = None
  * 
  *     def update_min_simultaneous_moves(self, val):             # <<<<<<<<<<<<<<
  *         """Update the minimum number of simultaneous moves"""
  *         self.min_simultaneous_moves = int(val)
  */
-  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__38, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_update_min_simultaneous_moves, 402, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) __PYX_ERR(0, 402, __pyx_L1_error)
+  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__38, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_update_min_simultaneous_moves, 408, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) __PYX_ERR(0, 408, __pyx_L1_error)
 
-  /* "Controller.pyx":430
+  /* "Controller.pyx":436
  *         self.vis.path = None
  * 
  *     def update_animation_speed(self, val):             # <<<<<<<<<<<<<<
  *         """Update the animation speed (seconds between frames)"""
  *         self.animation_speed = val
  */
-  __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__38, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_update_animation_speed, 430, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(0, 430, __pyx_L1_error)
+  __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__38, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_update_animation_speed, 436, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(0, 436, __pyx_L1_error)
 
-  /* "Controller.pyx":436
+  /* "Controller.pyx":442
  *         self.vis.update_text(f"Animation speed: {val:.2f} sec/step", color="blue")
  * 
  *     def on_text_submit(self, text):             # <<<<<<<<<<<<<<
  *         """Handle grid size text submission"""
  *         self.change_grid_size(None)  # Call change_grid_size when Enter is pressed
  */
-  __pyx_tuple__42 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_text); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_tuple__42 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_text); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(0, 442, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__42);
   __Pyx_GIVEREF(__pyx_tuple__42);
-  __pyx_codeobj__43 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__42, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_text_submit, 436, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__43)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_codeobj__43 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__42, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_text_submit, 442, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__43)) __PYX_ERR(0, 442, __pyx_L1_error)
 
-  /* "Controller.pyx":440
+  /* "Controller.pyx":446
  *         self.change_grid_size(None)  # Call change_grid_size when Enter is pressed
  * 
  *     def change_grid_size(self, event):             # <<<<<<<<<<<<<<
  *         """Handle grid size change"""
  *         try:
  */
-  __pyx_tuple__44 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_event, __pyx_n_s_n); if (unlikely(!__pyx_tuple__44)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_tuple__44 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_event, __pyx_n_s_n); if (unlikely(!__pyx_tuple__44)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__44);
   __Pyx_GIVEREF(__pyx_tuple__44);
-  __pyx_codeobj__45 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__44, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_change_grid_size, 440, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__45)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_codeobj__45 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__44, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_change_grid_size, 446, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__45)) __PYX_ERR(0, 446, __pyx_L1_error)
 
-  /* "Controller.pyx":482
+  /* "Controller.pyx":488
  *             self.vis.update_text("Invalid grid size. Enter a number between 10-200", color="red")
  * 
  *     def on_mouse_press(self, event):             # <<<<<<<<<<<<<<
  *         """Handle mouse press events for dragging and selection"""
  *         cdef int x, y
  */
-  __pyx_tuple__46 = PyTuple_Pack(15, __pyx_n_s_self, __pyx_n_s_event, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_click_pos, __pyx_n_s_gx, __pyx_n_s_gy, __pyx_n_s_x_coords, __pyx_n_s_y_coords, __pyx_n_s_shape_width, __pyx_n_s_shape_height, __pyx_n_s_genexpr, __pyx_n_s_genexpr, __pyx_n_s_pos, __pyx_n_s_pos); if (unlikely(!__pyx_tuple__46)) __PYX_ERR(0, 482, __pyx_L1_error)
+  __pyx_tuple__46 = PyTuple_Pack(15, __pyx_n_s_self, __pyx_n_s_event, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_click_pos, __pyx_n_s_gx, __pyx_n_s_gy, __pyx_n_s_x_coords, __pyx_n_s_y_coords, __pyx_n_s_shape_width, __pyx_n_s_shape_height, __pyx_n_s_genexpr, __pyx_n_s_genexpr, __pyx_n_s_pos, __pyx_n_s_pos); if (unlikely(!__pyx_tuple__46)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__46);
   __Pyx_GIVEREF(__pyx_tuple__46);
-  __pyx_codeobj__47 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 15, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__46, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_mouse_press, 482, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__47)) __PYX_ERR(0, 482, __pyx_L1_error)
+  __pyx_codeobj__47 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 15, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__46, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_mouse_press, 488, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__47)) __PYX_ERR(0, 488, __pyx_L1_error)
 
-  /* "Controller.pyx":529
+  /* "Controller.pyx":535
  *             self.bound_bottom = self.shape_max_y - y
  * 
  *     def on_mouse_release(self, event):             # <<<<<<<<<<<<<<
  *         """Handle mouse release events for dragging"""
  *         cdef int x, y, new_x, new_y
  */
-  __pyx_tuple__48 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_event, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_new_x, __pyx_n_s_new_y, __pyx_n_s_new_positions, __pyx_n_s_offset_x, __pyx_n_s_offset_y); if (unlikely(!__pyx_tuple__48)) __PYX_ERR(0, 529, __pyx_L1_error)
+  __pyx_tuple__48 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_event, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_new_x, __pyx_n_s_new_y, __pyx_n_s_new_positions, __pyx_n_s_offset_x, __pyx_n_s_offset_y); if (unlikely(!__pyx_tuple__48)) __PYX_ERR(0, 535, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__48);
   __Pyx_GIVEREF(__pyx_tuple__48);
-  __pyx_codeobj__49 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__48, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_mouse_release, 529, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__49)) __PYX_ERR(0, 529, __pyx_L1_error)
+  __pyx_codeobj__49 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__48, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_mouse_release, 535, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__49)) __PYX_ERR(0, 535, __pyx_L1_error)
 
-  /* "Controller.pyx":564
+  /* "Controller.pyx":570
  *                     self.vis.update_text("Goal shape moved", color="blue")
  * 
  *     def constrain_to_boundaries(self, int x, int y):             # <<<<<<<<<<<<<<
  *         """Constrain the drag point to keep the shape within grid boundaries"""
  *         # Constrain x-coordinate
  */
-  __pyx_tuple__50 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_min_x, __pyx_n_s_max_x, __pyx_n_s_min_y, __pyx_n_s_max_y); if (unlikely(!__pyx_tuple__50)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_tuple__50 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_min_x, __pyx_n_s_max_x, __pyx_n_s_min_y, __pyx_n_s_max_y); if (unlikely(!__pyx_tuple__50)) __PYX_ERR(0, 570, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__50);
   __Pyx_GIVEREF(__pyx_tuple__50);
-  __pyx_codeobj__51 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_constrain_to_boundaries, 564, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__51)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_codeobj__51 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_constrain_to_boundaries, 570, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__51)) __PYX_ERR(0, 570, __pyx_L1_error)
 
-  /* "Controller.pyx":578
+  /* "Controller.pyx":584
  *         return x, y
  * 
  *     def on_mouse_move(self, event):             # <<<<<<<<<<<<<<
  *         """Handle mouse movement events for dragging"""
  *         cdef double x, y
  */
-  __pyx_tuple__52 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_event, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_xi, __pyx_n_s_yi, __pyx_n_s_new_x, __pyx_n_s_new_y, __pyx_n_s_temp_positions, __pyx_n_s_offset_x, __pyx_n_s_offset_y); if (unlikely(!__pyx_tuple__52)) __PYX_ERR(0, 578, __pyx_L1_error)
+  __pyx_tuple__52 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_event, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_xi, __pyx_n_s_yi, __pyx_n_s_new_x, __pyx_n_s_new_y, __pyx_n_s_temp_positions, __pyx_n_s_offset_x, __pyx_n_s_offset_y); if (unlikely(!__pyx_tuple__52)) __PYX_ERR(0, 584, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__52);
   __Pyx_GIVEREF(__pyx_tuple__52);
-  __pyx_codeobj__53 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__52, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_mouse_move, 578, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__53)) __PYX_ERR(0, 578, __pyx_L1_error)
+  __pyx_codeobj__53 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__52, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Controller_pyx, __pyx_n_s_on_mouse_move, 584, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__53)) __PYX_ERR(0, 584, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -23552,15 +23643,15 @@ static int __Pyx_modinit_type_init_code(void) {
   if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_10Controller_SearchController) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
   #endif
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_10Controller___pyx_scope_struct__on_mouse_press = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_10Controller___pyx_scope_struct__on_mouse_press_spec, NULL); if (unlikely(!__pyx_ptype_10Controller___pyx_scope_struct__on_mouse_press)) __PYX_ERR(0, 482, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_10Controller___pyx_scope_struct__on_mouse_press_spec, __pyx_ptype_10Controller___pyx_scope_struct__on_mouse_press) < 0) __PYX_ERR(0, 482, __pyx_L1_error)
+  __pyx_ptype_10Controller___pyx_scope_struct__on_mouse_press = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_10Controller___pyx_scope_struct__on_mouse_press_spec, NULL); if (unlikely(!__pyx_ptype_10Controller___pyx_scope_struct__on_mouse_press)) __PYX_ERR(0, 488, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_10Controller___pyx_scope_struct__on_mouse_press_spec, __pyx_ptype_10Controller___pyx_scope_struct__on_mouse_press) < 0) __PYX_ERR(0, 488, __pyx_L1_error)
   #else
   __pyx_ptype_10Controller___pyx_scope_struct__on_mouse_press = &__pyx_type_10Controller___pyx_scope_struct__on_mouse_press;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_10Controller___pyx_scope_struct__on_mouse_press) < 0) __PYX_ERR(0, 482, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_10Controller___pyx_scope_struct__on_mouse_press) < 0) __PYX_ERR(0, 488, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
   __pyx_ptype_10Controller___pyx_scope_struct__on_mouse_press->tp_print = 0;
@@ -23571,15 +23662,15 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #endif
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_10Controller___pyx_scope_struct_1_genexpr = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_10Controller___pyx_scope_struct_1_genexpr_spec, NULL); if (unlikely(!__pyx_ptype_10Controller___pyx_scope_struct_1_genexpr)) __PYX_ERR(0, 502, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_10Controller___pyx_scope_struct_1_genexpr_spec, __pyx_ptype_10Controller___pyx_scope_struct_1_genexpr) < 0) __PYX_ERR(0, 502, __pyx_L1_error)
+  __pyx_ptype_10Controller___pyx_scope_struct_1_genexpr = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_10Controller___pyx_scope_struct_1_genexpr_spec, NULL); if (unlikely(!__pyx_ptype_10Controller___pyx_scope_struct_1_genexpr)) __PYX_ERR(0, 508, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_10Controller___pyx_scope_struct_1_genexpr_spec, __pyx_ptype_10Controller___pyx_scope_struct_1_genexpr) < 0) __PYX_ERR(0, 508, __pyx_L1_error)
   #else
   __pyx_ptype_10Controller___pyx_scope_struct_1_genexpr = &__pyx_type_10Controller___pyx_scope_struct_1_genexpr;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_10Controller___pyx_scope_struct_1_genexpr) < 0) __PYX_ERR(0, 502, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_10Controller___pyx_scope_struct_1_genexpr) < 0) __PYX_ERR(0, 508, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
   __pyx_ptype_10Controller___pyx_scope_struct_1_genexpr->tp_print = 0;
@@ -24041,199 +24132,199 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":262
- *                 self.vis.update_text(f"Invalid goal: Need exactly {len(self.start_positions)} blocks", color="red")
+  /* "Controller.pyx":267
+ *                 self.vis.update_text(f"Invalid goal: Need at least 1 block", color="red")
  * 
  *     def on_grid_click(self, event, int x, int y):             # <<<<<<<<<<<<<<
  *         """Handle grid cell clicks for goal selection"""
  *         if not self.selection_mode or not self.selection_active:
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_5on_grid_click, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_grid_click, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_5on_grid_click, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_grid_click, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 267, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_grid_click, __pyx_t_3) < 0) __PYX_ERR(0, 262, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_grid_click, __pyx_t_3) < 0) __PYX_ERR(0, 267, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":290
- *             self.vis.update_text(f"Selected {len(self.custom_goal)}/{len(self.start_positions)} blocks", color="blue")
+  /* "Controller.pyx":291
+ *             self.vis.update_text(f"Selected {len(self.custom_goal)} block(s)", color="blue")
  * 
  *     def highlight_cell(self, tuple pos, str color='green'):             # <<<<<<<<<<<<<<
  *         """Highlight a grid cell with the specified color"""
  *         cdef int x, y
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_7highlight_cell, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_highlight_cell, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__30)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_7highlight_cell, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_highlight_cell, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__30)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__31);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_highlight_cell, __pyx_t_3) < 0) __PYX_ERR(0, 290, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_highlight_cell, __pyx_t_3) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":297
+  /* "Controller.pyx":298
  *         plt.draw()
  * 
  *     def on_close(self, event):             # <<<<<<<<<<<<<<
  *         """Stops execution when the Matplotlib window is closed."""
  *         print("\nWindow closed. Exiting program.")
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_9on_close, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_close, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_9on_close, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_close, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_close, __pyx_t_3) < 0) __PYX_ERR(0, 297, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_close, __pyx_t_3) < 0) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":302
+  /* "Controller.pyx":303
  *         sys.exit()  # Forcefully stop the script
  * 
  *     def on_shape_selected(self, str label):             # <<<<<<<<<<<<<<
  *         """Handle shape selection from radio buttons"""
  *         # Cancel selection mode if active when changing shapes
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_11on_shape_selected, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_shape_select, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_11on_shape_selected, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_shape_select, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_shape_selected, __pyx_t_3) < 0) __PYX_ERR(0, 302, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_shape_selected, __pyx_t_3) < 0) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":339
- *         self.vis.update_text(f"Selected {self.current_shape} shape", color="blue")
+  /* "Controller.pyx":345
+ *             self.vis.update_text(f"Selected {self.current_shape} shape ({len(self.goal_positions)} blocks)", color="blue")
  * 
  *     def handle_button(self, event):             # <<<<<<<<<<<<<<
  *         """Handle button clicks based on current state"""
  *         if not self.search_completed:
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_13handle_button, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_handle_button, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__35)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 339, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_13handle_button, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_handle_button, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__35)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_handle_button, __pyx_t_3) < 0) __PYX_ERR(0, 339, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_handle_button, __pyx_t_3) < 0) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":346
+  /* "Controller.pyx":352
  *             self.vis.handle_button_click(event)
  * 
  *     def run_search(self, event):             # <<<<<<<<<<<<<<
  *         """Runs the search when the Search button is clicked."""
  *         # Clear goal shape highlight
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_15run_search, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_run_search, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__37)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 346, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_15run_search, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_run_search, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__37)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 352, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_run_search, __pyx_t_3) < 0) __PYX_ERR(0, 346, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_run_search, __pyx_t_3) < 0) __PYX_ERR(0, 352, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":374
+  /* "Controller.pyx":380
  *             plt.draw()
  * 
  *     def update_max_simultaneous_moves(self, val):             # <<<<<<<<<<<<<<
  *         """Update the maximum number of simultaneous moves"""
  *         self.max_simultaneous_moves = int(val)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_17update_max_simultaneous_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_update_max_simu, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__39)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_17update_max_simultaneous_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_update_max_simu, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__39)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_update_max_simultaneous_moves, __pyx_t_3) < 0) __PYX_ERR(0, 374, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_update_max_simultaneous_moves, __pyx_t_3) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":402
+  /* "Controller.pyx":408
  *         self.vis.path = None
  * 
  *     def update_min_simultaneous_moves(self, val):             # <<<<<<<<<<<<<<
  *         """Update the minimum number of simultaneous moves"""
  *         self.min_simultaneous_moves = int(val)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_19update_min_simultaneous_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_update_min_simu, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 402, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_19update_min_simultaneous_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_update_min_simu, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 408, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_update_min_simultaneous_moves, __pyx_t_3) < 0) __PYX_ERR(0, 402, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_update_min_simultaneous_moves, __pyx_t_3) < 0) __PYX_ERR(0, 408, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":430
+  /* "Controller.pyx":436
  *         self.vis.path = None
  * 
  *     def update_animation_speed(self, val):             # <<<<<<<<<<<<<<
  *         """Update the animation speed (seconds between frames)"""
  *         self.animation_speed = val
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_21update_animation_speed, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_update_animatio, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 430, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_21update_animation_speed, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_update_animatio, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 436, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_update_animation_speed, __pyx_t_3) < 0) __PYX_ERR(0, 430, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_update_animation_speed, __pyx_t_3) < 0) __PYX_ERR(0, 436, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":436
+  /* "Controller.pyx":442
  *         self.vis.update_text(f"Animation speed: {val:.2f} sec/step", color="blue")
  * 
  *     def on_text_submit(self, text):             # <<<<<<<<<<<<<<
  *         """Handle grid size text submission"""
  *         self.change_grid_size(None)  # Call change_grid_size when Enter is pressed
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_23on_text_submit, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_text_submit, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__43)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_23on_text_submit, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_text_submit, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__43)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 442, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_text_submit, __pyx_t_3) < 0) __PYX_ERR(0, 436, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_text_submit, __pyx_t_3) < 0) __PYX_ERR(0, 442, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":440
+  /* "Controller.pyx":446
  *         self.change_grid_size(None)  # Call change_grid_size when Enter is pressed
  * 
  *     def change_grid_size(self, event):             # <<<<<<<<<<<<<<
  *         """Handle grid size change"""
  *         try:
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_25change_grid_size, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_change_grid_siz, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__45)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_25change_grid_size, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_change_grid_siz, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__45)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_change_grid_size, __pyx_t_3) < 0) __PYX_ERR(0, 440, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_change_grid_size, __pyx_t_3) < 0) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":482
+  /* "Controller.pyx":488
  *             self.vis.update_text("Invalid grid size. Enter a number between 10-200", color="red")
  * 
  *     def on_mouse_press(self, event):             # <<<<<<<<<<<<<<
  *         """Handle mouse press events for dragging and selection"""
  *         cdef int x, y
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_27on_mouse_press, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_mouse_press, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__47)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 482, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_27on_mouse_press, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_mouse_press, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__47)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_mouse_press, __pyx_t_3) < 0) __PYX_ERR(0, 482, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_mouse_press, __pyx_t_3) < 0) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":529
+  /* "Controller.pyx":535
  *             self.bound_bottom = self.shape_max_y - y
  * 
  *     def on_mouse_release(self, event):             # <<<<<<<<<<<<<<
  *         """Handle mouse release events for dragging"""
  *         cdef int x, y, new_x, new_y
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_29on_mouse_release, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_mouse_releas, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__49)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 529, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_29on_mouse_release, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_mouse_releas, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__49)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 535, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_mouse_release, __pyx_t_3) < 0) __PYX_ERR(0, 529, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_mouse_release, __pyx_t_3) < 0) __PYX_ERR(0, 535, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":564
+  /* "Controller.pyx":570
  *                     self.vis.update_text("Goal shape moved", color="blue")
  * 
  *     def constrain_to_boundaries(self, int x, int y):             # <<<<<<<<<<<<<<
  *         """Constrain the drag point to keep the shape within grid boundaries"""
  *         # Constrain x-coordinate
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_31constrain_to_boundaries, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_constrain_to_bo, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_31constrain_to_boundaries, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_constrain_to_bo, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 570, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_constrain_to_boundaries, __pyx_t_3) < 0) __PYX_ERR(0, 564, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_constrain_to_boundaries, __pyx_t_3) < 0) __PYX_ERR(0, 570, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
-  /* "Controller.pyx":578
+  /* "Controller.pyx":584
  *         return x, y
  * 
  *     def on_mouse_move(self, event):             # <<<<<<<<<<<<<<
  *         """Handle mouse movement events for dragging"""
  *         cdef double x, y
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_33on_mouse_move, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_mouse_move, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__53)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 578, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_10Controller_16SearchController_33on_mouse_move, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SearchController_on_mouse_move, NULL, __pyx_n_s_Controller, __pyx_d, ((PyObject *)__pyx_codeobj__53)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 584, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_mouse_move, __pyx_t_3) < 0) __PYX_ERR(0, 578, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_10Controller_SearchController, __pyx_n_s_on_mouse_move, __pyx_t_3) < 0) __PYX_ERR(0, 584, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_10Controller_SearchController);
 
@@ -25800,176 +25891,6 @@ static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr
 }
 #endif
 
-/* PyObjectCall2Args */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
-    PyObject *args[3] = {NULL, arg1, arg2};
-    return __Pyx_PyObject_FastCall(function, args+1, 2 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
-}
-
-/* PyObjectGetMethod */
-static int __Pyx_PyObject_GetMethod(PyObject *obj, PyObject *name, PyObject **method) {
-    PyObject *attr;
-#if CYTHON_UNPACK_METHODS && CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_PYTYPE_LOOKUP
-    __Pyx_TypeName type_name;
-    PyTypeObject *tp = Py_TYPE(obj);
-    PyObject *descr;
-    descrgetfunc f = NULL;
-    PyObject **dictptr, *dict;
-    int meth_found = 0;
-    assert (*method == NULL);
-    if (unlikely(tp->tp_getattro != PyObject_GenericGetAttr)) {
-        attr = __Pyx_PyObject_GetAttrStr(obj, name);
-        goto try_unpack;
-    }
-    if (unlikely(tp->tp_dict == NULL) && unlikely(PyType_Ready(tp) < 0)) {
-        return 0;
-    }
-    descr = _PyType_Lookup(tp, name);
-    if (likely(descr != NULL)) {
-        Py_INCREF(descr);
-#if defined(Py_TPFLAGS_METHOD_DESCRIPTOR) && Py_TPFLAGS_METHOD_DESCRIPTOR
-        if (__Pyx_PyType_HasFeature(Py_TYPE(descr), Py_TPFLAGS_METHOD_DESCRIPTOR))
-#elif PY_MAJOR_VERSION >= 3
-        #ifdef __Pyx_CyFunction_USED
-        if (likely(PyFunction_Check(descr) || __Pyx_IS_TYPE(descr, &PyMethodDescr_Type) || __Pyx_CyFunction_Check(descr)))
-        #else
-        if (likely(PyFunction_Check(descr) || __Pyx_IS_TYPE(descr, &PyMethodDescr_Type)))
-        #endif
-#else
-        #ifdef __Pyx_CyFunction_USED
-        if (likely(PyFunction_Check(descr) || __Pyx_CyFunction_Check(descr)))
-        #else
-        if (likely(PyFunction_Check(descr)))
-        #endif
-#endif
-        {
-            meth_found = 1;
-        } else {
-            f = Py_TYPE(descr)->tp_descr_get;
-            if (f != NULL && PyDescr_IsData(descr)) {
-                attr = f(descr, obj, (PyObject *)Py_TYPE(obj));
-                Py_DECREF(descr);
-                goto try_unpack;
-            }
-        }
-    }
-    dictptr = _PyObject_GetDictPtr(obj);
-    if (dictptr != NULL && (dict = *dictptr) != NULL) {
-        Py_INCREF(dict);
-        attr = __Pyx_PyDict_GetItemStr(dict, name);
-        if (attr != NULL) {
-            Py_INCREF(attr);
-            Py_DECREF(dict);
-            Py_XDECREF(descr);
-            goto try_unpack;
-        }
-        Py_DECREF(dict);
-    }
-    if (meth_found) {
-        *method = descr;
-        return 1;
-    }
-    if (f != NULL) {
-        attr = f(descr, obj, (PyObject *)Py_TYPE(obj));
-        Py_DECREF(descr);
-        goto try_unpack;
-    }
-    if (likely(descr != NULL)) {
-        *method = descr;
-        return 0;
-    }
-    type_name = __Pyx_PyType_GetName(tp);
-    PyErr_Format(PyExc_AttributeError,
-#if PY_MAJOR_VERSION >= 3
-                 "'" __Pyx_FMT_TYPENAME "' object has no attribute '%U'",
-                 type_name, name);
-#else
-                 "'" __Pyx_FMT_TYPENAME "' object has no attribute '%.400s'",
-                 type_name, PyString_AS_STRING(name));
-#endif
-    __Pyx_DECREF_TypeName(type_name);
-    return 0;
-#else
-    attr = __Pyx_PyObject_GetAttrStr(obj, name);
-    goto try_unpack;
-#endif
-try_unpack:
-#if CYTHON_UNPACK_METHODS
-    if (likely(attr) && PyMethod_Check(attr) && likely(PyMethod_GET_SELF(attr) == obj)) {
-        PyObject *function = PyMethod_GET_FUNCTION(attr);
-        Py_INCREF(function);
-        Py_DECREF(attr);
-        *method = function;
-        return 1;
-    }
-#endif
-    *method = attr;
-    return 0;
-}
-
-/* PyObjectCallMethod1 */
-#if !(CYTHON_VECTORCALL && __PYX_LIMITED_VERSION_HEX >= 0x030C00A2)
-static PyObject* __Pyx__PyObject_CallMethod1(PyObject* method, PyObject* arg) {
-    PyObject *result = __Pyx_PyObject_CallOneArg(method, arg);
-    Py_DECREF(method);
-    return result;
-}
-#endif
-static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg) {
-#if CYTHON_VECTORCALL && __PYX_LIMITED_VERSION_HEX >= 0x030C00A2
-    PyObject *args[2] = {obj, arg};
-    (void) __Pyx_PyObject_GetMethod;
-    (void) __Pyx_PyObject_CallOneArg;
-    (void) __Pyx_PyObject_Call2Args;
-    return PyObject_VectorcallMethod(method_name, args, 2 | PY_VECTORCALL_ARGUMENTS_OFFSET, NULL);
-#else
-    PyObject *method = NULL, *result;
-    int is_method = __Pyx_PyObject_GetMethod(obj, method_name, &method);
-    if (likely(is_method)) {
-        result = __Pyx_PyObject_Call2Args(method, obj, arg);
-        Py_DECREF(method);
-        return result;
-    }
-    if (unlikely(!method)) return NULL;
-    return __Pyx__PyObject_CallMethod1(method, arg);
-#endif
-}
-
-/* pop_index */
-static PyObject* __Pyx__PyObject_PopNewIndex(PyObject* L, PyObject* py_ix) {
-    PyObject *r;
-    if (unlikely(!py_ix)) return NULL;
-    r = __Pyx__PyObject_PopIndex(L, py_ix);
-    Py_DECREF(py_ix);
-    return r;
-}
-static PyObject* __Pyx__PyObject_PopIndex(PyObject* L, PyObject* py_ix) {
-    return __Pyx_PyObject_CallMethod1(L, __pyx_n_s_pop, py_ix);
-}
-#if CYTHON_USE_PYLIST_INTERNALS && CYTHON_ASSUME_SAFE_MACROS
-static PyObject* __Pyx__PyList_PopIndex(PyObject* L, PyObject* py_ix, Py_ssize_t ix) {
-    Py_ssize_t size = PyList_GET_SIZE(L);
-    if (likely(size > (((PyListObject*)L)->allocated >> 1))) {
-        Py_ssize_t cix = ix;
-        if (cix < 0) {
-            cix += size;
-        }
-        if (likely(__Pyx_is_valid_index(cix, size))) {
-            PyObject* v = PyList_GET_ITEM(L, cix);
-            __Pyx_SET_SIZE(L, Py_SIZE(L) - 1);
-            size -= 1;
-            memmove(&PyList_GET_ITEM(L, cix), &PyList_GET_ITEM(L, cix+1), (size_t)(size-cix)*sizeof(PyObject*));
-            return v;
-        }
-    }
-    if (py_ix == Py_None) {
-        return __Pyx__PyObject_PopNewIndex(L, PyInt_FromSsize_t(ix));
-    } else {
-        return __Pyx__PyObject_PopIndex(L, py_ix);
-    }
-}
-#endif
-
 /* RaiseTooManyValuesToUnpack */
 static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected) {
     PyErr_Format(PyExc_ValueError,
@@ -26973,6 +26894,107 @@ static int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
     PyObject *arg[2] = {NULL, NULL};
     return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
+}
+
+/* PyObjectGetMethod */
+static int __Pyx_PyObject_GetMethod(PyObject *obj, PyObject *name, PyObject **method) {
+    PyObject *attr;
+#if CYTHON_UNPACK_METHODS && CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_PYTYPE_LOOKUP
+    __Pyx_TypeName type_name;
+    PyTypeObject *tp = Py_TYPE(obj);
+    PyObject *descr;
+    descrgetfunc f = NULL;
+    PyObject **dictptr, *dict;
+    int meth_found = 0;
+    assert (*method == NULL);
+    if (unlikely(tp->tp_getattro != PyObject_GenericGetAttr)) {
+        attr = __Pyx_PyObject_GetAttrStr(obj, name);
+        goto try_unpack;
+    }
+    if (unlikely(tp->tp_dict == NULL) && unlikely(PyType_Ready(tp) < 0)) {
+        return 0;
+    }
+    descr = _PyType_Lookup(tp, name);
+    if (likely(descr != NULL)) {
+        Py_INCREF(descr);
+#if defined(Py_TPFLAGS_METHOD_DESCRIPTOR) && Py_TPFLAGS_METHOD_DESCRIPTOR
+        if (__Pyx_PyType_HasFeature(Py_TYPE(descr), Py_TPFLAGS_METHOD_DESCRIPTOR))
+#elif PY_MAJOR_VERSION >= 3
+        #ifdef __Pyx_CyFunction_USED
+        if (likely(PyFunction_Check(descr) || __Pyx_IS_TYPE(descr, &PyMethodDescr_Type) || __Pyx_CyFunction_Check(descr)))
+        #else
+        if (likely(PyFunction_Check(descr) || __Pyx_IS_TYPE(descr, &PyMethodDescr_Type)))
+        #endif
+#else
+        #ifdef __Pyx_CyFunction_USED
+        if (likely(PyFunction_Check(descr) || __Pyx_CyFunction_Check(descr)))
+        #else
+        if (likely(PyFunction_Check(descr)))
+        #endif
+#endif
+        {
+            meth_found = 1;
+        } else {
+            f = Py_TYPE(descr)->tp_descr_get;
+            if (f != NULL && PyDescr_IsData(descr)) {
+                attr = f(descr, obj, (PyObject *)Py_TYPE(obj));
+                Py_DECREF(descr);
+                goto try_unpack;
+            }
+        }
+    }
+    dictptr = _PyObject_GetDictPtr(obj);
+    if (dictptr != NULL && (dict = *dictptr) != NULL) {
+        Py_INCREF(dict);
+        attr = __Pyx_PyDict_GetItemStr(dict, name);
+        if (attr != NULL) {
+            Py_INCREF(attr);
+            Py_DECREF(dict);
+            Py_XDECREF(descr);
+            goto try_unpack;
+        }
+        Py_DECREF(dict);
+    }
+    if (meth_found) {
+        *method = descr;
+        return 1;
+    }
+    if (f != NULL) {
+        attr = f(descr, obj, (PyObject *)Py_TYPE(obj));
+        Py_DECREF(descr);
+        goto try_unpack;
+    }
+    if (likely(descr != NULL)) {
+        *method = descr;
+        return 0;
+    }
+    type_name = __Pyx_PyType_GetName(tp);
+    PyErr_Format(PyExc_AttributeError,
+#if PY_MAJOR_VERSION >= 3
+                 "'" __Pyx_FMT_TYPENAME "' object has no attribute '%U'",
+                 type_name, name);
+#else
+                 "'" __Pyx_FMT_TYPENAME "' object has no attribute '%.400s'",
+                 type_name, PyString_AS_STRING(name));
+#endif
+    __Pyx_DECREF_TypeName(type_name);
+    return 0;
+#else
+    attr = __Pyx_PyObject_GetAttrStr(obj, name);
+    goto try_unpack;
+#endif
+try_unpack:
+#if CYTHON_UNPACK_METHODS
+    if (likely(attr) && PyMethod_Check(attr) && likely(PyMethod_GET_SELF(attr) == obj)) {
+        PyObject *function = PyMethod_GET_FUNCTION(attr);
+        Py_INCREF(function);
+        Py_DECREF(attr);
+        *method = function;
+        return 1;
+    }
+#endif
+    *method = attr;
+    return 0;
 }
 
 /* PyObjectCallMethod0 */
@@ -29829,6 +29851,40 @@ static CYTHON_INLINE void __Pyx_ExceptionSwap(PyObject **type, PyObject **value,
     *tb = tmp_tb;
 }
 #endif
+
+/* PyObjectCall2Args */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
+    PyObject *args[3] = {NULL, arg1, arg2};
+    return __Pyx_PyObject_FastCall(function, args+1, 2 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
+}
+
+/* PyObjectCallMethod1 */
+#if !(CYTHON_VECTORCALL && __PYX_LIMITED_VERSION_HEX >= 0x030C00A2)
+static PyObject* __Pyx__PyObject_CallMethod1(PyObject* method, PyObject* arg) {
+    PyObject *result = __Pyx_PyObject_CallOneArg(method, arg);
+    Py_DECREF(method);
+    return result;
+}
+#endif
+static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg) {
+#if CYTHON_VECTORCALL && __PYX_LIMITED_VERSION_HEX >= 0x030C00A2
+    PyObject *args[2] = {obj, arg};
+    (void) __Pyx_PyObject_GetMethod;
+    (void) __Pyx_PyObject_CallOneArg;
+    (void) __Pyx_PyObject_Call2Args;
+    return PyObject_VectorcallMethod(method_name, args, 2 | PY_VECTORCALL_ARGUMENTS_OFFSET, NULL);
+#else
+    PyObject *method = NULL, *result;
+    int is_method = __Pyx_PyObject_GetMethod(obj, method_name, &method);
+    if (likely(is_method)) {
+        result = __Pyx_PyObject_Call2Args(method, obj, arg);
+        Py_DECREF(method);
+        return result;
+    }
+    if (unlikely(!method)) return NULL;
+    return __Pyx__PyObject_CallMethod1(method, arg);
+#endif
+}
 
 /* CoroutineBase */
 #include <frameobject.h>

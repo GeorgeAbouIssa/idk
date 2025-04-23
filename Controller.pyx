@@ -231,7 +231,8 @@ cdef class SearchController:
             self.vis.draw_grid(highlight_goal=False)
         else:
             # Exiting selection mode
-            if len(self.custom_goal) == len(self.start_positions):
+            # MODIFIED: Remove constraint that custom goal must have same number of blocks as start
+            if len(self.custom_goal) > 0:  # Just require at least one block
                 self.goal_positions = self.custom_goal.copy()  # Make a copy of the custom goal
                 self.agent = ConnectedMatterAgent(
                     self.grid_size, 
@@ -246,7 +247,11 @@ cdef class SearchController:
                 # Update visualization with the new goal shape
                 self.vis.draw_grid()
                 self.vis.highlight_goal_shape(self.goal_positions)
-                self.vis.update_text(f"Custom goal set with {len(self.goal_positions)} blocks", color="green")
+                
+                if len(self.goal_positions) < len(self.start_positions):
+                    self.vis.update_text(f"Custom goal set with {len(self.goal_positions)} blocks (fewer than start)", color="green")
+                else:
+                    self.vis.update_text(f"Custom goal set with {len(self.goal_positions)} blocks", color="green")
                 
                 # Reset search state
                 self.search_completed = False
@@ -257,7 +262,7 @@ cdef class SearchController:
             else:
                 self.selection_mode = True  # Stay in selection mode if invalid
                 self.select_button.label.set_text("Select Goal")
-                self.vis.update_text(f"Invalid goal: Need exactly {len(self.start_positions)} blocks", color="red")
+                self.vis.update_text(f"Invalid goal: Need at least 1 block", color="red")
 
     def on_grid_click(self, event, int x, int y):
         """Handle grid cell clicks for goal selection"""
@@ -271,13 +276,9 @@ cdef class SearchController:
                 # Remove this position
                 self.custom_goal.remove(pos)
             else:
-                # Add this position if we haven't reached the limit
-                if len(self.custom_goal) < len(self.start_positions):
-                    self.custom_goal.append(pos)
-                else:
-                    # Replace the first position
-                    self.custom_goal.pop(0)
-                    self.custom_goal.append(pos)
+                # Add this position
+                # MODIFIED: Remove the limit on maximum number of blocks
+                self.custom_goal.append(pos)
             
             # Redraw the grid with current selection
             self.vis.draw_grid(highlight_goal=False)
@@ -285,7 +286,7 @@ cdef class SearchController:
                 self.highlight_cell(cell_pos, color='green')
             
             # Update the counter
-            self.vis.update_text(f"Selected {len(self.custom_goal)}/{len(self.start_positions)} blocks", color="blue")
+            self.vis.update_text(f"Selected {len(self.custom_goal)} block(s)", color="blue")
     
     def highlight_cell(self, tuple pos, str color='green'):
         """Highlight a grid cell with the specified color"""
@@ -334,7 +335,12 @@ cdef class SearchController:
         self.vis.draw_grid()
         self.vis.highlight_goal_shape(self.goal_positions)
         self.vis.button.label.set_text("Search")
-        self.vis.update_text(f"Selected {self.current_shape} shape", color="blue")
+        
+        # Display message about number of blocks
+        if len(self.goal_positions) < len(self.start_positions):
+            self.vis.update_text(f"Selected {self.current_shape} shape ({len(self.goal_positions)} blocks, fewer than start)", color="blue")
+        else:
+            self.vis.update_text(f"Selected {self.current_shape} shape ({len(self.goal_positions)} blocks)", color="blue")
 
     def handle_button(self, event):
         """Handle button clicks based on current state"""
