@@ -2,7 +2,7 @@ import matplotlib
 matplotlib.use('TkAgg')  # Use TkAgg backend for better stability
 import matplotlib.pyplot as plt
 import sys
-from Controller import Controller
+from Controller import SearchController
 
 if __name__ == "__main__":
     try:
