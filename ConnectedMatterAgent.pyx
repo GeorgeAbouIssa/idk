@@ -1,10 +1,28 @@
 import heapq
 import time
 import matplotlib.pyplot as plt
+import numpy as np
 from collections import deque
 
-class ConnectedMatterAgent:
-    def __init__(self, grid_size, start_positions, goal_positions, topology="moore", max_simultaneous_moves=1, min_simultaneous_moves=1):
+cdef class ConnectedMatterAgent:
+    cdef public tuple grid_size
+    cdef public list start_positions
+    cdef public list goal_positions
+    cdef public str topology
+    cdef public int max_simultaneous_moves
+    cdef public int min_simultaneous_moves
+    cdef public list directions
+    cdef public object start_state
+    cdef public object goal_state
+    cdef public tuple goal_centroid
+    cdef public dict valid_moves_cache
+    cdef public dict articulation_points_cache
+    cdef public dict connectivity_check_cache
+    cdef public int beam_width
+    cdef public int max_iterations
+
+    def __init__(self, tuple grid_size, list start_positions, list goal_positions, str topology="moore", 
+                 int max_simultaneous_moves=1, int min_simultaneous_moves=1):
         self.grid_size = grid_size
         self.start_positions = list(start_positions)
         self.goal_positions = list(goal_positions)
@@ -39,6 +57,8 @@ class ConnectedMatterAgent:
         
     def calculate_centroid(self, positions):
         """Calculate the centroid (average position) of a set of positions"""
+        cdef double x_sum, y_sum
+        
         if not positions:
             return (0, 0)
         x_sum = sum(pos[0] for pos in positions)
@@ -101,7 +121,7 @@ class ConnectedMatterAgent:
         time = [0]  # Using list to allow modification inside nested function
         
         def dfs(u, time):
-            children = 0
+            cdef int children = 0
             visited.add(u)
             discovery[u] = low[u] = time[0]
             time[0] += 1
@@ -286,6 +306,9 @@ class ConnectedMatterAgent:
         Generate chain moves where one block moves into the space of another
         while that block moves elsewhere, maintaining connectivity
         """
+        cdef double min_dist
+        cdef int dx, dy
+        
         state_set = set(state)
         valid_moves = []
         
@@ -440,6 +463,12 @@ class ConnectedMatterAgent:
         Improved heuristic for morphing phase:
         Uses bipartite matching to find optimal assignment of blocks to goal positions
         """
+        cdef double total_distance = 0
+        cdef double min_dist
+        cdef int best_j
+        cdef int matching_positions
+        cdef double connectivity_bonus
+        
         if not state:
             return float('inf')
             
@@ -461,7 +490,6 @@ class ConnectedMatterAgent:
             distances.append(row)
         
         # Use greedy assignment algorithm
-        total_distance = 0
         assigned_cols = set()
         
         # Sort rows by minimum distance
@@ -491,41 +519,42 @@ class ConnectedMatterAgent:
         
         return total_distance + connectivity_bonus
     
-    def block_movement_phase(self, time_limit=15):
+    def block_movement_phase(self, double time_limit=15):
         """
         Phase 1: Move the entire block toward the goal centroid
         Returns the path of states to get near the goal area
         Modified to stop 1 grid cell before reaching the goal centroid
         """
+        cdef double start_time
+        cdef double min_distance = 1.0
+        cdef double max_distance = 1.0
+        cdef double centroid_distance, neighbor_distance, distance_penalty
+        cdef double adjusted_heuristic, f_score, best_distance_diff, distance, distance_diff, best_distance
+        cdef int tentative_g
+        
         print("Starting Block Movement Phase...")
         start_time = time.time()
 
-    # Initialize A* search
+        # Initialize A* search
         open_set = [(self.block_heuristic(self.start_state), 0, self.start_state)]
         closed_set = set()
 
-    # Track path and g-scores
+        # Track path and g-scores
         g_score = {self.start_state: 0}
         came_from = {self.start_state: None}
-
-    # Modified: We want to stop 1 grid cell before reaching the centroid
-    # Instead of using a small threshold, we'll check if distance is between 1.0 and 2.0
-    # This ensures we're approximately 1 grid cell away from the goal centroid
-        min_distance = 1.0
-        max_distance = 1.0
 
         while open_set and time.time() - start_time < time_limit:
             # Get state with lowest f-score
             f, g, current = heapq.heappop(open_set)
     
-        # Skip if already processed
+            # Skip if already processed
             if current in closed_set:
                 continue
         
-        # Check if we're at the desired distance from the goal centroid
+            # Check if we're at the desired distance from the goal centroid
             current_centroid = self.calculate_centroid(current)
             centroid_distance = (abs(current_centroid[0] - self.goal_centroid[0]) + 
-                            abs(current_centroid[1] - self.goal_centroid[1]))
+                                abs(current_centroid[1] - self.goal_centroid[1]))
                         
             if min_distance <= centroid_distance <= max_distance:
                 print(f"Block stopped 1 grid cell before goal centroid. Distance: {centroid_distance}")
@@ -533,12 +562,12 @@ class ConnectedMatterAgent:
         
             closed_set.add(current)
     
-        # Process neighbor states (block moves)
+            # Process neighbor states (block moves)
             for neighbor in self.get_valid_block_moves(current):
                 if neighbor in closed_set:
                     continue
-            
-            # Calculate tentative g-score
+                
+                # Calculate tentative g-score
                 tentative_g = g_score[current] + 1
         
                 if neighbor not in g_score or tentative_g < g_score[neighbor]:
@@ -546,12 +575,12 @@ class ConnectedMatterAgent:
                     came_from[neighbor] = current
                     g_score[neighbor] = tentative_g
                 
-                # Modified: Adjust heuristic to prefer states that are close to but not at the centroid
+                    # Modified: Adjust heuristic to prefer states that are close to but not at the centroid
                     neighbor_centroid = self.calculate_centroid(neighbor)
                     neighbor_distance = (abs(neighbor_centroid[0] - self.goal_centroid[0]) + 
-                                   abs(neighbor_centroid[1] - self.goal_centroid[1]))
+                                        abs(neighbor_centroid[1] - self.goal_centroid[1]))
                 
-                # Penalize distances that are too small (< 1.0)
+                    # Penalize distances that are too small (< 1.0)
                     distance_penalty = 0
                     if neighbor_distance < min_distance:
                         distance_penalty = 10 * (min_distance - neighbor_distance)
@@ -559,16 +588,16 @@ class ConnectedMatterAgent:
                     adjusted_heuristic = self.block_heuristic(neighbor) + distance_penalty
                     f_score = tentative_g + adjusted_heuristic
             
-                # Add to open set
+                    # Add to open set
                     heapq.heappush(open_set, (f_score, tentative_g, neighbor))
 
-    # If we exit the loop, either no path was found or time limit reached
+        # If we exit the loop, either no path was found or time limit reached
         if time.time() - start_time >= time_limit:
             print("Block movement phase timed out!")
     
-    # Return the best state we found
+        # Return the best state we found
         if came_from:
-        # Find state with appropriate distance to centroid
+            # Find state with appropriate distance to centroid
             best_state = None
             best_distance_diff = float('inf')
         
@@ -577,13 +606,13 @@ class ConnectedMatterAgent:
                 distance = (abs(state_centroid[0] - self.goal_centroid[0]) + 
                             abs(state_centroid[1] - self.goal_centroid[1]))
             
-            # We want a state that's as close as possible to our target distance range
+                # We want a state that's as close as possible to our target distance range
                 if distance < min_distance:
                     distance_diff = min_distance - distance
                 elif distance > max_distance:
                     distance_diff = distance - max_distance
                 else:
-                # Distance is within our desired range
+                    # Distance is within our desired range
                     best_state = state
                     break
                 
@@ -600,11 +629,16 @@ class ConnectedMatterAgent:
     
         return [self.start_state]  # No movement possible
     
-    def smarter_morphing_phase(self, start_state, time_limit=15):
+    def smarter_morphing_phase(self, start_state, double time_limit=15):
         """
         Improved Phase 2: Morph the block into the goal shape while maintaining connectivity
         Uses beam search and intelligent move generation with support for simultaneous moves
         """
+        cdef double start_time
+        cdef double best_heuristic, current_heuristic, last_improvement_time, f_score
+        cdef int iterations = 0
+        cdef int tentative_g
+        
         print(f"Starting Smarter Morphing Phase with {self.min_simultaneous_moves}-{self.max_simultaneous_moves} simultaneous moves...")
         start_time = time.time()
         
@@ -619,8 +653,6 @@ class ConnectedMatterAgent:
         # Track best state seen so far
         best_state = start_state
         best_heuristic = self.improved_morphing_heuristic(start_state)
-        
-        iterations = 0
         last_improvement_time = time.time()
         
         while open_set and time.time() - start_time < time_limit:
@@ -707,13 +739,13 @@ class ConnectedMatterAgent:
         path.reverse()
         return path
     
-    def search(self, time_limit=30):
+    def search(self, double time_limit=30):
         """
         Main search method combining block movement and smarter morphing
         """
         # Allocate time for each phase
-        block_time_limit = time_limit * 0.3  # 30% for block movement
-        morphing_time_limit = time_limit * 0.7  # 70% for morphing
+        cdef double block_time_limit = time_limit * 0.3  # 30% for block movement
+        cdef double morphing_time_limit = time_limit * 0.7  # 70% for morphing
         
         # Phase 1: Block Movement
         block_path = self.block_movement_phase(block_time_limit)
@@ -737,20 +769,21 @@ class ConnectedMatterAgent:
         
         return combined_path
     
-    def visualize_path(self, path, interval=0.5):
+    def visualize_path(self, path, double interval=0.5):
         """
         Visualize the path as an animation
         """
+        cdef int min_x = 0
+        cdef int max_x = self.grid_size[0] - 1
+        cdef int min_y = 0
+        cdef int max_y = self.grid_size[1] - 1
+        
         if not path:
             print("No path to visualize")
             return
         
         fig, ax = plt.subplots(figsize=(7, 7))
         plt.ion()  # Turn on interactive mode
-    
-        # Get bounds for plotting
-        min_x, max_x = 0, self.grid_size[0] - 1
-        min_y, max_y = 0, self.grid_size[1] - 1
     
         # Show initial state
         ax.clear()

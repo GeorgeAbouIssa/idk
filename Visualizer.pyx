@@ -2,21 +2,35 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Button
 import numpy as np
 
-class Visualizer:
-    def __init__(self, grid_size, path, start_positions, animation_speed=0.05):
+cdef class Visualizer:
+    cdef public object fig
+    cdef public object ax
+    cdef public object button_ax
+    cdef public object button
+    cdef public object text_annotation
+    cdef public tuple grid_size
+    cdef public list path
+    cdef public list start_positions
+    cdef public double animation_speed
+    cdef public bint paused
+    cdef public bint animation_done
+    cdef public int current_step
+    cdef public bint animation_started
+
+    def __init__(self, tuple grid_size, list path, list start_positions, double animation_speed=0.05):
         self.grid_size = grid_size
-        self.path = path  # Ensure path is passed correctly
+        self.path = path
         self.start_positions = start_positions
-        self.animation_speed = animation_speed  # Time in seconds between animation steps
-        self.paused = False  # Track pause state
-        self.animation_done = False  # Track if animation is complete
-        self.current_step = 0  # Keep track of the animation step
-        self.animation_started = False  # Track if animation has started
+        self.animation_speed = animation_speed
+        self.paused = False
+        self.animation_done = False
+        self.current_step = 0
+        self.animation_started = False
 
-        self.fig, self.ax = plt.subplots(figsize=(12, 10))  # Larger figure
-        self.fig.subplots_adjust(left=0.2, right=0.8, bottom=0.2, top=0.95)  # Moved up by adjusting top margin
+        self.fig, self.ax = plt.subplots(figsize=(12, 10))
+        self.fig.subplots_adjust(left=0.2, right=0.8, bottom=0.2, top=0.95)
 
-        # Create button (moved to the right side to make room for radio buttons)
+        # Create button
         self.button_ax = self.fig.add_axes([0.7, 0.05, 0.2, 0.075])
         self.button = Button(self.button_ax, "Search")
         
@@ -26,9 +40,9 @@ class Visualizer:
             ha="center", fontsize=12, fontweight="bold"
         )
 
-        self.draw_grid()  # Ensure the grid is drawn initially
+        self.draw_grid()
 
-    def draw_grid(self, highlight_initial=True, highlight_goal=False):
+    def draw_grid(self, bint highlight_initial=True, bint highlight_goal=False):
         """Draws the grid and optionally highlights positions."""
         self.ax.clear()
         self.ax.set_xticks(np.arange(self.grid_size[1] + 1), minor=False)
@@ -49,11 +63,11 @@ class Visualizer:
         )
         plt.draw()
         
-    def update_text(self, message, color="black"):
+    def update_text(self, str message, str color="black"):
         """Updates the status message above the grid dynamically with color."""
         self.text_annotation.set_text(message)
-        self.text_annotation.set_color(color)  # Set text color
-        plt.draw()  # Force update
+        self.text_annotation.set_color(color)
+        plt.draw()
 
     def handle_button_click(self, event):
         """Handles the button click event for start, pause, resume, and restart."""
@@ -65,7 +79,7 @@ class Visualizer:
             # Restart the animation
             self.animation_done = False
             self.animation_started = False
-            self.current_step = 0  # Reset animation step
+            self.current_step = 0
             self.button.label.set_text("Start")
             self.update_text("Select a shape for search.", color="blue")
         elif not self.animation_started:
@@ -83,7 +97,7 @@ class Visualizer:
             else:
                 self.button.label.set_text("Pause")
                 self.update_text("Animating...", color="black")
-                self.animate_path()  # Resume immediately
+                self.animate_path()
 
     def animate_path(self):
         """Animates the path step by step."""
@@ -123,10 +137,9 @@ class Visualizer:
             for pos in positions:
                 x, y = pos
                 self.ax.add_patch(plt.Rectangle((y, x), 1, 1, color='grey'))
-            # No more text labels
         
-            plt.pause(self.animation_speed)  # Use customizable animation speed
-            self.current_step += 1  # Move to the next step
+            plt.pause(self.animation_speed)
+            self.current_step += 1
 
         # Animation completed
         if self.current_step >= len(self.path):
@@ -136,8 +149,9 @@ class Visualizer:
 
         plt.draw()
 
-    def highlight_goal_shape(self, goal_positions):
+    def highlight_goal_shape(self, list goal_positions):
         """Highlight the goal shape with a dim green color"""
+        cdef float x, y
         for pos in goal_positions:
             x, y = pos
             # Convert floating point positions to grid coordinates for display
@@ -148,6 +162,6 @@ class Visualizer:
             self.ax.add_patch(rect)
         plt.draw()
 
-    def set_animation_speed(self, speed):
+    def set_animation_speed(self, double speed):
         """Update the animation speed"""
         self.animation_speed = speed

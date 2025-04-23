@@ -1,16 +1,63 @@
 import sys
 import matplotlib.pyplot as plt
 import time
-from matplotlib.widgets import Button, RadioButtons, TextBox
+import numpy as np
+from matplotlib.widgets import Button, RadioButtons, TextBox, Slider
 from ConnectedMatterAgent import ConnectedMatterAgent
 from Visualizer import Visualizer
 
-class SearchController:
-    def __init__(self, grid_size, formations, topology="moore", time_limit=1000, max_simultaneous_moves=1, min_simultaneous_moves=1):
+cdef class SearchController:
+    cdef public tuple grid_size
+    cdef public dict formations
+    cdef public list start_positions
+    cdef public list goal_positions
+    cdef public str current_shape
+    cdef public str topology
+    cdef public double time_limit
+    cdef public int max_simultaneous_moves
+    cdef public int min_simultaneous_moves
+    cdef public bint search_completed
+    cdef public double animation_speed
+    cdef public object vis
+    cdef public object radio_ax
+    cdef public object radio
+    cdef public object select_button_ax
+    cdef public object select_button
+    cdef public object grid_text_ax
+    cdef public object grid_text_box
+    cdef public object grid_button_ax
+    cdef public object grid_button
+    cdef public object max_moves_panel_ax
+    cdef public object sim_moves_slider_ax
+    cdef public object sim_moves_slider
+    cdef public object min_moves_panel_ax
+    cdef public object min_moves_slider_ax
+    cdef public object min_moves_slider
+    cdef public object anim_speed_panel_ax
+    cdef public object anim_speed_slider_ax
+    cdef public object anim_speed_slider
+    cdef public object agent
+    cdef public bint selection_mode
+    cdef public list custom_goal
+    cdef public bint selection_active
+    cdef public bint dragging
+    cdef public tuple drag_start
+    cdef public list drag_offset
+    cdef public int shape_min_x
+    cdef public int shape_max_x
+    cdef public int shape_min_y
+    cdef public int shape_max_y
+    cdef public int bound_left
+    cdef public int bound_right
+    cdef public int bound_top
+    cdef public int bound_bottom
+
+    def __init__(self, tuple grid_size, dict formations, str topology="moore", double time_limit=1000, 
+                 int max_simultaneous_moves=1, int min_simultaneous_moves=1):
         self.grid_size = grid_size
-        self.formations = formations  # Dictionary of shape names and their goal positions
+        self.formations = formations
         self.start_positions = formations["start"]
-        self.current_shape = "Ring"  # Default shape
+        self.current_shape = "Ring"
         self.goal_positions = formations["Ring"]
         self.topology = topology
         self.time_limit = time_limit
@@ -18,122 +65,111 @@ class SearchController:
         self.min_simultaneous_moves = min(min_simultaneous_moves, max_simultaneous_moves)
         self.search_completed = False
 
-        # Enable interactive mode so the grid appears first
-        plt.ion()  
+        # Enable interactive mode
+        plt.ion()
 
-        # Create visualizer with default animation speed
-        self.animation_speed = 0.05  # Default animation speed (seconds)
+        # Create visualizer
+        self.animation_speed = 0.05
         self.vis = Visualizer(grid_size, [], self.start_positions, self.animation_speed)
         self.vis.draw_grid()
-        plt.show(block=False)  # Show grid before printing anything
+        plt.show(block=False)
 
-        # Add radio buttons for shape selection instead of dropdown
+        # Add radio buttons
         self.radio_ax = self.vis.fig.add_axes([0.05, 0.05, 0.25, 0.15])
         self.radio = RadioButtons(
             self.radio_ax, 
-            labels=list(formations.keys())[1:],  # Skip "start" key
-            active=0  # Default to first option (ring)
+            labels=list(formations.keys())[1:],
+            active=0
         )
         self.radio.on_clicked(self.on_shape_selected)
 
-        # Attach the window close event to stop execution
+        # Attach close event
         self.vis.fig.canvas.mpl_connect('close_event', self.on_close)
         
-        self.selection_mode = False  # False = normal mode, True = goal selection mode
-        self.custom_goal = []  # Store the custom goal positions
-        self.selection_active = False  # New flag to track if selection is currently active
+        # Selection mode setup
+        self.selection_mode = False
+        self.custom_goal = []
+        self.selection_active = False
         
-        # Add a button to toggle selection mode
+        # Add selection button
         self.select_button_ax = self.vis.fig.add_axes([0.4, 0.05, 0.2, 0.075])
         self.select_button = Button(self.select_button_ax, "Select Goal")
         self.select_button.on_clicked(self.toggle_selection_mode)
         
-        # Add label for grid size
+        # Add grid size controls
         label_ax = self.vis.fig.add_axes([0.82, 0.75, 0.15, 0.05])
         label_ax.text(0.5, 0.5, 'Grid Size', ha='center', va='center')
         label_ax.axis('off')
         
-        # Add text input for grid size (centered, narrower)
-        self.grid_text_ax = self.vis.fig.add_axes([0.85, 0.7, 0.09, 0.05])  # Narrower width (0.09)
+        self.grid_text_ax = self.vis.fig.add_axes([0.85, 0.7, 0.09, 0.05])
         self.grid_text_box = TextBox(
             self.grid_text_ax, 
-            '',  # Remove label since we added it separately above
+            '',
             initial=f"{grid_size[0]}",
-            textalignment='center'  # Center the text in the box
+            textalignment='center'
         )
         
-        # Add button to apply grid size (centered under text box)
         self.grid_button_ax = self.vis.fig.add_axes([0.845, 0.63, 0.1, 0.05])
         self.grid_button = Button(self.grid_button_ax, "Apply")
         self.grid_button.on_clicked(self.change_grid_size)
 
-        # ==================== MAX SIMULTANEOUS MOVES CONTROL ====================
-        # Add background panel for max simultaneous moves
+        # Max simultaneous moves control
         self.max_moves_panel_ax = self.vis.fig.add_axes([0.81, 0.49, 0.17, 0.1])
         self.max_moves_panel_ax.patch.set_facecolor('lightgray')
         self.max_moves_panel_ax.patch.set_alpha(0.3)
         self.max_moves_panel_ax.axis('off')
         
-        # Add label for max simultaneous moves - larger, bolder font
         sim_moves_label_ax = self.vis.fig.add_axes([0.82, 0.55, 0.15, 0.03])
         sim_moves_label_ax.text(0.5, 0.5, 'MAX Simultaneous Moves', 
                                ha='center', va='center', 
                                fontweight='bold', fontsize=9)
         sim_moves_label_ax.axis('off')
         
-        # Add slider for max simultaneous moves
         self.sim_moves_slider_ax = self.vis.fig.add_axes([0.84, 0.51, 0.1, 0.03])
-        self.sim_moves_slider = plt.Slider(
+        self.sim_moves_slider = Slider(
             self.sim_moves_slider_ax, '',
             1, 5, valinit=self.max_simultaneous_moves, valstep=1
         )
         self.sim_moves_slider.on_changed(self.update_max_simultaneous_moves)
         
-        # ==================== MIN SIMULTANEOUS MOVES CONTROL ====================
-        # Add background panel for min simultaneous moves
+        # Min simultaneous moves control
         self.min_moves_panel_ax = self.vis.fig.add_axes([0.81, 0.36, 0.17, 0.1])
         self.min_moves_panel_ax.patch.set_facecolor('lightgray')
         self.min_moves_panel_ax.patch.set_alpha(0.3)
         self.min_moves_panel_ax.axis('off')
         
-        # Add label for min simultaneous moves - larger, bolder font
         min_moves_label_ax = self.vis.fig.add_axes([0.82, 0.42, 0.15, 0.03])
         min_moves_label_ax.text(0.5, 0.5, 'MIN Simultaneous Moves', 
                                ha='center', va='center', 
                                fontweight='bold', fontsize=9)
         min_moves_label_ax.axis('off')
         
-        # Add slider for min simultaneous moves
         self.min_moves_slider_ax = self.vis.fig.add_axes([0.84, 0.38, 0.1, 0.03])
-        self.min_moves_slider = plt.Slider(
+        self.min_moves_slider = Slider(
             self.min_moves_slider_ax, '',
             1, 5, valinit=self.min_simultaneous_moves, valstep=1
         )
         self.min_moves_slider.on_changed(self.update_min_simultaneous_moves)
 
-        # ==================== ANIMATION SPEED CONTROL ====================
-        # Add background panel for animation speed
+        # Animation speed control
         self.anim_speed_panel_ax = self.vis.fig.add_axes([0.81, 0.23, 0.17, 0.1])
         self.anim_speed_panel_ax.patch.set_facecolor('lightgray')
         self.anim_speed_panel_ax.patch.set_alpha(0.3)
         self.anim_speed_panel_ax.axis('off')
         
-        # Add label for animation speed - larger, bolder font
         anim_speed_label_ax = self.vis.fig.add_axes([0.82, 0.29, 0.15, 0.03])
         anim_speed_label_ax.text(0.5, 0.5, 'Animation Speed', 
                                 ha='center', va='center', 
                                 fontweight='bold', fontsize=9)
         anim_speed_label_ax.axis('off')
         
-        # Add slider for animation speed (in seconds)
         self.anim_speed_slider_ax = self.vis.fig.add_axes([0.84, 0.25, 0.1, 0.03])
-        self.anim_speed_slider = plt.Slider(
+        self.anim_speed_slider = Slider(
             self.anim_speed_slider_ax, '',
             0.01, 1.0, valinit=self.animation_speed, valfmt='%.2f'
         )
         self.anim_speed_slider.on_changed(self.update_animation_speed)
         
-        # Add a label to explain animation speed
         anim_speed_info_ax = self.vis.fig.add_axes([0.82, 0.21, 0.15, 0.03])
         anim_speed_info_ax.text(0.5, 0.5, 'Seconds per step', 
                                ha='center', va='center', fontsize=8)
@@ -158,20 +194,21 @@ class SearchController:
             min_simultaneous_moves=self.min_simultaneous_moves
         )
         
-        # Set up button to start search
+        # Set up search button
         self.vis.button.on_clicked(self.handle_button)
         
+        # Dragging setup
         self.dragging = False
         self.drag_start = None
         self.drag_offset = None
         
-        # For boundary checking
+        # Boundary checking
         self.shape_min_x = 0
         self.shape_max_x = 0
         self.shape_min_y = 0
         self.shape_max_y = 0
         
-        # Add mouse events for dragging and selection
+        # Add mouse events
         self.vis.fig.canvas.mpl_connect('button_press_event', self.on_mouse_press)
         self.vis.fig.canvas.mpl_connect('button_release_event', self.on_mouse_release)
         self.vis.fig.canvas.mpl_connect('motion_notify_event', self.on_mouse_move)
@@ -222,7 +259,7 @@ class SearchController:
                 self.select_button.label.set_text("Select Goal")
                 self.vis.update_text(f"Invalid goal: Need exactly {len(self.start_positions)} blocks", color="red")
 
-    def on_grid_click(self, event, x, y):
+    def on_grid_click(self, event, int x, int y):
         """Handle grid cell clicks for goal selection"""
         if not self.selection_mode or not self.selection_active:
             return
@@ -250,8 +287,9 @@ class SearchController:
             # Update the counter
             self.vis.update_text(f"Selected {len(self.custom_goal)}/{len(self.start_positions)} blocks", color="blue")
     
-    def highlight_cell(self, pos, color='green'):
+    def highlight_cell(self, tuple pos, str color='green'):
         """Highlight a grid cell with the specified color"""
+        cdef int x, y
         x, y = pos
         self.vis.ax.add_patch(plt.Rectangle((y, x), 1, 1, color=color, alpha=0.7))
         plt.draw()    
@@ -261,7 +299,7 @@ class SearchController:
         print("\nWindow closed. Exiting program.")
         sys.exit()  # Forcefully stop the script
         
-    def on_shape_selected(self, label):
+    def on_shape_selected(self, str label):
         """Handle shape selection from radio buttons"""
         # Cancel selection mode if active when changing shapes
         if self.selection_mode:
@@ -313,9 +351,9 @@ class SearchController:
         plt.pause(1)  # Force update to show "Searching..." before search starts
         
         print("\nSearching for optimal path with connectivity constraint...")
-        start_time = time.time()
+        cdef double start_time = time.time()
         path = self.agent.search(self.time_limit)
-        search_time = time.time() - start_time
+        cdef double search_time = time.time() - start_time
         
         self.search_completed = True
 
@@ -443,11 +481,14 @@ class SearchController:
 
     def on_mouse_press(self, event):
         """Handle mouse press events for dragging and selection"""
+        cdef int x, y
+        
         if event.inaxes != self.vis.ax:
             return
             
         # Convert click coordinates to grid cell
-        x, y = int(event.ydata), int(event.xdata)
+        x = int(event.ydata)
+        y = int(event.xdata)
         
         # Handle selection mode separately from dragging
         if self.selection_mode and self.selection_active:
@@ -487,11 +528,14 @@ class SearchController:
     
     def on_mouse_release(self, event):
         """Handle mouse release events for dragging"""
+        cdef int x, y, new_x, new_y
+        
         if self.dragging and not self.selection_mode:
             self.dragging = False
             if event.inaxes == self.vis.ax:
                 # Snap to grid
-                x, y = int(event.ydata), int(event.xdata)
+                x = int(event.ydata)
+                y = int(event.xdata)
                 # Apply boundary constraints
                 x, y = self.constrain_to_boundaries(x, y)
                 
@@ -517,26 +561,32 @@ class SearchController:
                     self.vis.highlight_goal_shape(self.goal_positions)
                     self.vis.update_text("Goal shape moved", color="blue")
     
-    def constrain_to_boundaries(self, x, y):
+    def constrain_to_boundaries(self, int x, int y):
         """Constrain the drag point to keep the shape within grid boundaries"""
         # Constrain x-coordinate
-        min_x = self.bound_left  # Minimum allowed x (to keep left edge in bounds)
-        max_x = self.grid_size[0] - 1 - self.bound_right  # Maximum allowed x (to keep right edge in bounds)
+        cdef int min_x = self.bound_left  # Minimum allowed x (to keep left edge in bounds)
+        cdef int max_x = self.grid_size[0] - 1 - self.bound_right  # Maximum allowed x (to keep right edge in bounds)
         x = max(min_x, min(x, max_x))
         
         # Constrain y-coordinate
-        min_y = self.bound_top  # Minimum allowed y (to keep top edge in bounds)
-        max_y = self.grid_size[1] - 1 - self.bound_bottom  # Maximum allowed y (to keep bottom edge in bounds)
+        cdef int min_y = self.bound_top  # Minimum allowed y (to keep top edge in bounds)
+        cdef int max_y = self.grid_size[1] - 1 - self.bound_bottom  # Maximum allowed y (to keep bottom edge in bounds)
         y = max(min_y, min(y, max_y))
         
         return x, y
     
     def on_mouse_move(self, event):
         """Handle mouse movement events for dragging"""
+        cdef double x, y
+        cdef int xi, yi, new_x, new_y
+        
         if self.dragging and not self.selection_mode and event.inaxes == self.vis.ax:
             # Get cursor position with boundary constraints
-            x, y = event.ydata, event.xdata
-            x, y = self.constrain_to_boundaries(x, y)
+            x = event.ydata
+            y = event.xdata
+            xi = int(x)
+            yi = int(y)
+            xi, yi = self.constrain_to_boundaries(xi, yi)
             
             # Clear and redraw the grid
             self.vis.draw_grid()
@@ -544,40 +594,9 @@ class SearchController:
             # Draw the shape at the new position
             temp_positions = []
             for offset_x, offset_y in self.drag_offset:
-                new_x = x + offset_x
-                new_y = y + offset_y
+                new_x = xi + offset_x
+                new_y = yi + offset_y
                 temp_positions.append((new_x, new_y))
             
             # Highlight the shape at its temporary position
             self.vis.highlight_goal_shape(temp_positions)
-
-# Example usage
-if __name__ == "__main__":
-    grid_size = (10, 10)
-    
-    # Dictionary of formations
-    formations = {
-        "start": [(0, 0), (1, 0), (0, 1), (1, 1), (0, 2), (1, 2), (0, 3), (1, 3), (0, 4), (1, 4),
-                  (0, 5), (1, 5), (0, 6), (1, 6), (0, 7), (1, 7), (0, 8), (1, 8), (0, 9), (1, 9)],
-        
-        "Ring": [(7, 4), (7, 5), (6, 3), (6, 4), (6, 5), (6, 6), (5, 2), (5, 3), (5, 6), (5, 7),
-                 (4, 2), (4, 3), (4, 6), (4, 7), (3, 3), (3, 4), (3, 5), (3, 6), (2, 4), (2, 5)],
-        
-        "Rectangle": [(3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (4, 3), (4, 4), (4, 5), (4, 6), (4, 7),
-                      (5, 3), (5, 4), (5, 5), (5, 6), (5, 7), (6, 3), (6, 4), (6, 5), (6, 6), (6, 7)],
-        
-        "Triangle": [(2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (3, 2), (3, 3),
-                     (3, 4), (3, 5), (3, 6), (3, 7), (4, 3), (4, 4), (4, 5), (4, 6), (5, 4), (5, 5)]
-    }
-    
-    controller = SearchController(
-        grid_size=grid_size, 
-        formations=formations, 
-        topology="moore", 
-        time_limit=1000,
-        max_simultaneous_moves=1,  # Default value, can be changed via UI
-        min_simultaneous_moves=1   # Default value, can be changed via UI
-    )
-
-    plt.ioff()  # Disable interactive mode
-    plt.show()  # Keep window open until manually closed
