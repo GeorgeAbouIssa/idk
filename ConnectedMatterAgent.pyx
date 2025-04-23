@@ -243,17 +243,9 @@ cdef class ConnectedMatterAgent:
         
         return valid_moves
     
-    cpdef list get_valid_morphing_moves(self, object state):
-        """
-        Generate valid morphing moves that maintain connectivity
-        Supports multiple simultaneous block movements with minimum requirement
-        """
-        cdef int state_key = hash(state)
-        if state_key in self.valid_moves_cache:
-            return self.valid_moves_cache[state_key]
-            
-        # Get single block moves first
-        cdef list occupied_positions = state
+    def get_valid_morphing_moves(self, state):
+    # Convert state to a list if it's a frozenset or any other iterable
+        cdef list occupied_positions = list(state)
         cdef set occupied_set = set(occupied_positions)
         cdef list potential_moves = []
         cdef list valid_moves = []
@@ -298,12 +290,11 @@ cdef class ConnectedMatterAgent:
                     # or that removing it doesn't break connectivity
                         articulation_points = self.find_articulation_points(occupied_positions)
                     
-                    # FIX: Convert string articulation points to tuples if needed
+                    # Handle articulation points that might be strings
                         articulation_points_fixed = []
                         for point in articulation_points:
                             if isinstance(point, str):
                             # Parse the string into a tuple - assuming format like "(x,y)"
-                            # Remove parentheses and split by comma
                                 coords = point.strip('()').split(',')
                                 point_tuple = (int(coords[0]), int(coords[1]))
                                 articulation_points_fixed.append(point_tuple)
@@ -315,7 +306,7 @@ cdef class ConnectedMatterAgent:
     
     # Filter potential moves to ensure connectivity
         for pos, new_pos in potential_moves:
-        # Create a new state by moving from pos to new_pos
+            # Create a new state by moving from pos to new_pos
             new_state = occupied_positions.copy()
             new_state.remove(pos)
             new_state.append(new_pos)
