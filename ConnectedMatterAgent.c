@@ -1768,7 +1768,7 @@ struct __pyx_opt_args_20ConnectedMatterAgent__generate_move_combinations {
   int start_idx;
 };
 
-/* "ConnectedMatterAgent.pyx":587
+/* "ConnectedMatterAgent.pyx":582
  *         return total_distance + connectivity_bonus
  * 
  *     cpdef list block_movement_phase(self, double time_limit=15):             # <<<<<<<<<<<<<<
@@ -1780,7 +1780,7 @@ struct __pyx_opt_args_20ConnectedMatterAgent_20ConnectedMatterAgent_block_moveme
   double time_limit;
 };
 
-/* "ConnectedMatterAgent.pyx":701
+/* "ConnectedMatterAgent.pyx":696
  *         return [self.start_state]  # No movement possible
  * 
  *     cpdef list smarter_morphing_phase(self, object start_state, double time_limit=15):             # <<<<<<<<<<<<<<
@@ -2425,6 +2425,9 @@ static CYTHON_INLINE int __Pyx_set_iter_next(
         Py_ssize_t* ppos, PyObject **value,
         int source_is_set);
 
+/* RaiseNoneIterError.proto */
+static CYTHON_INLINE void __Pyx_RaiseNoneNotIterableError(void);
+
 /* CallUnboundCMethod0.proto */
 static PyObject* __Pyx__CallUnboundCMethod0(__Pyx_CachedCFunction* cfunc, PyObject* self);
 #if CYTHON_COMPILING_IN_CPYTHON
@@ -2444,6 +2447,12 @@ static PyObject* __Pyx__CallUnboundCMethod0(__Pyx_CachedCFunction* cfunc, PyObje
 #else
 #define __Pyx_CallUnboundCMethod0(cfunc, self)  __Pyx__CallUnboundCMethod0(cfunc, self)
 #endif
+
+/* PySequenceContains.proto */
+static CYTHON_INLINE int __Pyx_PySequence_ContainsTF(PyObject* item, PyObject* seq, int eq) {
+    int result = PySequence_Contains(seq, item);
+    return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
+}
 
 /* py_set_remove.proto */
 static CYTHON_INLINE int __Pyx_PySet_Remove(PyObject *set, PyObject *key);
@@ -2646,9 +2655,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
 /* PyObjectCallMethod0.proto */
 static PyObject* __Pyx_PyObject_CallMethod0(PyObject* obj, PyObject* method_name);
 
-/* RaiseNoneIterError.proto */
-static CYTHON_INLINE void __Pyx_RaiseNoneNotIterableError(void);
-
 /* UnpackTupleError.proto */
 static void __Pyx_UnpackTupleError(PyObject *, Py_ssize_t index);
 
@@ -2713,12 +2719,6 @@ static int __Pyx_CheckKeywordStrings(PyObject *kw, const char* function_name, in
 
 /* GetAttr3.proto */
 static CYTHON_INLINE PyObject *__Pyx_GetAttr3(PyObject *, PyObject *, PyObject *);
-
-/* PySequenceContains.proto */
-static CYTHON_INLINE int __Pyx_PySequence_ContainsTF(PyObject* item, PyObject* seq, int eq) {
-    int result = PySequence_Contains(seq, item);
-    return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
-}
 
 /* Import.proto */
 static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level);
@@ -3321,12 +3321,14 @@ static const char __pyx_k_i[] = "i";
 static const char __pyx_k_ax[] = "ax";
 static const char __pyx_k_gc[] = "gc";
 static const char __pyx_k_np[] = "np";
-static const char __pyx_k__14[] = "-";
-static const char __pyx_k__16[] = ")";
-static const char __pyx_k__21[] = "/";
-static const char __pyx_k__23[] = ".";
-static const char __pyx_k__24[] = "*";
-static const char __pyx_k__62[] = "?";
+static const char __pyx_k__12[] = "()";
+static const char __pyx_k__13[] = ",";
+static const char __pyx_k__16[] = "-";
+static const char __pyx_k__18[] = ")";
+static const char __pyx_k__23[] = "/";
+static const char __pyx_k__25[] = ".";
+static const char __pyx_k__26[] = "*";
+static const char __pyx_k__64[] = "?";
 static const char __pyx_k_fig[] = "fig";
 static const char __pyx_k_get[] = "get";
 static const char __pyx_k_inf[] = "inf";
@@ -3372,7 +3374,9 @@ static const char __pyx_k_pause[] = "pause";
 static const char __pyx_k_print[] = "print";
 static const char __pyx_k_range[] = "range";
 static const char __pyx_k_rects[] = "rects";
+static const char __pyx_k_split[] = "split";
 static const char __pyx_k_state[] = "state";
+static const char __pyx_k_strip[] = "strip";
 static const char __pyx_k_throw[] = "throw";
 static const char __pyx_k_Step_0[] = "Step 0/";
 static const char __pyx_k_append[] = "append";
@@ -3418,6 +3422,7 @@ static const char __pyx_k_set_title[] = "set_title";
 static const char __pyx_k_state_set[] = "state_set";
 static const char __pyx_k_Progress_h[] = "Progress: h=";
 static const char __pyx_k_block_path[] = "block_path";
+static const char __pyx_k_grid_width[] = "grid_width";
 static const char __pyx_k_iterations[] = " iterations!";
 static const char __pyx_k_matplotlib[] = "matplotlib";
 static const char __pyx_k_pyx_result[] = "__pyx_result";
@@ -3427,6 +3432,7 @@ static const char __pyx_k_ImportError[] = "ImportError";
 static const char __pyx_k_PickleError[] = "PickleError";
 static const char __pyx_k_apply_moves[] = "_apply_moves";
 static const char __pyx_k_collections[] = "collections";
+static const char __pyx_k_grid_height[] = "grid_height";
 static const char __pyx_k_start_state[] = "start_state";
 static const char __pyx_k_initializing[] = "_initializing";
 static const char __pyx_k_intersection[] = "intersection";
@@ -3441,6 +3447,7 @@ static const char __pyx_k_morphing_path[] = "morphing_path";
 static const char __pyx_k_new_positions[] = "new_positions";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_goal_positions[] = "goal_positions";
+static const char __pyx_k_is_valid_state[] = "is_valid_state";
 static const char __pyx_k_visualize_path[] = "visualize_path";
 static const char __pyx_k_block_heuristic[] = "block_heuristic";
 static const char __pyx_k_pyx_PickleError[] = "__pyx_PickleError";
@@ -3458,6 +3465,7 @@ static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_simultaneous_moves[] = " simultaneous moves...";
 static const char __pyx_k_get_all_valid_moves[] = "get_all_valid_moves";
 static const char __pyx_k_morphing_time_limit[] = "morphing_time_limit";
+static const char __pyx_k_neighbor_transforms[] = "neighbor_transforms";
 static const char __pyx_k_ConnectedMatterAgent[] = "ConnectedMatterAgent";
 static const char __pyx_k_No_path_to_visualize[] = "No path to visualize";
 static const char __pyx_k_block_movement_phase[] = "block_movement_phase";
@@ -3472,6 +3480,7 @@ static const char __pyx_k_smarter_morphing_phase[] = "smarter_morphing_phase";
 static const char __pyx_k_get_articulation_points[] = "get_articulation_points";
 static const char __pyx_k_get_sliding_chain_moves[] = "get_sliding_chain_moves";
 static const char __pyx_k_ConnectedMatterAgent_pyx[] = "ConnectedMatterAgent.pyx";
+static const char __pyx_k_find_articulation_points[] = "find_articulation_points";
 static const char __pyx_k_get_valid_morphing_moves[] = "get_valid_morphing_moves";
 static const char __pyx_k_is_valid_move_combination[] = "_is_valid_move_combination";
 static const char __pyx_k_Block_movement_phase_failed[] = "Block movement phase failed!";
@@ -3534,6 +3543,7 @@ static PyObject *__pyx_tp_new_20ConnectedMatterAgent_ConnectedMatterAgent(PyType
 static PyObject *__pyx_tp_new_20ConnectedMatterAgent___pyx_scope_struct__genexpr(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_20ConnectedMatterAgent___pyx_scope_struct_1_genexpr(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_get = {0, 0, 0, 0, 0};
+static __Pyx_CachedCFunction __pyx_umethod_PyList_Type_copy = {0, 0, 0, 0, 0};
 static __Pyx_CachedCFunction __pyx_umethod_PySet_Type_copy = {0, 0, 0, 0, 0};
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
@@ -3648,12 +3658,14 @@ typedef struct {
   PyObject *__pyx_kp_u_Starting_Smarter_Morphing_Phase;
   PyObject *__pyx_kp_u_Step;
   PyObject *__pyx_kp_u_Step_0;
-  PyObject *__pyx_kp_u__14;
+  PyObject *__pyx_kp_u__12;
+  PyObject *__pyx_kp_u__13;
   PyObject *__pyx_kp_u__16;
-  PyObject *__pyx_kp_u__21;
+  PyObject *__pyx_kp_u__18;
   PyObject *__pyx_kp_u__23;
-  PyObject *__pyx_n_s__24;
-  PyObject *__pyx_n_s__62;
+  PyObject *__pyx_kp_u__25;
+  PyObject *__pyx_n_s__26;
+  PyObject *__pyx_n_s__64;
   PyObject *__pyx_n_s_add_patch;
   PyObject *__pyx_n_s_alpha;
   PyObject *__pyx_n_s_append;
@@ -3690,6 +3702,7 @@ typedef struct {
   PyObject *__pyx_n_s_fig;
   PyObject *__pyx_n_s_figsize;
   PyObject *__pyx_n_s_fill;
+  PyObject *__pyx_n_s_find_articulation_points;
   PyObject *__pyx_kp_u_gc;
   PyObject *__pyx_n_s_genexpr;
   PyObject *__pyx_n_s_get;
@@ -3703,7 +3716,9 @@ typedef struct {
   PyObject *__pyx_n_s_goal_positions;
   PyObject *__pyx_n_u_green;
   PyObject *__pyx_n_s_grid;
+  PyObject *__pyx_n_s_grid_height;
   PyObject *__pyx_n_s_grid_size;
+  PyObject *__pyx_n_s_grid_width;
   PyObject *__pyx_n_s_heapify;
   PyObject *__pyx_n_s_heappop;
   PyObject *__pyx_n_s_heappush;
@@ -3721,6 +3736,7 @@ typedef struct {
   PyObject *__pyx_n_s_is_connected;
   PyObject *__pyx_n_s_is_coroutine;
   PyObject *__pyx_n_s_is_valid_move_combination;
+  PyObject *__pyx_n_s_is_valid_state;
   PyObject *__pyx_kp_u_isenabled;
   PyObject *__pyx_kp_u_iterations;
   PyObject *__pyx_kp_u_iterations_2;
@@ -3740,6 +3756,7 @@ typedef struct {
   PyObject *__pyx_n_s_morphing_time_limit;
   PyObject *__pyx_n_s_moves;
   PyObject *__pyx_n_s_name;
+  PyObject *__pyx_n_s_neighbor_transforms;
   PyObject *__pyx_n_s_new;
   PyObject *__pyx_n_s_new_positions;
   PyObject *__pyx_n_s_np;
@@ -3783,11 +3800,13 @@ typedef struct {
   PyObject *__pyx_kp_u_simultaneous_moves;
   PyObject *__pyx_n_s_smarter_morphing_phase;
   PyObject *__pyx_n_s_spec;
+  PyObject *__pyx_n_s_split;
   PyObject *__pyx_n_s_start_positions;
   PyObject *__pyx_n_s_start_state;
   PyObject *__pyx_n_s_state;
   PyObject *__pyx_n_s_state_set;
   PyObject *__pyx_kp_s_stringsource;
+  PyObject *__pyx_n_s_strip;
   PyObject *__pyx_n_s_subplots;
   PyObject *__pyx_n_s_test;
   PyObject *__pyx_n_s_throw;
@@ -3820,51 +3839,51 @@ typedef struct {
   PyObject *__pyx_tuple__9;
   PyObject *__pyx_tuple__10;
   PyObject *__pyx_tuple__11;
-  PyObject *__pyx_tuple__12;
-  PyObject *__pyx_tuple__13;
+  PyObject *__pyx_tuple__14;
   PyObject *__pyx_tuple__15;
   PyObject *__pyx_tuple__17;
-  PyObject *__pyx_tuple__18;
   PyObject *__pyx_tuple__19;
   PyObject *__pyx_tuple__20;
+  PyObject *__pyx_tuple__21;
   PyObject *__pyx_tuple__22;
-  PyObject *__pyx_tuple__25;
-  PyObject *__pyx_tuple__26;
-  PyObject *__pyx_tuple__29;
+  PyObject *__pyx_tuple__24;
+  PyObject *__pyx_tuple__27;
+  PyObject *__pyx_tuple__28;
   PyObject *__pyx_tuple__31;
-  PyObject *__pyx_tuple__34;
+  PyObject *__pyx_tuple__33;
   PyObject *__pyx_tuple__36;
-  PyObject *__pyx_tuple__43;
+  PyObject *__pyx_tuple__38;
   PyObject *__pyx_tuple__45;
-  PyObject *__pyx_tuple__46;
+  PyObject *__pyx_tuple__47;
   PyObject *__pyx_tuple__48;
   PyObject *__pyx_tuple__50;
   PyObject *__pyx_tuple__52;
-  PyObject *__pyx_tuple__53;
+  PyObject *__pyx_tuple__54;
   PyObject *__pyx_tuple__55;
-  PyObject *__pyx_tuple__56;
+  PyObject *__pyx_tuple__57;
   PyObject *__pyx_tuple__58;
   PyObject *__pyx_tuple__60;
-  PyObject *__pyx_codeobj__27;
-  PyObject *__pyx_codeobj__28;
+  PyObject *__pyx_tuple__62;
+  PyObject *__pyx_codeobj__29;
   PyObject *__pyx_codeobj__30;
   PyObject *__pyx_codeobj__32;
-  PyObject *__pyx_codeobj__33;
+  PyObject *__pyx_codeobj__34;
   PyObject *__pyx_codeobj__35;
   PyObject *__pyx_codeobj__37;
-  PyObject *__pyx_codeobj__38;
   PyObject *__pyx_codeobj__39;
   PyObject *__pyx_codeobj__40;
   PyObject *__pyx_codeobj__41;
   PyObject *__pyx_codeobj__42;
+  PyObject *__pyx_codeobj__43;
   PyObject *__pyx_codeobj__44;
-  PyObject *__pyx_codeobj__47;
+  PyObject *__pyx_codeobj__46;
   PyObject *__pyx_codeobj__49;
   PyObject *__pyx_codeobj__51;
-  PyObject *__pyx_codeobj__54;
-  PyObject *__pyx_codeobj__57;
+  PyObject *__pyx_codeobj__53;
+  PyObject *__pyx_codeobj__56;
   PyObject *__pyx_codeobj__59;
   PyObject *__pyx_codeobj__61;
+  PyObject *__pyx_codeobj__63;
 } __pyx_mstate;
 
 #if CYTHON_USE_MODULE_STATE
@@ -3969,12 +3988,14 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_kp_u_Starting_Smarter_Morphing_Phase);
   Py_CLEAR(clear_module_state->__pyx_kp_u_Step);
   Py_CLEAR(clear_module_state->__pyx_kp_u_Step_0);
-  Py_CLEAR(clear_module_state->__pyx_kp_u__14);
+  Py_CLEAR(clear_module_state->__pyx_kp_u__12);
+  Py_CLEAR(clear_module_state->__pyx_kp_u__13);
   Py_CLEAR(clear_module_state->__pyx_kp_u__16);
-  Py_CLEAR(clear_module_state->__pyx_kp_u__21);
+  Py_CLEAR(clear_module_state->__pyx_kp_u__18);
   Py_CLEAR(clear_module_state->__pyx_kp_u__23);
-  Py_CLEAR(clear_module_state->__pyx_n_s__24);
-  Py_CLEAR(clear_module_state->__pyx_n_s__62);
+  Py_CLEAR(clear_module_state->__pyx_kp_u__25);
+  Py_CLEAR(clear_module_state->__pyx_n_s__26);
+  Py_CLEAR(clear_module_state->__pyx_n_s__64);
   Py_CLEAR(clear_module_state->__pyx_n_s_add_patch);
   Py_CLEAR(clear_module_state->__pyx_n_s_alpha);
   Py_CLEAR(clear_module_state->__pyx_n_s_append);
@@ -4011,6 +4032,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_fig);
   Py_CLEAR(clear_module_state->__pyx_n_s_figsize);
   Py_CLEAR(clear_module_state->__pyx_n_s_fill);
+  Py_CLEAR(clear_module_state->__pyx_n_s_find_articulation_points);
   Py_CLEAR(clear_module_state->__pyx_kp_u_gc);
   Py_CLEAR(clear_module_state->__pyx_n_s_genexpr);
   Py_CLEAR(clear_module_state->__pyx_n_s_get);
@@ -4024,7 +4046,9 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_goal_positions);
   Py_CLEAR(clear_module_state->__pyx_n_u_green);
   Py_CLEAR(clear_module_state->__pyx_n_s_grid);
+  Py_CLEAR(clear_module_state->__pyx_n_s_grid_height);
   Py_CLEAR(clear_module_state->__pyx_n_s_grid_size);
+  Py_CLEAR(clear_module_state->__pyx_n_s_grid_width);
   Py_CLEAR(clear_module_state->__pyx_n_s_heapify);
   Py_CLEAR(clear_module_state->__pyx_n_s_heappop);
   Py_CLEAR(clear_module_state->__pyx_n_s_heappush);
@@ -4042,6 +4066,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_is_connected);
   Py_CLEAR(clear_module_state->__pyx_n_s_is_coroutine);
   Py_CLEAR(clear_module_state->__pyx_n_s_is_valid_move_combination);
+  Py_CLEAR(clear_module_state->__pyx_n_s_is_valid_state);
   Py_CLEAR(clear_module_state->__pyx_kp_u_isenabled);
   Py_CLEAR(clear_module_state->__pyx_kp_u_iterations);
   Py_CLEAR(clear_module_state->__pyx_kp_u_iterations_2);
@@ -4061,6 +4086,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_morphing_time_limit);
   Py_CLEAR(clear_module_state->__pyx_n_s_moves);
   Py_CLEAR(clear_module_state->__pyx_n_s_name);
+  Py_CLEAR(clear_module_state->__pyx_n_s_neighbor_transforms);
   Py_CLEAR(clear_module_state->__pyx_n_s_new);
   Py_CLEAR(clear_module_state->__pyx_n_s_new_positions);
   Py_CLEAR(clear_module_state->__pyx_n_s_np);
@@ -4104,11 +4130,13 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_kp_u_simultaneous_moves);
   Py_CLEAR(clear_module_state->__pyx_n_s_smarter_morphing_phase);
   Py_CLEAR(clear_module_state->__pyx_n_s_spec);
+  Py_CLEAR(clear_module_state->__pyx_n_s_split);
   Py_CLEAR(clear_module_state->__pyx_n_s_start_positions);
   Py_CLEAR(clear_module_state->__pyx_n_s_start_state);
   Py_CLEAR(clear_module_state->__pyx_n_s_state);
   Py_CLEAR(clear_module_state->__pyx_n_s_state_set);
   Py_CLEAR(clear_module_state->__pyx_kp_s_stringsource);
+  Py_CLEAR(clear_module_state->__pyx_n_s_strip);
   Py_CLEAR(clear_module_state->__pyx_n_s_subplots);
   Py_CLEAR(clear_module_state->__pyx_n_s_test);
   Py_CLEAR(clear_module_state->__pyx_n_s_throw);
@@ -4141,51 +4169,51 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_tuple__9);
   Py_CLEAR(clear_module_state->__pyx_tuple__10);
   Py_CLEAR(clear_module_state->__pyx_tuple__11);
-  Py_CLEAR(clear_module_state->__pyx_tuple__12);
-  Py_CLEAR(clear_module_state->__pyx_tuple__13);
+  Py_CLEAR(clear_module_state->__pyx_tuple__14);
   Py_CLEAR(clear_module_state->__pyx_tuple__15);
   Py_CLEAR(clear_module_state->__pyx_tuple__17);
-  Py_CLEAR(clear_module_state->__pyx_tuple__18);
   Py_CLEAR(clear_module_state->__pyx_tuple__19);
   Py_CLEAR(clear_module_state->__pyx_tuple__20);
+  Py_CLEAR(clear_module_state->__pyx_tuple__21);
   Py_CLEAR(clear_module_state->__pyx_tuple__22);
-  Py_CLEAR(clear_module_state->__pyx_tuple__25);
-  Py_CLEAR(clear_module_state->__pyx_tuple__26);
-  Py_CLEAR(clear_module_state->__pyx_tuple__29);
+  Py_CLEAR(clear_module_state->__pyx_tuple__24);
+  Py_CLEAR(clear_module_state->__pyx_tuple__27);
+  Py_CLEAR(clear_module_state->__pyx_tuple__28);
   Py_CLEAR(clear_module_state->__pyx_tuple__31);
-  Py_CLEAR(clear_module_state->__pyx_tuple__34);
+  Py_CLEAR(clear_module_state->__pyx_tuple__33);
   Py_CLEAR(clear_module_state->__pyx_tuple__36);
-  Py_CLEAR(clear_module_state->__pyx_tuple__43);
+  Py_CLEAR(clear_module_state->__pyx_tuple__38);
   Py_CLEAR(clear_module_state->__pyx_tuple__45);
-  Py_CLEAR(clear_module_state->__pyx_tuple__46);
+  Py_CLEAR(clear_module_state->__pyx_tuple__47);
   Py_CLEAR(clear_module_state->__pyx_tuple__48);
   Py_CLEAR(clear_module_state->__pyx_tuple__50);
   Py_CLEAR(clear_module_state->__pyx_tuple__52);
-  Py_CLEAR(clear_module_state->__pyx_tuple__53);
+  Py_CLEAR(clear_module_state->__pyx_tuple__54);
   Py_CLEAR(clear_module_state->__pyx_tuple__55);
-  Py_CLEAR(clear_module_state->__pyx_tuple__56);
+  Py_CLEAR(clear_module_state->__pyx_tuple__57);
   Py_CLEAR(clear_module_state->__pyx_tuple__58);
   Py_CLEAR(clear_module_state->__pyx_tuple__60);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__27);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__28);
+  Py_CLEAR(clear_module_state->__pyx_tuple__62);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__29);
   Py_CLEAR(clear_module_state->__pyx_codeobj__30);
   Py_CLEAR(clear_module_state->__pyx_codeobj__32);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__33);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__34);
   Py_CLEAR(clear_module_state->__pyx_codeobj__35);
   Py_CLEAR(clear_module_state->__pyx_codeobj__37);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__38);
   Py_CLEAR(clear_module_state->__pyx_codeobj__39);
   Py_CLEAR(clear_module_state->__pyx_codeobj__40);
   Py_CLEAR(clear_module_state->__pyx_codeobj__41);
   Py_CLEAR(clear_module_state->__pyx_codeobj__42);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__43);
   Py_CLEAR(clear_module_state->__pyx_codeobj__44);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__47);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__46);
   Py_CLEAR(clear_module_state->__pyx_codeobj__49);
   Py_CLEAR(clear_module_state->__pyx_codeobj__51);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__54);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__57);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__53);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__56);
   Py_CLEAR(clear_module_state->__pyx_codeobj__59);
   Py_CLEAR(clear_module_state->__pyx_codeobj__61);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__63);
   return 0;
 }
 #endif
@@ -4268,12 +4296,14 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_kp_u_Starting_Smarter_Morphing_Phase);
   Py_VISIT(traverse_module_state->__pyx_kp_u_Step);
   Py_VISIT(traverse_module_state->__pyx_kp_u_Step_0);
-  Py_VISIT(traverse_module_state->__pyx_kp_u__14);
+  Py_VISIT(traverse_module_state->__pyx_kp_u__12);
+  Py_VISIT(traverse_module_state->__pyx_kp_u__13);
   Py_VISIT(traverse_module_state->__pyx_kp_u__16);
-  Py_VISIT(traverse_module_state->__pyx_kp_u__21);
+  Py_VISIT(traverse_module_state->__pyx_kp_u__18);
   Py_VISIT(traverse_module_state->__pyx_kp_u__23);
-  Py_VISIT(traverse_module_state->__pyx_n_s__24);
-  Py_VISIT(traverse_module_state->__pyx_n_s__62);
+  Py_VISIT(traverse_module_state->__pyx_kp_u__25);
+  Py_VISIT(traverse_module_state->__pyx_n_s__26);
+  Py_VISIT(traverse_module_state->__pyx_n_s__64);
   Py_VISIT(traverse_module_state->__pyx_n_s_add_patch);
   Py_VISIT(traverse_module_state->__pyx_n_s_alpha);
   Py_VISIT(traverse_module_state->__pyx_n_s_append);
@@ -4310,6 +4340,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_fig);
   Py_VISIT(traverse_module_state->__pyx_n_s_figsize);
   Py_VISIT(traverse_module_state->__pyx_n_s_fill);
+  Py_VISIT(traverse_module_state->__pyx_n_s_find_articulation_points);
   Py_VISIT(traverse_module_state->__pyx_kp_u_gc);
   Py_VISIT(traverse_module_state->__pyx_n_s_genexpr);
   Py_VISIT(traverse_module_state->__pyx_n_s_get);
@@ -4323,7 +4354,9 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_goal_positions);
   Py_VISIT(traverse_module_state->__pyx_n_u_green);
   Py_VISIT(traverse_module_state->__pyx_n_s_grid);
+  Py_VISIT(traverse_module_state->__pyx_n_s_grid_height);
   Py_VISIT(traverse_module_state->__pyx_n_s_grid_size);
+  Py_VISIT(traverse_module_state->__pyx_n_s_grid_width);
   Py_VISIT(traverse_module_state->__pyx_n_s_heapify);
   Py_VISIT(traverse_module_state->__pyx_n_s_heappop);
   Py_VISIT(traverse_module_state->__pyx_n_s_heappush);
@@ -4341,6 +4374,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_is_connected);
   Py_VISIT(traverse_module_state->__pyx_n_s_is_coroutine);
   Py_VISIT(traverse_module_state->__pyx_n_s_is_valid_move_combination);
+  Py_VISIT(traverse_module_state->__pyx_n_s_is_valid_state);
   Py_VISIT(traverse_module_state->__pyx_kp_u_isenabled);
   Py_VISIT(traverse_module_state->__pyx_kp_u_iterations);
   Py_VISIT(traverse_module_state->__pyx_kp_u_iterations_2);
@@ -4360,6 +4394,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_morphing_time_limit);
   Py_VISIT(traverse_module_state->__pyx_n_s_moves);
   Py_VISIT(traverse_module_state->__pyx_n_s_name);
+  Py_VISIT(traverse_module_state->__pyx_n_s_neighbor_transforms);
   Py_VISIT(traverse_module_state->__pyx_n_s_new);
   Py_VISIT(traverse_module_state->__pyx_n_s_new_positions);
   Py_VISIT(traverse_module_state->__pyx_n_s_np);
@@ -4403,11 +4438,13 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_kp_u_simultaneous_moves);
   Py_VISIT(traverse_module_state->__pyx_n_s_smarter_morphing_phase);
   Py_VISIT(traverse_module_state->__pyx_n_s_spec);
+  Py_VISIT(traverse_module_state->__pyx_n_s_split);
   Py_VISIT(traverse_module_state->__pyx_n_s_start_positions);
   Py_VISIT(traverse_module_state->__pyx_n_s_start_state);
   Py_VISIT(traverse_module_state->__pyx_n_s_state);
   Py_VISIT(traverse_module_state->__pyx_n_s_state_set);
   Py_VISIT(traverse_module_state->__pyx_kp_s_stringsource);
+  Py_VISIT(traverse_module_state->__pyx_n_s_strip);
   Py_VISIT(traverse_module_state->__pyx_n_s_subplots);
   Py_VISIT(traverse_module_state->__pyx_n_s_test);
   Py_VISIT(traverse_module_state->__pyx_n_s_throw);
@@ -4440,51 +4477,51 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_tuple__9);
   Py_VISIT(traverse_module_state->__pyx_tuple__10);
   Py_VISIT(traverse_module_state->__pyx_tuple__11);
-  Py_VISIT(traverse_module_state->__pyx_tuple__12);
-  Py_VISIT(traverse_module_state->__pyx_tuple__13);
+  Py_VISIT(traverse_module_state->__pyx_tuple__14);
   Py_VISIT(traverse_module_state->__pyx_tuple__15);
   Py_VISIT(traverse_module_state->__pyx_tuple__17);
-  Py_VISIT(traverse_module_state->__pyx_tuple__18);
   Py_VISIT(traverse_module_state->__pyx_tuple__19);
   Py_VISIT(traverse_module_state->__pyx_tuple__20);
+  Py_VISIT(traverse_module_state->__pyx_tuple__21);
   Py_VISIT(traverse_module_state->__pyx_tuple__22);
-  Py_VISIT(traverse_module_state->__pyx_tuple__25);
-  Py_VISIT(traverse_module_state->__pyx_tuple__26);
-  Py_VISIT(traverse_module_state->__pyx_tuple__29);
+  Py_VISIT(traverse_module_state->__pyx_tuple__24);
+  Py_VISIT(traverse_module_state->__pyx_tuple__27);
+  Py_VISIT(traverse_module_state->__pyx_tuple__28);
   Py_VISIT(traverse_module_state->__pyx_tuple__31);
-  Py_VISIT(traverse_module_state->__pyx_tuple__34);
+  Py_VISIT(traverse_module_state->__pyx_tuple__33);
   Py_VISIT(traverse_module_state->__pyx_tuple__36);
-  Py_VISIT(traverse_module_state->__pyx_tuple__43);
+  Py_VISIT(traverse_module_state->__pyx_tuple__38);
   Py_VISIT(traverse_module_state->__pyx_tuple__45);
-  Py_VISIT(traverse_module_state->__pyx_tuple__46);
+  Py_VISIT(traverse_module_state->__pyx_tuple__47);
   Py_VISIT(traverse_module_state->__pyx_tuple__48);
   Py_VISIT(traverse_module_state->__pyx_tuple__50);
   Py_VISIT(traverse_module_state->__pyx_tuple__52);
-  Py_VISIT(traverse_module_state->__pyx_tuple__53);
+  Py_VISIT(traverse_module_state->__pyx_tuple__54);
   Py_VISIT(traverse_module_state->__pyx_tuple__55);
-  Py_VISIT(traverse_module_state->__pyx_tuple__56);
+  Py_VISIT(traverse_module_state->__pyx_tuple__57);
   Py_VISIT(traverse_module_state->__pyx_tuple__58);
   Py_VISIT(traverse_module_state->__pyx_tuple__60);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__27);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__28);
+  Py_VISIT(traverse_module_state->__pyx_tuple__62);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__29);
   Py_VISIT(traverse_module_state->__pyx_codeobj__30);
   Py_VISIT(traverse_module_state->__pyx_codeobj__32);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__33);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__34);
   Py_VISIT(traverse_module_state->__pyx_codeobj__35);
   Py_VISIT(traverse_module_state->__pyx_codeobj__37);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__38);
   Py_VISIT(traverse_module_state->__pyx_codeobj__39);
   Py_VISIT(traverse_module_state->__pyx_codeobj__40);
   Py_VISIT(traverse_module_state->__pyx_codeobj__41);
   Py_VISIT(traverse_module_state->__pyx_codeobj__42);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__43);
   Py_VISIT(traverse_module_state->__pyx_codeobj__44);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__47);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__46);
   Py_VISIT(traverse_module_state->__pyx_codeobj__49);
   Py_VISIT(traverse_module_state->__pyx_codeobj__51);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__54);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__57);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__53);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__56);
   Py_VISIT(traverse_module_state->__pyx_codeobj__59);
   Py_VISIT(traverse_module_state->__pyx_codeobj__61);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__63);
   return 0;
 }
 #endif
@@ -4599,12 +4636,14 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_kp_u_Starting_Smarter_Morphing_Phase __pyx_mstate_global->__pyx_kp_u_Starting_Smarter_Morphing_Phase
 #define __pyx_kp_u_Step __pyx_mstate_global->__pyx_kp_u_Step
 #define __pyx_kp_u_Step_0 __pyx_mstate_global->__pyx_kp_u_Step_0
-#define __pyx_kp_u__14 __pyx_mstate_global->__pyx_kp_u__14
+#define __pyx_kp_u__12 __pyx_mstate_global->__pyx_kp_u__12
+#define __pyx_kp_u__13 __pyx_mstate_global->__pyx_kp_u__13
 #define __pyx_kp_u__16 __pyx_mstate_global->__pyx_kp_u__16
-#define __pyx_kp_u__21 __pyx_mstate_global->__pyx_kp_u__21
+#define __pyx_kp_u__18 __pyx_mstate_global->__pyx_kp_u__18
 #define __pyx_kp_u__23 __pyx_mstate_global->__pyx_kp_u__23
-#define __pyx_n_s__24 __pyx_mstate_global->__pyx_n_s__24
-#define __pyx_n_s__62 __pyx_mstate_global->__pyx_n_s__62
+#define __pyx_kp_u__25 __pyx_mstate_global->__pyx_kp_u__25
+#define __pyx_n_s__26 __pyx_mstate_global->__pyx_n_s__26
+#define __pyx_n_s__64 __pyx_mstate_global->__pyx_n_s__64
 #define __pyx_n_s_add_patch __pyx_mstate_global->__pyx_n_s_add_patch
 #define __pyx_n_s_alpha __pyx_mstate_global->__pyx_n_s_alpha
 #define __pyx_n_s_append __pyx_mstate_global->__pyx_n_s_append
@@ -4641,6 +4680,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_fig __pyx_mstate_global->__pyx_n_s_fig
 #define __pyx_n_s_figsize __pyx_mstate_global->__pyx_n_s_figsize
 #define __pyx_n_s_fill __pyx_mstate_global->__pyx_n_s_fill
+#define __pyx_n_s_find_articulation_points __pyx_mstate_global->__pyx_n_s_find_articulation_points
 #define __pyx_kp_u_gc __pyx_mstate_global->__pyx_kp_u_gc
 #define __pyx_n_s_genexpr __pyx_mstate_global->__pyx_n_s_genexpr
 #define __pyx_n_s_get __pyx_mstate_global->__pyx_n_s_get
@@ -4654,7 +4694,9 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_goal_positions __pyx_mstate_global->__pyx_n_s_goal_positions
 #define __pyx_n_u_green __pyx_mstate_global->__pyx_n_u_green
 #define __pyx_n_s_grid __pyx_mstate_global->__pyx_n_s_grid
+#define __pyx_n_s_grid_height __pyx_mstate_global->__pyx_n_s_grid_height
 #define __pyx_n_s_grid_size __pyx_mstate_global->__pyx_n_s_grid_size
+#define __pyx_n_s_grid_width __pyx_mstate_global->__pyx_n_s_grid_width
 #define __pyx_n_s_heapify __pyx_mstate_global->__pyx_n_s_heapify
 #define __pyx_n_s_heappop __pyx_mstate_global->__pyx_n_s_heappop
 #define __pyx_n_s_heappush __pyx_mstate_global->__pyx_n_s_heappush
@@ -4672,6 +4714,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_is_connected __pyx_mstate_global->__pyx_n_s_is_connected
 #define __pyx_n_s_is_coroutine __pyx_mstate_global->__pyx_n_s_is_coroutine
 #define __pyx_n_s_is_valid_move_combination __pyx_mstate_global->__pyx_n_s_is_valid_move_combination
+#define __pyx_n_s_is_valid_state __pyx_mstate_global->__pyx_n_s_is_valid_state
 #define __pyx_kp_u_isenabled __pyx_mstate_global->__pyx_kp_u_isenabled
 #define __pyx_kp_u_iterations __pyx_mstate_global->__pyx_kp_u_iterations
 #define __pyx_kp_u_iterations_2 __pyx_mstate_global->__pyx_kp_u_iterations_2
@@ -4691,6 +4734,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_morphing_time_limit __pyx_mstate_global->__pyx_n_s_morphing_time_limit
 #define __pyx_n_s_moves __pyx_mstate_global->__pyx_n_s_moves
 #define __pyx_n_s_name __pyx_mstate_global->__pyx_n_s_name
+#define __pyx_n_s_neighbor_transforms __pyx_mstate_global->__pyx_n_s_neighbor_transforms
 #define __pyx_n_s_new __pyx_mstate_global->__pyx_n_s_new
 #define __pyx_n_s_new_positions __pyx_mstate_global->__pyx_n_s_new_positions
 #define __pyx_n_s_np __pyx_mstate_global->__pyx_n_s_np
@@ -4734,11 +4778,13 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_kp_u_simultaneous_moves __pyx_mstate_global->__pyx_kp_u_simultaneous_moves
 #define __pyx_n_s_smarter_morphing_phase __pyx_mstate_global->__pyx_n_s_smarter_morphing_phase
 #define __pyx_n_s_spec __pyx_mstate_global->__pyx_n_s_spec
+#define __pyx_n_s_split __pyx_mstate_global->__pyx_n_s_split
 #define __pyx_n_s_start_positions __pyx_mstate_global->__pyx_n_s_start_positions
 #define __pyx_n_s_start_state __pyx_mstate_global->__pyx_n_s_start_state
 #define __pyx_n_s_state __pyx_mstate_global->__pyx_n_s_state
 #define __pyx_n_s_state_set __pyx_mstate_global->__pyx_n_s_state_set
 #define __pyx_kp_s_stringsource __pyx_mstate_global->__pyx_kp_s_stringsource
+#define __pyx_n_s_strip __pyx_mstate_global->__pyx_n_s_strip
 #define __pyx_n_s_subplots __pyx_mstate_global->__pyx_n_s_subplots
 #define __pyx_n_s_test __pyx_mstate_global->__pyx_n_s_test
 #define __pyx_n_s_throw __pyx_mstate_global->__pyx_n_s_throw
@@ -4771,51 +4817,51 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_tuple__9 __pyx_mstate_global->__pyx_tuple__9
 #define __pyx_tuple__10 __pyx_mstate_global->__pyx_tuple__10
 #define __pyx_tuple__11 __pyx_mstate_global->__pyx_tuple__11
-#define __pyx_tuple__12 __pyx_mstate_global->__pyx_tuple__12
-#define __pyx_tuple__13 __pyx_mstate_global->__pyx_tuple__13
+#define __pyx_tuple__14 __pyx_mstate_global->__pyx_tuple__14
 #define __pyx_tuple__15 __pyx_mstate_global->__pyx_tuple__15
 #define __pyx_tuple__17 __pyx_mstate_global->__pyx_tuple__17
-#define __pyx_tuple__18 __pyx_mstate_global->__pyx_tuple__18
 #define __pyx_tuple__19 __pyx_mstate_global->__pyx_tuple__19
 #define __pyx_tuple__20 __pyx_mstate_global->__pyx_tuple__20
+#define __pyx_tuple__21 __pyx_mstate_global->__pyx_tuple__21
 #define __pyx_tuple__22 __pyx_mstate_global->__pyx_tuple__22
-#define __pyx_tuple__25 __pyx_mstate_global->__pyx_tuple__25
-#define __pyx_tuple__26 __pyx_mstate_global->__pyx_tuple__26
-#define __pyx_tuple__29 __pyx_mstate_global->__pyx_tuple__29
+#define __pyx_tuple__24 __pyx_mstate_global->__pyx_tuple__24
+#define __pyx_tuple__27 __pyx_mstate_global->__pyx_tuple__27
+#define __pyx_tuple__28 __pyx_mstate_global->__pyx_tuple__28
 #define __pyx_tuple__31 __pyx_mstate_global->__pyx_tuple__31
-#define __pyx_tuple__34 __pyx_mstate_global->__pyx_tuple__34
+#define __pyx_tuple__33 __pyx_mstate_global->__pyx_tuple__33
 #define __pyx_tuple__36 __pyx_mstate_global->__pyx_tuple__36
-#define __pyx_tuple__43 __pyx_mstate_global->__pyx_tuple__43
+#define __pyx_tuple__38 __pyx_mstate_global->__pyx_tuple__38
 #define __pyx_tuple__45 __pyx_mstate_global->__pyx_tuple__45
-#define __pyx_tuple__46 __pyx_mstate_global->__pyx_tuple__46
+#define __pyx_tuple__47 __pyx_mstate_global->__pyx_tuple__47
 #define __pyx_tuple__48 __pyx_mstate_global->__pyx_tuple__48
 #define __pyx_tuple__50 __pyx_mstate_global->__pyx_tuple__50
 #define __pyx_tuple__52 __pyx_mstate_global->__pyx_tuple__52
-#define __pyx_tuple__53 __pyx_mstate_global->__pyx_tuple__53
+#define __pyx_tuple__54 __pyx_mstate_global->__pyx_tuple__54
 #define __pyx_tuple__55 __pyx_mstate_global->__pyx_tuple__55
-#define __pyx_tuple__56 __pyx_mstate_global->__pyx_tuple__56
+#define __pyx_tuple__57 __pyx_mstate_global->__pyx_tuple__57
 #define __pyx_tuple__58 __pyx_mstate_global->__pyx_tuple__58
 #define __pyx_tuple__60 __pyx_mstate_global->__pyx_tuple__60
-#define __pyx_codeobj__27 __pyx_mstate_global->__pyx_codeobj__27
-#define __pyx_codeobj__28 __pyx_mstate_global->__pyx_codeobj__28
+#define __pyx_tuple__62 __pyx_mstate_global->__pyx_tuple__62
+#define __pyx_codeobj__29 __pyx_mstate_global->__pyx_codeobj__29
 #define __pyx_codeobj__30 __pyx_mstate_global->__pyx_codeobj__30
 #define __pyx_codeobj__32 __pyx_mstate_global->__pyx_codeobj__32
-#define __pyx_codeobj__33 __pyx_mstate_global->__pyx_codeobj__33
+#define __pyx_codeobj__34 __pyx_mstate_global->__pyx_codeobj__34
 #define __pyx_codeobj__35 __pyx_mstate_global->__pyx_codeobj__35
 #define __pyx_codeobj__37 __pyx_mstate_global->__pyx_codeobj__37
-#define __pyx_codeobj__38 __pyx_mstate_global->__pyx_codeobj__38
 #define __pyx_codeobj__39 __pyx_mstate_global->__pyx_codeobj__39
 #define __pyx_codeobj__40 __pyx_mstate_global->__pyx_codeobj__40
 #define __pyx_codeobj__41 __pyx_mstate_global->__pyx_codeobj__41
 #define __pyx_codeobj__42 __pyx_mstate_global->__pyx_codeobj__42
+#define __pyx_codeobj__43 __pyx_mstate_global->__pyx_codeobj__43
 #define __pyx_codeobj__44 __pyx_mstate_global->__pyx_codeobj__44
-#define __pyx_codeobj__47 __pyx_mstate_global->__pyx_codeobj__47
+#define __pyx_codeobj__46 __pyx_mstate_global->__pyx_codeobj__46
 #define __pyx_codeobj__49 __pyx_mstate_global->__pyx_codeobj__49
 #define __pyx_codeobj__51 __pyx_mstate_global->__pyx_codeobj__51
-#define __pyx_codeobj__54 __pyx_mstate_global->__pyx_codeobj__54
-#define __pyx_codeobj__57 __pyx_mstate_global->__pyx_codeobj__57
+#define __pyx_codeobj__53 __pyx_mstate_global->__pyx_codeobj__53
+#define __pyx_codeobj__56 __pyx_mstate_global->__pyx_codeobj__56
 #define __pyx_codeobj__59 __pyx_mstate_global->__pyx_codeobj__59
 #define __pyx_codeobj__61 __pyx_mstate_global->__pyx_codeobj__61
+#define __pyx_codeobj__63 __pyx_mstate_global->__pyx_codeobj__63
 /* #### Code section: module_code ### */
 
 /* "../../../AppData/Local/Programs/Python/Python312/Lib/site-packages/numpy/__init__.cython-30.pxd":286
@@ -10775,25 +10821,29 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 ); /*proto*/
 static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_valid_morphing_moves(struct __pyx_obj_20ConnectedMatterAgent_ConnectedMatterAgent *__pyx_v_self, PyObject *__pyx_v_state, int __pyx_skip_dispatch) {
   int __pyx_v_state_key;
-  PyObject *__pyx_v_single_moves = 0;
-  PyObject *__pyx_v_state_set = 0;
-  PyObject *__pyx_v_movable_points = 0;
-  PyObject *__pyx_v_articulation_points = 0;
-  PyObject *__pyx_v_point = 0;
-  PyObject *__pyx_v_new_pos = 0;
-  PyObject *__pyx_v_adj_pos = 0;
-  int __pyx_v_dx;
-  int __pyx_v_dy;
-  int __pyx_v_adj_dx;
-  int __pyx_v_adj_dy;
-  int __pyx_v_has_adjacent;
-  PyObject *__pyx_v_new_state_set = 0;
-  PyObject *__pyx_v_temp_state = 0;
+  PyObject *__pyx_v_occupied_positions = 0;
+  PyObject *__pyx_v_occupied_set = 0;
+  PyObject *__pyx_v_potential_moves = 0;
   PyObject *__pyx_v_valid_moves = 0;
-  int __pyx_v_k;
-  PyObject *__pyx_v_combo = NULL;
+  PyObject *__pyx_v_pos = 0;
+  PyObject *__pyx_v_neighbor = 0;
+  PyObject *__pyx_v_new_pos = 0;
+  int __pyx_v_x;
+  int __pyx_v_y;
+  int __pyx_v_nx;
+  int __pyx_v_ny;
+  CYTHON_UNUSED PyObject *__pyx_v_neighbors_list = 0;
+  PyObject *__pyx_v_boundary_positions = 0;
+  PyObject *__pyx_v_neighbors_count = NULL;
+  PyObject *__pyx_v_dx = NULL;
+  PyObject *__pyx_v_dy = NULL;
+  PyObject *__pyx_v_new_occupied = NULL;
+  PyObject *__pyx_v_articulation_points = NULL;
+  PyObject *__pyx_v_articulation_points_fixed = NULL;
+  PyObject *__pyx_v_point = NULL;
+  PyObject *__pyx_v_coords = NULL;
+  PyObject *__pyx_v_point_tuple = NULL;
   PyObject *__pyx_v_new_state = NULL;
-  PyObject *__pyx_8genexpr4__pyx_v_move = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -10803,21 +10853,19 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_valid
   unsigned int __pyx_t_5;
   Py_hash_t __pyx_t_6;
   int __pyx_t_7;
-  int __pyx_t_8;
+  Py_ssize_t __pyx_t_8;
   int __pyx_t_9;
-  Py_ssize_t __pyx_t_10;
+  int __pyx_t_10;
   Py_ssize_t __pyx_t_11;
-  int __pyx_t_12;
-  int __pyx_t_13;
-  int __pyx_t_14;
-  Py_ssize_t __pyx_t_15;
-  PyObject *__pyx_t_16 = NULL;
-  PyObject *__pyx_t_17 = NULL;
-  PyObject *(*__pyx_t_18)(PyObject *);
-  int __pyx_t_19;
-  Py_ssize_t __pyx_t_20;
-  PyObject *__pyx_t_21 = NULL;
-  long __pyx_t_22;
+  PyObject *(*__pyx_t_12)(PyObject *);
+  PyObject *__pyx_t_13 = NULL;
+  PyObject *__pyx_t_14 = NULL;
+  PyObject *(*__pyx_t_15)(PyObject *);
+  int __pyx_t_16;
+  int __pyx_t_17;
+  Py_ssize_t __pyx_t_18;
+  PyObject *(*__pyx_t_19)(PyObject *);
+  PyObject *__pyx_t_20 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -10938,932 +10986,1312 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_valid
   /* "ConnectedMatterAgent.pyx":256
  * 
  *         # Get single block moves first
- *         cdef list single_moves = []             # <<<<<<<<<<<<<<
- *         cdef set state_set = set(state)
- *         cdef set movable_points
+ *         cdef list occupied_positions = state             # <<<<<<<<<<<<<<
+ *         cdef set occupied_set = set(occupied_positions)
+ *         cdef list potential_moves = []
  */
-  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 256, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_single_moves = ((PyObject*)__pyx_t_2);
+  if (!(likely(PyList_CheckExact(__pyx_v_state))||((__pyx_v_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_v_state))) __PYX_ERR(0, 256, __pyx_L1_error)
+  __pyx_t_2 = __pyx_v_state;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_v_occupied_positions = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
   /* "ConnectedMatterAgent.pyx":257
  *         # Get single block moves first
- *         cdef list single_moves = []
- *         cdef set state_set = set(state)             # <<<<<<<<<<<<<<
- *         cdef set movable_points
- *         cdef set articulation_points
+ *         cdef list occupied_positions = state
+ *         cdef set occupied_set = set(occupied_positions)             # <<<<<<<<<<<<<<
+ *         cdef list potential_moves = []
+ *         cdef list valid_moves = []
  */
-  __pyx_t_2 = PySet_New(__pyx_v_state); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 257, __pyx_L1_error)
+  __pyx_t_2 = PySet_New(__pyx_v_occupied_positions); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_state_set = ((PyObject*)__pyx_t_2);
+  __pyx_v_occupied_set = ((PyObject*)__pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "ConnectedMatterAgent.pyx":258
+ *         cdef list occupied_positions = state
+ *         cdef set occupied_set = set(occupied_positions)
+ *         cdef list potential_moves = []             # <<<<<<<<<<<<<<
+ *         cdef list valid_moves = []
+ *         cdef tuple pos, neighbor, new_pos
+ */
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_potential_moves = ((PyObject*)__pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "ConnectedMatterAgent.pyx":259
+ *         cdef set occupied_set = set(occupied_positions)
+ *         cdef list potential_moves = []
+ *         cdef list valid_moves = []             # <<<<<<<<<<<<<<
+ *         cdef tuple pos, neighbor, new_pos
+ *         cdef int x, y, nx, ny
+ */
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_valid_moves = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
   /* "ConnectedMatterAgent.pyx":266
  * 
- *         # Find non-critical points that can move without breaking connectivity
- *         articulation_points = self.get_articulation_points(state_set)             # <<<<<<<<<<<<<<
- *         movable_points = state_set - articulation_points
- * 
+ *     # Find all boundary positions - these are where morphing can occur
+ *         cdef list boundary_positions = []             # <<<<<<<<<<<<<<
+ *         for pos in occupied_positions:
+ *             x, y = pos
  */
-  __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_articulation_points(__pyx_v_self, __pyx_v_state_set, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 266, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 266, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_articulation_points = ((PyObject*)__pyx_t_2);
+  __pyx_v_boundary_positions = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
   /* "ConnectedMatterAgent.pyx":267
- *         # Find non-critical points that can move without breaking connectivity
- *         articulation_points = self.get_articulation_points(state_set)
- *         movable_points = state_set - articulation_points             # <<<<<<<<<<<<<<
- * 
- *         # If all points are critical, try moving one anyway but verify connectivity
+ *     # Find all boundary positions - these are where morphing can occur
+ *         cdef list boundary_positions = []
+ *         for pos in occupied_positions:             # <<<<<<<<<<<<<<
+ *             x, y = pos
+ *             neighbors_count = 0
  */
-  __pyx_t_2 = PyNumber_Subtract(__pyx_v_state_set, __pyx_v_articulation_points); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(PySet_CheckExact(__pyx_t_2)) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_2))) __PYX_ERR(0, 267, __pyx_L1_error)
-  __pyx_v_movable_points = ((PyObject*)__pyx_t_2);
-  __pyx_t_2 = 0;
-
-  /* "ConnectedMatterAgent.pyx":270
- * 
- *         # If all points are critical, try moving one anyway but verify connectivity
- *         if not movable_points and articulation_points:             # <<<<<<<<<<<<<<
- *             for point in articulation_points:
- *                 # Try removing and see if structure remains connected
- */
-  __pyx_t_8 = (PySet_GET_SIZE(__pyx_v_movable_points) != 0);
-  __pyx_t_9 = (!__pyx_t_8);
-  if (__pyx_t_9) {
-  } else {
-    __pyx_t_7 = __pyx_t_9;
-    goto __pyx_L5_bool_binop_done;
+  if (unlikely(__pyx_v_occupied_positions == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
+    __PYX_ERR(0, 267, __pyx_L1_error)
   }
-  __pyx_t_9 = (__pyx_v_articulation_points != Py_None)&&(PySet_GET_SIZE(__pyx_v_articulation_points) != 0);
-  __pyx_t_7 = __pyx_t_9;
-  __pyx_L5_bool_binop_done:;
-  if (__pyx_t_7) {
-
-    /* "ConnectedMatterAgent.pyx":271
- *         # If all points are critical, try moving one anyway but verify connectivity
- *         if not movable_points and articulation_points:
- *             for point in articulation_points:             # <<<<<<<<<<<<<<
- *                 # Try removing and see if structure remains connected
- *                 temp_state = state_set.copy()
- */
-    __pyx_t_10 = 0;
-    __pyx_t_1 = __Pyx_set_iterator(__pyx_v_articulation_points, 1, (&__pyx_t_11), (&__pyx_t_12)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_XDECREF(__pyx_t_2);
-    __pyx_t_2 = __pyx_t_1;
-    __pyx_t_1 = 0;
-    while (1) {
-      __pyx_t_13 = __Pyx_set_iter_next(__pyx_t_2, __pyx_t_11, &__pyx_t_10, &__pyx_t_1, __pyx_t_12);
-      if (unlikely(__pyx_t_13 == 0)) break;
-      if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 271, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      if (!(likely(PyTuple_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_1))) __PYX_ERR(0, 271, __pyx_L1_error)
-      __Pyx_XDECREF_SET(__pyx_v_point, ((PyObject*)__pyx_t_1));
-      __pyx_t_1 = 0;
-
-      /* "ConnectedMatterAgent.pyx":273
- *             for point in articulation_points:
- *                 # Try removing and see if structure remains connected
- *                 temp_state = state_set.copy()             # <<<<<<<<<<<<<<
- *                 temp_state.remove(point)
- *                 if self.is_connected(list(temp_state)):
- */
-      __pyx_t_1 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PySet_Type_copy, __pyx_v_state_set); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      if (!(likely(PySet_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_1))) __PYX_ERR(0, 273, __pyx_L1_error)
-      __Pyx_XDECREF_SET(__pyx_v_temp_state, ((PyObject*)__pyx_t_1));
-      __pyx_t_1 = 0;
-
-      /* "ConnectedMatterAgent.pyx":274
- *                 # Try removing and see if structure remains connected
- *                 temp_state = state_set.copy()
- *                 temp_state.remove(point)             # <<<<<<<<<<<<<<
- *                 if self.is_connected(list(temp_state)):
- *                     movable_points.add(point)
- */
-      if (unlikely(__pyx_v_temp_state == Py_None)) {
-        PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "remove");
-        __PYX_ERR(0, 274, __pyx_L1_error)
-      }
-      __pyx_t_14 = __Pyx_PySet_Remove(__pyx_v_temp_state, __pyx_v_point); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 274, __pyx_L1_error)
-
-      /* "ConnectedMatterAgent.pyx":275
- *                 temp_state = state_set.copy()
- *                 temp_state.remove(point)
- *                 if self.is_connected(list(temp_state)):             # <<<<<<<<<<<<<<
- *                     movable_points.add(point)
- * 
- */
-      __pyx_t_1 = PySequence_List(__pyx_v_temp_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 275, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_7 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->is_connected(__pyx_v_self, ((PyObject*)__pyx_t_1), 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 275, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (__pyx_t_7) {
-
-        /* "ConnectedMatterAgent.pyx":276
- *                 temp_state.remove(point)
- *                 if self.is_connected(list(temp_state)):
- *                     movable_points.add(point)             # <<<<<<<<<<<<<<
- * 
- *         # Generate single block moves
- */
-        __pyx_t_14 = PySet_Add(__pyx_v_movable_points, __pyx_v_point); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 276, __pyx_L1_error)
-
-        /* "ConnectedMatterAgent.pyx":275
- *                 temp_state = state_set.copy()
- *                 temp_state.remove(point)
- *                 if self.is_connected(list(temp_state)):             # <<<<<<<<<<<<<<
- *                     movable_points.add(point)
- * 
- */
-      }
+  __pyx_t_2 = __pyx_v_occupied_positions; __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_8 = 0;
+  for (;;) {
+    {
+      Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
+      #if !CYTHON_ASSUME_SAFE_MACROS
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 267, __pyx_L1_error)
+      #endif
+      if (__pyx_t_8 >= __pyx_temp) break;
     }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "ConnectedMatterAgent.pyx":270
- * 
- *         # If all points are critical, try moving one anyway but verify connectivity
- *         if not movable_points and articulation_points:             # <<<<<<<<<<<<<<
- *             for point in articulation_points:
- *                 # Try removing and see if structure remains connected
- */
-  }
-
-  /* "ConnectedMatterAgent.pyx":279
- * 
- *         # Generate single block moves
- *         for point in movable_points:             # <<<<<<<<<<<<<<
- *             # Try moving in each direction
- *             for dx, dy in self.directions:
- */
-  __pyx_t_11 = 0;
-  __pyx_t_1 = __Pyx_set_iterator(__pyx_v_movable_points, 1, (&__pyx_t_10), (&__pyx_t_12)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 279, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __pyx_t_2 = __pyx_t_1;
-  __pyx_t_1 = 0;
-  while (1) {
-    __pyx_t_13 = __Pyx_set_iter_next(__pyx_t_2, __pyx_t_10, &__pyx_t_11, &__pyx_t_1, __pyx_t_12);
-    if (unlikely(__pyx_t_13 == 0)) break;
-    if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 279, __pyx_L1_error)
+    #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_8); __Pyx_INCREF(__pyx_t_1); __pyx_t_8++; if (unlikely((0 < 0))) __PYX_ERR(0, 267, __pyx_L1_error)
+    #else
+    __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 267, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (!(likely(PyTuple_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_1))) __PYX_ERR(0, 279, __pyx_L1_error)
-    __Pyx_XDECREF_SET(__pyx_v_point, ((PyObject*)__pyx_t_1));
+    #endif
+    if (!(likely(PyTuple_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_1))) __PYX_ERR(0, 267, __pyx_L1_error)
+    __Pyx_XDECREF_SET(__pyx_v_pos, ((PyObject*)__pyx_t_1));
     __pyx_t_1 = 0;
 
-    /* "ConnectedMatterAgent.pyx":281
- *         for point in movable_points:
- *             # Try moving in each direction
- *             for dx, dy in self.directions:             # <<<<<<<<<<<<<<
- *                 new_pos = (point[0] + dx, point[1] + dy)
+    /* "ConnectedMatterAgent.pyx":268
+ *         cdef list boundary_positions = []
+ *         for pos in occupied_positions:
+ *             x, y = pos             # <<<<<<<<<<<<<<
+ *             neighbors_count = 0
  * 
  */
-    if (unlikely(__pyx_v_self->directions == Py_None)) {
-      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 281, __pyx_L1_error)
-    }
-    __pyx_t_1 = __pyx_v_self->directions; __Pyx_INCREF(__pyx_t_1);
-    __pyx_t_15 = 0;
-    for (;;) {
-      {
-        Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
-        #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 281, __pyx_L1_error)
-        #endif
-        if (__pyx_t_15 >= __pyx_temp) break;
+    if (likely(__pyx_v_pos != Py_None)) {
+      PyObject* sequence = __pyx_v_pos;
+      Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
+      if (unlikely(size != 2)) {
+        if (size > 2) __Pyx_RaiseTooManyValuesError(2);
+        else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+        __PYX_ERR(0, 268, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_15); __Pyx_INCREF(__pyx_t_3); __pyx_t_15++; if (unlikely((0 < 0))) __PYX_ERR(0, 281, __pyx_L1_error)
+      __pyx_t_1 = PyTuple_GET_ITEM(sequence, 0); 
+      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1); 
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_3);
       #else
-      __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 281, __pyx_L1_error)
+      __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 268, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       #endif
+    } else {
+      __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 268, __pyx_L1_error)
+    }
+    __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 268, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 268, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_v_x = __pyx_t_9;
+    __pyx_v_y = __pyx_t_10;
+
+    /* "ConnectedMatterAgent.pyx":269
+ *         for pos in occupied_positions:
+ *             x, y = pos
+ *             neighbors_count = 0             # <<<<<<<<<<<<<<
+ * 
+ *             for dx, dy in self.neighbor_transforms:
+ */
+    __Pyx_INCREF(__pyx_int_0);
+    __Pyx_XDECREF_SET(__pyx_v_neighbors_count, __pyx_int_0);
+
+    /* "ConnectedMatterAgent.pyx":271
+ *             neighbors_count = 0
+ * 
+ *             for dx, dy in self.neighbor_transforms:             # <<<<<<<<<<<<<<
+ *                 nx, ny = x + dx, y + dy
+ *                 neighbor = (nx, ny)
+ */
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_neighbor_transforms); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (likely(PyList_CheckExact(__pyx_t_3)) || PyTuple_CheckExact(__pyx_t_3)) {
+      __pyx_t_1 = __pyx_t_3; __Pyx_INCREF(__pyx_t_1);
+      __pyx_t_11 = 0;
+      __pyx_t_12 = NULL;
+    } else {
+      __pyx_t_11 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_12 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 271, __pyx_L1_error)
+    }
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    for (;;) {
+      if (likely(!__pyx_t_12)) {
+        if (likely(PyList_CheckExact(__pyx_t_1))) {
+          {
+            Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
+            #if !CYTHON_ASSUME_SAFE_MACROS
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 271, __pyx_L1_error)
+            #endif
+            if (__pyx_t_11 >= __pyx_temp) break;
+          }
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 271, __pyx_L1_error)
+          #else
+          __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          #endif
+        } else {
+          {
+            Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
+            #if !CYTHON_ASSUME_SAFE_MACROS
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 271, __pyx_L1_error)
+            #endif
+            if (__pyx_t_11 >= __pyx_temp) break;
+          }
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 271, __pyx_L1_error)
+          #else
+          __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          #endif
+        }
+      } else {
+        __pyx_t_3 = __pyx_t_12(__pyx_t_1);
+        if (unlikely(!__pyx_t_3)) {
+          PyObject* exc_type = PyErr_Occurred();
+          if (exc_type) {
+            if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+            else __PYX_ERR(0, 271, __pyx_L1_error)
+          }
+          break;
+        }
+        __Pyx_GOTREF(__pyx_t_3);
+      }
       if ((likely(PyTuple_CheckExact(__pyx_t_3))) || (PyList_CheckExact(__pyx_t_3))) {
         PyObject* sequence = __pyx_t_3;
         Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 281, __pyx_L1_error)
+          __PYX_ERR(0, 271, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
           __pyx_t_4 = PyTuple_GET_ITEM(sequence, 0); 
-          __pyx_t_16 = PyTuple_GET_ITEM(sequence, 1); 
+          __pyx_t_13 = PyTuple_GET_ITEM(sequence, 1); 
         } else {
           __pyx_t_4 = PyList_GET_ITEM(sequence, 0); 
-          __pyx_t_16 = PyList_GET_ITEM(sequence, 1); 
+          __pyx_t_13 = PyList_GET_ITEM(sequence, 1); 
         }
         __Pyx_INCREF(__pyx_t_4);
-        __Pyx_INCREF(__pyx_t_16);
+        __Pyx_INCREF(__pyx_t_13);
         #else
-        __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_16 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 281, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_16);
+        __pyx_t_13 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 271, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
         #endif
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_17 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 281, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_17);
+        __pyx_t_14 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 271, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_18 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_17);
-        index = 0; __pyx_t_4 = __pyx_t_18(__pyx_t_17); if (unlikely(!__pyx_t_4)) goto __pyx_L14_unpacking_failed;
+        __pyx_t_15 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_14);
+        index = 0; __pyx_t_4 = __pyx_t_15(__pyx_t_14); if (unlikely(!__pyx_t_4)) goto __pyx_L8_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_4);
-        index = 1; __pyx_t_16 = __pyx_t_18(__pyx_t_17); if (unlikely(!__pyx_t_16)) goto __pyx_L14_unpacking_failed;
-        __Pyx_GOTREF(__pyx_t_16);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_18(__pyx_t_17), 2) < 0) __PYX_ERR(0, 281, __pyx_L1_error)
-        __pyx_t_18 = NULL;
-        __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-        goto __pyx_L15_unpacking_done;
-        __pyx_L14_unpacking_failed:;
-        __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-        __pyx_t_18 = NULL;
+        index = 1; __pyx_t_13 = __pyx_t_15(__pyx_t_14); if (unlikely(!__pyx_t_13)) goto __pyx_L8_unpacking_failed;
+        __Pyx_GOTREF(__pyx_t_13);
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_14), 2) < 0) __PYX_ERR(0, 271, __pyx_L1_error)
+        __pyx_t_15 = NULL;
+        __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+        goto __pyx_L9_unpacking_done;
+        __pyx_L8_unpacking_failed:;
+        __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+        __pyx_t_15 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 281, __pyx_L1_error)
-        __pyx_L15_unpacking_done:;
+        __PYX_ERR(0, 271, __pyx_L1_error)
+        __pyx_L9_unpacking_done:;
       }
-      __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 281, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_19 = __Pyx_PyInt_As_int(__pyx_t_16); if (unlikely((__pyx_t_19 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 281, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-      __pyx_v_dx = __pyx_t_13;
-      __pyx_v_dy = __pyx_t_19;
-
-      /* "ConnectedMatterAgent.pyx":282
- *             # Try moving in each direction
- *             for dx, dy in self.directions:
- *                 new_pos = (point[0] + dx, point[1] + dy)             # <<<<<<<<<<<<<<
- * 
- *                 # Skip if out of bounds
- */
-      if (unlikely(__pyx_v_point == Py_None)) {
-        PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 282, __pyx_L1_error)
-      }
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_dx); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 282, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_16 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_point, 0), __pyx_t_3); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 282, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_16);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(__pyx_v_point == Py_None)) {
-        PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 282, __pyx_L1_error)
-      }
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_dy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 282, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_point, 1), __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 282, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 282, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_GIVEREF(__pyx_t_16);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_16)) __PYX_ERR(0, 282, __pyx_L1_error);
-      __Pyx_GIVEREF(__pyx_t_4);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_4)) __PYX_ERR(0, 282, __pyx_L1_error);
-      __pyx_t_16 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_dx, __pyx_t_4);
       __pyx_t_4 = 0;
-      __Pyx_XDECREF_SET(__pyx_v_new_pos, ((PyObject*)__pyx_t_3));
-      __pyx_t_3 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_dy, __pyx_t_13);
+      __pyx_t_13 = 0;
 
-      /* "ConnectedMatterAgent.pyx":285
+      /* "ConnectedMatterAgent.pyx":272
  * 
- *                 # Skip if out of bounds
- *                 if not (0 <= new_pos[0] < self.grid_size[0] and             # <<<<<<<<<<<<<<
- *                         0 <= new_pos[1] < self.grid_size[1]):
- *                     continue
+ *             for dx, dy in self.neighbor_transforms:
+ *                 nx, ny = x + dx, y + dy             # <<<<<<<<<<<<<<
+ *                 neighbor = (nx, ny)
+ *                 if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height:
  */
-      __pyx_t_3 = PyTuple_GET_ITEM(__pyx_v_new_pos, 0);
-      __Pyx_INCREF(__pyx_t_3);
-      __pyx_t_4 = PyObject_RichCompare(__pyx_int_0, __pyx_t_3, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 285, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 272, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_13 = PyNumber_Add(__pyx_t_3, __pyx_v_dx); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 272, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_13); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 272, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+      __pyx_t_13 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 272, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __pyx_t_3 = PyNumber_Add(__pyx_t_13, __pyx_v_dy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 272, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+      __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 272, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __pyx_v_nx = __pyx_t_10;
+      __pyx_v_ny = __pyx_t_9;
+
+      /* "ConnectedMatterAgent.pyx":273
+ *             for dx, dy in self.neighbor_transforms:
+ *                 nx, ny = x + dx, y + dy
+ *                 neighbor = (nx, ny)             # <<<<<<<<<<<<<<
+ *                 if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height:
+ *                     if neighbor in occupied_set:
+ */
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_nx); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 273, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_13 = __Pyx_PyInt_From_int(__pyx_v_ny); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 273, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 273, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __Pyx_GIVEREF(__pyx_t_3);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3)) __PYX_ERR(0, 273, __pyx_L1_error);
+      __Pyx_GIVEREF(__pyx_t_13);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_13)) __PYX_ERR(0, 273, __pyx_L1_error);
+      __pyx_t_3 = 0;
+      __pyx_t_13 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_neighbor, ((PyObject*)__pyx_t_4));
+      __pyx_t_4 = 0;
+
+      /* "ConnectedMatterAgent.pyx":274
+ *                 nx, ny = x + dx, y + dy
+ *                 neighbor = (nx, ny)
+ *                 if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height:             # <<<<<<<<<<<<<<
+ *                     if neighbor in occupied_set:
+ *                         neighbors_count += 1
+ */
+      __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_nx); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 274, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_13 = PyObject_RichCompare(__pyx_int_0, __pyx_t_4, Py_LE); __Pyx_XGOTREF(__pyx_t_13); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 274, __pyx_L1_error)
+      if (__Pyx_PyObject_IsTrue(__pyx_t_13)) {
+        __Pyx_DECREF(__pyx_t_13);
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_grid_width); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __pyx_t_13 = PyObject_RichCompare(__pyx_t_4, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_13); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 274, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      }
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __pyx_t_16 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely((__pyx_t_16 < 0))) __PYX_ERR(0, 274, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+      if (__pyx_t_16) {
+      } else {
+        __pyx_t_7 = __pyx_t_16;
+        goto __pyx_L11_bool_binop_done;
+      }
+      __pyx_t_13 = __Pyx_PyInt_From_int(__pyx_v_ny); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 274, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __pyx_t_4 = PyObject_RichCompare(__pyx_int_0, __pyx_t_13, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 274, __pyx_L1_error)
       if (__Pyx_PyObject_IsTrue(__pyx_t_4)) {
         __Pyx_DECREF(__pyx_t_4);
-        if (unlikely(__pyx_v_self->grid_size == Py_None)) {
-          PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 285, __pyx_L1_error)
-        }
-        __pyx_t_4 = PyObject_RichCompare(__pyx_t_3, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 0), Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 285, __pyx_L1_error)
-      }
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 285, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (__pyx_t_9) {
-      } else {
-        __pyx_t_7 = __pyx_t_9;
-        goto __pyx_L17_bool_binop_done;
-      }
-
-      /* "ConnectedMatterAgent.pyx":286
- *                 # Skip if out of bounds
- *                 if not (0 <= new_pos[0] < self.grid_size[0] and
- *                         0 <= new_pos[1] < self.grid_size[1]):             # <<<<<<<<<<<<<<
- *                     continue
- * 
- */
-      __pyx_t_4 = PyTuple_GET_ITEM(__pyx_v_new_pos, 1);
-      __Pyx_INCREF(__pyx_t_4);
-      __pyx_t_3 = PyObject_RichCompare(__pyx_int_0, __pyx_t_4, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 286, __pyx_L1_error)
-      if (__Pyx_PyObject_IsTrue(__pyx_t_3)) {
-        __Pyx_DECREF(__pyx_t_3);
-        if (unlikely(__pyx_v_self->grid_size == Py_None)) {
-          PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 286, __pyx_L1_error)
-        }
-        __pyx_t_3 = PyObject_RichCompare(__pyx_t_4, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 1), Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 286, __pyx_L1_error)
-      }
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 286, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_7 = __pyx_t_9;
-      __pyx_L17_bool_binop_done:;
-
-      /* "ConnectedMatterAgent.pyx":285
- * 
- *                 # Skip if out of bounds
- *                 if not (0 <= new_pos[0] < self.grid_size[0] and             # <<<<<<<<<<<<<<
- *                         0 <= new_pos[1] < self.grid_size[1]):
- *                     continue
- */
-      __pyx_t_9 = (!__pyx_t_7);
-      if (__pyx_t_9) {
-
-        /* "ConnectedMatterAgent.pyx":287
- *                 if not (0 <= new_pos[0] < self.grid_size[0] and
- *                         0 <= new_pos[1] < self.grid_size[1]):
- *                     continue             # <<<<<<<<<<<<<<
- * 
- *                 # Skip if already occupied
- */
-        goto __pyx_L12_continue;
-
-        /* "ConnectedMatterAgent.pyx":285
- * 
- *                 # Skip if out of bounds
- *                 if not (0 <= new_pos[0] < self.grid_size[0] and             # <<<<<<<<<<<<<<
- *                         0 <= new_pos[1] < self.grid_size[1]):
- *                     continue
- */
-      }
-
-      /* "ConnectedMatterAgent.pyx":290
- * 
- *                 # Skip if already occupied
- *                 if new_pos in state_set:             # <<<<<<<<<<<<<<
- *                     continue
- * 
- */
-      __pyx_t_9 = (__Pyx_PySet_ContainsTF(__pyx_v_new_pos, __pyx_v_state_set, Py_EQ)); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 290, __pyx_L1_error)
-      if (__pyx_t_9) {
-
-        /* "ConnectedMatterAgent.pyx":291
- *                 # Skip if already occupied
- *                 if new_pos in state_set:
- *                     continue             # <<<<<<<<<<<<<<
- * 
- *                 # Create new state by moving the point
- */
-        goto __pyx_L12_continue;
-
-        /* "ConnectedMatterAgent.pyx":290
- * 
- *                 # Skip if already occupied
- *                 if new_pos in state_set:             # <<<<<<<<<<<<<<
- *                     continue
- * 
- */
-      }
-
-      /* "ConnectedMatterAgent.pyx":294
- * 
- *                 # Create new state by moving the point
- *                 new_state_set = state_set.copy()             # <<<<<<<<<<<<<<
- *                 new_state_set.remove(point)
- *                 new_state_set.add(new_pos)
- */
-      __pyx_t_3 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PySet_Type_copy, __pyx_v_state_set); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 294, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      if (!(likely(PySet_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_3))) __PYX_ERR(0, 294, __pyx_L1_error)
-      __Pyx_XDECREF_SET(__pyx_v_new_state_set, ((PyObject*)__pyx_t_3));
-      __pyx_t_3 = 0;
-
-      /* "ConnectedMatterAgent.pyx":295
- *                 # Create new state by moving the point
- *                 new_state_set = state_set.copy()
- *                 new_state_set.remove(point)             # <<<<<<<<<<<<<<
- *                 new_state_set.add(new_pos)
- * 
- */
-      if (unlikely(__pyx_v_new_state_set == Py_None)) {
-        PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "remove");
-        __PYX_ERR(0, 295, __pyx_L1_error)
-      }
-      __pyx_t_14 = __Pyx_PySet_Remove(__pyx_v_new_state_set, __pyx_v_point); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 295, __pyx_L1_error)
-
-      /* "ConnectedMatterAgent.pyx":296
- *                 new_state_set = state_set.copy()
- *                 new_state_set.remove(point)
- *                 new_state_set.add(new_pos)             # <<<<<<<<<<<<<<
- * 
- *                 # Check if new position is adjacent to at least one other point
- */
-      if (unlikely(__pyx_v_new_state_set == Py_None)) {
-        PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "add");
-        __PYX_ERR(0, 296, __pyx_L1_error)
-      }
-      __pyx_t_14 = PySet_Add(__pyx_v_new_state_set, __pyx_v_new_pos); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 296, __pyx_L1_error)
-
-      /* "ConnectedMatterAgent.pyx":299
- * 
- *                 # Check if new position is adjacent to at least one other point
- *                 has_adjacent = False             # <<<<<<<<<<<<<<
- *                 for adj_dx, adj_dy in self.directions:
- *                     adj_pos = (new_pos[0] + adj_dx, new_pos[1] + adj_dy)
- */
-      __pyx_v_has_adjacent = 0;
-
-      /* "ConnectedMatterAgent.pyx":300
- *                 # Check if new position is adjacent to at least one other point
- *                 has_adjacent = False
- *                 for adj_dx, adj_dy in self.directions:             # <<<<<<<<<<<<<<
- *                     adj_pos = (new_pos[0] + adj_dx, new_pos[1] + adj_dy)
- *                     if adj_pos in new_state_set and adj_pos != new_pos:
- */
-      if (unlikely(__pyx_v_self->directions == Py_None)) {
-        PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-        __PYX_ERR(0, 300, __pyx_L1_error)
-      }
-      __pyx_t_3 = __pyx_v_self->directions; __Pyx_INCREF(__pyx_t_3);
-      __pyx_t_20 = 0;
-      for (;;) {
-        {
-          Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
-          #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 300, __pyx_L1_error)
-          #endif
-          if (__pyx_t_20 >= __pyx_temp) break;
-        }
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_20); __Pyx_INCREF(__pyx_t_4); __pyx_t_20++; if (unlikely((0 < 0))) __PYX_ERR(0, 300, __pyx_L1_error)
-        #else
-        __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_20); __pyx_t_20++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 300, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        #endif
-        if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
-          PyObject* sequence = __pyx_t_4;
-          Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
-          if (unlikely(size != 2)) {
-            if (size > 2) __Pyx_RaiseTooManyValuesError(2);
-            else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-            __PYX_ERR(0, 300, __pyx_L1_error)
-          }
-          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          if (likely(PyTuple_CheckExact(sequence))) {
-            __pyx_t_16 = PyTuple_GET_ITEM(sequence, 0); 
-            __pyx_t_17 = PyTuple_GET_ITEM(sequence, 1); 
-          } else {
-            __pyx_t_16 = PyList_GET_ITEM(sequence, 0); 
-            __pyx_t_17 = PyList_GET_ITEM(sequence, 1); 
-          }
-          __Pyx_INCREF(__pyx_t_16);
-          __Pyx_INCREF(__pyx_t_17);
-          #else
-          __pyx_t_16 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 300, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_16);
-          __pyx_t_17 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 300, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_17);
-          #endif
-          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        } else {
-          Py_ssize_t index = -1;
-          __pyx_t_21 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 300, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_21);
-          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __pyx_t_18 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_21);
-          index = 0; __pyx_t_16 = __pyx_t_18(__pyx_t_21); if (unlikely(!__pyx_t_16)) goto __pyx_L22_unpacking_failed;
-          __Pyx_GOTREF(__pyx_t_16);
-          index = 1; __pyx_t_17 = __pyx_t_18(__pyx_t_21); if (unlikely(!__pyx_t_17)) goto __pyx_L22_unpacking_failed;
-          __Pyx_GOTREF(__pyx_t_17);
-          if (__Pyx_IternextUnpackEndCheck(__pyx_t_18(__pyx_t_21), 2) < 0) __PYX_ERR(0, 300, __pyx_L1_error)
-          __pyx_t_18 = NULL;
-          __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-          goto __pyx_L23_unpacking_done;
-          __pyx_L22_unpacking_failed:;
-          __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-          __pyx_t_18 = NULL;
-          if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-          __PYX_ERR(0, 300, __pyx_L1_error)
-          __pyx_L23_unpacking_done:;
-        }
-        __pyx_t_19 = __Pyx_PyInt_As_int(__pyx_t_16); if (unlikely((__pyx_t_19 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 300, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-        __pyx_t_13 = __Pyx_PyInt_As_int(__pyx_t_17); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 300, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-        __pyx_v_adj_dx = __pyx_t_19;
-        __pyx_v_adj_dy = __pyx_t_13;
-
-        /* "ConnectedMatterAgent.pyx":301
- *                 has_adjacent = False
- *                 for adj_dx, adj_dy in self.directions:
- *                     adj_pos = (new_pos[0] + adj_dx, new_pos[1] + adj_dy)             # <<<<<<<<<<<<<<
- *                     if adj_pos in new_state_set and adj_pos != new_pos:
- *                         has_adjacent = True
- */
-        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_adj_dx); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 301, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_17 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_new_pos, 0), __pyx_t_4); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 301, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_17);
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_adj_dy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 301, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_16 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_new_pos, 1), __pyx_t_4); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 301, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_16);
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 301, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_GIVEREF(__pyx_t_17);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_17)) __PYX_ERR(0, 301, __pyx_L1_error);
-        __Pyx_GIVEREF(__pyx_t_16);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_16)) __PYX_ERR(0, 301, __pyx_L1_error);
-        __pyx_t_17 = 0;
-        __pyx_t_16 = 0;
-        __Pyx_XDECREF_SET(__pyx_v_adj_pos, ((PyObject*)__pyx_t_4));
-        __pyx_t_4 = 0;
-
-        /* "ConnectedMatterAgent.pyx":302
- *                 for adj_dx, adj_dy in self.directions:
- *                     adj_pos = (new_pos[0] + adj_dx, new_pos[1] + adj_dy)
- *                     if adj_pos in new_state_set and adj_pos != new_pos:             # <<<<<<<<<<<<<<
- *                         has_adjacent = True
- *                         break
- */
-        if (unlikely(__pyx_v_new_state_set == Py_None)) {
-          PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-          __PYX_ERR(0, 302, __pyx_L1_error)
-        }
-        __pyx_t_7 = (__Pyx_PySet_ContainsTF(__pyx_v_adj_pos, __pyx_v_new_state_set, Py_EQ)); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 302, __pyx_L1_error)
-        if (__pyx_t_7) {
-        } else {
-          __pyx_t_9 = __pyx_t_7;
-          goto __pyx_L25_bool_binop_done;
-        }
-        __pyx_t_4 = PyObject_RichCompare(__pyx_v_adj_pos, __pyx_v_new_pos, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 302, __pyx_L1_error)
-        __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 302, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_9 = __pyx_t_7;
-        __pyx_L25_bool_binop_done:;
-        if (__pyx_t_9) {
-
-          /* "ConnectedMatterAgent.pyx":303
- *                     adj_pos = (new_pos[0] + adj_dx, new_pos[1] + adj_dy)
- *                     if adj_pos in new_state_set and adj_pos != new_pos:
- *                         has_adjacent = True             # <<<<<<<<<<<<<<
- *                         break
- * 
- */
-          __pyx_v_has_adjacent = 1;
-
-          /* "ConnectedMatterAgent.pyx":304
- *                     if adj_pos in new_state_set and adj_pos != new_pos:
- *                         has_adjacent = True
- *                         break             # <<<<<<<<<<<<<<
- * 
- *                 # Only consider moves that maintain connectivity
- */
-          goto __pyx_L21_break;
-
-          /* "ConnectedMatterAgent.pyx":302
- *                 for adj_dx, adj_dy in self.directions:
- *                     adj_pos = (new_pos[0] + adj_dx, new_pos[1] + adj_dy)
- *                     if adj_pos in new_state_set and adj_pos != new_pos:             # <<<<<<<<<<<<<<
- *                         has_adjacent = True
- *                         break
- */
-        }
-
-        /* "ConnectedMatterAgent.pyx":300
- *                 # Check if new position is adjacent to at least one other point
- *                 has_adjacent = False
- *                 for adj_dx, adj_dy in self.directions:             # <<<<<<<<<<<<<<
- *                     adj_pos = (new_pos[0] + adj_dx, new_pos[1] + adj_dy)
- *                     if adj_pos in new_state_set and adj_pos != new_pos:
- */
-      }
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      goto __pyx_L27_for_end;
-      __pyx_L21_break:;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      goto __pyx_L27_for_end;
-      __pyx_L27_for_end:;
-
-      /* "ConnectedMatterAgent.pyx":307
- * 
- *                 # Only consider moves that maintain connectivity
- *                 if has_adjacent and self.is_connected(list(new_state_set)):             # <<<<<<<<<<<<<<
- *                     single_moves.append((point, new_pos))
- * 
- */
-      if (__pyx_v_has_adjacent) {
-      } else {
-        __pyx_t_9 = __pyx_v_has_adjacent;
-        goto __pyx_L29_bool_binop_done;
-      }
-      __pyx_t_3 = PySequence_List(__pyx_v_new_state_set); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 307, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->is_connected(__pyx_v_self, ((PyObject*)__pyx_t_3), 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 307, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_9 = __pyx_t_7;
-      __pyx_L29_bool_binop_done:;
-      if (__pyx_t_9) {
-
-        /* "ConnectedMatterAgent.pyx":308
- *                 # Only consider moves that maintain connectivity
- *                 if has_adjacent and self.is_connected(list(new_state_set)):
- *                     single_moves.append((point, new_pos))             # <<<<<<<<<<<<<<
- * 
- *         # Start with empty valid moves list
- */
-        __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 308, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_grid_height); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __Pyx_INCREF(__pyx_v_point);
-        __Pyx_GIVEREF(__pyx_v_point);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_point)) __PYX_ERR(0, 308, __pyx_L1_error);
-        __Pyx_INCREF(__pyx_v_new_pos);
-        __Pyx_GIVEREF(__pyx_v_new_pos);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_new_pos)) __PYX_ERR(0, 308, __pyx_L1_error);
-        __pyx_t_14 = __Pyx_PyList_Append(__pyx_v_single_moves, __pyx_t_3); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 308, __pyx_L1_error)
+        __pyx_t_4 = PyObject_RichCompare(__pyx_t_13, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 274, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      }
+      __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+      __pyx_t_16 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_16 < 0))) __PYX_ERR(0, 274, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __pyx_t_7 = __pyx_t_16;
+      __pyx_L11_bool_binop_done:;
+      if (__pyx_t_7) {
 
-        /* "ConnectedMatterAgent.pyx":307
+        /* "ConnectedMatterAgent.pyx":275
+ *                 neighbor = (nx, ny)
+ *                 if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height:
+ *                     if neighbor in occupied_set:             # <<<<<<<<<<<<<<
+ *                         neighbors_count += 1
  * 
- *                 # Only consider moves that maintain connectivity
- *                 if has_adjacent and self.is_connected(list(new_state_set)):             # <<<<<<<<<<<<<<
- *                     single_moves.append((point, new_pos))
+ */
+        __pyx_t_7 = (__Pyx_PySet_ContainsTF(__pyx_v_neighbor, __pyx_v_occupied_set, Py_EQ)); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 275, __pyx_L1_error)
+        if (__pyx_t_7) {
+
+          /* "ConnectedMatterAgent.pyx":276
+ *                 if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height:
+ *                     if neighbor in occupied_set:
+ *                         neighbors_count += 1             # <<<<<<<<<<<<<<
  * 
+ *             if neighbors_count < len(self.neighbor_transforms):
+ */
+          __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_v_neighbors_count, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 276, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_4);
+          __Pyx_DECREF_SET(__pyx_v_neighbors_count, __pyx_t_4);
+          __pyx_t_4 = 0;
+
+          /* "ConnectedMatterAgent.pyx":275
+ *                 neighbor = (nx, ny)
+ *                 if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height:
+ *                     if neighbor in occupied_set:             # <<<<<<<<<<<<<<
+ *                         neighbors_count += 1
+ * 
+ */
+        }
+
+        /* "ConnectedMatterAgent.pyx":274
+ *                 nx, ny = x + dx, y + dy
+ *                 neighbor = (nx, ny)
+ *                 if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height:             # <<<<<<<<<<<<<<
+ *                     if neighbor in occupied_set:
+ *                         neighbors_count += 1
  */
       }
 
-      /* "ConnectedMatterAgent.pyx":281
- *         for point in movable_points:
- *             # Try moving in each direction
- *             for dx, dy in self.directions:             # <<<<<<<<<<<<<<
- *                 new_pos = (point[0] + dx, point[1] + dy)
+      /* "ConnectedMatterAgent.pyx":271
+ *             neighbors_count = 0
  * 
+ *             for dx, dy in self.neighbor_transforms:             # <<<<<<<<<<<<<<
+ *                 nx, ny = x + dx, y + dy
+ *                 neighbor = (nx, ny)
  */
-      __pyx_L12_continue:;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "ConnectedMatterAgent.pyx":278
+ *                         neighbors_count += 1
+ * 
+ *             if neighbors_count < len(self.neighbor_transforms):             # <<<<<<<<<<<<<<
+ *                 boundary_positions.append(pos)
+ * 
+ */
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_neighbor_transforms); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_11 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_11 == ((Py_ssize_t)-1))) __PYX_ERR(0, 278, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_11); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_4 = PyObject_RichCompare(__pyx_v_neighbors_count, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 278, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (__pyx_t_7) {
+
+      /* "ConnectedMatterAgent.pyx":279
+ * 
+ *             if neighbors_count < len(self.neighbor_transforms):
+ *                 boundary_positions.append(pos)             # <<<<<<<<<<<<<<
+ * 
+ *     # For each boundary position, find potential new positions
+ */
+      __pyx_t_17 = __Pyx_PyList_Append(__pyx_v_boundary_positions, __pyx_v_pos); if (unlikely(__pyx_t_17 == ((int)-1))) __PYX_ERR(0, 279, __pyx_L1_error)
+
+      /* "ConnectedMatterAgent.pyx":278
+ *                         neighbors_count += 1
+ * 
+ *             if neighbors_count < len(self.neighbor_transforms):             # <<<<<<<<<<<<<<
+ *                 boundary_positions.append(pos)
+ * 
+ */
+    }
+
+    /* "ConnectedMatterAgent.pyx":267
+ *     # Find all boundary positions - these are where morphing can occur
+ *         cdef list boundary_positions = []
+ *         for pos in occupied_positions:             # <<<<<<<<<<<<<<
+ *             x, y = pos
+ *             neighbors_count = 0
+ */
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "ConnectedMatterAgent.pyx":311
+  /* "ConnectedMatterAgent.pyx":282
  * 
- *         # Start with empty valid moves list
- *         cdef list valid_moves = []             # <<<<<<<<<<<<<<
- *         cdef int k
- * 
+ *     # For each boundary position, find potential new positions
+ *         for pos in boundary_positions:             # <<<<<<<<<<<<<<
+ *             x, y = pos
+ *             neighbors_list = []
  */
-  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 311, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_valid_moves = ((PyObject*)__pyx_t_2);
-  __pyx_t_2 = 0;
-
-  /* "ConnectedMatterAgent.pyx":315
- * 
- *         # Generate multi-block moves
- *         for k in range(self.min_simultaneous_moves, min(self.max_simultaneous_moves + 1, len(single_moves) + 1)):             # <<<<<<<<<<<<<<
- *             # Generate combinations of k moves (using the external helper function)
- *             for combo in _generate_move_combinations(single_moves, k):
- */
-  __pyx_t_10 = __Pyx_PyList_GET_SIZE(__pyx_v_single_moves); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 315, __pyx_L1_error)
-  __pyx_t_11 = (__pyx_t_10 + 1);
-  __pyx_t_22 = (__pyx_v_self->max_simultaneous_moves + 1);
-  __pyx_t_9 = (__pyx_t_11 < __pyx_t_22);
-  if (__pyx_t_9) {
-    __pyx_t_10 = __pyx_t_11;
-  } else {
-    __pyx_t_10 = __pyx_t_22;
-  }
-  __pyx_t_11 = __pyx_t_10;
-  __pyx_t_10 = __pyx_t_11;
-  for (__pyx_t_12 = __pyx_v_self->min_simultaneous_moves; __pyx_t_12 < __pyx_t_10; __pyx_t_12+=1) {
-    __pyx_v_k = __pyx_t_12;
-
-    /* "ConnectedMatterAgent.pyx":317
- *         for k in range(self.min_simultaneous_moves, min(self.max_simultaneous_moves + 1, len(single_moves) + 1)):
- *             # Generate combinations of k moves (using the external helper function)
- *             for combo in _generate_move_combinations(single_moves, k):             # <<<<<<<<<<<<<<
- *                 # Check if the combination is valid (no conflicts)
- *                 if self._is_valid_move_combination(combo, state_set):
- */
-    __pyx_t_2 = __pyx_f_20ConnectedMatterAgent__generate_move_combinations(__pyx_v_single_moves, __pyx_v_k, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 317, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    if (unlikely(__pyx_t_2 == Py_None)) {
-      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 317, __pyx_L1_error)
+  __pyx_t_2 = __pyx_v_boundary_positions; __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_8 = 0;
+  for (;;) {
+    {
+      Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
+      #if !CYTHON_ASSUME_SAFE_MACROS
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 282, __pyx_L1_error)
+      #endif
+      if (__pyx_t_8 >= __pyx_temp) break;
     }
-    __pyx_t_1 = __pyx_t_2; __Pyx_INCREF(__pyx_t_1);
-    __pyx_t_15 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    for (;;) {
-      {
-        Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
-        #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 317, __pyx_L1_error)
-        #endif
-        if (__pyx_t_15 >= __pyx_temp) break;
+    #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_8); __Pyx_INCREF(__pyx_t_4); __pyx_t_8++; if (unlikely((0 < 0))) __PYX_ERR(0, 282, __pyx_L1_error)
+    #else
+    __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 282, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    #endif
+    if (!(likely(PyTuple_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_4))) __PYX_ERR(0, 282, __pyx_L1_error)
+    __Pyx_XDECREF_SET(__pyx_v_pos, ((PyObject*)__pyx_t_4));
+    __pyx_t_4 = 0;
+
+    /* "ConnectedMatterAgent.pyx":283
+ *     # For each boundary position, find potential new positions
+ *         for pos in boundary_positions:
+ *             x, y = pos             # <<<<<<<<<<<<<<
+ *             neighbors_list = []
+ * 
+ */
+    if (likely(__pyx_v_pos != Py_None)) {
+      PyObject* sequence = __pyx_v_pos;
+      Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
+      if (unlikely(size != 2)) {
+        if (size > 2) __Pyx_RaiseTooManyValuesError(2);
+        else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+        __PYX_ERR(0, 283, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_15); __Pyx_INCREF(__pyx_t_2); __pyx_t_15++; if (unlikely((0 < 0))) __PYX_ERR(0, 317, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_GET_ITEM(sequence, 0); 
+      __pyx_t_1 = PyTuple_GET_ITEM(sequence, 1); 
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_1);
       #else
-      __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 317, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      #endif
-      __Pyx_XDECREF_SET(__pyx_v_combo, __pyx_t_2);
-      __pyx_t_2 = 0;
-
-      /* "ConnectedMatterAgent.pyx":319
- *             for combo in _generate_move_combinations(single_moves, k):
- *                 # Check if the combination is valid (no conflicts)
- *                 if self._is_valid_move_combination(combo, state_set):             # <<<<<<<<<<<<<<
- *                     # Apply the combination and check connectivity
- *                     new_state = self._apply_moves(state_set, combo)
- */
-      if (!(likely(PyList_CheckExact(__pyx_v_combo))||((__pyx_v_combo) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_v_combo))) __PYX_ERR(0, 319, __pyx_L1_error)
-      __pyx_t_9 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->_is_valid_move_combination(__pyx_v_self, ((PyObject*)__pyx_v_combo), __pyx_v_state_set, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 319, __pyx_L1_error)
-      if (__pyx_t_9) {
-
-        /* "ConnectedMatterAgent.pyx":321
- *                 if self._is_valid_move_combination(combo, state_set):
- *                     # Apply the combination and check connectivity
- *                     new_state = self._apply_moves(state_set, combo)             # <<<<<<<<<<<<<<
- *                     if self.is_connected(list(new_state)):
- *                         valid_moves.append(frozenset(new_state))
- */
-        if (!(likely(PyList_CheckExact(__pyx_v_combo))||((__pyx_v_combo) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_v_combo))) __PYX_ERR(0, 321, __pyx_L1_error)
-        __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->_apply_moves(__pyx_v_self, __pyx_v_state_set, ((PyObject*)__pyx_v_combo), 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 321, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __Pyx_XDECREF_SET(__pyx_v_new_state, ((PyObject*)__pyx_t_2));
-        __pyx_t_2 = 0;
-
-        /* "ConnectedMatterAgent.pyx":322
- *                     # Apply the combination and check connectivity
- *                     new_state = self._apply_moves(state_set, combo)
- *                     if self.is_connected(list(new_state)):             # <<<<<<<<<<<<<<
- *                         valid_moves.append(frozenset(new_state))
- * 
- */
-        __pyx_t_2 = PySequence_List(__pyx_v_new_state); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 322, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_9 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->is_connected(__pyx_v_self, ((PyObject*)__pyx_t_2), 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 322, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (__pyx_t_9) {
-
-          /* "ConnectedMatterAgent.pyx":323
- *                     new_state = self._apply_moves(state_set, combo)
- *                     if self.is_connected(list(new_state)):
- *                         valid_moves.append(frozenset(new_state))             # <<<<<<<<<<<<<<
- * 
- *         # If no valid moves with min_simultaneous_moves, fallback to single moves if allowed
- */
-          __pyx_t_2 = __Pyx_PyFrozenSet_New(__pyx_v_new_state); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_14 = __Pyx_PyList_Append(__pyx_v_valid_moves, __pyx_t_2); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 323, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-          /* "ConnectedMatterAgent.pyx":322
- *                     # Apply the combination and check connectivity
- *                     new_state = self._apply_moves(state_set, combo)
- *                     if self.is_connected(list(new_state)):             # <<<<<<<<<<<<<<
- *                         valid_moves.append(frozenset(new_state))
- * 
- */
-        }
-
-        /* "ConnectedMatterAgent.pyx":319
- *             for combo in _generate_move_combinations(single_moves, k):
- *                 # Check if the combination is valid (no conflicts)
- *                 if self._is_valid_move_combination(combo, state_set):             # <<<<<<<<<<<<<<
- *                     # Apply the combination and check connectivity
- *                     new_state = self._apply_moves(state_set, combo)
- */
-      }
-
-      /* "ConnectedMatterAgent.pyx":317
- *         for k in range(self.min_simultaneous_moves, min(self.max_simultaneous_moves + 1, len(single_moves) + 1)):
- *             # Generate combinations of k moves (using the external helper function)
- *             for combo in _generate_move_combinations(single_moves, k):             # <<<<<<<<<<<<<<
- *                 # Check if the combination is valid (no conflicts)
- *                 if self._is_valid_move_combination(combo, state_set):
- */
-    }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
-
-  /* "ConnectedMatterAgent.pyx":326
- * 
- *         # If no valid moves with min_simultaneous_moves, fallback to single moves if allowed
- *         if not valid_moves and self.min_simultaneous_moves == 1:             # <<<<<<<<<<<<<<
- *             valid_moves = [frozenset(self._apply_moves(state_set, [move])) for move in single_moves]
- * 
- */
-  __pyx_t_7 = (PyList_GET_SIZE(__pyx_v_valid_moves) != 0);
-  __pyx_t_8 = (!__pyx_t_7);
-  if (__pyx_t_8) {
-  } else {
-    __pyx_t_9 = __pyx_t_8;
-    goto __pyx_L40_bool_binop_done;
-  }
-  __pyx_t_8 = (__pyx_v_self->min_simultaneous_moves == 1);
-  __pyx_t_9 = __pyx_t_8;
-  __pyx_L40_bool_binop_done:;
-  if (__pyx_t_9) {
-
-    /* "ConnectedMatterAgent.pyx":327
- *         # If no valid moves with min_simultaneous_moves, fallback to single moves if allowed
- *         if not valid_moves and self.min_simultaneous_moves == 1:
- *             valid_moves = [frozenset(self._apply_moves(state_set, [move])) for move in single_moves]             # <<<<<<<<<<<<<<
- * 
- *         # Cache results
- */
-    { /* enter inner scope */
-      __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 327, __pyx_L44_error)
+      __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 283, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 283, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __pyx_v_single_moves; __Pyx_INCREF(__pyx_t_2);
-      __pyx_t_11 = 0;
-      for (;;) {
-        {
-          Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
-          #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 327, __pyx_L44_error)
-          #endif
-          if (__pyx_t_11 >= __pyx_temp) break;
-        }
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 327, __pyx_L44_error)
-        #else
-        __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 327, __pyx_L44_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        #endif
-        __Pyx_XDECREF_SET(__pyx_8genexpr4__pyx_v_move, __pyx_t_3);
-        __pyx_t_3 = 0;
-        __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 327, __pyx_L44_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        __Pyx_INCREF(__pyx_8genexpr4__pyx_v_move);
-        __Pyx_GIVEREF(__pyx_8genexpr4__pyx_v_move);
-        if (__Pyx_PyList_SET_ITEM(__pyx_t_3, 0, __pyx_8genexpr4__pyx_v_move)) __PYX_ERR(0, 327, __pyx_L44_error);
-        __pyx_t_4 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->_apply_moves(__pyx_v_self, __pyx_v_state_set, ((PyObject*)__pyx_t_3), 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 327, __pyx_L44_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = __Pyx_PyFrozenSet_New(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 327, __pyx_L44_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_3))) __PYX_ERR(0, 327, __pyx_L44_error)
-        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      }
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __Pyx_XDECREF(__pyx_8genexpr4__pyx_v_move); __pyx_8genexpr4__pyx_v_move = 0;
-      goto __pyx_L48_exit_scope;
-      __pyx_L44_error:;
-      __Pyx_XDECREF(__pyx_8genexpr4__pyx_v_move); __pyx_8genexpr4__pyx_v_move = 0;
-      goto __pyx_L1_error;
-      __pyx_L48_exit_scope:;
-    } /* exit inner scope */
-    __Pyx_DECREF_SET(__pyx_v_valid_moves, ((PyObject*)__pyx_t_1));
+      #endif
+    } else {
+      __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 283, __pyx_L1_error)
+    }
+    __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 283, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 283, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_v_x = __pyx_t_9;
+    __pyx_v_y = __pyx_t_10;
+
+    /* "ConnectedMatterAgent.pyx":284
+ *         for pos in boundary_positions:
+ *             x, y = pos
+ *             neighbors_list = []             # <<<<<<<<<<<<<<
+ * 
+ *             for dx, dy in self.neighbor_transforms:
+ */
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_XDECREF_SET(__pyx_v_neighbors_list, ((PyObject*)__pyx_t_1));
     __pyx_t_1 = 0;
 
-    /* "ConnectedMatterAgent.pyx":326
+    /* "ConnectedMatterAgent.pyx":286
+ *             neighbors_list = []
  * 
- *         # If no valid moves with min_simultaneous_moves, fallback to single moves if allowed
- *         if not valid_moves and self.min_simultaneous_moves == 1:             # <<<<<<<<<<<<<<
- *             valid_moves = [frozenset(self._apply_moves(state_set, [move])) for move in single_moves]
+ *             for dx, dy in self.neighbor_transforms:             # <<<<<<<<<<<<<<
+ *                 nx, ny = x + dx, y + dy
+ *                 neighbor = (nx, ny)
+ */
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_neighbor_transforms); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
+      __pyx_t_4 = __pyx_t_1; __Pyx_INCREF(__pyx_t_4);
+      __pyx_t_11 = 0;
+      __pyx_t_12 = NULL;
+    } else {
+      __pyx_t_11 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 286, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_12 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_4); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 286, __pyx_L1_error)
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    for (;;) {
+      if (likely(!__pyx_t_12)) {
+        if (likely(PyList_CheckExact(__pyx_t_4))) {
+          {
+            Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_4);
+            #if !CYTHON_ASSUME_SAFE_MACROS
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 286, __pyx_L1_error)
+            #endif
+            if (__pyx_t_11 >= __pyx_temp) break;
+          }
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_11); __Pyx_INCREF(__pyx_t_1); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 286, __pyx_L1_error)
+          #else
+          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_4, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          #endif
+        } else {
+          {
+            Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_4);
+            #if !CYTHON_ASSUME_SAFE_MACROS
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 286, __pyx_L1_error)
+            #endif
+            if (__pyx_t_11 >= __pyx_temp) break;
+          }
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_11); __Pyx_INCREF(__pyx_t_1); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 286, __pyx_L1_error)
+          #else
+          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_4, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          #endif
+        }
+      } else {
+        __pyx_t_1 = __pyx_t_12(__pyx_t_4);
+        if (unlikely(!__pyx_t_1)) {
+          PyObject* exc_type = PyErr_Occurred();
+          if (exc_type) {
+            if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+            else __PYX_ERR(0, 286, __pyx_L1_error)
+          }
+          break;
+        }
+        __Pyx_GOTREF(__pyx_t_1);
+      }
+      if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
+        PyObject* sequence = __pyx_t_1;
+        Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
+        if (unlikely(size != 2)) {
+          if (size > 2) __Pyx_RaiseTooManyValuesError(2);
+          else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+          __PYX_ERR(0, 286, __pyx_L1_error)
+        }
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        if (likely(PyTuple_CheckExact(sequence))) {
+          __pyx_t_13 = PyTuple_GET_ITEM(sequence, 0); 
+          __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1); 
+        } else {
+          __pyx_t_13 = PyList_GET_ITEM(sequence, 0); 
+          __pyx_t_3 = PyList_GET_ITEM(sequence, 1); 
+        }
+        __Pyx_INCREF(__pyx_t_13);
+        __Pyx_INCREF(__pyx_t_3);
+        #else
+        __pyx_t_13 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 286, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 286, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        #endif
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      } else {
+        Py_ssize_t index = -1;
+        __pyx_t_14 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 286, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_14);
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __pyx_t_15 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_14);
+        index = 0; __pyx_t_13 = __pyx_t_15(__pyx_t_14); if (unlikely(!__pyx_t_13)) goto __pyx_L21_unpacking_failed;
+        __Pyx_GOTREF(__pyx_t_13);
+        index = 1; __pyx_t_3 = __pyx_t_15(__pyx_t_14); if (unlikely(!__pyx_t_3)) goto __pyx_L21_unpacking_failed;
+        __Pyx_GOTREF(__pyx_t_3);
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_14), 2) < 0) __PYX_ERR(0, 286, __pyx_L1_error)
+        __pyx_t_15 = NULL;
+        __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+        goto __pyx_L22_unpacking_done;
+        __pyx_L21_unpacking_failed:;
+        __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+        __pyx_t_15 = NULL;
+        if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
+        __PYX_ERR(0, 286, __pyx_L1_error)
+        __pyx_L22_unpacking_done:;
+      }
+      __Pyx_XDECREF_SET(__pyx_v_dx, __pyx_t_13);
+      __pyx_t_13 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_dy, __pyx_t_3);
+      __pyx_t_3 = 0;
+
+      /* "ConnectedMatterAgent.pyx":287
+ * 
+ *             for dx, dy in self.neighbor_transforms:
+ *                 nx, ny = x + dx, y + dy             # <<<<<<<<<<<<<<
+ *                 neighbor = (nx, ny)
  * 
  */
-  }
+      __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 287, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_v_dx); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 287, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 287, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 287, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_1 = PyNumber_Add(__pyx_t_3, __pyx_v_dy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 287, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 287, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_v_nx = __pyx_t_10;
+      __pyx_v_ny = __pyx_t_9;
 
-  /* "ConnectedMatterAgent.pyx":330
+      /* "ConnectedMatterAgent.pyx":288
+ *             for dx, dy in self.neighbor_transforms:
+ *                 nx, ny = x + dx, y + dy
+ *                 neighbor = (nx, ny)             # <<<<<<<<<<<<<<
  * 
- *         # Cache results
- *         self.valid_moves_cache[state_key] = valid_moves             # <<<<<<<<<<<<<<
+ *                 if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height and neighbor not in occupied_set:
+ */
+      __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_nx); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_ny); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 288, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_13 = PyTuple_New(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 288, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __Pyx_GIVEREF(__pyx_t_1);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error);
+      __Pyx_GIVEREF(__pyx_t_3);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_13, 1, __pyx_t_3)) __PYX_ERR(0, 288, __pyx_L1_error);
+      __pyx_t_1 = 0;
+      __pyx_t_3 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_neighbor, ((PyObject*)__pyx_t_13));
+      __pyx_t_13 = 0;
+
+      /* "ConnectedMatterAgent.pyx":290
+ *                 neighbor = (nx, ny)
+ * 
+ *                 if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height and neighbor not in occupied_set:             # <<<<<<<<<<<<<<
+ *                 # Check if removing pos and adding neighbor maintains connectivity
+ *                     new_occupied = occupied_positions.copy()
+ */
+      __pyx_t_13 = __Pyx_PyInt_From_int(__pyx_v_nx); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 290, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __pyx_t_3 = PyObject_RichCompare(__pyx_int_0, __pyx_t_13, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 290, __pyx_L1_error)
+      if (__Pyx_PyObject_IsTrue(__pyx_t_3)) {
+        __Pyx_DECREF(__pyx_t_3);
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_grid_width); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_3 = PyObject_RichCompare(__pyx_t_13, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 290, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      }
+      __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+      __pyx_t_16 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_16 < 0))) __PYX_ERR(0, 290, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      if (__pyx_t_16) {
+      } else {
+        __pyx_t_7 = __pyx_t_16;
+        goto __pyx_L24_bool_binop_done;
+      }
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_ny); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 290, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_13 = PyObject_RichCompare(__pyx_int_0, __pyx_t_3, Py_LE); __Pyx_XGOTREF(__pyx_t_13); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 290, __pyx_L1_error)
+      if (__Pyx_PyObject_IsTrue(__pyx_t_13)) {
+        __Pyx_DECREF(__pyx_t_13);
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_grid_height); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_13 = PyObject_RichCompare(__pyx_t_3, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_13); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 290, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      }
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __pyx_t_16 = __Pyx_PyObject_IsTrue(__pyx_t_13); if (unlikely((__pyx_t_16 < 0))) __PYX_ERR(0, 290, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+      if (__pyx_t_16) {
+      } else {
+        __pyx_t_7 = __pyx_t_16;
+        goto __pyx_L24_bool_binop_done;
+      }
+      __pyx_t_16 = (__Pyx_PySet_ContainsTF(__pyx_v_neighbor, __pyx_v_occupied_set, Py_NE)); if (unlikely((__pyx_t_16 < 0))) __PYX_ERR(0, 290, __pyx_L1_error)
+      __pyx_t_7 = __pyx_t_16;
+      __pyx_L24_bool_binop_done:;
+      if (__pyx_t_7) {
+
+        /* "ConnectedMatterAgent.pyx":292
+ *                 if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height and neighbor not in occupied_set:
+ *                 # Check if removing pos and adding neighbor maintains connectivity
+ *                     new_occupied = occupied_positions.copy()             # <<<<<<<<<<<<<<
+ *                     new_occupied.remove(pos)
+ *                     new_occupied.append(neighbor)
+ */
+        __pyx_t_13 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyList_Type_copy, __pyx_v_occupied_positions); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 292, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __Pyx_XDECREF_SET(__pyx_v_new_occupied, __pyx_t_13);
+        __pyx_t_13 = 0;
+
+        /* "ConnectedMatterAgent.pyx":293
+ *                 # Check if removing pos and adding neighbor maintains connectivity
+ *                     new_occupied = occupied_positions.copy()
+ *                     new_occupied.remove(pos)             # <<<<<<<<<<<<<<
+ *                     new_occupied.append(neighbor)
+ * 
+ */
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_occupied, __pyx_n_s_remove); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 293, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __pyx_t_1 = NULL;
+        __pyx_t_5 = 0;
+        #if CYTHON_UNPACK_METHODS
+        if (likely(PyMethod_Check(__pyx_t_3))) {
+          __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
+          if (likely(__pyx_t_1)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+            __Pyx_INCREF(__pyx_t_1);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_3, function);
+            __pyx_t_5 = 1;
+          }
+        }
+        #endif
+        {
+          PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_v_pos};
+          __pyx_t_13 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+          __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+          if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 293, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_13);
+          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        }
+        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+
+        /* "ConnectedMatterAgent.pyx":294
+ *                     new_occupied = occupied_positions.copy()
+ *                     new_occupied.remove(pos)
+ *                     new_occupied.append(neighbor)             # <<<<<<<<<<<<<<
+ * 
+ *                     if self.is_connected(new_occupied):
+ */
+        __pyx_t_17 = __Pyx_PyObject_Append(__pyx_v_new_occupied, __pyx_v_neighbor); if (unlikely(__pyx_t_17 == ((int)-1))) __PYX_ERR(0, 294, __pyx_L1_error)
+
+        /* "ConnectedMatterAgent.pyx":296
+ *                     new_occupied.append(neighbor)
+ * 
+ *                     if self.is_connected(new_occupied):             # <<<<<<<<<<<<<<
+ *                     # Further check to ensure that pos is not an articulation point
+ *                     # or that removing it doesn't break connectivity
+ */
+        if (!(likely(PyList_CheckExact(__pyx_v_new_occupied))||((__pyx_v_new_occupied) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_v_new_occupied))) __PYX_ERR(0, 296, __pyx_L1_error)
+        __pyx_t_7 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->is_connected(__pyx_v_self, ((PyObject*)__pyx_v_new_occupied), 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 296, __pyx_L1_error)
+        if (__pyx_t_7) {
+
+          /* "ConnectedMatterAgent.pyx":299
+ *                     # Further check to ensure that pos is not an articulation point
+ *                     # or that removing it doesn't break connectivity
+ *                         articulation_points = self.find_articulation_points(occupied_positions)             # <<<<<<<<<<<<<<
+ * 
+ *                     # FIX: Convert string articulation points to tuples if needed
+ */
+          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_find_articulation_points); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 299, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          __pyx_t_1 = NULL;
+          __pyx_t_5 = 0;
+          #if CYTHON_UNPACK_METHODS
+          if (likely(PyMethod_Check(__pyx_t_3))) {
+            __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
+            if (likely(__pyx_t_1)) {
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+              __Pyx_INCREF(__pyx_t_1);
+              __Pyx_INCREF(function);
+              __Pyx_DECREF_SET(__pyx_t_3, function);
+              __pyx_t_5 = 1;
+            }
+          }
+          #endif
+          {
+            PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_v_occupied_positions};
+            __pyx_t_13 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+            __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+            if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 299, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_13);
+            __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          }
+          __Pyx_XDECREF_SET(__pyx_v_articulation_points, __pyx_t_13);
+          __pyx_t_13 = 0;
+
+          /* "ConnectedMatterAgent.pyx":302
+ * 
+ *                     # FIX: Convert string articulation points to tuples if needed
+ *                         articulation_points_fixed = []             # <<<<<<<<<<<<<<
+ *                         for point in articulation_points:
+ *                             if isinstance(point, str):
+ */
+          __pyx_t_13 = PyList_New(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 302, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_13);
+          __Pyx_XDECREF_SET(__pyx_v_articulation_points_fixed, ((PyObject*)__pyx_t_13));
+          __pyx_t_13 = 0;
+
+          /* "ConnectedMatterAgent.pyx":303
+ *                     # FIX: Convert string articulation points to tuples if needed
+ *                         articulation_points_fixed = []
+ *                         for point in articulation_points:             # <<<<<<<<<<<<<<
+ *                             if isinstance(point, str):
+ *                             # Parse the string into a tuple - assuming format like "(x,y)"
+ */
+          if (likely(PyList_CheckExact(__pyx_v_articulation_points)) || PyTuple_CheckExact(__pyx_v_articulation_points)) {
+            __pyx_t_13 = __pyx_v_articulation_points; __Pyx_INCREF(__pyx_t_13);
+            __pyx_t_18 = 0;
+            __pyx_t_19 = NULL;
+          } else {
+            __pyx_t_18 = -1; __pyx_t_13 = PyObject_GetIter(__pyx_v_articulation_points); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 303, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_13);
+            __pyx_t_19 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_13); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 303, __pyx_L1_error)
+          }
+          for (;;) {
+            if (likely(!__pyx_t_19)) {
+              if (likely(PyList_CheckExact(__pyx_t_13))) {
+                {
+                  Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_13);
+                  #if !CYTHON_ASSUME_SAFE_MACROS
+                  if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 303, __pyx_L1_error)
+                  #endif
+                  if (__pyx_t_18 >= __pyx_temp) break;
+                }
+                #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+                __pyx_t_3 = PyList_GET_ITEM(__pyx_t_13, __pyx_t_18); __Pyx_INCREF(__pyx_t_3); __pyx_t_18++; if (unlikely((0 < 0))) __PYX_ERR(0, 303, __pyx_L1_error)
+                #else
+                __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_13, __pyx_t_18); __pyx_t_18++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 303, __pyx_L1_error)
+                __Pyx_GOTREF(__pyx_t_3);
+                #endif
+              } else {
+                {
+                  Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_13);
+                  #if !CYTHON_ASSUME_SAFE_MACROS
+                  if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 303, __pyx_L1_error)
+                  #endif
+                  if (__pyx_t_18 >= __pyx_temp) break;
+                }
+                #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+                __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_13, __pyx_t_18); __Pyx_INCREF(__pyx_t_3); __pyx_t_18++; if (unlikely((0 < 0))) __PYX_ERR(0, 303, __pyx_L1_error)
+                #else
+                __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_13, __pyx_t_18); __pyx_t_18++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 303, __pyx_L1_error)
+                __Pyx_GOTREF(__pyx_t_3);
+                #endif
+              }
+            } else {
+              __pyx_t_3 = __pyx_t_19(__pyx_t_13);
+              if (unlikely(!__pyx_t_3)) {
+                PyObject* exc_type = PyErr_Occurred();
+                if (exc_type) {
+                  if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+                  else __PYX_ERR(0, 303, __pyx_L1_error)
+                }
+                break;
+              }
+              __Pyx_GOTREF(__pyx_t_3);
+            }
+            __Pyx_XDECREF_SET(__pyx_v_point, __pyx_t_3);
+            __pyx_t_3 = 0;
+
+            /* "ConnectedMatterAgent.pyx":304
+ *                         articulation_points_fixed = []
+ *                         for point in articulation_points:
+ *                             if isinstance(point, str):             # <<<<<<<<<<<<<<
+ *                             # Parse the string into a tuple - assuming format like "(x,y)"
+ *                             # Remove parentheses and split by comma
+ */
+            __pyx_t_7 = PyUnicode_Check(__pyx_v_point); 
+            if (__pyx_t_7) {
+
+              /* "ConnectedMatterAgent.pyx":307
+ *                             # Parse the string into a tuple - assuming format like "(x,y)"
+ *                             # Remove parentheses and split by comma
+ *                                 coords = point.strip('()').split(',')             # <<<<<<<<<<<<<<
+ *                                 point_tuple = (int(coords[0]), int(coords[1]))
+ *                                 articulation_points_fixed.append(point_tuple)
+ */
+              __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_v_point, __pyx_n_s_strip); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 307, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_14);
+              __pyx_t_20 = NULL;
+              __pyx_t_5 = 0;
+              #if CYTHON_UNPACK_METHODS
+              if (likely(PyMethod_Check(__pyx_t_14))) {
+                __pyx_t_20 = PyMethod_GET_SELF(__pyx_t_14);
+                if (likely(__pyx_t_20)) {
+                  PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_14);
+                  __Pyx_INCREF(__pyx_t_20);
+                  __Pyx_INCREF(function);
+                  __Pyx_DECREF_SET(__pyx_t_14, function);
+                  __pyx_t_5 = 1;
+                }
+              }
+              #endif
+              {
+                PyObject *__pyx_callargs[2] = {__pyx_t_20, __pyx_kp_u__12};
+                __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_14, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+                __Pyx_XDECREF(__pyx_t_20); __pyx_t_20 = 0;
+                if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
+                __Pyx_GOTREF(__pyx_t_1);
+                __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+              }
+              __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_split); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 307, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_14);
+              __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+              __pyx_t_1 = NULL;
+              __pyx_t_5 = 0;
+              #if CYTHON_UNPACK_METHODS
+              if (likely(PyMethod_Check(__pyx_t_14))) {
+                __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_14);
+                if (likely(__pyx_t_1)) {
+                  PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_14);
+                  __Pyx_INCREF(__pyx_t_1);
+                  __Pyx_INCREF(function);
+                  __Pyx_DECREF_SET(__pyx_t_14, function);
+                  __pyx_t_5 = 1;
+                }
+              }
+              #endif
+              {
+                PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_kp_u__13};
+                __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_14, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+                __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+                if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 307, __pyx_L1_error)
+                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+              }
+              __Pyx_XDECREF_SET(__pyx_v_coords, __pyx_t_3);
+              __pyx_t_3 = 0;
+
+              /* "ConnectedMatterAgent.pyx":308
+ *                             # Remove parentheses and split by comma
+ *                                 coords = point.strip('()').split(',')
+ *                                 point_tuple = (int(coords[0]), int(coords[1]))             # <<<<<<<<<<<<<<
+ *                                 articulation_points_fixed.append(point_tuple)
+ *                             else:
+ */
+              __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 308, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_3);
+              __pyx_t_14 = __Pyx_PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 308, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_14);
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 308, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_3);
+              __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_1);
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 308, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_GIVEREF(__pyx_t_14);
+              if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_14)) __PYX_ERR(0, 308, __pyx_L1_error);
+              __Pyx_GIVEREF(__pyx_t_1);
+              if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error);
+              __pyx_t_14 = 0;
+              __pyx_t_1 = 0;
+              __Pyx_XDECREF_SET(__pyx_v_point_tuple, ((PyObject*)__pyx_t_3));
+              __pyx_t_3 = 0;
+
+              /* "ConnectedMatterAgent.pyx":309
+ *                                 coords = point.strip('()').split(',')
+ *                                 point_tuple = (int(coords[0]), int(coords[1]))
+ *                                 articulation_points_fixed.append(point_tuple)             # <<<<<<<<<<<<<<
+ *                             else:
+ *                                 articulation_points_fixed.append(point)
+ */
+              __pyx_t_17 = __Pyx_PyList_Append(__pyx_v_articulation_points_fixed, __pyx_v_point_tuple); if (unlikely(__pyx_t_17 == ((int)-1))) __PYX_ERR(0, 309, __pyx_L1_error)
+
+              /* "ConnectedMatterAgent.pyx":304
+ *                         articulation_points_fixed = []
+ *                         for point in articulation_points:
+ *                             if isinstance(point, str):             # <<<<<<<<<<<<<<
+ *                             # Parse the string into a tuple - assuming format like "(x,y)"
+ *                             # Remove parentheses and split by comma
+ */
+              goto __pyx_L30;
+            }
+
+            /* "ConnectedMatterAgent.pyx":311
+ *                                 articulation_points_fixed.append(point_tuple)
+ *                             else:
+ *                                 articulation_points_fixed.append(point)             # <<<<<<<<<<<<<<
+ * 
+ *                         if pos not in articulation_points_fixed:
+ */
+            /*else*/ {
+              __pyx_t_17 = __Pyx_PyList_Append(__pyx_v_articulation_points_fixed, __pyx_v_point); if (unlikely(__pyx_t_17 == ((int)-1))) __PYX_ERR(0, 311, __pyx_L1_error)
+            }
+            __pyx_L30:;
+
+            /* "ConnectedMatterAgent.pyx":303
+ *                     # FIX: Convert string articulation points to tuples if needed
+ *                         articulation_points_fixed = []
+ *                         for point in articulation_points:             # <<<<<<<<<<<<<<
+ *                             if isinstance(point, str):
+ *                             # Parse the string into a tuple - assuming format like "(x,y)"
+ */
+          }
+          __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+
+          /* "ConnectedMatterAgent.pyx":313
+ *                                 articulation_points_fixed.append(point)
+ * 
+ *                         if pos not in articulation_points_fixed:             # <<<<<<<<<<<<<<
+ *                             potential_moves.append((pos, neighbor))
+ * 
+ */
+          __pyx_t_7 = (__Pyx_PySequence_ContainsTF(__pyx_v_pos, __pyx_v_articulation_points_fixed, Py_NE)); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 313, __pyx_L1_error)
+          if (__pyx_t_7) {
+
+            /* "ConnectedMatterAgent.pyx":314
+ * 
+ *                         if pos not in articulation_points_fixed:
+ *                             potential_moves.append((pos, neighbor))             # <<<<<<<<<<<<<<
+ * 
+ *     # Filter potential moves to ensure connectivity
+ */
+            __pyx_t_13 = PyTuple_New(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 314, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_13);
+            __Pyx_INCREF(__pyx_v_pos);
+            __Pyx_GIVEREF(__pyx_v_pos);
+            if (__Pyx_PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_v_pos)) __PYX_ERR(0, 314, __pyx_L1_error);
+            __Pyx_INCREF(__pyx_v_neighbor);
+            __Pyx_GIVEREF(__pyx_v_neighbor);
+            if (__Pyx_PyTuple_SET_ITEM(__pyx_t_13, 1, __pyx_v_neighbor)) __PYX_ERR(0, 314, __pyx_L1_error);
+            __pyx_t_17 = __Pyx_PyList_Append(__pyx_v_potential_moves, __pyx_t_13); if (unlikely(__pyx_t_17 == ((int)-1))) __PYX_ERR(0, 314, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+
+            /* "ConnectedMatterAgent.pyx":313
+ *                                 articulation_points_fixed.append(point)
+ * 
+ *                         if pos not in articulation_points_fixed:             # <<<<<<<<<<<<<<
+ *                             potential_moves.append((pos, neighbor))
+ * 
+ */
+          }
+
+          /* "ConnectedMatterAgent.pyx":296
+ *                     new_occupied.append(neighbor)
+ * 
+ *                     if self.is_connected(new_occupied):             # <<<<<<<<<<<<<<
+ *                     # Further check to ensure that pos is not an articulation point
+ *                     # or that removing it doesn't break connectivity
+ */
+        }
+
+        /* "ConnectedMatterAgent.pyx":290
+ *                 neighbor = (nx, ny)
+ * 
+ *                 if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height and neighbor not in occupied_set:             # <<<<<<<<<<<<<<
+ *                 # Check if removing pos and adding neighbor maintains connectivity
+ *                     new_occupied = occupied_positions.copy()
+ */
+      }
+
+      /* "ConnectedMatterAgent.pyx":286
+ *             neighbors_list = []
+ * 
+ *             for dx, dy in self.neighbor_transforms:             # <<<<<<<<<<<<<<
+ *                 nx, ny = x + dx, y + dy
+ *                 neighbor = (nx, ny)
+ */
+    }
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+    /* "ConnectedMatterAgent.pyx":282
+ * 
+ *     # For each boundary position, find potential new positions
+ *         for pos in boundary_positions:             # <<<<<<<<<<<<<<
+ *             x, y = pos
+ *             neighbors_list = []
+ */
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "ConnectedMatterAgent.pyx":317
+ * 
+ *     # Filter potential moves to ensure connectivity
+ *         for pos, new_pos in potential_moves:             # <<<<<<<<<<<<<<
+ *         # Create a new state by moving from pos to new_pos
+ *             new_state = occupied_positions.copy()
+ */
+  __pyx_t_2 = __pyx_v_potential_moves; __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_8 = 0;
+  for (;;) {
+    {
+      Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
+      #if !CYTHON_ASSUME_SAFE_MACROS
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 317, __pyx_L1_error)
+      #endif
+      if (__pyx_t_8 >= __pyx_temp) break;
+    }
+    #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_8); __Pyx_INCREF(__pyx_t_4); __pyx_t_8++; if (unlikely((0 < 0))) __PYX_ERR(0, 317, __pyx_L1_error)
+    #else
+    __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 317, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    #endif
+    if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
+      PyObject* sequence = __pyx_t_4;
+      Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
+      if (unlikely(size != 2)) {
+        if (size > 2) __Pyx_RaiseTooManyValuesError(2);
+        else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+        __PYX_ERR(0, 317, __pyx_L1_error)
+      }
+      #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+      if (likely(PyTuple_CheckExact(sequence))) {
+        __pyx_t_13 = PyTuple_GET_ITEM(sequence, 0); 
+        __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1); 
+      } else {
+        __pyx_t_13 = PyList_GET_ITEM(sequence, 0); 
+        __pyx_t_3 = PyList_GET_ITEM(sequence, 1); 
+      }
+      __Pyx_INCREF(__pyx_t_13);
+      __Pyx_INCREF(__pyx_t_3);
+      #else
+      __pyx_t_13 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 317, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 317, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      #endif
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    } else {
+      Py_ssize_t index = -1;
+      __pyx_t_1 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 317, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __pyx_t_15 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_1);
+      index = 0; __pyx_t_13 = __pyx_t_15(__pyx_t_1); if (unlikely(!__pyx_t_13)) goto __pyx_L37_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_13);
+      index = 1; __pyx_t_3 = __pyx_t_15(__pyx_t_1); if (unlikely(!__pyx_t_3)) goto __pyx_L37_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_3);
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_1), 2) < 0) __PYX_ERR(0, 317, __pyx_L1_error)
+      __pyx_t_15 = NULL;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      goto __pyx_L38_unpacking_done;
+      __pyx_L37_unpacking_failed:;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_t_15 = NULL;
+      if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
+      __PYX_ERR(0, 317, __pyx_L1_error)
+      __pyx_L38_unpacking_done:;
+    }
+    if (!(likely(PyTuple_CheckExact(__pyx_t_13))||((__pyx_t_13) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_13))) __PYX_ERR(0, 317, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_3))) __PYX_ERR(0, 317, __pyx_L1_error)
+    __Pyx_XDECREF_SET(__pyx_v_pos, ((PyObject*)__pyx_t_13));
+    __pyx_t_13 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_new_pos, ((PyObject*)__pyx_t_3));
+    __pyx_t_3 = 0;
+
+    /* "ConnectedMatterAgent.pyx":319
+ *         for pos, new_pos in potential_moves:
+ *         # Create a new state by moving from pos to new_pos
+ *             new_state = occupied_positions.copy()             # <<<<<<<<<<<<<<
+ *             new_state.remove(pos)
+ *             new_state.append(new_pos)
+ */
+    __pyx_t_4 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyList_Type_copy, __pyx_v_occupied_positions); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 319, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_XDECREF_SET(__pyx_v_new_state, __pyx_t_4);
+    __pyx_t_4 = 0;
+
+    /* "ConnectedMatterAgent.pyx":320
+ *         # Create a new state by moving from pos to new_pos
+ *             new_state = occupied_positions.copy()
+ *             new_state.remove(pos)             # <<<<<<<<<<<<<<
+ *             new_state.append(new_pos)
+ * 
+ */
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_state, __pyx_n_s_remove); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 320, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_13 = NULL;
+    __pyx_t_5 = 0;
+    #if CYTHON_UNPACK_METHODS
+    if (likely(PyMethod_Check(__pyx_t_3))) {
+      __pyx_t_13 = PyMethod_GET_SELF(__pyx_t_3);
+      if (likely(__pyx_t_13)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+        __Pyx_INCREF(__pyx_t_13);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_3, function);
+        __pyx_t_5 = 1;
+      }
+    }
+    #endif
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_13, __pyx_v_pos};
+      __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+      __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 320, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    }
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+    /* "ConnectedMatterAgent.pyx":321
+ *             new_state = occupied_positions.copy()
+ *             new_state.remove(pos)
+ *             new_state.append(new_pos)             # <<<<<<<<<<<<<<
+ * 
+ *             if self.is_valid_state(new_state):
+ */
+    __pyx_t_17 = __Pyx_PyObject_Append(__pyx_v_new_state, __pyx_v_new_pos); if (unlikely(__pyx_t_17 == ((int)-1))) __PYX_ERR(0, 321, __pyx_L1_error)
+
+    /* "ConnectedMatterAgent.pyx":323
+ *             new_state.append(new_pos)
+ * 
+ *             if self.is_valid_state(new_state):             # <<<<<<<<<<<<<<
+ *                 valid_moves.append((pos, new_pos))
+ * 
+ */
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_valid_state); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 323, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_13 = NULL;
+    __pyx_t_5 = 0;
+    #if CYTHON_UNPACK_METHODS
+    if (likely(PyMethod_Check(__pyx_t_3))) {
+      __pyx_t_13 = PyMethod_GET_SELF(__pyx_t_3);
+      if (likely(__pyx_t_13)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+        __Pyx_INCREF(__pyx_t_13);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_3, function);
+        __pyx_t_5 = 1;
+      }
+    }
+    #endif
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_13, __pyx_v_new_state};
+      __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+      __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 323, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    }
+    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 323, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (__pyx_t_7) {
+
+      /* "ConnectedMatterAgent.pyx":324
+ * 
+ *             if self.is_valid_state(new_state):
+ *                 valid_moves.append((pos, new_pos))             # <<<<<<<<<<<<<<
+ * 
  *         return valid_moves
+ */
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 324, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx_v_pos);
+      __Pyx_GIVEREF(__pyx_v_pos);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_pos)) __PYX_ERR(0, 324, __pyx_L1_error);
+      __Pyx_INCREF(__pyx_v_new_pos);
+      __Pyx_GIVEREF(__pyx_v_new_pos);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_new_pos)) __PYX_ERR(0, 324, __pyx_L1_error);
+      __pyx_t_17 = __Pyx_PyList_Append(__pyx_v_valid_moves, __pyx_t_4); if (unlikely(__pyx_t_17 == ((int)-1))) __PYX_ERR(0, 324, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+      /* "ConnectedMatterAgent.pyx":323
+ *             new_state.append(new_pos)
+ * 
+ *             if self.is_valid_state(new_state):             # <<<<<<<<<<<<<<
+ *                 valid_moves.append((pos, new_pos))
  * 
  */
-  if (unlikely(__pyx_v_self->valid_moves_cache == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 330, __pyx_L1_error)
-  }
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_state_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely((PyDict_SetItem(__pyx_v_self->valid_moves_cache, __pyx_t_1, __pyx_v_valid_moves) < 0))) __PYX_ERR(0, 330, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    }
 
-  /* "ConnectedMatterAgent.pyx":331
- *         # Cache results
- *         self.valid_moves_cache[state_key] = valid_moves
+    /* "ConnectedMatterAgent.pyx":317
+ * 
+ *     # Filter potential moves to ensure connectivity
+ *         for pos, new_pos in potential_moves:             # <<<<<<<<<<<<<<
+ *         # Create a new state by moving from pos to new_pos
+ *             new_state = occupied_positions.copy()
+ */
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "ConnectedMatterAgent.pyx":326
+ *                 valid_moves.append((pos, new_pos))
+ * 
  *         return valid_moves             # <<<<<<<<<<<<<<
  * 
  *     cpdef bint _is_valid_move_combination(self, list moves, set state_set):
@@ -11887,25 +12315,31 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_valid
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_16);
-  __Pyx_XDECREF(__pyx_t_17);
-  __Pyx_XDECREF(__pyx_t_21);
+  __Pyx_XDECREF(__pyx_t_13);
+  __Pyx_XDECREF(__pyx_t_14);
+  __Pyx_XDECREF(__pyx_t_20);
   __Pyx_AddTraceback("ConnectedMatterAgent.ConnectedMatterAgent.get_valid_morphing_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_single_moves);
-  __Pyx_XDECREF(__pyx_v_state_set);
-  __Pyx_XDECREF(__pyx_v_movable_points);
-  __Pyx_XDECREF(__pyx_v_articulation_points);
-  __Pyx_XDECREF(__pyx_v_point);
-  __Pyx_XDECREF(__pyx_v_new_pos);
-  __Pyx_XDECREF(__pyx_v_adj_pos);
-  __Pyx_XDECREF(__pyx_v_new_state_set);
-  __Pyx_XDECREF(__pyx_v_temp_state);
+  __Pyx_XDECREF(__pyx_v_occupied_positions);
+  __Pyx_XDECREF(__pyx_v_occupied_set);
+  __Pyx_XDECREF(__pyx_v_potential_moves);
   __Pyx_XDECREF(__pyx_v_valid_moves);
-  __Pyx_XDECREF(__pyx_v_combo);
+  __Pyx_XDECREF(__pyx_v_pos);
+  __Pyx_XDECREF(__pyx_v_neighbor);
+  __Pyx_XDECREF(__pyx_v_new_pos);
+  __Pyx_XDECREF(__pyx_v_neighbors_list);
+  __Pyx_XDECREF(__pyx_v_boundary_positions);
+  __Pyx_XDECREF(__pyx_v_neighbors_count);
+  __Pyx_XDECREF(__pyx_v_dx);
+  __Pyx_XDECREF(__pyx_v_dy);
+  __Pyx_XDECREF(__pyx_v_new_occupied);
+  __Pyx_XDECREF(__pyx_v_articulation_points);
+  __Pyx_XDECREF(__pyx_v_articulation_points_fixed);
+  __Pyx_XDECREF(__pyx_v_point);
+  __Pyx_XDECREF(__pyx_v_coords);
+  __Pyx_XDECREF(__pyx_v_point_tuple);
   __Pyx_XDECREF(__pyx_v_new_state);
-  __Pyx_XDECREF(__pyx_8genexpr4__pyx_v_move);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -12034,7 +12468,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_10get_va
   return __pyx_r;
 }
 
-/* "ConnectedMatterAgent.pyx":333
+/* "ConnectedMatterAgent.pyx":328
  *         return valid_moves
  * 
  *     cpdef bint _is_valid_move_combination(self, list moves, set state_set):             # <<<<<<<<<<<<<<
@@ -12080,7 +12514,7 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_valid_move_combination); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 333, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_valid_move_combination); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_20ConnectedMatterAgent_20ConnectedMatterAgent_13_is_valid_move_combination)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -12102,11 +12536,11 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
           PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_v_moves, __pyx_v_state_set};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 333, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 328, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 333, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 328, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -12125,31 +12559,31 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
     #endif
   }
 
-  /* "ConnectedMatterAgent.pyx":336
+  /* "ConnectedMatterAgent.pyx":331
  *         """Check if a combination of moves is valid (no conflicts)"""
  *         # Extract source and target positions
  *         cdef set sources = set()             # <<<<<<<<<<<<<<
  *         cdef set targets = set()
  *         cdef tuple src, tgt
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 331, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_sources = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":337
+  /* "ConnectedMatterAgent.pyx":332
  *         # Extract source and target positions
  *         cdef set sources = set()
  *         cdef set targets = set()             # <<<<<<<<<<<<<<
  *         cdef tuple src, tgt
  * 
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 337, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_targets = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":340
+  /* "ConnectedMatterAgent.pyx":335
  *         cdef tuple src, tgt
  * 
  *         for src, tgt in moves:             # <<<<<<<<<<<<<<
@@ -12158,7 +12592,7 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
  */
   if (unlikely(__pyx_v_moves == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 340, __pyx_L1_error)
+    __PYX_ERR(0, 335, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_v_moves; __Pyx_INCREF(__pyx_t_1);
   __pyx_t_7 = 0;
@@ -12166,14 +12600,14 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
     {
       Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
       #if !CYTHON_ASSUME_SAFE_MACROS
-      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 340, __pyx_L1_error)
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 335, __pyx_L1_error)
       #endif
       if (__pyx_t_7 >= __pyx_temp) break;
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely((0 < 0))) __PYX_ERR(0, 340, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely((0 < 0))) __PYX_ERR(0, 335, __pyx_L1_error)
     #else
-    __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 340, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 335, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_2))) || (PyList_CheckExact(__pyx_t_2))) {
@@ -12182,7 +12616,7 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 340, __pyx_L1_error)
+        __PYX_ERR(0, 335, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -12195,15 +12629,15 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_4);
       #else
-      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 340, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 335, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 340, __pyx_L1_error)
+      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 335, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       #endif
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_8 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 340, __pyx_L1_error)
+      __pyx_t_8 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 335, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_9 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_8);
@@ -12211,7 +12645,7 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
       __Pyx_GOTREF(__pyx_t_3);
       index = 1; __pyx_t_4 = __pyx_t_9(__pyx_t_8); if (unlikely(!__pyx_t_4)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_4);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_8), 2) < 0) __PYX_ERR(0, 340, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_8), 2) < 0) __PYX_ERR(0, 335, __pyx_L1_error)
       __pyx_t_9 = NULL;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       goto __pyx_L6_unpacking_done;
@@ -12219,35 +12653,35 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_t_9 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 340, __pyx_L1_error)
+      __PYX_ERR(0, 335, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
-    if (!(likely(PyTuple_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_3))) __PYX_ERR(0, 340, __pyx_L1_error)
-    if (!(likely(PyTuple_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_4))) __PYX_ERR(0, 340, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_3))) __PYX_ERR(0, 335, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_4))) __PYX_ERR(0, 335, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_src, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
     __Pyx_XDECREF_SET(__pyx_v_tgt, ((PyObject*)__pyx_t_4));
     __pyx_t_4 = 0;
 
-    /* "ConnectedMatterAgent.pyx":342
+    /* "ConnectedMatterAgent.pyx":337
  *         for src, tgt in moves:
  *             # Check for overlapping sources or targets
  *             if src in sources or tgt in targets:             # <<<<<<<<<<<<<<
  *                 return False
  *             sources.add(src)
  */
-    __pyx_t_10 = (__Pyx_PySet_ContainsTF(__pyx_v_src, __pyx_v_sources, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 342, __pyx_L1_error)
+    __pyx_t_10 = (__Pyx_PySet_ContainsTF(__pyx_v_src, __pyx_v_sources, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 337, __pyx_L1_error)
     if (!__pyx_t_10) {
     } else {
       __pyx_t_6 = __pyx_t_10;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_10 = (__Pyx_PySet_ContainsTF(__pyx_v_tgt, __pyx_v_targets, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 342, __pyx_L1_error)
+    __pyx_t_10 = (__Pyx_PySet_ContainsTF(__pyx_v_tgt, __pyx_v_targets, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 337, __pyx_L1_error)
     __pyx_t_6 = __pyx_t_10;
     __pyx_L8_bool_binop_done:;
     if (__pyx_t_6) {
 
-      /* "ConnectedMatterAgent.pyx":343
+      /* "ConnectedMatterAgent.pyx":338
  *             # Check for overlapping sources or targets
  *             if src in sources or tgt in targets:
  *                 return False             # <<<<<<<<<<<<<<
@@ -12258,7 +12692,7 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
 
-      /* "ConnectedMatterAgent.pyx":342
+      /* "ConnectedMatterAgent.pyx":337
  *         for src, tgt in moves:
  *             # Check for overlapping sources or targets
  *             if src in sources or tgt in targets:             # <<<<<<<<<<<<<<
@@ -12267,43 +12701,43 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":344
+    /* "ConnectedMatterAgent.pyx":339
  *             if src in sources or tgt in targets:
  *                 return False
  *             sources.add(src)             # <<<<<<<<<<<<<<
  *             targets.add(tgt)
  * 
  */
-    __pyx_t_11 = PySet_Add(__pyx_v_sources, __pyx_v_src); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 344, __pyx_L1_error)
+    __pyx_t_11 = PySet_Add(__pyx_v_sources, __pyx_v_src); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 339, __pyx_L1_error)
 
-    /* "ConnectedMatterAgent.pyx":345
+    /* "ConnectedMatterAgent.pyx":340
  *                 return False
  *             sources.add(src)
  *             targets.add(tgt)             # <<<<<<<<<<<<<<
  * 
  *             # Check that no target is also a source for another move
  */
-    __pyx_t_11 = PySet_Add(__pyx_v_targets, __pyx_v_tgt); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 345, __pyx_L1_error)
+    __pyx_t_11 = PySet_Add(__pyx_v_targets, __pyx_v_tgt); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 340, __pyx_L1_error)
 
-    /* "ConnectedMatterAgent.pyx":348
+    /* "ConnectedMatterAgent.pyx":343
  * 
  *             # Check that no target is also a source for another move
  *             if tgt in sources or src in targets:             # <<<<<<<<<<<<<<
  *                 return False
  * 
  */
-    __pyx_t_10 = (__Pyx_PySet_ContainsTF(__pyx_v_tgt, __pyx_v_sources, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 348, __pyx_L1_error)
+    __pyx_t_10 = (__Pyx_PySet_ContainsTF(__pyx_v_tgt, __pyx_v_sources, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 343, __pyx_L1_error)
     if (!__pyx_t_10) {
     } else {
       __pyx_t_6 = __pyx_t_10;
       goto __pyx_L11_bool_binop_done;
     }
-    __pyx_t_10 = (__Pyx_PySet_ContainsTF(__pyx_v_src, __pyx_v_targets, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 348, __pyx_L1_error)
+    __pyx_t_10 = (__Pyx_PySet_ContainsTF(__pyx_v_src, __pyx_v_targets, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 343, __pyx_L1_error)
     __pyx_t_6 = __pyx_t_10;
     __pyx_L11_bool_binop_done:;
     if (__pyx_t_6) {
 
-      /* "ConnectedMatterAgent.pyx":349
+      /* "ConnectedMatterAgent.pyx":344
  *             # Check that no target is also a source for another move
  *             if tgt in sources or src in targets:
  *                 return False             # <<<<<<<<<<<<<<
@@ -12314,7 +12748,7 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
 
-      /* "ConnectedMatterAgent.pyx":348
+      /* "ConnectedMatterAgent.pyx":343
  * 
  *             # Check that no target is also a source for another move
  *             if tgt in sources or src in targets:             # <<<<<<<<<<<<<<
@@ -12323,7 +12757,7 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":340
+    /* "ConnectedMatterAgent.pyx":335
  *         cdef tuple src, tgt
  * 
  *         for src, tgt in moves:             # <<<<<<<<<<<<<<
@@ -12333,7 +12767,7 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":351
+  /* "ConnectedMatterAgent.pyx":346
  *                 return False
  * 
  *         return True             # <<<<<<<<<<<<<<
@@ -12343,7 +12777,7 @@ static int __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_
   __pyx_r = 1;
   goto __pyx_L0;
 
-  /* "ConnectedMatterAgent.pyx":333
+  /* "ConnectedMatterAgent.pyx":328
  *         return valid_moves
  * 
  *     cpdef bint _is_valid_move_combination(self, list moves, set state_set):             # <<<<<<<<<<<<<<
@@ -12426,7 +12860,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 333, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 328, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -12434,14 +12868,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 333, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 328, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("_is_valid_move_combination", 1, 2, 2, 1); __PYX_ERR(0, 333, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_is_valid_move_combination", 1, 2, 2, 1); __PYX_ERR(0, 328, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "_is_valid_move_combination") < 0)) __PYX_ERR(0, 333, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "_is_valid_move_combination") < 0)) __PYX_ERR(0, 328, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -12454,7 +12888,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_is_valid_move_combination", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 333, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_is_valid_move_combination", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 328, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -12468,8 +12902,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_moves), (&PyList_Type), 1, "moves", 1))) __PYX_ERR(0, 333, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_state_set), (&PySet_Type), 1, "state_set", 1))) __PYX_ERR(0, 333, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_moves), (&PyList_Type), 1, "moves", 1))) __PYX_ERR(0, 328, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_state_set), (&PySet_Type), 1, "state_set", 1))) __PYX_ERR(0, 328, __pyx_L1_error)
   __pyx_r = __pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_12_is_valid_move_combination(((struct __pyx_obj_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self), __pyx_v_moves, __pyx_v_state_set);
 
   /* function exit code */
@@ -12497,8 +12931,8 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_12_is_va
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_is_valid_move_combination", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_combination(__pyx_v_self, __pyx_v_moves, __pyx_v_state_set, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 333, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__is_valid_move_combination(__pyx_v_self, __pyx_v_moves, __pyx_v_state_set, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 328, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -12515,7 +12949,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_12_is_va
   return __pyx_r;
 }
 
-/* "ConnectedMatterAgent.pyx":353
+/* "ConnectedMatterAgent.pyx":348
  *         return True
  * 
  *     cpdef set _apply_moves(self, set state_set, list moves):             # <<<<<<<<<<<<<<
@@ -12558,7 +12992,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_apply_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 353, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_apply_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 348, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_20ConnectedMatterAgent_20ConnectedMatterAgent_15_apply_moves)) {
         __Pyx_XDECREF(__pyx_r);
@@ -12581,11 +13015,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
           PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_v_state_set, __pyx_v_moves};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 353, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 348, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(PySet_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_2))) __PYX_ERR(0, 353, __pyx_L1_error)
+        if (!(likely(PySet_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_2))) __PYX_ERR(0, 348, __pyx_L1_error)
         __pyx_r = ((PyObject*)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -12604,20 +13038,20 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
     #endif
   }
 
-  /* "ConnectedMatterAgent.pyx":355
+  /* "ConnectedMatterAgent.pyx":350
  *     cpdef set _apply_moves(self, set state_set, list moves):
  *         """Apply a list of moves to the state"""
  *         cdef set new_state = state_set.copy()             # <<<<<<<<<<<<<<
  *         cdef tuple src, tgt
  * 
  */
-  __pyx_t_1 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PySet_Type_copy, __pyx_v_state_set); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 355, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PySet_Type_copy, __pyx_v_state_set); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 350, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(PySet_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_1))) __PYX_ERR(0, 355, __pyx_L1_error)
+  if (!(likely(PySet_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_1))) __PYX_ERR(0, 350, __pyx_L1_error)
   __pyx_v_new_state = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":358
+  /* "ConnectedMatterAgent.pyx":353
  *         cdef tuple src, tgt
  * 
  *         for src, tgt in moves:             # <<<<<<<<<<<<<<
@@ -12626,7 +13060,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
  */
   if (unlikely(__pyx_v_moves == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 358, __pyx_L1_error)
+    __PYX_ERR(0, 353, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_v_moves; __Pyx_INCREF(__pyx_t_1);
   __pyx_t_6 = 0;
@@ -12634,14 +13068,14 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
     {
       Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
       #if !CYTHON_ASSUME_SAFE_MACROS
-      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 358, __pyx_L1_error)
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 353, __pyx_L1_error)
       #endif
       if (__pyx_t_6 >= __pyx_temp) break;
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely((0 < 0))) __PYX_ERR(0, 358, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely((0 < 0))) __PYX_ERR(0, 353, __pyx_L1_error)
     #else
-    __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 358, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 353, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_2))) || (PyList_CheckExact(__pyx_t_2))) {
@@ -12650,7 +13084,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 358, __pyx_L1_error)
+        __PYX_ERR(0, 353, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -12663,15 +13097,15 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_4);
       #else
-      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 358, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 353, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 358, __pyx_L1_error)
+      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 353, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       #endif
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 358, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 353, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_8 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_7);
@@ -12679,7 +13113,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
       __Pyx_GOTREF(__pyx_t_3);
       index = 1; __pyx_t_4 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_4)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_4);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 358, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 353, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
@@ -12687,17 +13121,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 358, __pyx_L1_error)
+      __PYX_ERR(0, 353, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
-    if (!(likely(PyTuple_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_3))) __PYX_ERR(0, 358, __pyx_L1_error)
-    if (!(likely(PyTuple_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_4))) __PYX_ERR(0, 358, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_3))) __PYX_ERR(0, 353, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_4))) __PYX_ERR(0, 353, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_src, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
     __Pyx_XDECREF_SET(__pyx_v_tgt, ((PyObject*)__pyx_t_4));
     __pyx_t_4 = 0;
 
-    /* "ConnectedMatterAgent.pyx":359
+    /* "ConnectedMatterAgent.pyx":354
  * 
  *         for src, tgt in moves:
  *             new_state.remove(src)             # <<<<<<<<<<<<<<
@@ -12706,11 +13140,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
  */
     if (unlikely(__pyx_v_new_state == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "remove");
-      __PYX_ERR(0, 359, __pyx_L1_error)
+      __PYX_ERR(0, 354, __pyx_L1_error)
     }
-    __pyx_t_9 = __Pyx_PySet_Remove(__pyx_v_new_state, __pyx_v_src); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PySet_Remove(__pyx_v_new_state, __pyx_v_src); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 354, __pyx_L1_error)
 
-    /* "ConnectedMatterAgent.pyx":360
+    /* "ConnectedMatterAgent.pyx":355
  *         for src, tgt in moves:
  *             new_state.remove(src)
  *             new_state.add(tgt)             # <<<<<<<<<<<<<<
@@ -12719,11 +13153,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
  */
     if (unlikely(__pyx_v_new_state == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "add");
-      __PYX_ERR(0, 360, __pyx_L1_error)
+      __PYX_ERR(0, 355, __pyx_L1_error)
     }
-    __pyx_t_9 = PySet_Add(__pyx_v_new_state, __pyx_v_tgt); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 360, __pyx_L1_error)
+    __pyx_t_9 = PySet_Add(__pyx_v_new_state, __pyx_v_tgt); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 355, __pyx_L1_error)
 
-    /* "ConnectedMatterAgent.pyx":358
+    /* "ConnectedMatterAgent.pyx":353
  *         cdef tuple src, tgt
  * 
  *         for src, tgt in moves:             # <<<<<<<<<<<<<<
@@ -12733,7 +13167,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":362
+  /* "ConnectedMatterAgent.pyx":357
  *             new_state.add(tgt)
  * 
  *         return new_state             # <<<<<<<<<<<<<<
@@ -12745,7 +13179,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_mo
   __pyx_r = __pyx_v_new_state;
   goto __pyx_L0;
 
-  /* "ConnectedMatterAgent.pyx":353
+  /* "ConnectedMatterAgent.pyx":348
  *         return True
  * 
  *     cpdef set _apply_moves(self, set state_set, list moves):             # <<<<<<<<<<<<<<
@@ -12828,7 +13262,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 353, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 348, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -12836,14 +13270,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 353, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 348, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("_apply_moves", 1, 2, 2, 1); __PYX_ERR(0, 353, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_apply_moves", 1, 2, 2, 1); __PYX_ERR(0, 348, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "_apply_moves") < 0)) __PYX_ERR(0, 353, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "_apply_moves") < 0)) __PYX_ERR(0, 348, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -12856,7 +13290,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_apply_moves", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 353, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_apply_moves", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 348, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -12870,8 +13304,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_state_set), (&PySet_Type), 1, "state_set", 1))) __PYX_ERR(0, 353, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_moves), (&PyList_Type), 1, "moves", 1))) __PYX_ERR(0, 353, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_state_set), (&PySet_Type), 1, "state_set", 1))) __PYX_ERR(0, 348, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_moves), (&PyList_Type), 1, "moves", 1))) __PYX_ERR(0, 348, __pyx_L1_error)
   __pyx_r = __pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_14_apply_moves(((struct __pyx_obj_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self), __pyx_v_state_set, __pyx_v_moves);
 
   /* function exit code */
@@ -12898,7 +13332,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_14_apply
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_apply_moves", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_moves(__pyx_v_self, __pyx_v_state_set, __pyx_v_moves, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent__apply_moves(__pyx_v_self, __pyx_v_state_set, __pyx_v_moves, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12915,7 +13349,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_14_apply
   return __pyx_r;
 }
 
-/* "ConnectedMatterAgent.pyx":364
+/* "ConnectedMatterAgent.pyx":359
  *         return new_state
  * 
  *     cpdef list get_smart_chain_moves(self, object state):             # <<<<<<<<<<<<<<
@@ -12979,7 +13413,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_smart_chain_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 364, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_smart_chain_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 359, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_20ConnectedMatterAgent_20ConnectedMatterAgent_17get_smart_chain_moves)) {
         __Pyx_XDECREF(__pyx_r);
@@ -13002,11 +13436,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
           PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_state};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 364, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 359, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 364, __pyx_L1_error)
+        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 359, __pyx_L1_error)
         __pyx_r = ((PyObject*)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -13025,31 +13459,31 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
     #endif
   }
 
-  /* "ConnectedMatterAgent.pyx":369
+  /* "ConnectedMatterAgent.pyx":364
  *         while that block moves elsewhere, maintaining connectivity
  *         """
  *         cdef set state_set = set(state)             # <<<<<<<<<<<<<<
  *         cdef list valid_moves = []
  *         cdef tuple pos, closest_goal, next_pos, chain_pos
  */
-  __pyx_t_1 = PySet_New(__pyx_v_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(__pyx_v_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 364, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_state_set = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":370
+  /* "ConnectedMatterAgent.pyx":365
  *         """
  *         cdef set state_set = set(state)
  *         cdef list valid_moves = []             # <<<<<<<<<<<<<<
  *         cdef tuple pos, closest_goal, next_pos, chain_pos
  *         cdef double min_dist, dist
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 365, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_valid_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":377
+  /* "ConnectedMatterAgent.pyx":372
  * 
  *         # For each block, try to move it toward a goal position
  *         for pos in state_set:             # <<<<<<<<<<<<<<
@@ -13057,7 +13491,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  *             min_dist = float('inf')
  */
   __pyx_t_6 = 0;
-  __pyx_t_2 = __Pyx_set_iterator(__pyx_v_state_set, 1, (&__pyx_t_7), (&__pyx_t_8)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 377, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_set_iterator(__pyx_v_state_set, 1, (&__pyx_t_7), (&__pyx_t_8)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_1);
   __pyx_t_1 = __pyx_t_2;
@@ -13065,23 +13499,23 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
   while (1) {
     __pyx_t_9 = __Pyx_set_iter_next(__pyx_t_1, __pyx_t_7, &__pyx_t_6, &__pyx_t_2, __pyx_t_8);
     if (unlikely(__pyx_t_9 == 0)) break;
-    if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 377, __pyx_L1_error)
+    if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 372, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_2))) __PYX_ERR(0, 377, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_2))) __PYX_ERR(0, 372, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_pos, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "ConnectedMatterAgent.pyx":379
+    /* "ConnectedMatterAgent.pyx":374
  *         for pos in state_set:
  *             # Find closest goal position
  *             min_dist = float('inf')             # <<<<<<<<<<<<<<
  *             closest_goal = None
  * 
  */
-    __pyx_t_10 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_10 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 379, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_10 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 374, __pyx_L1_error)
     __pyx_v_min_dist = __pyx_t_10;
 
-    /* "ConnectedMatterAgent.pyx":380
+    /* "ConnectedMatterAgent.pyx":375
  *             # Find closest goal position
  *             min_dist = float('inf')
  *             closest_goal = None             # <<<<<<<<<<<<<<
@@ -13091,7 +13525,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
     __Pyx_INCREF(Py_None);
     __Pyx_XDECREF_SET(__pyx_v_closest_goal, ((PyObject*)Py_None));
 
-    /* "ConnectedMatterAgent.pyx":382
+    /* "ConnectedMatterAgent.pyx":377
  *             closest_goal = None
  * 
  *             for goal_pos in self.goal_state:             # <<<<<<<<<<<<<<
@@ -13103,9 +13537,9 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
       __pyx_t_11 = 0;
       __pyx_t_12 = NULL;
     } else {
-      __pyx_t_11 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_self->goal_state); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 382, __pyx_L1_error)
+      __pyx_t_11 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_self->goal_state); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 377, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_12 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 382, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 377, __pyx_L1_error)
     }
     for (;;) {
       if (likely(!__pyx_t_12)) {
@@ -13113,28 +13547,28 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
           {
             Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 382, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 377, __pyx_L1_error)
             #endif
             if (__pyx_t_11 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 382, __pyx_L1_error)
+          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 377, __pyx_L1_error)
           #else
-          __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 382, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 377, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         } else {
           {
             Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_2);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 382, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 377, __pyx_L1_error)
             #endif
             if (__pyx_t_11 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 382, __pyx_L1_error)
+          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 377, __pyx_L1_error)
           #else
-          __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 382, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 377, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         }
@@ -13144,7 +13578,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 382, __pyx_L1_error)
+            else __PYX_ERR(0, 377, __pyx_L1_error)
           }
           break;
         }
@@ -13153,17 +13587,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
       __Pyx_XDECREF_SET(__pyx_v_goal_pos, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "ConnectedMatterAgent.pyx":383
+      /* "ConnectedMatterAgent.pyx":378
  * 
  *             for goal_pos in self.goal_state:
  *                 if goal_pos not in state_set:  # Only consider unoccupied goals             # <<<<<<<<<<<<<<
  *                     dist = c_abs(pos[0] - goal_pos[0]) + c_abs(pos[1] - goal_pos[1])
  *                     if dist < min_dist:
  */
-      __pyx_t_13 = (__Pyx_PySet_ContainsTF(__pyx_v_goal_pos, __pyx_v_state_set, Py_NE)); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 383, __pyx_L1_error)
+      __pyx_t_13 = (__Pyx_PySet_ContainsTF(__pyx_v_goal_pos, __pyx_v_state_set, Py_NE)); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 378, __pyx_L1_error)
       if (__pyx_t_13) {
 
-        /* "ConnectedMatterAgent.pyx":384
+        /* "ConnectedMatterAgent.pyx":379
  *             for goal_pos in self.goal_state:
  *                 if goal_pos not in state_set:  # Only consider unoccupied goals
  *                     dist = c_abs(pos[0] - goal_pos[0]) + c_abs(pos[1] - goal_pos[1])             # <<<<<<<<<<<<<<
@@ -13172,37 +13606,37 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
         if (unlikely(__pyx_v_pos == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 384, __pyx_L1_error)
+          __PYX_ERR(0, 379, __pyx_L1_error)
         }
-        __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_goal_pos, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 384, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_goal_pos, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 379, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_pos, 0), __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 384, __pyx_L1_error)
+        __pyx_t_4 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_pos, 0), __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 379, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = __Pyx_PyNumber_Absolute(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 384, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyNumber_Absolute(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 379, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         if (unlikely(__pyx_v_pos == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 384, __pyx_L1_error)
+          __PYX_ERR(0, 379, __pyx_L1_error)
         }
-        __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_goal_pos, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 384, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_goal_pos, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 379, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_14 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_pos, 1), __pyx_t_4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 384, __pyx_L1_error)
+        __pyx_t_14 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_pos, 1), __pyx_t_4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 379, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = __Pyx_PyNumber_Absolute(__pyx_t_14); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 384, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyNumber_Absolute(__pyx_t_14); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 379, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        __pyx_t_14 = PyNumber_Add(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 384, __pyx_L1_error)
+        __pyx_t_14 = PyNumber_Add(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 379, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_14); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 384, __pyx_L1_error)
+        __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_14); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 379, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
         __pyx_v_dist = __pyx_t_10;
 
-        /* "ConnectedMatterAgent.pyx":385
+        /* "ConnectedMatterAgent.pyx":380
  *                 if goal_pos not in state_set:  # Only consider unoccupied goals
  *                     dist = c_abs(pos[0] - goal_pos[0]) + c_abs(pos[1] - goal_pos[1])
  *                     if dist < min_dist:             # <<<<<<<<<<<<<<
@@ -13212,7 +13646,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
         __pyx_t_13 = (__pyx_v_dist < __pyx_v_min_dist);
         if (__pyx_t_13) {
 
-          /* "ConnectedMatterAgent.pyx":386
+          /* "ConnectedMatterAgent.pyx":381
  *                     dist = c_abs(pos[0] - goal_pos[0]) + c_abs(pos[1] - goal_pos[1])
  *                     if dist < min_dist:
  *                         min_dist = dist             # <<<<<<<<<<<<<<
@@ -13221,20 +13655,20 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
           __pyx_v_min_dist = __pyx_v_dist;
 
-          /* "ConnectedMatterAgent.pyx":387
+          /* "ConnectedMatterAgent.pyx":382
  *                     if dist < min_dist:
  *                         min_dist = dist
  *                         closest_goal = goal_pos             # <<<<<<<<<<<<<<
  * 
  *             if not closest_goal:
  */
-          if (!(likely(PyTuple_CheckExact(__pyx_v_goal_pos))||((__pyx_v_goal_pos) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v_goal_pos))) __PYX_ERR(0, 387, __pyx_L1_error)
+          if (!(likely(PyTuple_CheckExact(__pyx_v_goal_pos))||((__pyx_v_goal_pos) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v_goal_pos))) __PYX_ERR(0, 382, __pyx_L1_error)
           __pyx_t_14 = __pyx_v_goal_pos;
           __Pyx_INCREF(__pyx_t_14);
           __Pyx_DECREF_SET(__pyx_v_closest_goal, ((PyObject*)__pyx_t_14));
           __pyx_t_14 = 0;
 
-          /* "ConnectedMatterAgent.pyx":385
+          /* "ConnectedMatterAgent.pyx":380
  *                 if goal_pos not in state_set:  # Only consider unoccupied goals
  *                     dist = c_abs(pos[0] - goal_pos[0]) + c_abs(pos[1] - goal_pos[1])
  *                     if dist < min_dist:             # <<<<<<<<<<<<<<
@@ -13243,7 +13677,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
         }
 
-        /* "ConnectedMatterAgent.pyx":383
+        /* "ConnectedMatterAgent.pyx":378
  * 
  *             for goal_pos in self.goal_state:
  *                 if goal_pos not in state_set:  # Only consider unoccupied goals             # <<<<<<<<<<<<<<
@@ -13252,7 +13686,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
       }
 
-      /* "ConnectedMatterAgent.pyx":382
+      /* "ConnectedMatterAgent.pyx":377
  *             closest_goal = None
  * 
  *             for goal_pos in self.goal_state:             # <<<<<<<<<<<<<<
@@ -13262,7 +13696,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "ConnectedMatterAgent.pyx":389
+    /* "ConnectedMatterAgent.pyx":384
  *                         closest_goal = goal_pos
  * 
  *             if not closest_goal:             # <<<<<<<<<<<<<<
@@ -13273,7 +13707,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
     __pyx_t_15 = (!__pyx_t_13);
     if (__pyx_t_15) {
 
-      /* "ConnectedMatterAgent.pyx":390
+      /* "ConnectedMatterAgent.pyx":385
  * 
  *             if not closest_goal:
  *                 continue             # <<<<<<<<<<<<<<
@@ -13282,7 +13716,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
       goto __pyx_L3_continue;
 
-      /* "ConnectedMatterAgent.pyx":389
+      /* "ConnectedMatterAgent.pyx":384
  *                         closest_goal = goal_pos
  * 
  *             if not closest_goal:             # <<<<<<<<<<<<<<
@@ -13291,7 +13725,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":393
+    /* "ConnectedMatterAgent.pyx":388
  * 
  *             # Calculate direction toward goal
  *             dx = 1 if closest_goal[0] > pos[0] else -1 if closest_goal[0] < pos[0] else 0             # <<<<<<<<<<<<<<
@@ -13300,28 +13734,28 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
     if (unlikely(__pyx_v_closest_goal == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 393, __pyx_L1_error)
+      __PYX_ERR(0, 388, __pyx_L1_error)
     }
     if (unlikely(__pyx_v_pos == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 393, __pyx_L1_error)
+      __PYX_ERR(0, 388, __pyx_L1_error)
     }
-    __pyx_t_2 = PyObject_RichCompare(PyTuple_GET_ITEM(__pyx_v_closest_goal, 0), PyTuple_GET_ITEM(__pyx_v_pos, 0), Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 393, __pyx_L1_error)
-    __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_15 < 0))) __PYX_ERR(0, 393, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(PyTuple_GET_ITEM(__pyx_v_closest_goal, 0), PyTuple_GET_ITEM(__pyx_v_pos, 0), Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 388, __pyx_L1_error)
+    __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_15 < 0))) __PYX_ERR(0, 388, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (__pyx_t_15) {
       __pyx_t_9 = 1;
     } else {
       if (unlikely(__pyx_v_closest_goal == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 393, __pyx_L1_error)
+        __PYX_ERR(0, 388, __pyx_L1_error)
       }
       if (unlikely(__pyx_v_pos == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 393, __pyx_L1_error)
+        __PYX_ERR(0, 388, __pyx_L1_error)
       }
-      __pyx_t_2 = PyObject_RichCompare(PyTuple_GET_ITEM(__pyx_v_closest_goal, 0), PyTuple_GET_ITEM(__pyx_v_pos, 0), Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 393, __pyx_L1_error)
-      __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 393, __pyx_L1_error)
+      __pyx_t_2 = PyObject_RichCompare(PyTuple_GET_ITEM(__pyx_v_closest_goal, 0), PyTuple_GET_ITEM(__pyx_v_pos, 0), Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 388, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 388, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       if (__pyx_t_13) {
         __pyx_t_16 = -1;
@@ -13332,7 +13766,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
     }
     __pyx_v_dx = __pyx_t_9;
 
-    /* "ConnectedMatterAgent.pyx":394
+    /* "ConnectedMatterAgent.pyx":389
  *             # Calculate direction toward goal
  *             dx = 1 if closest_goal[0] > pos[0] else -1 if closest_goal[0] < pos[0] else 0
  *             dy = 1 if closest_goal[1] > pos[1] else -1 if closest_goal[1] < pos[1] else 0             # <<<<<<<<<<<<<<
@@ -13341,28 +13775,28 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
     if (unlikely(__pyx_v_closest_goal == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 394, __pyx_L1_error)
+      __PYX_ERR(0, 389, __pyx_L1_error)
     }
     if (unlikely(__pyx_v_pos == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 394, __pyx_L1_error)
+      __PYX_ERR(0, 389, __pyx_L1_error)
     }
-    __pyx_t_2 = PyObject_RichCompare(PyTuple_GET_ITEM(__pyx_v_closest_goal, 1), PyTuple_GET_ITEM(__pyx_v_pos, 1), Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
-    __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_15 < 0))) __PYX_ERR(0, 394, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(PyTuple_GET_ITEM(__pyx_v_closest_goal, 1), PyTuple_GET_ITEM(__pyx_v_pos, 1), Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 389, __pyx_L1_error)
+    __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_15 < 0))) __PYX_ERR(0, 389, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (__pyx_t_15) {
       __pyx_t_9 = 1;
     } else {
       if (unlikely(__pyx_v_closest_goal == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 394, __pyx_L1_error)
+        __PYX_ERR(0, 389, __pyx_L1_error)
       }
       if (unlikely(__pyx_v_pos == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 394, __pyx_L1_error)
+        __PYX_ERR(0, 389, __pyx_L1_error)
       }
-      __pyx_t_2 = PyObject_RichCompare(PyTuple_GET_ITEM(__pyx_v_closest_goal, 1), PyTuple_GET_ITEM(__pyx_v_pos, 1), Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
-      __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 394, __pyx_L1_error)
+      __pyx_t_2 = PyObject_RichCompare(PyTuple_GET_ITEM(__pyx_v_closest_goal, 1), PyTuple_GET_ITEM(__pyx_v_pos, 1), Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 389, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 389, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       if (__pyx_t_13) {
         __pyx_t_16 = -1;
@@ -13373,7 +13807,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
     }
     __pyx_v_dy = __pyx_t_9;
 
-    /* "ConnectedMatterAgent.pyx":397
+    /* "ConnectedMatterAgent.pyx":392
  * 
  *             # Try moving in that direction
  *             next_pos = (pos[0] + dx, pos[1] + dy)             # <<<<<<<<<<<<<<
@@ -13382,34 +13816,34 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
     if (unlikely(__pyx_v_pos == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 397, __pyx_L1_error)
+      __PYX_ERR(0, 392, __pyx_L1_error)
     }
-    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_dx); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 397, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_dx); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 392, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_14 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_pos, 0), __pyx_t_2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 397, __pyx_L1_error)
+    __pyx_t_14 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_pos, 0), __pyx_t_2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 392, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_14);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (unlikely(__pyx_v_pos == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 397, __pyx_L1_error)
+      __PYX_ERR(0, 392, __pyx_L1_error)
     }
-    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_dy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 397, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_dy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 392, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_pos, 1), __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 397, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_pos, 1), __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 392, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 397, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 392, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_14);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_14)) __PYX_ERR(0, 397, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_14)) __PYX_ERR(0, 392, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_4);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_4)) __PYX_ERR(0, 397, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_4)) __PYX_ERR(0, 392, __pyx_L1_error);
     __pyx_t_14 = 0;
     __pyx_t_4 = 0;
     __Pyx_XDECREF_SET(__pyx_v_next_pos, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "ConnectedMatterAgent.pyx":400
+    /* "ConnectedMatterAgent.pyx":395
  * 
  *             # Skip if out of bounds
  *             if not (0 <= next_pos[0] < self.grid_size[0] and             # <<<<<<<<<<<<<<
@@ -13418,17 +13852,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
     __pyx_t_2 = PyTuple_GET_ITEM(__pyx_v_next_pos, 0);
     __Pyx_INCREF(__pyx_t_2);
-    __pyx_t_4 = PyObject_RichCompare(__pyx_int_0, __pyx_t_2, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 400, __pyx_L1_error)
+    __pyx_t_4 = PyObject_RichCompare(__pyx_int_0, __pyx_t_2, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 395, __pyx_L1_error)
     if (__Pyx_PyObject_IsTrue(__pyx_t_4)) {
       __Pyx_DECREF(__pyx_t_4);
       if (unlikely(__pyx_v_self->grid_size == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 400, __pyx_L1_error)
+        __PYX_ERR(0, 395, __pyx_L1_error)
       }
-      __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 0), Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 400, __pyx_L1_error)
+      __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 0), Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 395, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 400, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 395, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_13) {
     } else {
@@ -13436,7 +13870,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
       goto __pyx_L12_bool_binop_done;
     }
 
-    /* "ConnectedMatterAgent.pyx":401
+    /* "ConnectedMatterAgent.pyx":396
  *             # Skip if out of bounds
  *             if not (0 <= next_pos[0] < self.grid_size[0] and
  *                     0 <= next_pos[1] < self.grid_size[1]):             # <<<<<<<<<<<<<<
@@ -13445,22 +13879,22 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
     __pyx_t_4 = PyTuple_GET_ITEM(__pyx_v_next_pos, 1);
     __Pyx_INCREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_int_0, __pyx_t_4, Py_LE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 401, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(__pyx_int_0, __pyx_t_4, Py_LE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 396, __pyx_L1_error)
     if (__Pyx_PyObject_IsTrue(__pyx_t_2)) {
       __Pyx_DECREF(__pyx_t_2);
       if (unlikely(__pyx_v_self->grid_size == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 401, __pyx_L1_error)
+        __PYX_ERR(0, 396, __pyx_L1_error)
       }
-      __pyx_t_2 = PyObject_RichCompare(__pyx_t_4, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 1), Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 401, __pyx_L1_error)
+      __pyx_t_2 = PyObject_RichCompare(__pyx_t_4, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 1), Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 396, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 401, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 396, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_15 = __pyx_t_13;
     __pyx_L12_bool_binop_done:;
 
-    /* "ConnectedMatterAgent.pyx":400
+    /* "ConnectedMatterAgent.pyx":395
  * 
  *             # Skip if out of bounds
  *             if not (0 <= next_pos[0] < self.grid_size[0] and             # <<<<<<<<<<<<<<
@@ -13470,7 +13904,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
     __pyx_t_13 = (!__pyx_t_15);
     if (__pyx_t_13) {
 
-      /* "ConnectedMatterAgent.pyx":402
+      /* "ConnectedMatterAgent.pyx":397
  *             if not (0 <= next_pos[0] < self.grid_size[0] and
  *                     0 <= next_pos[1] < self.grid_size[1]):
  *                 continue             # <<<<<<<<<<<<<<
@@ -13479,7 +13913,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
       goto __pyx_L3_continue;
 
-      /* "ConnectedMatterAgent.pyx":400
+      /* "ConnectedMatterAgent.pyx":395
  * 
  *             # Skip if out of bounds
  *             if not (0 <= next_pos[0] < self.grid_size[0] and             # <<<<<<<<<<<<<<
@@ -13488,17 +13922,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":405
+    /* "ConnectedMatterAgent.pyx":400
  * 
  *             # If next position is occupied, try chain move
  *             if next_pos in state_set:             # <<<<<<<<<<<<<<
  *                 # Try moving the blocking block elsewhere
  *                 for chain_dx, chain_dy in self.directions:
  */
-    __pyx_t_13 = (__Pyx_PySet_ContainsTF(__pyx_v_next_pos, __pyx_v_state_set, Py_EQ)); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 405, __pyx_L1_error)
+    __pyx_t_13 = (__Pyx_PySet_ContainsTF(__pyx_v_next_pos, __pyx_v_state_set, Py_EQ)); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 400, __pyx_L1_error)
     if (__pyx_t_13) {
 
-      /* "ConnectedMatterAgent.pyx":407
+      /* "ConnectedMatterAgent.pyx":402
  *             if next_pos in state_set:
  *                 # Try moving the blocking block elsewhere
  *                 for chain_dx, chain_dy in self.directions:             # <<<<<<<<<<<<<<
@@ -13507,7 +13941,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
       if (unlikely(__pyx_v_self->directions == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-        __PYX_ERR(0, 407, __pyx_L1_error)
+        __PYX_ERR(0, 402, __pyx_L1_error)
       }
       __pyx_t_2 = __pyx_v_self->directions; __Pyx_INCREF(__pyx_t_2);
       __pyx_t_11 = 0;
@@ -13515,14 +13949,14 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
           #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 407, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 402, __pyx_L1_error)
           #endif
           if (__pyx_t_11 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 407, __pyx_L1_error)
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 402, __pyx_L1_error)
         #else
-        __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 402, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
         if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
@@ -13531,7 +13965,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
           if (unlikely(size != 2)) {
             if (size > 2) __Pyx_RaiseTooManyValuesError(2);
             else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-            __PYX_ERR(0, 407, __pyx_L1_error)
+            __PYX_ERR(0, 402, __pyx_L1_error)
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
           if (likely(PyTuple_CheckExact(sequence))) {
@@ -13544,15 +13978,15 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
           __Pyx_INCREF(__pyx_t_14);
           __Pyx_INCREF(__pyx_t_3);
           #else
-          __pyx_t_14 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 407, __pyx_L1_error)
+          __pyx_t_14 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 402, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
-          __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 407, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 402, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         } else {
           Py_ssize_t index = -1;
-          __pyx_t_17 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 407, __pyx_L1_error)
+          __pyx_t_17 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 402, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_17);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           __pyx_t_18 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_17);
@@ -13560,7 +13994,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
           __Pyx_GOTREF(__pyx_t_14);
           index = 1; __pyx_t_3 = __pyx_t_18(__pyx_t_17); if (unlikely(!__pyx_t_3)) goto __pyx_L17_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_3);
-          if (__Pyx_IternextUnpackEndCheck(__pyx_t_18(__pyx_t_17), 2) < 0) __PYX_ERR(0, 407, __pyx_L1_error)
+          if (__Pyx_IternextUnpackEndCheck(__pyx_t_18(__pyx_t_17), 2) < 0) __PYX_ERR(0, 402, __pyx_L1_error)
           __pyx_t_18 = NULL;
           __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
           goto __pyx_L18_unpacking_done;
@@ -13568,45 +14002,45 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
           __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
           __pyx_t_18 = NULL;
           if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-          __PYX_ERR(0, 407, __pyx_L1_error)
+          __PYX_ERR(0, 402, __pyx_L1_error)
           __pyx_L18_unpacking_done:;
         }
-        __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_14); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 407, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_14); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 402, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        __pyx_t_16 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_16 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 407, __pyx_L1_error)
+        __pyx_t_16 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_16 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 402, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_v_chain_dx = __pyx_t_9;
         __pyx_v_chain_dy = __pyx_t_16;
 
-        /* "ConnectedMatterAgent.pyx":408
+        /* "ConnectedMatterAgent.pyx":403
  *                 # Try moving the blocking block elsewhere
  *                 for chain_dx, chain_dy in self.directions:
  *                     chain_pos = (next_pos[0] + chain_dx, next_pos[1] + chain_dy)             # <<<<<<<<<<<<<<
  * 
  *                     # Skip if out of bounds, occupied, or original position
  */
-        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_chain_dx); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 408, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_chain_dx); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 403, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_3 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_next_pos, 0), __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 408, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_next_pos, 0), __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 403, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_chain_dy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 408, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_chain_dy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 403, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_14 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_next_pos, 1), __pyx_t_4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 408, __pyx_L1_error)
+        __pyx_t_14 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_next_pos, 1), __pyx_t_4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 403, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 408, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 403, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_GIVEREF(__pyx_t_3);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3)) __PYX_ERR(0, 408, __pyx_L1_error);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3)) __PYX_ERR(0, 403, __pyx_L1_error);
         __Pyx_GIVEREF(__pyx_t_14);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_14)) __PYX_ERR(0, 408, __pyx_L1_error);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_14)) __PYX_ERR(0, 403, __pyx_L1_error);
         __pyx_t_3 = 0;
         __pyx_t_14 = 0;
         __Pyx_XDECREF_SET(__pyx_v_chain_pos, ((PyObject*)__pyx_t_4));
         __pyx_t_4 = 0;
 
-        /* "ConnectedMatterAgent.pyx":411
+        /* "ConnectedMatterAgent.pyx":406
  * 
  *                     # Skip if out of bounds, occupied, or original position
  *                     if not (0 <= chain_pos[0] < self.grid_size[0] and             # <<<<<<<<<<<<<<
@@ -13615,17 +14049,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
         __pyx_t_4 = PyTuple_GET_ITEM(__pyx_v_chain_pos, 0);
         __Pyx_INCREF(__pyx_t_4);
-        __pyx_t_14 = PyObject_RichCompare(__pyx_int_0, __pyx_t_4, Py_LE); __Pyx_XGOTREF(__pyx_t_14); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 411, __pyx_L1_error)
+        __pyx_t_14 = PyObject_RichCompare(__pyx_int_0, __pyx_t_4, Py_LE); __Pyx_XGOTREF(__pyx_t_14); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 406, __pyx_L1_error)
         if (__Pyx_PyObject_IsTrue(__pyx_t_14)) {
           __Pyx_DECREF(__pyx_t_14);
           if (unlikely(__pyx_v_self->grid_size == Py_None)) {
             PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-            __PYX_ERR(0, 411, __pyx_L1_error)
+            __PYX_ERR(0, 406, __pyx_L1_error)
           }
-          __pyx_t_14 = PyObject_RichCompare(__pyx_t_4, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 0), Py_LT); __Pyx_XGOTREF(__pyx_t_14); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 411, __pyx_L1_error)
+          __pyx_t_14 = PyObject_RichCompare(__pyx_t_4, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 0), Py_LT); __Pyx_XGOTREF(__pyx_t_14); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 406, __pyx_L1_error)
         }
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_14); if (unlikely((__pyx_t_15 < 0))) __PYX_ERR(0, 411, __pyx_L1_error)
+        __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_14); if (unlikely((__pyx_t_15 < 0))) __PYX_ERR(0, 406, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
         if (__pyx_t_15) {
         } else {
@@ -13633,7 +14067,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
           goto __pyx_L20_bool_binop_done;
         }
 
-        /* "ConnectedMatterAgent.pyx":412
+        /* "ConnectedMatterAgent.pyx":407
  *                     # Skip if out of bounds, occupied, or original position
  *                     if not (0 <= chain_pos[0] < self.grid_size[0] and
  *                             0 <= chain_pos[1] < self.grid_size[1]):             # <<<<<<<<<<<<<<
@@ -13642,22 +14076,22 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
         __pyx_t_14 = PyTuple_GET_ITEM(__pyx_v_chain_pos, 1);
         __Pyx_INCREF(__pyx_t_14);
-        __pyx_t_4 = PyObject_RichCompare(__pyx_int_0, __pyx_t_14, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 412, __pyx_L1_error)
+        __pyx_t_4 = PyObject_RichCompare(__pyx_int_0, __pyx_t_14, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L1_error)
         if (__Pyx_PyObject_IsTrue(__pyx_t_4)) {
           __Pyx_DECREF(__pyx_t_4);
           if (unlikely(__pyx_v_self->grid_size == Py_None)) {
             PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-            __PYX_ERR(0, 412, __pyx_L1_error)
+            __PYX_ERR(0, 407, __pyx_L1_error)
           }
-          __pyx_t_4 = PyObject_RichCompare(__pyx_t_14, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 1), Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 412, __pyx_L1_error)
+          __pyx_t_4 = PyObject_RichCompare(__pyx_t_14, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 1), Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L1_error)
         }
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_15 < 0))) __PYX_ERR(0, 412, __pyx_L1_error)
+        __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_15 < 0))) __PYX_ERR(0, 407, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_13 = __pyx_t_15;
         __pyx_L20_bool_binop_done:;
 
-        /* "ConnectedMatterAgent.pyx":411
+        /* "ConnectedMatterAgent.pyx":406
  * 
  *                     # Skip if out of bounds, occupied, or original position
  *                     if not (0 <= chain_pos[0] < self.grid_size[0] and             # <<<<<<<<<<<<<<
@@ -13667,7 +14101,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
         __pyx_t_15 = (!__pyx_t_13);
         if (__pyx_t_15) {
 
-          /* "ConnectedMatterAgent.pyx":413
+          /* "ConnectedMatterAgent.pyx":408
  *                     if not (0 <= chain_pos[0] < self.grid_size[0] and
  *                             0 <= chain_pos[1] < self.grid_size[1]):
  *                         continue             # <<<<<<<<<<<<<<
@@ -13676,7 +14110,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
           goto __pyx_L15_continue;
 
-          /* "ConnectedMatterAgent.pyx":411
+          /* "ConnectedMatterAgent.pyx":406
  * 
  *                     # Skip if out of bounds, occupied, or original position
  *                     if not (0 <= chain_pos[0] < self.grid_size[0] and             # <<<<<<<<<<<<<<
@@ -13685,27 +14119,27 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
         }
 
-        /* "ConnectedMatterAgent.pyx":414
+        /* "ConnectedMatterAgent.pyx":409
  *                             0 <= chain_pos[1] < self.grid_size[1]):
  *                         continue
  *                     if chain_pos in state_set or chain_pos == pos:             # <<<<<<<<<<<<<<
  *                         continue
  * 
  */
-        __pyx_t_13 = (__Pyx_PySet_ContainsTF(__pyx_v_chain_pos, __pyx_v_state_set, Py_EQ)); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 414, __pyx_L1_error)
+        __pyx_t_13 = (__Pyx_PySet_ContainsTF(__pyx_v_chain_pos, __pyx_v_state_set, Py_EQ)); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 409, __pyx_L1_error)
         if (!__pyx_t_13) {
         } else {
           __pyx_t_15 = __pyx_t_13;
           goto __pyx_L23_bool_binop_done;
         }
-        __pyx_t_4 = PyObject_RichCompare(__pyx_v_chain_pos, __pyx_v_pos, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 414, __pyx_L1_error)
-        __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 414, __pyx_L1_error)
+        __pyx_t_4 = PyObject_RichCompare(__pyx_v_chain_pos, __pyx_v_pos, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 409, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 409, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_15 = __pyx_t_13;
         __pyx_L23_bool_binop_done:;
         if (__pyx_t_15) {
 
-          /* "ConnectedMatterAgent.pyx":415
+          /* "ConnectedMatterAgent.pyx":410
  *                         continue
  *                     if chain_pos in state_set or chain_pos == pos:
  *                         continue             # <<<<<<<<<<<<<<
@@ -13714,7 +14148,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
           goto __pyx_L15_continue;
 
-          /* "ConnectedMatterAgent.pyx":414
+          /* "ConnectedMatterAgent.pyx":409
  *                             0 <= chain_pos[1] < self.grid_size[1]):
  *                         continue
  *                     if chain_pos in state_set or chain_pos == pos:             # <<<<<<<<<<<<<<
@@ -13723,20 +14157,20 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
         }
 
-        /* "ConnectedMatterAgent.pyx":418
+        /* "ConnectedMatterAgent.pyx":413
  * 
  *                     # Create new state by moving both blocks
  *                     new_state_set = state_set.copy()             # <<<<<<<<<<<<<<
  *                     new_state_set.remove(pos)
  *                     new_state_set.remove(next_pos)
  */
-        __pyx_t_4 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PySet_Type_copy, __pyx_v_state_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 418, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PySet_Type_copy, __pyx_v_state_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 413, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        if (!(likely(PySet_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_4))) __PYX_ERR(0, 418, __pyx_L1_error)
+        if (!(likely(PySet_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_4))) __PYX_ERR(0, 413, __pyx_L1_error)
         __Pyx_XDECREF_SET(__pyx_v_new_state_set, ((PyObject*)__pyx_t_4));
         __pyx_t_4 = 0;
 
-        /* "ConnectedMatterAgent.pyx":419
+        /* "ConnectedMatterAgent.pyx":414
  *                     # Create new state by moving both blocks
  *                     new_state_set = state_set.copy()
  *                     new_state_set.remove(pos)             # <<<<<<<<<<<<<<
@@ -13745,11 +14179,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
         if (unlikely(__pyx_v_new_state_set == Py_None)) {
           PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "remove");
-          __PYX_ERR(0, 419, __pyx_L1_error)
+          __PYX_ERR(0, 414, __pyx_L1_error)
         }
-        __pyx_t_19 = __Pyx_PySet_Remove(__pyx_v_new_state_set, __pyx_v_pos); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 419, __pyx_L1_error)
+        __pyx_t_19 = __Pyx_PySet_Remove(__pyx_v_new_state_set, __pyx_v_pos); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 414, __pyx_L1_error)
 
-        /* "ConnectedMatterAgent.pyx":420
+        /* "ConnectedMatterAgent.pyx":415
  *                     new_state_set = state_set.copy()
  *                     new_state_set.remove(pos)
  *                     new_state_set.remove(next_pos)             # <<<<<<<<<<<<<<
@@ -13758,11 +14192,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
         if (unlikely(__pyx_v_new_state_set == Py_None)) {
           PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "remove");
-          __PYX_ERR(0, 420, __pyx_L1_error)
+          __PYX_ERR(0, 415, __pyx_L1_error)
         }
-        __pyx_t_19 = __Pyx_PySet_Remove(__pyx_v_new_state_set, __pyx_v_next_pos); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 420, __pyx_L1_error)
+        __pyx_t_19 = __Pyx_PySet_Remove(__pyx_v_new_state_set, __pyx_v_next_pos); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 415, __pyx_L1_error)
 
-        /* "ConnectedMatterAgent.pyx":421
+        /* "ConnectedMatterAgent.pyx":416
  *                     new_state_set.remove(pos)
  *                     new_state_set.remove(next_pos)
  *                     new_state_set.add(next_pos)             # <<<<<<<<<<<<<<
@@ -13771,11 +14205,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
         if (unlikely(__pyx_v_new_state_set == Py_None)) {
           PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "add");
-          __PYX_ERR(0, 421, __pyx_L1_error)
+          __PYX_ERR(0, 416, __pyx_L1_error)
         }
-        __pyx_t_19 = PySet_Add(__pyx_v_new_state_set, __pyx_v_next_pos); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 421, __pyx_L1_error)
+        __pyx_t_19 = PySet_Add(__pyx_v_new_state_set, __pyx_v_next_pos); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 416, __pyx_L1_error)
 
-        /* "ConnectedMatterAgent.pyx":422
+        /* "ConnectedMatterAgent.pyx":417
  *                     new_state_set.remove(next_pos)
  *                     new_state_set.add(next_pos)
  *                     new_state_set.add(chain_pos)             # <<<<<<<<<<<<<<
@@ -13784,36 +14218,36 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
         if (unlikely(__pyx_v_new_state_set == Py_None)) {
           PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "add");
-          __PYX_ERR(0, 422, __pyx_L1_error)
+          __PYX_ERR(0, 417, __pyx_L1_error)
         }
-        __pyx_t_19 = PySet_Add(__pyx_v_new_state_set, __pyx_v_chain_pos); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 422, __pyx_L1_error)
+        __pyx_t_19 = PySet_Add(__pyx_v_new_state_set, __pyx_v_chain_pos); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 417, __pyx_L1_error)
 
-        /* "ConnectedMatterAgent.pyx":425
+        /* "ConnectedMatterAgent.pyx":420
  * 
  *                     # Check if new state is connected
  *                     if self.is_connected(list(new_state_set)):             # <<<<<<<<<<<<<<
  *                         valid_moves.append(frozenset(new_state_set))
  * 
  */
-        __pyx_t_4 = PySequence_List(__pyx_v_new_state_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 425, __pyx_L1_error)
+        __pyx_t_4 = PySequence_List(__pyx_v_new_state_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 420, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_15 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->is_connected(__pyx_v_self, ((PyObject*)__pyx_t_4), 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 425, __pyx_L1_error)
+        __pyx_t_15 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->is_connected(__pyx_v_self, ((PyObject*)__pyx_t_4), 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 420, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         if (__pyx_t_15) {
 
-          /* "ConnectedMatterAgent.pyx":426
+          /* "ConnectedMatterAgent.pyx":421
  *                     # Check if new state is connected
  *                     if self.is_connected(list(new_state_set)):
  *                         valid_moves.append(frozenset(new_state_set))             # <<<<<<<<<<<<<<
  * 
  *             # If next position is unoccupied, try direct move
  */
-          __pyx_t_4 = __Pyx_PyFrozenSet_New(__pyx_v_new_state_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 426, __pyx_L1_error)
+          __pyx_t_4 = __Pyx_PyFrozenSet_New(__pyx_v_new_state_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 421, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_19 = __Pyx_PyList_Append(__pyx_v_valid_moves, __pyx_t_4); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 426, __pyx_L1_error)
+          __pyx_t_19 = __Pyx_PyList_Append(__pyx_v_valid_moves, __pyx_t_4); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 421, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-          /* "ConnectedMatterAgent.pyx":425
+          /* "ConnectedMatterAgent.pyx":420
  * 
  *                     # Check if new state is connected
  *                     if self.is_connected(list(new_state_set)):             # <<<<<<<<<<<<<<
@@ -13822,7 +14256,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
         }
 
-        /* "ConnectedMatterAgent.pyx":407
+        /* "ConnectedMatterAgent.pyx":402
  *             if next_pos in state_set:
  *                 # Try moving the blocking block elsewhere
  *                 for chain_dx, chain_dy in self.directions:             # <<<<<<<<<<<<<<
@@ -13833,7 +14267,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
       }
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":405
+      /* "ConnectedMatterAgent.pyx":400
  * 
  *             # If next position is occupied, try chain move
  *             if next_pos in state_set:             # <<<<<<<<<<<<<<
@@ -13843,7 +14277,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
       goto __pyx_L14;
     }
 
-    /* "ConnectedMatterAgent.pyx":430
+    /* "ConnectedMatterAgent.pyx":425
  *             # If next position is unoccupied, try direct move
  *             else:
  *                 new_state_set = state_set.copy()             # <<<<<<<<<<<<<<
@@ -13851,13 +14285,13 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  *                 new_state_set.add(next_pos)
  */
     /*else*/ {
-      __pyx_t_2 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PySet_Type_copy, __pyx_v_state_set); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 430, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PySet_Type_copy, __pyx_v_state_set); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 425, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      if (!(likely(PySet_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_2))) __PYX_ERR(0, 430, __pyx_L1_error)
+      if (!(likely(PySet_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_2))) __PYX_ERR(0, 425, __pyx_L1_error)
       __Pyx_XDECREF_SET(__pyx_v_new_state_set, ((PyObject*)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":431
+      /* "ConnectedMatterAgent.pyx":426
  *             else:
  *                 new_state_set = state_set.copy()
  *                 new_state_set.remove(pos)             # <<<<<<<<<<<<<<
@@ -13866,11 +14300,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
       if (unlikely(__pyx_v_new_state_set == Py_None)) {
         PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "remove");
-        __PYX_ERR(0, 431, __pyx_L1_error)
+        __PYX_ERR(0, 426, __pyx_L1_error)
       }
-      __pyx_t_19 = __Pyx_PySet_Remove(__pyx_v_new_state_set, __pyx_v_pos); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 431, __pyx_L1_error)
+      __pyx_t_19 = __Pyx_PySet_Remove(__pyx_v_new_state_set, __pyx_v_pos); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 426, __pyx_L1_error)
 
-      /* "ConnectedMatterAgent.pyx":432
+      /* "ConnectedMatterAgent.pyx":427
  *                 new_state_set = state_set.copy()
  *                 new_state_set.remove(pos)
  *                 new_state_set.add(next_pos)             # <<<<<<<<<<<<<<
@@ -13879,36 +14313,36 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
  */
       if (unlikely(__pyx_v_new_state_set == Py_None)) {
         PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "add");
-        __PYX_ERR(0, 432, __pyx_L1_error)
+        __PYX_ERR(0, 427, __pyx_L1_error)
       }
-      __pyx_t_19 = PySet_Add(__pyx_v_new_state_set, __pyx_v_next_pos); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 432, __pyx_L1_error)
+      __pyx_t_19 = PySet_Add(__pyx_v_new_state_set, __pyx_v_next_pos); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 427, __pyx_L1_error)
 
-      /* "ConnectedMatterAgent.pyx":435
+      /* "ConnectedMatterAgent.pyx":430
  * 
  *                 # Check if new state is connected
  *                 if self.is_connected(list(new_state_set)):             # <<<<<<<<<<<<<<
  *                     valid_moves.append(frozenset(new_state_set))
  * 
  */
-      __pyx_t_2 = PySequence_List(__pyx_v_new_state_set); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 435, __pyx_L1_error)
+      __pyx_t_2 = PySequence_List(__pyx_v_new_state_set); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 430, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_15 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->is_connected(__pyx_v_self, ((PyObject*)__pyx_t_2), 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 435, __pyx_L1_error)
+      __pyx_t_15 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->is_connected(__pyx_v_self, ((PyObject*)__pyx_t_2), 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 430, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       if (__pyx_t_15) {
 
-        /* "ConnectedMatterAgent.pyx":436
+        /* "ConnectedMatterAgent.pyx":431
  *                 # Check if new state is connected
  *                 if self.is_connected(list(new_state_set)):
  *                     valid_moves.append(frozenset(new_state_set))             # <<<<<<<<<<<<<<
  * 
  *         return valid_moves
  */
-        __pyx_t_2 = __Pyx_PyFrozenSet_New(__pyx_v_new_state_set); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 436, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFrozenSet_New(__pyx_v_new_state_set); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 431, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_19 = __Pyx_PyList_Append(__pyx_v_valid_moves, __pyx_t_2); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 436, __pyx_L1_error)
+        __pyx_t_19 = __Pyx_PyList_Append(__pyx_v_valid_moves, __pyx_t_2); if (unlikely(__pyx_t_19 == ((int)-1))) __PYX_ERR(0, 431, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "ConnectedMatterAgent.pyx":435
+        /* "ConnectedMatterAgent.pyx":430
  * 
  *                 # Check if new state is connected
  *                 if self.is_connected(list(new_state_set)):             # <<<<<<<<<<<<<<
@@ -13922,7 +14356,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":438
+  /* "ConnectedMatterAgent.pyx":433
  *                     valid_moves.append(frozenset(new_state_set))
  * 
  *         return valid_moves             # <<<<<<<<<<<<<<
@@ -13934,7 +14368,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart
   __pyx_r = __pyx_v_valid_moves;
   goto __pyx_L0;
 
-  /* "ConnectedMatterAgent.pyx":364
+  /* "ConnectedMatterAgent.pyx":359
  *         return new_state
  * 
  *     cpdef list get_smart_chain_moves(self, object state):             # <<<<<<<<<<<<<<
@@ -14020,12 +14454,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 364, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 359, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_smart_chain_moves") < 0)) __PYX_ERR(0, 364, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_smart_chain_moves") < 0)) __PYX_ERR(0, 359, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -14036,7 +14470,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_smart_chain_moves", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 364, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_smart_chain_moves", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 359, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -14072,7 +14506,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_16get_sm
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_smart_chain_moves", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart_chain_moves(__pyx_v_self, __pyx_v_state, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_smart_chain_moves(__pyx_v_self, __pyx_v_state, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 359, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -14089,7 +14523,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_16get_sm
   return __pyx_r;
 }
 
-/* "ConnectedMatterAgent.pyx":440
+/* "ConnectedMatterAgent.pyx":435
  *         return valid_moves
  * 
  *     cpdef list get_sliding_chain_moves(self, object state):             # <<<<<<<<<<<<<<
@@ -14152,7 +14586,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_sliding_chain_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 440, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_sliding_chain_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 435, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_20ConnectedMatterAgent_20ConnectedMatterAgent_19get_sliding_chain_moves)) {
         __Pyx_XDECREF(__pyx_r);
@@ -14175,11 +14609,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
           PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_state};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 440, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 435, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 440, __pyx_L1_error)
+        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 435, __pyx_L1_error)
         __pyx_r = ((PyObject*)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -14198,31 +14632,31 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
     #endif
   }
 
-  /* "ConnectedMatterAgent.pyx":445
+  /* "ConnectedMatterAgent.pyx":440
  *         to navigate tight spaces
  *         """
  *         cdef set state_set = set(state)             # <<<<<<<<<<<<<<
  *         cdef list valid_moves = []
  *         cdef tuple pos, current_pos, next_pos, target_pos
  */
-  __pyx_t_1 = PySet_New(__pyx_v_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 445, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(__pyx_v_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 440, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_state_set = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":446
+  /* "ConnectedMatterAgent.pyx":441
  *         """
  *         cdef set state_set = set(state)
  *         cdef list valid_moves = []             # <<<<<<<<<<<<<<
  *         cdef tuple pos, current_pos, next_pos, target_pos
  *         cdef int dx, dy, i
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 446, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 441, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_valid_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":453
+  /* "ConnectedMatterAgent.pyx":448
  * 
  *         # For each block, try to initiate a sliding chain
  *         for pos in state_set:             # <<<<<<<<<<<<<<
@@ -14230,7 +14664,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  *             articulation_points = self.get_articulation_points(state_set)
  */
   __pyx_t_6 = 0;
-  __pyx_t_2 = __Pyx_set_iterator(__pyx_v_state_set, 1, (&__pyx_t_7), (&__pyx_t_8)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_set_iterator(__pyx_v_state_set, 1, (&__pyx_t_7), (&__pyx_t_8)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 448, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_1);
   __pyx_t_1 = __pyx_t_2;
@@ -14238,25 +14672,25 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
   while (1) {
     __pyx_t_9 = __Pyx_set_iter_next(__pyx_t_1, __pyx_t_7, &__pyx_t_6, &__pyx_t_2, __pyx_t_8);
     if (unlikely(__pyx_t_9 == 0)) break;
-    if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 453, __pyx_L1_error)
+    if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 448, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_2))) __PYX_ERR(0, 453, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_2))) __PYX_ERR(0, 448, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_pos, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "ConnectedMatterAgent.pyx":455
+    /* "ConnectedMatterAgent.pyx":450
  *         for pos in state_set:
  *             # Skip if it's a critical articulation point
  *             articulation_points = self.get_articulation_points(state_set)             # <<<<<<<<<<<<<<
  *             if pos in articulation_points and len(articulation_points) <= 20:
  *                 continue
  */
-    __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_articulation_points(__pyx_v_self, __pyx_v_state_set, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 455, __pyx_L1_error)
+    __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_articulation_points(__pyx_v_self, __pyx_v_state_set, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 450, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_XDECREF_SET(__pyx_v_articulation_points, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "ConnectedMatterAgent.pyx":456
+    /* "ConnectedMatterAgent.pyx":451
  *             # Skip if it's a critical articulation point
  *             articulation_points = self.get_articulation_points(state_set)
  *             if pos in articulation_points and len(articulation_points) <= 20:             # <<<<<<<<<<<<<<
@@ -14265,9 +14699,9 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
     if (unlikely(__pyx_v_articulation_points == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 456, __pyx_L1_error)
+      __PYX_ERR(0, 451, __pyx_L1_error)
     }
-    __pyx_t_11 = (__Pyx_PySet_ContainsTF(__pyx_v_pos, __pyx_v_articulation_points, Py_EQ)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 456, __pyx_L1_error)
+    __pyx_t_11 = (__Pyx_PySet_ContainsTF(__pyx_v_pos, __pyx_v_articulation_points, Py_EQ)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 451, __pyx_L1_error)
     if (__pyx_t_11) {
     } else {
       __pyx_t_10 = __pyx_t_11;
@@ -14275,15 +14709,15 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
     }
     if (unlikely(__pyx_v_articulation_points == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      __PYX_ERR(0, 456, __pyx_L1_error)
+      __PYX_ERR(0, 451, __pyx_L1_error)
     }
-    __pyx_t_12 = __Pyx_PySet_GET_SIZE(__pyx_v_articulation_points); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 456, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PySet_GET_SIZE(__pyx_v_articulation_points); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 451, __pyx_L1_error)
     __pyx_t_11 = (__pyx_t_12 <= 20);
     __pyx_t_10 = __pyx_t_11;
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_10) {
 
-      /* "ConnectedMatterAgent.pyx":457
+      /* "ConnectedMatterAgent.pyx":452
  *             articulation_points = self.get_articulation_points(state_set)
  *             if pos in articulation_points and len(articulation_points) <= 20:
  *                 continue             # <<<<<<<<<<<<<<
@@ -14292,7 +14726,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
       goto __pyx_L3_continue;
 
-      /* "ConnectedMatterAgent.pyx":456
+      /* "ConnectedMatterAgent.pyx":451
  *             # Skip if it's a critical articulation point
  *             articulation_points = self.get_articulation_points(state_set)
  *             if pos in articulation_points and len(articulation_points) <= 20:             # <<<<<<<<<<<<<<
@@ -14301,7 +14735,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":460
+    /* "ConnectedMatterAgent.pyx":455
  * 
  *             # Try sliding in each direction
  *             for dx, dy in self.directions:             # <<<<<<<<<<<<<<
@@ -14310,7 +14744,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
     if (unlikely(__pyx_v_self->directions == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 460, __pyx_L1_error)
+      __PYX_ERR(0, 455, __pyx_L1_error)
     }
     __pyx_t_2 = __pyx_v_self->directions; __Pyx_INCREF(__pyx_t_2);
     __pyx_t_12 = 0;
@@ -14318,14 +14752,14 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
         #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 460, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 455, __pyx_L1_error)
         #endif
         if (__pyx_t_12 >= __pyx_temp) break;
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_12); __Pyx_INCREF(__pyx_t_3); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 460, __pyx_L1_error)
+      __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_12); __Pyx_INCREF(__pyx_t_3); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 455, __pyx_L1_error)
       #else
-      __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 460, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 455, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       #endif
       if ((likely(PyTuple_CheckExact(__pyx_t_3))) || (PyList_CheckExact(__pyx_t_3))) {
@@ -14334,7 +14768,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 460, __pyx_L1_error)
+          __PYX_ERR(0, 455, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -14347,15 +14781,15 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
         __Pyx_INCREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_13);
         #else
-        __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 460, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 455, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_13 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 460, __pyx_L1_error)
+        __pyx_t_13 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 455, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
         #endif
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_14 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 460, __pyx_L1_error)
+        __pyx_t_14 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 455, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_t_15 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_14);
@@ -14363,7 +14797,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
         __Pyx_GOTREF(__pyx_t_4);
         index = 1; __pyx_t_13 = __pyx_t_15(__pyx_t_14); if (unlikely(!__pyx_t_13)) goto __pyx_L10_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_13);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_14), 2) < 0) __PYX_ERR(0, 460, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_14), 2) < 0) __PYX_ERR(0, 455, __pyx_L1_error)
         __pyx_t_15 = NULL;
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
         goto __pyx_L11_unpacking_done;
@@ -14371,17 +14805,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
         __pyx_t_15 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 460, __pyx_L1_error)
+        __PYX_ERR(0, 455, __pyx_L1_error)
         __pyx_L11_unpacking_done:;
       }
-      __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 460, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 455, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_16 = __Pyx_PyInt_As_int(__pyx_t_13); if (unlikely((__pyx_t_16 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 460, __pyx_L1_error)
+      __pyx_t_16 = __Pyx_PyInt_As_int(__pyx_t_13); if (unlikely((__pyx_t_16 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 455, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
       __pyx_v_dx = __pyx_t_9;
       __pyx_v_dy = __pyx_t_16;
 
-      /* "ConnectedMatterAgent.pyx":462
+      /* "ConnectedMatterAgent.pyx":457
  *             for dx, dy in self.directions:
  *                 # Only consider diagonal moves for sliding chains
  *                 if dx != 0 and dy != 0:             # <<<<<<<<<<<<<<
@@ -14399,19 +14833,19 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
       __pyx_L13_bool_binop_done:;
       if (__pyx_t_10) {
 
-        /* "ConnectedMatterAgent.pyx":464
+        /* "ConnectedMatterAgent.pyx":459
  *                 if dx != 0 and dy != 0:
  *                     # Define the sliding path (up to 3 steps)
  *                     path = []             # <<<<<<<<<<<<<<
  *                     current_pos = pos
  *                     for _ in range(20):  # Maximum chain length
  */
-        __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 464, __pyx_L1_error)
+        __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 459, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_XDECREF_SET(__pyx_v_path, ((PyObject*)__pyx_t_3));
         __pyx_t_3 = 0;
 
-        /* "ConnectedMatterAgent.pyx":465
+        /* "ConnectedMatterAgent.pyx":460
  *                     # Define the sliding path (up to 3 steps)
  *                     path = []
  *                     current_pos = pos             # <<<<<<<<<<<<<<
@@ -14421,7 +14855,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
         __Pyx_INCREF(__pyx_v_pos);
         __Pyx_XDECREF_SET(__pyx_v_current_pos, __pyx_v_pos);
 
-        /* "ConnectedMatterAgent.pyx":466
+        /* "ConnectedMatterAgent.pyx":461
  *                     path = []
  *                     current_pos = pos
  *                     for _ in range(20):  # Maximum chain length             # <<<<<<<<<<<<<<
@@ -14431,7 +14865,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
         for (__pyx_t_17 = 0; __pyx_t_17 < 20; __pyx_t_17+=1) {
           __pyx_v__ = __pyx_t_17;
 
-          /* "ConnectedMatterAgent.pyx":467
+          /* "ConnectedMatterAgent.pyx":462
  *                     current_pos = pos
  *                     for _ in range(20):  # Maximum chain length
  *                         next_pos = (current_pos[0] + dx, current_pos[1] + dy)             # <<<<<<<<<<<<<<
@@ -14440,34 +14874,34 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
           if (unlikely(__pyx_v_current_pos == Py_None)) {
             PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-            __PYX_ERR(0, 467, __pyx_L1_error)
+            __PYX_ERR(0, 462, __pyx_L1_error)
           }
-          __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_dx); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 467, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_dx); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_13 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_current_pos, 0), __pyx_t_3); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 467, __pyx_L1_error)
+          __pyx_t_13 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_current_pos, 0), __pyx_t_3); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 462, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_13);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           if (unlikely(__pyx_v_current_pos == Py_None)) {
             PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-            __PYX_ERR(0, 467, __pyx_L1_error)
+            __PYX_ERR(0, 462, __pyx_L1_error)
           }
-          __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_dy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 467, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_dy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_4 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_current_pos, 1), __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 467, __pyx_L1_error)
+          __pyx_t_4 = PyNumber_Add(PyTuple_GET_ITEM(__pyx_v_current_pos, 1), __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 462, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 467, __pyx_L1_error)
+          __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_GIVEREF(__pyx_t_13);
-          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_13)) __PYX_ERR(0, 467, __pyx_L1_error);
+          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_13)) __PYX_ERR(0, 462, __pyx_L1_error);
           __Pyx_GIVEREF(__pyx_t_4);
-          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_4)) __PYX_ERR(0, 467, __pyx_L1_error);
+          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_4)) __PYX_ERR(0, 462, __pyx_L1_error);
           __pyx_t_13 = 0;
           __pyx_t_4 = 0;
           __Pyx_XDECREF_SET(__pyx_v_next_pos, ((PyObject*)__pyx_t_3));
           __pyx_t_3 = 0;
 
-          /* "ConnectedMatterAgent.pyx":469
+          /* "ConnectedMatterAgent.pyx":464
  *                         next_pos = (current_pos[0] + dx, current_pos[1] + dy)
  *                         # Stop if out of bounds
  *                         if not (0 <= next_pos[0] < self.grid_size[0] and             # <<<<<<<<<<<<<<
@@ -14476,17 +14910,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
           __pyx_t_3 = PyTuple_GET_ITEM(__pyx_v_next_pos, 0);
           __Pyx_INCREF(__pyx_t_3);
-          __pyx_t_4 = PyObject_RichCompare(__pyx_int_0, __pyx_t_3, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 469, __pyx_L1_error)
+          __pyx_t_4 = PyObject_RichCompare(__pyx_int_0, __pyx_t_3, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 464, __pyx_L1_error)
           if (__Pyx_PyObject_IsTrue(__pyx_t_4)) {
             __Pyx_DECREF(__pyx_t_4);
             if (unlikely(__pyx_v_self->grid_size == Py_None)) {
               PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-              __PYX_ERR(0, 469, __pyx_L1_error)
+              __PYX_ERR(0, 464, __pyx_L1_error)
             }
-            __pyx_t_4 = PyObject_RichCompare(__pyx_t_3, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 0), Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 469, __pyx_L1_error)
+            __pyx_t_4 = PyObject_RichCompare(__pyx_t_3, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 0), Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 464, __pyx_L1_error)
           }
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 469, __pyx_L1_error)
+          __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 464, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           if (__pyx_t_11) {
           } else {
@@ -14494,7 +14928,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
             goto __pyx_L18_bool_binop_done;
           }
 
-          /* "ConnectedMatterAgent.pyx":470
+          /* "ConnectedMatterAgent.pyx":465
  *                         # Stop if out of bounds
  *                         if not (0 <= next_pos[0] < self.grid_size[0] and
  *                                 0 <= next_pos[1] < self.grid_size[1]):             # <<<<<<<<<<<<<<
@@ -14503,22 +14937,22 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
           __pyx_t_4 = PyTuple_GET_ITEM(__pyx_v_next_pos, 1);
           __Pyx_INCREF(__pyx_t_4);
-          __pyx_t_3 = PyObject_RichCompare(__pyx_int_0, __pyx_t_4, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 470, __pyx_L1_error)
+          __pyx_t_3 = PyObject_RichCompare(__pyx_int_0, __pyx_t_4, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 465, __pyx_L1_error)
           if (__Pyx_PyObject_IsTrue(__pyx_t_3)) {
             __Pyx_DECREF(__pyx_t_3);
             if (unlikely(__pyx_v_self->grid_size == Py_None)) {
               PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-              __PYX_ERR(0, 470, __pyx_L1_error)
+              __PYX_ERR(0, 465, __pyx_L1_error)
             }
-            __pyx_t_3 = PyObject_RichCompare(__pyx_t_4, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 1), Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 470, __pyx_L1_error)
+            __pyx_t_3 = PyObject_RichCompare(__pyx_t_4, PyTuple_GET_ITEM(__pyx_v_self->grid_size, 1), Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 465, __pyx_L1_error)
           }
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 470, __pyx_L1_error)
+          __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 465, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __pyx_t_10 = __pyx_t_11;
           __pyx_L18_bool_binop_done:;
 
-          /* "ConnectedMatterAgent.pyx":469
+          /* "ConnectedMatterAgent.pyx":464
  *                         next_pos = (current_pos[0] + dx, current_pos[1] + dy)
  *                         # Stop if out of bounds
  *                         if not (0 <= next_pos[0] < self.grid_size[0] and             # <<<<<<<<<<<<<<
@@ -14528,7 +14962,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
           __pyx_t_11 = (!__pyx_t_10);
           if (__pyx_t_11) {
 
-            /* "ConnectedMatterAgent.pyx":471
+            /* "ConnectedMatterAgent.pyx":466
  *                         if not (0 <= next_pos[0] < self.grid_size[0] and
  *                                 0 <= next_pos[1] < self.grid_size[1]):
  *                             break             # <<<<<<<<<<<<<<
@@ -14537,7 +14971,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
             goto __pyx_L16_break;
 
-            /* "ConnectedMatterAgent.pyx":469
+            /* "ConnectedMatterAgent.pyx":464
  *                         next_pos = (current_pos[0] + dx, current_pos[1] + dy)
  *                         # Stop if out of bounds
  *                         if not (0 <= next_pos[0] < self.grid_size[0] and             # <<<<<<<<<<<<<<
@@ -14546,16 +14980,16 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
           }
 
-          /* "ConnectedMatterAgent.pyx":472
+          /* "ConnectedMatterAgent.pyx":467
  *                                 0 <= next_pos[1] < self.grid_size[1]):
  *                             break
  *                         path.append(next_pos)             # <<<<<<<<<<<<<<
  *                         current_pos = next_pos
  * 
  */
-          __pyx_t_18 = __Pyx_PyList_Append(__pyx_v_path, __pyx_v_next_pos); if (unlikely(__pyx_t_18 == ((int)-1))) __PYX_ERR(0, 472, __pyx_L1_error)
+          __pyx_t_18 = __Pyx_PyList_Append(__pyx_v_path, __pyx_v_next_pos); if (unlikely(__pyx_t_18 == ((int)-1))) __PYX_ERR(0, 467, __pyx_L1_error)
 
-          /* "ConnectedMatterAgent.pyx":473
+          /* "ConnectedMatterAgent.pyx":468
  *                             break
  *                         path.append(next_pos)
  *                         current_pos = next_pos             # <<<<<<<<<<<<<<
@@ -14567,7 +15001,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
         }
         __pyx_L16_break:;
 
-        /* "ConnectedMatterAgent.pyx":476
+        /* "ConnectedMatterAgent.pyx":471
  * 
  *                     # Try sliding the block along the path
  *                     for i, target_pos in enumerate(path):             # <<<<<<<<<<<<<<
@@ -14581,33 +15015,33 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
           {
             Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 476, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 471, __pyx_L1_error)
             #endif
             if (__pyx_t_19 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_19); __Pyx_INCREF(__pyx_t_4); __pyx_t_19++; if (unlikely((0 < 0))) __PYX_ERR(0, 476, __pyx_L1_error)
+          __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_19); __Pyx_INCREF(__pyx_t_4); __pyx_t_19++; if (unlikely((0 < 0))) __PYX_ERR(0, 471, __pyx_L1_error)
           #else
-          __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_19); __pyx_t_19++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 476, __pyx_L1_error)
+          __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_19); __pyx_t_19++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 471, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           #endif
-          if (!(likely(PyTuple_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_4))) __PYX_ERR(0, 476, __pyx_L1_error)
+          if (!(likely(PyTuple_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_4))) __PYX_ERR(0, 471, __pyx_L1_error)
           __Pyx_XDECREF_SET(__pyx_v_target_pos, ((PyObject*)__pyx_t_4));
           __pyx_t_4 = 0;
           __pyx_v_i = __pyx_t_16;
           __pyx_t_16 = (__pyx_t_16 + 1);
 
-          /* "ConnectedMatterAgent.pyx":478
+          /* "ConnectedMatterAgent.pyx":473
  *                     for i, target_pos in enumerate(path):
  *                         # Skip if target is occupied
  *                         if target_pos in state_set:             # <<<<<<<<<<<<<<
  *                             continue
  * 
  */
-          __pyx_t_11 = (__Pyx_PySet_ContainsTF(__pyx_v_target_pos, __pyx_v_state_set, Py_EQ)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 478, __pyx_L1_error)
+          __pyx_t_11 = (__Pyx_PySet_ContainsTF(__pyx_v_target_pos, __pyx_v_state_set, Py_EQ)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 473, __pyx_L1_error)
           if (__pyx_t_11) {
 
-            /* "ConnectedMatterAgent.pyx":479
+            /* "ConnectedMatterAgent.pyx":474
  *                         # Skip if target is occupied
  *                         if target_pos in state_set:
  *                             continue             # <<<<<<<<<<<<<<
@@ -14616,7 +15050,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
             goto __pyx_L20_continue;
 
-            /* "ConnectedMatterAgent.pyx":478
+            /* "ConnectedMatterAgent.pyx":473
  *                     for i, target_pos in enumerate(path):
  *                         # Skip if target is occupied
  *                         if target_pos in state_set:             # <<<<<<<<<<<<<<
@@ -14625,20 +15059,20 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
           }
 
-          /* "ConnectedMatterAgent.pyx":482
+          /* "ConnectedMatterAgent.pyx":477
  * 
  *                         # Create new state by moving the block
  *                         new_state_set = state_set.copy()             # <<<<<<<<<<<<<<
  *                         new_state_set.remove(pos)
  *                         new_state_set.add(target_pos)
  */
-          __pyx_t_4 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PySet_Type_copy, __pyx_v_state_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 482, __pyx_L1_error)
+          __pyx_t_4 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PySet_Type_copy, __pyx_v_state_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 477, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
-          if (!(likely(PySet_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_4))) __PYX_ERR(0, 482, __pyx_L1_error)
+          if (!(likely(PySet_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None) || __Pyx_RaiseUnexpectedTypeError("set", __pyx_t_4))) __PYX_ERR(0, 477, __pyx_L1_error)
           __Pyx_XDECREF_SET(__pyx_v_new_state_set, ((PyObject*)__pyx_t_4));
           __pyx_t_4 = 0;
 
-          /* "ConnectedMatterAgent.pyx":483
+          /* "ConnectedMatterAgent.pyx":478
  *                         # Create new state by moving the block
  *                         new_state_set = state_set.copy()
  *                         new_state_set.remove(pos)             # <<<<<<<<<<<<<<
@@ -14647,11 +15081,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
           if (unlikely(__pyx_v_new_state_set == Py_None)) {
             PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "remove");
-            __PYX_ERR(0, 483, __pyx_L1_error)
+            __PYX_ERR(0, 478, __pyx_L1_error)
           }
-          __pyx_t_18 = __Pyx_PySet_Remove(__pyx_v_new_state_set, __pyx_v_pos); if (unlikely(__pyx_t_18 == ((int)-1))) __PYX_ERR(0, 483, __pyx_L1_error)
+          __pyx_t_18 = __Pyx_PySet_Remove(__pyx_v_new_state_set, __pyx_v_pos); if (unlikely(__pyx_t_18 == ((int)-1))) __PYX_ERR(0, 478, __pyx_L1_error)
 
-          /* "ConnectedMatterAgent.pyx":484
+          /* "ConnectedMatterAgent.pyx":479
  *                         new_state_set = state_set.copy()
  *                         new_state_set.remove(pos)
  *                         new_state_set.add(target_pos)             # <<<<<<<<<<<<<<
@@ -14660,36 +15094,36 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
           if (unlikely(__pyx_v_new_state_set == Py_None)) {
             PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "add");
-            __PYX_ERR(0, 484, __pyx_L1_error)
+            __PYX_ERR(0, 479, __pyx_L1_error)
           }
-          __pyx_t_18 = PySet_Add(__pyx_v_new_state_set, __pyx_v_target_pos); if (unlikely(__pyx_t_18 == ((int)-1))) __PYX_ERR(0, 484, __pyx_L1_error)
+          __pyx_t_18 = PySet_Add(__pyx_v_new_state_set, __pyx_v_target_pos); if (unlikely(__pyx_t_18 == ((int)-1))) __PYX_ERR(0, 479, __pyx_L1_error)
 
-          /* "ConnectedMatterAgent.pyx":487
+          /* "ConnectedMatterAgent.pyx":482
  * 
  *                         # Check if new state is connected
  *                         if self.is_connected(list(new_state_set)):             # <<<<<<<<<<<<<<
  *                             valid_moves.append(frozenset(new_state_set))
  * 
  */
-          __pyx_t_4 = PySequence_List(__pyx_v_new_state_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 487, __pyx_L1_error)
+          __pyx_t_4 = PySequence_List(__pyx_v_new_state_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 482, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_11 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->is_connected(__pyx_v_self, ((PyObject*)__pyx_t_4), 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 487, __pyx_L1_error)
+          __pyx_t_11 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->is_connected(__pyx_v_self, ((PyObject*)__pyx_t_4), 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 482, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           if (__pyx_t_11) {
 
-            /* "ConnectedMatterAgent.pyx":488
+            /* "ConnectedMatterAgent.pyx":483
  *                         # Check if new state is connected
  *                         if self.is_connected(list(new_state_set)):
  *                             valid_moves.append(frozenset(new_state_set))             # <<<<<<<<<<<<<<
  * 
  *                         # No need to continue if we can't reach this position
  */
-            __pyx_t_4 = __Pyx_PyFrozenSet_New(__pyx_v_new_state_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 488, __pyx_L1_error)
+            __pyx_t_4 = __Pyx_PyFrozenSet_New(__pyx_v_new_state_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 483, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_4);
-            __pyx_t_18 = __Pyx_PyList_Append(__pyx_v_valid_moves, __pyx_t_4); if (unlikely(__pyx_t_18 == ((int)-1))) __PYX_ERR(0, 488, __pyx_L1_error)
+            __pyx_t_18 = __Pyx_PyList_Append(__pyx_v_valid_moves, __pyx_t_4); if (unlikely(__pyx_t_18 == ((int)-1))) __PYX_ERR(0, 483, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-            /* "ConnectedMatterAgent.pyx":487
+            /* "ConnectedMatterAgent.pyx":482
  * 
  *                         # Check if new state is connected
  *                         if self.is_connected(list(new_state_set)):             # <<<<<<<<<<<<<<
@@ -14698,7 +15132,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
           }
 
-          /* "ConnectedMatterAgent.pyx":491
+          /* "ConnectedMatterAgent.pyx":486
  * 
  *                         # No need to continue if we can't reach this position
  *                         break             # <<<<<<<<<<<<<<
@@ -14707,7 +15141,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
           goto __pyx_L21_break;
 
-          /* "ConnectedMatterAgent.pyx":476
+          /* "ConnectedMatterAgent.pyx":471
  * 
  *                     # Try sliding the block along the path
  *                     for i, target_pos in enumerate(path):             # <<<<<<<<<<<<<<
@@ -14723,7 +15157,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
         goto __pyx_L24_for_end;
         __pyx_L24_for_end:;
 
-        /* "ConnectedMatterAgent.pyx":462
+        /* "ConnectedMatterAgent.pyx":457
  *             for dx, dy in self.directions:
  *                 # Only consider diagonal moves for sliding chains
  *                 if dx != 0 and dy != 0:             # <<<<<<<<<<<<<<
@@ -14732,7 +15166,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
  */
       }
 
-      /* "ConnectedMatterAgent.pyx":460
+      /* "ConnectedMatterAgent.pyx":455
  * 
  *             # Try sliding in each direction
  *             for dx, dy in self.directions:             # <<<<<<<<<<<<<<
@@ -14745,7 +15179,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":493
+  /* "ConnectedMatterAgent.pyx":488
  *                         break
  * 
  *         return valid_moves             # <<<<<<<<<<<<<<
@@ -14757,7 +15191,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_slidi
   __pyx_r = __pyx_v_valid_moves;
   goto __pyx_L0;
 
-  /* "ConnectedMatterAgent.pyx":440
+  /* "ConnectedMatterAgent.pyx":435
  *         return valid_moves
  * 
  *     cpdef list get_sliding_chain_moves(self, object state):             # <<<<<<<<<<<<<<
@@ -14844,12 +15278,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 440, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 435, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_sliding_chain_moves") < 0)) __PYX_ERR(0, 440, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_sliding_chain_moves") < 0)) __PYX_ERR(0, 435, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -14860,7 +15294,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_sliding_chain_moves", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 440, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_sliding_chain_moves", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 435, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -14896,7 +15330,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_18get_sl
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_sliding_chain_moves", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_sliding_chain_moves(__pyx_v_self, __pyx_v_state, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_sliding_chain_moves(__pyx_v_self, __pyx_v_state, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 435, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -14913,7 +15347,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_18get_sl
   return __pyx_r;
 }
 
-/* "ConnectedMatterAgent.pyx":495
+/* "ConnectedMatterAgent.pyx":490
  *         return valid_moves
  * 
  *     cpdef list get_all_valid_moves(self, object state):             # <<<<<<<<<<<<<<
@@ -14953,7 +15387,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_all_v
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_all_valid_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 495, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_all_valid_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 490, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_20ConnectedMatterAgent_20ConnectedMatterAgent_21get_all_valid_moves)) {
         __Pyx_XDECREF(__pyx_r);
@@ -14976,11 +15410,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_all_v
           PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_state};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 495, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 490, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 495, __pyx_L1_error)
+        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 490, __pyx_L1_error)
         __pyx_r = ((PyObject*)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -14999,64 +15433,64 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_all_v
     #endif
   }
 
-  /* "ConnectedMatterAgent.pyx":500
+  /* "ConnectedMatterAgent.pyx":495
  *         """
  *         # Start with basic morphing moves
  *         cdef list basic_moves = self.get_valid_morphing_moves(state)             # <<<<<<<<<<<<<<
  * 
  *         # Add chain moves
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_valid_morphing_moves(__pyx_v_self, __pyx_v_state, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 500, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_valid_morphing_moves(__pyx_v_self, __pyx_v_state, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 495, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_basic_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":503
+  /* "ConnectedMatterAgent.pyx":498
  * 
  *         # Add chain moves
  *         cdef list chain_moves = self.get_smart_chain_moves(state)             # <<<<<<<<<<<<<<
  * 
  *         # Add sliding chain moves
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_smart_chain_moves(__pyx_v_self, __pyx_v_state, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 503, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_smart_chain_moves(__pyx_v_self, __pyx_v_state, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 498, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_chain_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":506
+  /* "ConnectedMatterAgent.pyx":501
  * 
  *         # Add sliding chain moves
  *         cdef list sliding_moves = self.get_sliding_chain_moves(state)             # <<<<<<<<<<<<<<
  * 
  *         # Combine all moves (frozensets automatically handle duplicates)
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_sliding_chain_moves(__pyx_v_self, __pyx_v_state, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 506, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_sliding_chain_moves(__pyx_v_self, __pyx_v_state, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 501, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_sliding_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":509
+  /* "ConnectedMatterAgent.pyx":504
  * 
  *         # Combine all moves (frozensets automatically handle duplicates)
  *         cdef list all_moves = list(set(basic_moves + chain_moves + sliding_moves))             # <<<<<<<<<<<<<<
  * 
  *         return all_moves
  */
-  __pyx_t_1 = PyNumber_Add(__pyx_v_basic_moves, __pyx_v_chain_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 509, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_v_basic_moves, __pyx_v_chain_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 504, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_v_sliding_moves); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 509, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_v_sliding_moves); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 504, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PySet_New(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 509, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 504, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 509, __pyx_L1_error)
+  __pyx_t_2 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 504, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_all_moves = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "ConnectedMatterAgent.pyx":511
+  /* "ConnectedMatterAgent.pyx":506
  *         cdef list all_moves = list(set(basic_moves + chain_moves + sliding_moves))
  * 
  *         return all_moves             # <<<<<<<<<<<<<<
@@ -15068,7 +15502,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_all_v
   __pyx_r = __pyx_v_all_moves;
   goto __pyx_L0;
 
-  /* "ConnectedMatterAgent.pyx":495
+  /* "ConnectedMatterAgent.pyx":490
  *         return valid_moves
  * 
  *     cpdef list get_all_valid_moves(self, object state):             # <<<<<<<<<<<<<<
@@ -15148,12 +15582,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 495, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 490, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_all_valid_moves") < 0)) __PYX_ERR(0, 495, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_all_valid_moves") < 0)) __PYX_ERR(0, 490, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -15164,7 +15598,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_all_valid_moves", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 495, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_all_valid_moves", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 490, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -15200,7 +15634,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_20get_al
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_all_valid_moves", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_all_valid_moves(__pyx_v_self, __pyx_v_state, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 495, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_get_all_valid_moves(__pyx_v_self, __pyx_v_state, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 490, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15217,7 +15651,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_20get_al
   return __pyx_r;
 }
 
-/* "ConnectedMatterAgent.pyx":513
+/* "ConnectedMatterAgent.pyx":508
  *         return all_moves
  * 
  *     cpdef double block_heuristic(self, object state):             # <<<<<<<<<<<<<<
@@ -15257,7 +15691,7 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_heuris
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_block_heuristic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 513, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_block_heuristic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 508, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_20ConnectedMatterAgent_20ConnectedMatterAgent_23block_heuristic)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -15279,11 +15713,11 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_heuris
           PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_state};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 513, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 508, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 513, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 508, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -15302,29 +15736,29 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_heuris
     #endif
   }
 
-  /* "ConnectedMatterAgent.pyx":518
+  /* "ConnectedMatterAgent.pyx":513
  *         Calculate Manhattan distance from current centroid to goal centroid
  *         """
  *         if not state:             # <<<<<<<<<<<<<<
  *             return float('inf')
  * 
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_state); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 518, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_state); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 513, __pyx_L1_error)
   __pyx_t_8 = (!__pyx_t_7);
   if (__pyx_t_8) {
 
-    /* "ConnectedMatterAgent.pyx":519
+    /* "ConnectedMatterAgent.pyx":514
  *         """
  *         if not state:
  *             return float('inf')             # <<<<<<<<<<<<<<
  * 
  *         cdef tuple current_centroid = self.calculate_centroid(list(state))
  */
-    __pyx_t_6 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_6 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 519, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_6 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 514, __pyx_L1_error)
     __pyx_r = __pyx_t_6;
     goto __pyx_L0;
 
-    /* "ConnectedMatterAgent.pyx":518
+    /* "ConnectedMatterAgent.pyx":513
  *         Calculate Manhattan distance from current centroid to goal centroid
  *         """
  *         if not state:             # <<<<<<<<<<<<<<
@@ -15333,22 +15767,22 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_heuris
  */
   }
 
-  /* "ConnectedMatterAgent.pyx":521
+  /* "ConnectedMatterAgent.pyx":516
  *             return float('inf')
  * 
  *         cdef tuple current_centroid = self.calculate_centroid(list(state))             # <<<<<<<<<<<<<<
  * 
  *         # Pure Manhattan distance between centroids without the +1 offset
  */
-  __pyx_t_1 = PySequence_List(__pyx_v_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 521, __pyx_L1_error)
+  __pyx_t_1 = PySequence_List(__pyx_v_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 516, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->calculate_centroid(__pyx_v_self, ((PyObject*)__pyx_t_1), 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 521, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->calculate_centroid(__pyx_v_self, ((PyObject*)__pyx_t_1), 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 516, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_current_centroid = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "ConnectedMatterAgent.pyx":524
+  /* "ConnectedMatterAgent.pyx":519
  * 
  *         # Pure Manhattan distance between centroids without the +1 offset
  *         return c_abs(current_centroid[0] - self.goal_centroid[0]) + c_abs(current_centroid[1] - self.goal_centroid[1])             # <<<<<<<<<<<<<<
@@ -15357,40 +15791,40 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_heuris
  */
   if (unlikely(__pyx_v_current_centroid == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 524, __pyx_L1_error)
+    __PYX_ERR(0, 519, __pyx_L1_error)
   }
   if (unlikely(__pyx_v_self->goal_centroid == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 524, __pyx_L1_error)
+    __PYX_ERR(0, 519, __pyx_L1_error)
   }
-  __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_current_centroid, 0), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 524, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_current_centroid, 0), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 519, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 524, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 519, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (unlikely(__pyx_v_current_centroid == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 524, __pyx_L1_error)
+    __PYX_ERR(0, 519, __pyx_L1_error)
   }
   if (unlikely(__pyx_v_self->goal_centroid == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 524, __pyx_L1_error)
+    __PYX_ERR(0, 519, __pyx_L1_error)
   }
-  __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_current_centroid, 1), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 524, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_current_centroid, 1), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 519, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 524, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 519, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 524, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 519, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 524, __pyx_L1_error)
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 519, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_6;
   goto __pyx_L0;
 
-  /* "ConnectedMatterAgent.pyx":513
+  /* "ConnectedMatterAgent.pyx":508
  *         return all_moves
  * 
  *     cpdef double block_heuristic(self, object state):             # <<<<<<<<<<<<<<
@@ -15466,12 +15900,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 513, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 508, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "block_heuristic") < 0)) __PYX_ERR(0, 513, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "block_heuristic") < 0)) __PYX_ERR(0, 508, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -15482,7 +15916,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("block_heuristic", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 513, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("block_heuristic", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 508, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -15519,8 +15953,8 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_22block_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("block_heuristic", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_heuristic(__pyx_v_self, __pyx_v_state, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 513, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 513, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_heuristic(__pyx_v_self, __pyx_v_state, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 508, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 508, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -15537,7 +15971,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_22block_
   return __pyx_r;
 }
 
-/* "ConnectedMatterAgent.pyx":526
+/* "ConnectedMatterAgent.pyx":521
  *         return c_abs(current_centroid[0] - self.goal_centroid[0]) + c_abs(current_centroid[1] - self.goal_centroid[1])
  * 
  *     cpdef double improved_morphing_heuristic(self, object state):             # <<<<<<<<<<<<<<
@@ -15598,7 +16032,7 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_improved_morphing_heuristic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 526, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_improved_morphing_heuristic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 521, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_20ConnectedMatterAgent_20ConnectedMatterAgent_25improved_morphing_heuristic)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -15620,11 +16054,11 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
           PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_state};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 526, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 521, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 526, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 521, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -15643,29 +16077,29 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
     #endif
   }
 
-  /* "ConnectedMatterAgent.pyx":531
+  /* "ConnectedMatterAgent.pyx":526
  *         Uses bipartite matching to find optimal assignment of blocks to goal positions
  *         """
  *         if not state:             # <<<<<<<<<<<<<<
  *             return float('inf')
  * 
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_state); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 531, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_state); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 526, __pyx_L1_error)
   __pyx_t_8 = (!__pyx_t_7);
   if (__pyx_t_8) {
 
-    /* "ConnectedMatterAgent.pyx":532
+    /* "ConnectedMatterAgent.pyx":527
  *         """
  *         if not state:
  *             return float('inf')             # <<<<<<<<<<<<<<
  * 
  *         cdef list state_list = list(state)
  */
-    __pyx_t_6 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_6 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 532, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_6 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 527, __pyx_L1_error)
     __pyx_r = __pyx_t_6;
     goto __pyx_L0;
 
-    /* "ConnectedMatterAgent.pyx":531
+    /* "ConnectedMatterAgent.pyx":526
  *         Uses bipartite matching to find optimal assignment of blocks to goal positions
  *         """
  *         if not state:             # <<<<<<<<<<<<<<
@@ -15674,54 +16108,54 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
  */
   }
 
-  /* "ConnectedMatterAgent.pyx":534
+  /* "ConnectedMatterAgent.pyx":529
  *             return float('inf')
  * 
  *         cdef list state_list = list(state)             # <<<<<<<<<<<<<<
  *         cdef list goal_list = list(self.goal_state)
  * 
  */
-  __pyx_t_1 = PySequence_List(__pyx_v_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 534, __pyx_L1_error)
+  __pyx_t_1 = PySequence_List(__pyx_v_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 529, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_state_list = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":535
+  /* "ConnectedMatterAgent.pyx":530
  * 
  *         cdef list state_list = list(state)
  *         cdef list goal_list = list(self.goal_state)             # <<<<<<<<<<<<<<
  * 
  *         # Early exit if states have different sizes
  */
-  __pyx_t_1 = PySequence_List(__pyx_v_self->goal_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 535, __pyx_L1_error)
+  __pyx_t_1 = PySequence_List(__pyx_v_self->goal_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 530, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_goal_list = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":538
+  /* "ConnectedMatterAgent.pyx":533
  * 
  *         # Early exit if states have different sizes
  *         if len(state_list) != len(goal_list):             # <<<<<<<<<<<<<<
  *             return float('inf')
  * 
  */
-  __pyx_t_9 = __Pyx_PyList_GET_SIZE(__pyx_v_state_list); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 538, __pyx_L1_error)
-  __pyx_t_10 = __Pyx_PyList_GET_SIZE(__pyx_v_goal_list); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 538, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyList_GET_SIZE(__pyx_v_state_list); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 533, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyList_GET_SIZE(__pyx_v_goal_list); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 533, __pyx_L1_error)
   __pyx_t_8 = (__pyx_t_9 != __pyx_t_10);
   if (__pyx_t_8) {
 
-    /* "ConnectedMatterAgent.pyx":539
+    /* "ConnectedMatterAgent.pyx":534
  *         # Early exit if states have different sizes
  *         if len(state_list) != len(goal_list):
  *             return float('inf')             # <<<<<<<<<<<<<<
  * 
  *         # Build distance matrix
  */
-    __pyx_t_6 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_6 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 539, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_6 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 534, __pyx_L1_error)
     __pyx_r = __pyx_t_6;
     goto __pyx_L0;
 
-    /* "ConnectedMatterAgent.pyx":538
+    /* "ConnectedMatterAgent.pyx":533
  * 
  *         # Early exit if states have different sizes
  *         if len(state_list) != len(goal_list):             # <<<<<<<<<<<<<<
@@ -15730,19 +16164,19 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
  */
   }
 
-  /* "ConnectedMatterAgent.pyx":542
+  /* "ConnectedMatterAgent.pyx":537
  * 
  *         # Build distance matrix
  *         cdef list distances = []             # <<<<<<<<<<<<<<
  *         cdef list row
  *         cdef tuple pos, goal_pos
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 542, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 537, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_distances = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":547
+  /* "ConnectedMatterAgent.pyx":542
  *         cdef int dist
  * 
  *         for pos in state_list:             # <<<<<<<<<<<<<<
@@ -15755,33 +16189,33 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
     {
       Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
       #if !CYTHON_ASSUME_SAFE_MACROS
-      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 547, __pyx_L1_error)
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 542, __pyx_L1_error)
       #endif
       if (__pyx_t_10 >= __pyx_temp) break;
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_10); __Pyx_INCREF(__pyx_t_2); __pyx_t_10++; if (unlikely((0 < 0))) __PYX_ERR(0, 547, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_10); __Pyx_INCREF(__pyx_t_2); __pyx_t_10++; if (unlikely((0 < 0))) __PYX_ERR(0, 542, __pyx_L1_error)
     #else
-    __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 547, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 542, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
-    if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_2))) __PYX_ERR(0, 547, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_2))) __PYX_ERR(0, 542, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_pos, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "ConnectedMatterAgent.pyx":548
+    /* "ConnectedMatterAgent.pyx":543
  * 
  *         for pos in state_list:
  *             row = []             # <<<<<<<<<<<<<<
  *             for goal_pos in goal_list:
  *                 # Manhattan distance
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 548, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 543, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_XDECREF_SET(__pyx_v_row, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "ConnectedMatterAgent.pyx":549
+    /* "ConnectedMatterAgent.pyx":544
  *         for pos in state_list:
  *             row = []
  *             for goal_pos in goal_list:             # <<<<<<<<<<<<<<
@@ -15794,21 +16228,21 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
         #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 549, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 544, __pyx_L1_error)
         #endif
         if (__pyx_t_9 >= __pyx_temp) break;
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_9); __Pyx_INCREF(__pyx_t_3); __pyx_t_9++; if (unlikely((0 < 0))) __PYX_ERR(0, 549, __pyx_L1_error)
+      __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_9); __Pyx_INCREF(__pyx_t_3); __pyx_t_9++; if (unlikely((0 < 0))) __PYX_ERR(0, 544, __pyx_L1_error)
       #else
-      __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 549, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 544, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       #endif
-      if (!(likely(PyTuple_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_3))) __PYX_ERR(0, 549, __pyx_L1_error)
+      if (!(likely(PyTuple_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_t_3))) __PYX_ERR(0, 544, __pyx_L1_error)
       __Pyx_XDECREF_SET(__pyx_v_goal_pos, ((PyObject*)__pyx_t_3));
       __pyx_t_3 = 0;
 
-      /* "ConnectedMatterAgent.pyx":551
+      /* "ConnectedMatterAgent.pyx":546
  *             for goal_pos in goal_list:
  *                 # Manhattan distance
  *                 dist = c_abs(pos[0] - goal_pos[0]) + c_abs(pos[1] - goal_pos[1])             # <<<<<<<<<<<<<<
@@ -15817,51 +16251,51 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
  */
       if (unlikely(__pyx_v_pos == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 551, __pyx_L1_error)
+        __PYX_ERR(0, 546, __pyx_L1_error)
       }
       if (unlikely(__pyx_v_goal_pos == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 551, __pyx_L1_error)
+        __PYX_ERR(0, 546, __pyx_L1_error)
       }
-      __pyx_t_3 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_pos, 0), PyTuple_GET_ITEM(__pyx_v_goal_pos, 0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 551, __pyx_L1_error)
+      __pyx_t_3 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_pos, 0), PyTuple_GET_ITEM(__pyx_v_goal_pos, 0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 546, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyNumber_Absolute(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 551, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyNumber_Absolute(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 546, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       if (unlikely(__pyx_v_pos == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 551, __pyx_L1_error)
+        __PYX_ERR(0, 546, __pyx_L1_error)
       }
       if (unlikely(__pyx_v_goal_pos == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 551, __pyx_L1_error)
+        __PYX_ERR(0, 546, __pyx_L1_error)
       }
-      __pyx_t_3 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_pos, 1), PyTuple_GET_ITEM(__pyx_v_goal_pos, 1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 551, __pyx_L1_error)
+      __pyx_t_3 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_pos, 1), PyTuple_GET_ITEM(__pyx_v_goal_pos, 1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 546, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_11 = __Pyx_PyNumber_Absolute(__pyx_t_3); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 551, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyNumber_Absolute(__pyx_t_3); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 546, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_t_11); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 551, __pyx_L1_error)
+      __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_t_11); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 546, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 551, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 546, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_v_dist = __pyx_t_12;
 
-      /* "ConnectedMatterAgent.pyx":552
+      /* "ConnectedMatterAgent.pyx":547
  *                 # Manhattan distance
  *                 dist = c_abs(pos[0] - goal_pos[0]) + c_abs(pos[1] - goal_pos[1])
  *                 row.append(dist)             # <<<<<<<<<<<<<<
  *             distances.append(row)
  * 
  */
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_dist); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 552, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_dist); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 547, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_row, __pyx_t_3); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 552, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_row, __pyx_t_3); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 547, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "ConnectedMatterAgent.pyx":549
+      /* "ConnectedMatterAgent.pyx":544
  *         for pos in state_list:
  *             row = []
  *             for goal_pos in goal_list:             # <<<<<<<<<<<<<<
@@ -15871,16 +16305,16 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "ConnectedMatterAgent.pyx":553
+    /* "ConnectedMatterAgent.pyx":548
  *                 dist = c_abs(pos[0] - goal_pos[0]) + c_abs(pos[1] - goal_pos[1])
  *                 row.append(dist)
  *             distances.append(row)             # <<<<<<<<<<<<<<
  * 
  *         # Use greedy assignment algorithm
  */
-    __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_distances, __pyx_v_row); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 553, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_distances, __pyx_v_row); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 548, __pyx_L1_error)
 
-    /* "ConnectedMatterAgent.pyx":547
+    /* "ConnectedMatterAgent.pyx":542
  *         cdef int dist
  * 
  *         for pos in state_list:             # <<<<<<<<<<<<<<
@@ -15890,7 +16324,7 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":556
+  /* "ConnectedMatterAgent.pyx":551
  * 
  *         # Use greedy assignment algorithm
  *         cdef double total_distance = 0             # <<<<<<<<<<<<<<
@@ -15899,32 +16333,32 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
  */
   __pyx_v_total_distance = 0.0;
 
-  /* "ConnectedMatterAgent.pyx":557
+  /* "ConnectedMatterAgent.pyx":552
  *         # Use greedy assignment algorithm
  *         cdef double total_distance = 0
  *         cdef set assigned_cols = set()             # <<<<<<<<<<<<<<
  *         cdef int i, j, best_j, matching_positions
  *         cdef double min_dist, connectivity_bonus
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 557, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 552, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_assigned_cols = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":562
+  /* "ConnectedMatterAgent.pyx":557
  * 
  *         # Sort rows by minimum distance (using our helper function)
  *         cdef list row_indices = sort_indices_by_row_min(distances, len(state_list))             # <<<<<<<<<<<<<<
  * 
  *         for i in row_indices:
  */
-  __pyx_t_10 = __Pyx_PyList_GET_SIZE(__pyx_v_state_list); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 562, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_sort_indices_by_row_min(__pyx_v_distances, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 562, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyList_GET_SIZE(__pyx_v_state_list); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 557, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_sort_indices_by_row_min(__pyx_v_distances, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 557, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_row_indices = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":564
+  /* "ConnectedMatterAgent.pyx":559
  *         cdef list row_indices = sort_indices_by_row_min(distances, len(state_list))
  * 
  *         for i in row_indices:             # <<<<<<<<<<<<<<
@@ -15933,7 +16367,7 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
  */
   if (unlikely(__pyx_v_row_indices == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 564, __pyx_L1_error)
+    __PYX_ERR(0, 559, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_v_row_indices; __Pyx_INCREF(__pyx_t_1);
   __pyx_t_10 = 0;
@@ -15941,31 +16375,31 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
     {
       Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
       #if !CYTHON_ASSUME_SAFE_MACROS
-      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 564, __pyx_L1_error)
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 559, __pyx_L1_error)
       #endif
       if (__pyx_t_10 >= __pyx_temp) break;
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_10); __Pyx_INCREF(__pyx_t_2); __pyx_t_10++; if (unlikely((0 < 0))) __PYX_ERR(0, 564, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_10); __Pyx_INCREF(__pyx_t_2); __pyx_t_10++; if (unlikely((0 < 0))) __PYX_ERR(0, 559, __pyx_L1_error)
     #else
-    __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 564, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 559, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
-    __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 564, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 559, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_i = __pyx_t_12;
 
-    /* "ConnectedMatterAgent.pyx":566
+    /* "ConnectedMatterAgent.pyx":561
  *         for i in row_indices:
  *             # Find closest unassigned goal position
  *             min_dist = float('inf')             # <<<<<<<<<<<<<<
  *             best_j = -1
  * 
  */
-    __pyx_t_6 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_6 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 566, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_6 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 561, __pyx_L1_error)
     __pyx_v_min_dist = __pyx_t_6;
 
-    /* "ConnectedMatterAgent.pyx":567
+    /* "ConnectedMatterAgent.pyx":562
  *             # Find closest unassigned goal position
  *             min_dist = float('inf')
  *             best_j = -1             # <<<<<<<<<<<<<<
@@ -15974,61 +16408,61 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
  */
     __pyx_v_best_j = -1;
 
-    /* "ConnectedMatterAgent.pyx":569
+    /* "ConnectedMatterAgent.pyx":564
  *             best_j = -1
  * 
  *             for j in range(len(goal_list)):             # <<<<<<<<<<<<<<
  *                 if j not in assigned_cols and distances[i][j] < min_dist:
  *                     min_dist = distances[i][j]
  */
-    __pyx_t_9 = __Pyx_PyList_GET_SIZE(__pyx_v_goal_list); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 569, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyList_GET_SIZE(__pyx_v_goal_list); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 564, __pyx_L1_error)
     __pyx_t_14 = __pyx_t_9;
     for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_14; __pyx_t_12+=1) {
       __pyx_v_j = __pyx_t_12;
 
-      /* "ConnectedMatterAgent.pyx":570
+      /* "ConnectedMatterAgent.pyx":565
  * 
  *             for j in range(len(goal_list)):
  *                 if j not in assigned_cols and distances[i][j] < min_dist:             # <<<<<<<<<<<<<<
  *                     min_dist = distances[i][j]
  *                     best_j = j
  */
-      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_j); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 570, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_j); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 565, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_7 = (__Pyx_PySet_ContainsTF(__pyx_t_2, __pyx_v_assigned_cols, Py_NE)); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 570, __pyx_L1_error)
+      __pyx_t_7 = (__Pyx_PySet_ContainsTF(__pyx_t_2, __pyx_v_assigned_cols, Py_NE)); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 565, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       if (__pyx_t_7) {
       } else {
         __pyx_t_8 = __pyx_t_7;
         goto __pyx_L16_bool_binop_done;
       }
-      __pyx_t_2 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_distances, __pyx_v_i), __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 570, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_distances, __pyx_v_i), __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 565, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = PyFloat_FromDouble(__pyx_v_min_dist); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 570, __pyx_L1_error)
+      __pyx_t_3 = PyFloat_FromDouble(__pyx_v_min_dist); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 565, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_11 = PyObject_RichCompare(__pyx_t_2, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_11); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 570, __pyx_L1_error)
+      __pyx_t_11 = PyObject_RichCompare(__pyx_t_2, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_11); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 565, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_11); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 570, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_11); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 565, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       __pyx_t_8 = __pyx_t_7;
       __pyx_L16_bool_binop_done:;
       if (__pyx_t_8) {
 
-        /* "ConnectedMatterAgent.pyx":571
+        /* "ConnectedMatterAgent.pyx":566
  *             for j in range(len(goal_list)):
  *                 if j not in assigned_cols and distances[i][j] < min_dist:
  *                     min_dist = distances[i][j]             # <<<<<<<<<<<<<<
  *                     best_j = j
  * 
  */
-        __pyx_t_11 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_distances, __pyx_v_i), __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 571, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_distances, __pyx_v_i), __pyx_v_j, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 566, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_11); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 571, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_11); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 566, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         __pyx_v_min_dist = __pyx_t_6;
 
-        /* "ConnectedMatterAgent.pyx":572
+        /* "ConnectedMatterAgent.pyx":567
  *                 if j not in assigned_cols and distances[i][j] < min_dist:
  *                     min_dist = distances[i][j]
  *                     best_j = j             # <<<<<<<<<<<<<<
@@ -16037,7 +16471,7 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
  */
         __pyx_v_best_j = __pyx_v_j;
 
-        /* "ConnectedMatterAgent.pyx":570
+        /* "ConnectedMatterAgent.pyx":565
  * 
  *             for j in range(len(goal_list)):
  *                 if j not in assigned_cols and distances[i][j] < min_dist:             # <<<<<<<<<<<<<<
@@ -16047,7 +16481,7 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
       }
     }
 
-    /* "ConnectedMatterAgent.pyx":574
+    /* "ConnectedMatterAgent.pyx":569
  *                     best_j = j
  * 
  *             if best_j != -1:             # <<<<<<<<<<<<<<
@@ -16057,19 +16491,19 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
     __pyx_t_8 = (__pyx_v_best_j != -1L);
     if (__pyx_t_8) {
 
-      /* "ConnectedMatterAgent.pyx":575
+      /* "ConnectedMatterAgent.pyx":570
  * 
  *             if best_j != -1:
  *                 assigned_cols.add(best_j)             # <<<<<<<<<<<<<<
  *                 total_distance += min_dist
  *             else:
  */
-      __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_best_j); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 575, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_best_j); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 570, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
-      __pyx_t_13 = PySet_Add(__pyx_v_assigned_cols, __pyx_t_11); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 575, __pyx_L1_error)
+      __pyx_t_13 = PySet_Add(__pyx_v_assigned_cols, __pyx_t_11); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 570, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
 
-      /* "ConnectedMatterAgent.pyx":576
+      /* "ConnectedMatterAgent.pyx":571
  *             if best_j != -1:
  *                 assigned_cols.add(best_j)
  *                 total_distance += min_dist             # <<<<<<<<<<<<<<
@@ -16078,7 +16512,7 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
  */
       __pyx_v_total_distance = (__pyx_v_total_distance + __pyx_v_min_dist);
 
-      /* "ConnectedMatterAgent.pyx":574
+      /* "ConnectedMatterAgent.pyx":569
  *                     best_j = j
  * 
  *             if best_j != -1:             # <<<<<<<<<<<<<<
@@ -16088,7 +16522,7 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
       goto __pyx_L18;
     }
 
-    /* "ConnectedMatterAgent.pyx":579
+    /* "ConnectedMatterAgent.pyx":574
  *             else:
  *                 # No assignment possible
  *                 return float('inf')             # <<<<<<<<<<<<<<
@@ -16096,14 +16530,14 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
  *         # Add connectivity bonus: prefer states that have more blocks in goal positions
  */
     /*else*/ {
-      __pyx_t_6 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_6 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 579, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_6 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 574, __pyx_L1_error)
       __pyx_r = __pyx_t_6;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
     }
     __pyx_L18:;
 
-    /* "ConnectedMatterAgent.pyx":564
+    /* "ConnectedMatterAgent.pyx":559
  *         cdef list row_indices = sort_indices_by_row_min(distances, len(state_list))
  * 
  *         for i in row_indices:             # <<<<<<<<<<<<<<
@@ -16113,14 +16547,14 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":582
+  /* "ConnectedMatterAgent.pyx":577
  * 
  *         # Add connectivity bonus: prefer states that have more blocks in goal positions
  *         matching_positions = len(state.intersection(self.goal_state))             # <<<<<<<<<<<<<<
  *         connectivity_bonus = -matching_positions * 0.5  # Negative to encourage more matches
  * 
  */
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_state, __pyx_n_s_intersection); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 582, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_state, __pyx_n_s_intersection); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 577, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __pyx_t_3 = NULL;
   __pyx_t_5 = 0;
@@ -16140,15 +16574,15 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_self->goal_state};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_11, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 582, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 577, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
   }
-  __pyx_t_10 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 582, __pyx_L1_error)
+  __pyx_t_10 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 577, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_matching_positions = __pyx_t_10;
 
-  /* "ConnectedMatterAgent.pyx":583
+  /* "ConnectedMatterAgent.pyx":578
  *         # Add connectivity bonus: prefer states that have more blocks in goal positions
  *         matching_positions = len(state.intersection(self.goal_state))
  *         connectivity_bonus = -matching_positions * 0.5  # Negative to encourage more matches             # <<<<<<<<<<<<<<
@@ -16157,7 +16591,7 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
  */
   __pyx_v_connectivity_bonus = ((-__pyx_v_matching_positions) * 0.5);
 
-  /* "ConnectedMatterAgent.pyx":585
+  /* "ConnectedMatterAgent.pyx":580
  *         connectivity_bonus = -matching_positions * 0.5  # Negative to encourage more matches
  * 
  *         return total_distance + connectivity_bonus             # <<<<<<<<<<<<<<
@@ -16167,7 +16601,7 @@ static double __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_mor
   __pyx_r = (__pyx_v_total_distance + __pyx_v_connectivity_bonus);
   goto __pyx_L0;
 
-  /* "ConnectedMatterAgent.pyx":526
+  /* "ConnectedMatterAgent.pyx":521
  *         return c_abs(current_centroid[0] - self.goal_centroid[0]) + c_abs(current_centroid[1] - self.goal_centroid[1])
  * 
  *     cpdef double improved_morphing_heuristic(self, object state):             # <<<<<<<<<<<<<<
@@ -16251,12 +16685,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 526, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 521, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "improved_morphing_heuristic") < 0)) __PYX_ERR(0, 526, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "improved_morphing_heuristic") < 0)) __PYX_ERR(0, 521, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -16267,7 +16701,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("improved_morphing_heuristic", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 526, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("improved_morphing_heuristic", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 521, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -16304,8 +16738,8 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_24improv
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("improved_morphing_heuristic", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_morphing_heuristic(__pyx_v_self, __pyx_v_state, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 526, __pyx_L1_error)
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_improved_morphing_heuristic(__pyx_v_self, __pyx_v_state, 1); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 521, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -16322,7 +16756,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_24improv
   return __pyx_r;
 }
 
-/* "ConnectedMatterAgent.pyx":587
+/* "ConnectedMatterAgent.pyx":582
  *         return total_distance + connectivity_bonus
  * 
  *     cpdef list block_movement_phase(self, double time_limit=15):             # <<<<<<<<<<<<<<
@@ -16403,11 +16837,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_block_movement_phase); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 587, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_block_movement_phase); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 582, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_20ConnectedMatterAgent_20ConnectedMatterAgent_27block_movement_phase)) {
         __Pyx_XDECREF(__pyx_r);
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_time_limit); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 587, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_time_limit); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 582, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -16429,11 +16863,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 587, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 582, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         }
-        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 587, __pyx_L1_error)
+        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 582, __pyx_L1_error)
         __pyx_r = ((PyObject*)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -16452,27 +16886,27 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
     #endif
   }
 
-  /* "ConnectedMatterAgent.pyx":593
+  /* "ConnectedMatterAgent.pyx":588
  *         Modified to stop 1 grid cell before reaching the goal centroid
  *         """
  *         print("Starting Block Movement Phase...")             # <<<<<<<<<<<<<<
  *         cdef double start_time = time.time()
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 593, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 588, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":594
+  /* "ConnectedMatterAgent.pyx":589
  *         """
  *         print("Starting Block Movement Phase...")
  *         cdef double start_time = time.time()             # <<<<<<<<<<<<<<
  * 
  *         # Initialize A* search
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 594, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 589, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 594, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 589, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -16493,15 +16927,15 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 0+__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 594, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 589, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 594, __pyx_L1_error)
+  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 589, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_start_time = __pyx_t_7;
 
-  /* "ConnectedMatterAgent.pyx":597
+  /* "ConnectedMatterAgent.pyx":592
  * 
  *         # Initialize A* search
  *         open_set = [(self.block_heuristic(self.start_state), 0, self.start_state)]             # <<<<<<<<<<<<<<
@@ -16510,68 +16944,68 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
   __pyx_t_1 = __pyx_v_self->start_state;
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_7 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->block_heuristic(__pyx_v_self, __pyx_t_1, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 597, __pyx_L1_error)
+  __pyx_t_7 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->block_heuristic(__pyx_v_self, __pyx_t_1, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 592, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 597, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 592, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 597, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 592, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 597, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 592, __pyx_L1_error);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_int_0)) __PYX_ERR(0, 597, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_int_0)) __PYX_ERR(0, 592, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_self->start_state);
   __Pyx_GIVEREF(__pyx_v_self->start_state);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_v_self->start_state)) __PYX_ERR(0, 597, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_v_self->start_state)) __PYX_ERR(0, 592, __pyx_L1_error);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 597, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 592, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 0, __pyx_t_4)) __PYX_ERR(0, 597, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 0, __pyx_t_4)) __PYX_ERR(0, 592, __pyx_L1_error);
   __pyx_t_4 = 0;
   __pyx_v_open_set = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":598
+  /* "ConnectedMatterAgent.pyx":593
  *         # Initialize A* search
  *         open_set = [(self.block_heuristic(self.start_state), 0, self.start_state)]
  *         cdef set closed_set = set()             # <<<<<<<<<<<<<<
  * 
  *         # Track path and g-scores
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 598, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 593, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_closed_set = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":601
+  /* "ConnectedMatterAgent.pyx":596
  * 
  *         # Track path and g-scores
  *         cdef dict g_score = {self.start_state: 0}             # <<<<<<<<<<<<<<
  *         cdef dict came_from = {self.start_state: None}
  * 
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 601, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 596, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_v_self->start_state, __pyx_int_0) < 0) __PYX_ERR(0, 601, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_v_self->start_state, __pyx_int_0) < 0) __PYX_ERR(0, 596, __pyx_L1_error)
   __pyx_v_g_score = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":602
+  /* "ConnectedMatterAgent.pyx":597
  *         # Track path and g-scores
  *         cdef dict g_score = {self.start_state: 0}
  *         cdef dict came_from = {self.start_state: None}             # <<<<<<<<<<<<<<
  * 
  *         # Modified: We want to stop 1 grid cell before reaching the centroid
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 602, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 597, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_v_self->start_state, Py_None) < 0) __PYX_ERR(0, 602, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_v_self->start_state, Py_None) < 0) __PYX_ERR(0, 597, __pyx_L1_error)
   __pyx_v_came_from = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":607
+  /* "ConnectedMatterAgent.pyx":602
  *         # Instead of using a small threshold, we'll check if distance is between 1.0 and 2.0
  *         # This ensures we're approximately 1 grid cell away from the goal centroid
  *         cdef double min_distance = 1.0             # <<<<<<<<<<<<<<
@@ -16580,7 +17014,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
   __pyx_v_min_distance = 1.0;
 
-  /* "ConnectedMatterAgent.pyx":608
+  /* "ConnectedMatterAgent.pyx":603
  *         # This ensures we're approximately 1 grid cell away from the goal centroid
  *         cdef double min_distance = 1.0
  *         cdef double max_distance = 1.0             # <<<<<<<<<<<<<<
@@ -16589,7 +17023,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
   __pyx_v_max_distance = 1.0;
 
-  /* "ConnectedMatterAgent.pyx":613
+  /* "ConnectedMatterAgent.pyx":608
  *         cdef object current, neighbor
  *         cdef tuple current_centroid, neighbor_centroid, best_centroid
  *         cdef object best_state = None             # <<<<<<<<<<<<<<
@@ -16599,7 +17033,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
   __Pyx_INCREF(Py_None);
   __pyx_v_best_state = Py_None;
 
-  /* "ConnectedMatterAgent.pyx":615
+  /* "ConnectedMatterAgent.pyx":610
  *         cdef object best_state = None
  * 
  *         while open_set and time.time() - start_time < time_limit:             # <<<<<<<<<<<<<<
@@ -16613,9 +17047,9 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
       __pyx_t_8 = __pyx_t_9;
       goto __pyx_L5_bool_binop_done;
     }
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 615, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 610, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 615, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 610, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -16636,37 +17070,37 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
       PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
       __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_6, 0+__pyx_t_6);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 615, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 610, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
-    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_start_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 615, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_start_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 610, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 615, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 610, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_time_limit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 615, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_time_limit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 610, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PyObject_RichCompare(__pyx_t_4, __pyx_t_2, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 615, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_4, __pyx_t_2, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 610, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 615, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 610, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_8 = __pyx_t_9;
     __pyx_L5_bool_binop_done:;
     if (!__pyx_t_8) break;
 
-    /* "ConnectedMatterAgent.pyx":617
+    /* "ConnectedMatterAgent.pyx":612
  *         while open_set and time.time() - start_time < time_limit:
  *             # Get state with lowest f-score
  *             f, g, current = heapq.heappop(open_set)             # <<<<<<<<<<<<<<
  * 
  *             # Skip if already processed
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heapq); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 617, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heapq); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 612, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_heappop); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 617, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_heappop); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 612, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_2 = NULL;
@@ -16687,7 +17121,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
       PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_open_set};
       __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 617, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 612, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -16697,7 +17131,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
       if (unlikely(size != 3)) {
         if (size > 3) __Pyx_RaiseTooManyValuesError(3);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 617, __pyx_L1_error)
+        __PYX_ERR(0, 612, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -16713,17 +17147,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
       __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(__pyx_t_3);
       #else
-      __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 617, __pyx_L1_error)
+      __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 612, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 617, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 612, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 617, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 612, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 617, __pyx_L1_error)
+      __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 612, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_10 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_5);
@@ -16733,7 +17167,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
       __Pyx_GOTREF(__pyx_t_2);
       index = 2; __pyx_t_3 = __pyx_t_10(__pyx_t_5); if (unlikely(!__pyx_t_3)) goto __pyx_L7_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_3);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_5), 3) < 0) __PYX_ERR(0, 617, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_5), 3) < 0) __PYX_ERR(0, 612, __pyx_L1_error)
       __pyx_t_10 = NULL;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       goto __pyx_L8_unpacking_done;
@@ -16741,29 +17175,29 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_10 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 617, __pyx_L1_error)
+      __PYX_ERR(0, 612, __pyx_L1_error)
       __pyx_L8_unpacking_done:;
     }
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 617, __pyx_L1_error)
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 612, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 617, __pyx_L1_error)
+    __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 612, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_f = __pyx_t_7;
     __pyx_v_g = __pyx_t_11;
     __Pyx_XDECREF_SET(__pyx_v_current, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "ConnectedMatterAgent.pyx":620
+    /* "ConnectedMatterAgent.pyx":615
  * 
  *             # Skip if already processed
  *             if current in closed_set:             # <<<<<<<<<<<<<<
  *                 continue
  * 
  */
-    __pyx_t_8 = (__Pyx_PySet_ContainsTF(__pyx_v_current, __pyx_v_closed_set, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 620, __pyx_L1_error)
+    __pyx_t_8 = (__Pyx_PySet_ContainsTF(__pyx_v_current, __pyx_v_closed_set, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 615, __pyx_L1_error)
     if (__pyx_t_8) {
 
-      /* "ConnectedMatterAgent.pyx":621
+      /* "ConnectedMatterAgent.pyx":616
  *             # Skip if already processed
  *             if current in closed_set:
  *                 continue             # <<<<<<<<<<<<<<
@@ -16772,7 +17206,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
       goto __pyx_L3_continue;
 
-      /* "ConnectedMatterAgent.pyx":620
+      /* "ConnectedMatterAgent.pyx":615
  * 
  *             # Skip if already processed
  *             if current in closed_set:             # <<<<<<<<<<<<<<
@@ -16781,22 +17215,22 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":624
+    /* "ConnectedMatterAgent.pyx":619
  * 
  *             # Check if we're at the desired distance from the goal centroid
  *             current_centroid = self.calculate_centroid(list(current))             # <<<<<<<<<<<<<<
  *             centroid_distance = (c_abs(current_centroid[0] - self.goal_centroid[0]) +
  *                             c_abs(current_centroid[1] - self.goal_centroid[1]))
  */
-    __pyx_t_1 = PySequence_List(__pyx_v_current); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 624, __pyx_L1_error)
+    __pyx_t_1 = PySequence_List(__pyx_v_current); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 619, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->calculate_centroid(__pyx_v_self, ((PyObject*)__pyx_t_1), 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 624, __pyx_L1_error)
+    __pyx_t_3 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->calculate_centroid(__pyx_v_self, ((PyObject*)__pyx_t_1), 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 619, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_XDECREF_SET(__pyx_v_current_centroid, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "ConnectedMatterAgent.pyx":625
+    /* "ConnectedMatterAgent.pyx":620
  *             # Check if we're at the desired distance from the goal centroid
  *             current_centroid = self.calculate_centroid(list(current))
  *             centroid_distance = (c_abs(current_centroid[0] - self.goal_centroid[0]) +             # <<<<<<<<<<<<<<
@@ -16805,19 +17239,19 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
     if (unlikely(__pyx_v_current_centroid == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 625, __pyx_L1_error)
+      __PYX_ERR(0, 620, __pyx_L1_error)
     }
     if (unlikely(__pyx_v_self->goal_centroid == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 625, __pyx_L1_error)
+      __PYX_ERR(0, 620, __pyx_L1_error)
     }
-    __pyx_t_3 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_current_centroid, 0), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 625, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_current_centroid, 0), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 620, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyNumber_Absolute(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 625, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyNumber_Absolute(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 620, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "ConnectedMatterAgent.pyx":626
+    /* "ConnectedMatterAgent.pyx":621
  *             current_centroid = self.calculate_centroid(list(current))
  *             centroid_distance = (c_abs(current_centroid[0] - self.goal_centroid[0]) +
  *                             c_abs(current_centroid[1] - self.goal_centroid[1]))             # <<<<<<<<<<<<<<
@@ -16826,34 +17260,34 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
     if (unlikely(__pyx_v_current_centroid == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 626, __pyx_L1_error)
+      __PYX_ERR(0, 621, __pyx_L1_error)
     }
     if (unlikely(__pyx_v_self->goal_centroid == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 626, __pyx_L1_error)
+      __PYX_ERR(0, 621, __pyx_L1_error)
     }
-    __pyx_t_3 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_current_centroid, 1), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 626, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_current_centroid, 1), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 621, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyNumber_Absolute(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 626, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyNumber_Absolute(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 621, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "ConnectedMatterAgent.pyx":625
+    /* "ConnectedMatterAgent.pyx":620
  *             # Check if we're at the desired distance from the goal centroid
  *             current_centroid = self.calculate_centroid(list(current))
  *             centroid_distance = (c_abs(current_centroid[0] - self.goal_centroid[0]) +             # <<<<<<<<<<<<<<
  *                             c_abs(current_centroid[1] - self.goal_centroid[1]))
  * 
  */
-    __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 625, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 620, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 625, __pyx_L1_error)
+    __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 620, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_centroid_distance = __pyx_t_11;
 
-    /* "ConnectedMatterAgent.pyx":628
+    /* "ConnectedMatterAgent.pyx":623
  *                             c_abs(current_centroid[1] - self.goal_centroid[1]))
  * 
  *             if min_distance <= centroid_distance <= max_distance:             # <<<<<<<<<<<<<<
@@ -16866,27 +17300,27 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
     }
     if (__pyx_t_8) {
 
-      /* "ConnectedMatterAgent.pyx":629
+      /* "ConnectedMatterAgent.pyx":624
  * 
  *             if min_distance <= centroid_distance <= max_distance:
  *                 print(f"Block stopped 1 grid cell before goal centroid. Distance: {centroid_distance}")             # <<<<<<<<<<<<<<
  *                 return self.reconstruct_path(came_from, current)
  * 
  */
-      __pyx_t_3 = PyFloat_FromDouble(__pyx_v_centroid_distance); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 629, __pyx_L1_error)
+      __pyx_t_3 = PyFloat_FromDouble(__pyx_v_centroid_distance); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 624, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 629, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 624, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Block_stopped_1_grid_cell_before, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 629, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Block_stopped_1_grid_cell_before, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 624, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 629, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 624, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":630
+      /* "ConnectedMatterAgent.pyx":625
  *             if min_distance <= centroid_distance <= max_distance:
  *                 print(f"Block stopped 1 grid cell before goal centroid. Distance: {centroid_distance}")
  *                 return self.reconstruct_path(came_from, current)             # <<<<<<<<<<<<<<
@@ -16894,13 +17328,13 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  *             closed_set.add(current)
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->reconstruct_path(__pyx_v_self, __pyx_v_came_from, __pyx_v_current, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 630, __pyx_L1_error)
+      __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->reconstruct_path(__pyx_v_self, __pyx_v_came_from, __pyx_v_current, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 625, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_r = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
       goto __pyx_L0;
 
-      /* "ConnectedMatterAgent.pyx":628
+      /* "ConnectedMatterAgent.pyx":623
  *                             c_abs(current_centroid[1] - self.goal_centroid[1]))
  * 
  *             if min_distance <= centroid_distance <= max_distance:             # <<<<<<<<<<<<<<
@@ -16909,27 +17343,27 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":632
+    /* "ConnectedMatterAgent.pyx":627
  *                 return self.reconstruct_path(came_from, current)
  * 
  *             closed_set.add(current)             # <<<<<<<<<<<<<<
  * 
  *             # Process neighbor states (block moves)
  */
-    __pyx_t_12 = PySet_Add(__pyx_v_closed_set, __pyx_v_current); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 632, __pyx_L1_error)
+    __pyx_t_12 = PySet_Add(__pyx_v_closed_set, __pyx_v_current); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 627, __pyx_L1_error)
 
-    /* "ConnectedMatterAgent.pyx":635
+    /* "ConnectedMatterAgent.pyx":630
  * 
  *             # Process neighbor states (block moves)
  *             for neighbor in self.get_valid_block_moves(current):             # <<<<<<<<<<<<<<
  *                 if neighbor in closed_set:
  *                     continue
  */
-    __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_valid_block_moves(__pyx_v_self, __pyx_v_current, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 635, __pyx_L1_error)
+    __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_valid_block_moves(__pyx_v_self, __pyx_v_current, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 630, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_t_2 == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 635, __pyx_L1_error)
+      __PYX_ERR(0, 630, __pyx_L1_error)
     }
     __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3);
     __pyx_t_13 = 0;
@@ -16938,30 +17372,30 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
         #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 635, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 630, __pyx_L1_error)
         #endif
         if (__pyx_t_13 >= __pyx_temp) break;
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_13); __Pyx_INCREF(__pyx_t_2); __pyx_t_13++; if (unlikely((0 < 0))) __PYX_ERR(0, 635, __pyx_L1_error)
+      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_13); __Pyx_INCREF(__pyx_t_2); __pyx_t_13++; if (unlikely((0 < 0))) __PYX_ERR(0, 630, __pyx_L1_error)
       #else
-      __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_13); __pyx_t_13++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 635, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_13); __pyx_t_13++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 630, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       #endif
       __Pyx_XDECREF_SET(__pyx_v_neighbor, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":636
+      /* "ConnectedMatterAgent.pyx":631
  *             # Process neighbor states (block moves)
  *             for neighbor in self.get_valid_block_moves(current):
  *                 if neighbor in closed_set:             # <<<<<<<<<<<<<<
  *                     continue
  * 
  */
-      __pyx_t_8 = (__Pyx_PySet_ContainsTF(__pyx_v_neighbor, __pyx_v_closed_set, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 636, __pyx_L1_error)
+      __pyx_t_8 = (__Pyx_PySet_ContainsTF(__pyx_v_neighbor, __pyx_v_closed_set, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 631, __pyx_L1_error)
       if (__pyx_t_8) {
 
-        /* "ConnectedMatterAgent.pyx":637
+        /* "ConnectedMatterAgent.pyx":632
  *             for neighbor in self.get_valid_block_moves(current):
  *                 if neighbor in closed_set:
  *                     continue             # <<<<<<<<<<<<<<
@@ -16970,7 +17404,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
         goto __pyx_L11_continue;
 
-        /* "ConnectedMatterAgent.pyx":636
+        /* "ConnectedMatterAgent.pyx":631
  *             # Process neighbor states (block moves)
  *             for neighbor in self.get_valid_block_moves(current):
  *                 if neighbor in closed_set:             # <<<<<<<<<<<<<<
@@ -16979,85 +17413,85 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
       }
 
-      /* "ConnectedMatterAgent.pyx":640
+      /* "ConnectedMatterAgent.pyx":635
  * 
  *                 # Calculate tentative g-score
  *                 tentative_g = g_score[current] + 1             # <<<<<<<<<<<<<<
  * 
  *                 if neighbor not in g_score or tentative_g < g_score[neighbor]:
  */
-      __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_g_score, __pyx_v_current); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 640, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_g_score, __pyx_v_current); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 635, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 640, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 635, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 640, __pyx_L1_error)
+      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 635, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_tentative_g = __pyx_t_11;
 
-      /* "ConnectedMatterAgent.pyx":642
+      /* "ConnectedMatterAgent.pyx":637
  *                 tentative_g = g_score[current] + 1
  * 
  *                 if neighbor not in g_score or tentative_g < g_score[neighbor]:             # <<<<<<<<<<<<<<
  *                     # This is a better path
  *                     came_from[neighbor] = current
  */
-      __pyx_t_9 = (__Pyx_PyDict_ContainsTF(__pyx_v_neighbor, __pyx_v_g_score, Py_NE)); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 642, __pyx_L1_error)
+      __pyx_t_9 = (__Pyx_PyDict_ContainsTF(__pyx_v_neighbor, __pyx_v_g_score, Py_NE)); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 637, __pyx_L1_error)
       if (!__pyx_t_9) {
       } else {
         __pyx_t_8 = __pyx_t_9;
         goto __pyx_L15_bool_binop_done;
       }
-      __pyx_t_1 = PyFloat_FromDouble(__pyx_v_tentative_g); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 642, __pyx_L1_error)
+      __pyx_t_1 = PyFloat_FromDouble(__pyx_v_tentative_g); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 637, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_g_score, __pyx_v_neighbor); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 642, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_g_score, __pyx_v_neighbor); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 637, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 642, __pyx_L1_error)
+      __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 637, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 642, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 637, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_8 = __pyx_t_9;
       __pyx_L15_bool_binop_done:;
       if (__pyx_t_8) {
 
-        /* "ConnectedMatterAgent.pyx":644
+        /* "ConnectedMatterAgent.pyx":639
  *                 if neighbor not in g_score or tentative_g < g_score[neighbor]:
  *                     # This is a better path
  *                     came_from[neighbor] = current             # <<<<<<<<<<<<<<
  *                     g_score[neighbor] = tentative_g
  * 
  */
-        if (unlikely((PyDict_SetItem(__pyx_v_came_from, __pyx_v_neighbor, __pyx_v_current) < 0))) __PYX_ERR(0, 644, __pyx_L1_error)
+        if (unlikely((PyDict_SetItem(__pyx_v_came_from, __pyx_v_neighbor, __pyx_v_current) < 0))) __PYX_ERR(0, 639, __pyx_L1_error)
 
-        /* "ConnectedMatterAgent.pyx":645
+        /* "ConnectedMatterAgent.pyx":640
  *                     # This is a better path
  *                     came_from[neighbor] = current
  *                     g_score[neighbor] = tentative_g             # <<<<<<<<<<<<<<
  * 
  *                     # Modified: Adjust heuristic to prefer states that are close to but not at the centroid
  */
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_tentative_g); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 645, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_tentative_g); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 640, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        if (unlikely((PyDict_SetItem(__pyx_v_g_score, __pyx_v_neighbor, __pyx_t_4) < 0))) __PYX_ERR(0, 645, __pyx_L1_error)
+        if (unlikely((PyDict_SetItem(__pyx_v_g_score, __pyx_v_neighbor, __pyx_t_4) < 0))) __PYX_ERR(0, 640, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-        /* "ConnectedMatterAgent.pyx":648
+        /* "ConnectedMatterAgent.pyx":643
  * 
  *                     # Modified: Adjust heuristic to prefer states that are close to but not at the centroid
  *                     neighbor_centroid = self.calculate_centroid(list(neighbor))             # <<<<<<<<<<<<<<
  *                     neighbor_distance = (c_abs(neighbor_centroid[0] - self.goal_centroid[0]) +
  *                                    c_abs(neighbor_centroid[1] - self.goal_centroid[1]))
  */
-        __pyx_t_4 = PySequence_List(__pyx_v_neighbor); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 648, __pyx_L1_error)
+        __pyx_t_4 = PySequence_List(__pyx_v_neighbor); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 643, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->calculate_centroid(__pyx_v_self, ((PyObject*)__pyx_t_4), 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 648, __pyx_L1_error)
+        __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->calculate_centroid(__pyx_v_self, ((PyObject*)__pyx_t_4), 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 643, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_XDECREF_SET(__pyx_v_neighbor_centroid, ((PyObject*)__pyx_t_2));
         __pyx_t_2 = 0;
 
-        /* "ConnectedMatterAgent.pyx":649
+        /* "ConnectedMatterAgent.pyx":644
  *                     # Modified: Adjust heuristic to prefer states that are close to but not at the centroid
  *                     neighbor_centroid = self.calculate_centroid(list(neighbor))
  *                     neighbor_distance = (c_abs(neighbor_centroid[0] - self.goal_centroid[0]) +             # <<<<<<<<<<<<<<
@@ -17066,19 +17500,19 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
         if (unlikely(__pyx_v_neighbor_centroid == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 649, __pyx_L1_error)
+          __PYX_ERR(0, 644, __pyx_L1_error)
         }
         if (unlikely(__pyx_v_self->goal_centroid == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 649, __pyx_L1_error)
+          __PYX_ERR(0, 644, __pyx_L1_error)
         }
-        __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_neighbor_centroid, 0), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 649, __pyx_L1_error)
+        __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_neighbor_centroid, 0), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 644, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_4 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 649, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 644, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "ConnectedMatterAgent.pyx":650
+        /* "ConnectedMatterAgent.pyx":645
  *                     neighbor_centroid = self.calculate_centroid(list(neighbor))
  *                     neighbor_distance = (c_abs(neighbor_centroid[0] - self.goal_centroid[0]) +
  *                                    c_abs(neighbor_centroid[1] - self.goal_centroid[1]))             # <<<<<<<<<<<<<<
@@ -17087,34 +17521,34 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
         if (unlikely(__pyx_v_neighbor_centroid == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 650, __pyx_L1_error)
+          __PYX_ERR(0, 645, __pyx_L1_error)
         }
         if (unlikely(__pyx_v_self->goal_centroid == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 650, __pyx_L1_error)
+          __PYX_ERR(0, 645, __pyx_L1_error)
         }
-        __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_neighbor_centroid, 1), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 650, __pyx_L1_error)
+        __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_neighbor_centroid, 1), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 645, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_1 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 650, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 645, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "ConnectedMatterAgent.pyx":649
+        /* "ConnectedMatterAgent.pyx":644
  *                     # Modified: Adjust heuristic to prefer states that are close to but not at the centroid
  *                     neighbor_centroid = self.calculate_centroid(list(neighbor))
  *                     neighbor_distance = (c_abs(neighbor_centroid[0] - self.goal_centroid[0]) +             # <<<<<<<<<<<<<<
  *                                    c_abs(neighbor_centroid[1] - self.goal_centroid[1]))
  * 
  */
-        __pyx_t_2 = PyNumber_Add(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 649, __pyx_L1_error)
+        __pyx_t_2 = PyNumber_Add(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 644, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 649, __pyx_L1_error)
+        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 644, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_v_neighbor_distance = __pyx_t_11;
 
-        /* "ConnectedMatterAgent.pyx":653
+        /* "ConnectedMatterAgent.pyx":648
  * 
  *                     # Penalize distances that are too small (< 1.0)
  *                     distance_penalty = 0             # <<<<<<<<<<<<<<
@@ -17123,7 +17557,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
         __pyx_v_distance_penalty = 0.0;
 
-        /* "ConnectedMatterAgent.pyx":654
+        /* "ConnectedMatterAgent.pyx":649
  *                     # Penalize distances that are too small (< 1.0)
  *                     distance_penalty = 0
  *                     if neighbor_distance < min_distance:             # <<<<<<<<<<<<<<
@@ -17133,7 +17567,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
         __pyx_t_8 = (__pyx_v_neighbor_distance < __pyx_v_min_distance);
         if (__pyx_t_8) {
 
-          /* "ConnectedMatterAgent.pyx":655
+          /* "ConnectedMatterAgent.pyx":650
  *                     distance_penalty = 0
  *                     if neighbor_distance < min_distance:
  *                         distance_penalty = 10 * (min_distance - neighbor_distance)             # <<<<<<<<<<<<<<
@@ -17142,7 +17576,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
           __pyx_v_distance_penalty = (10.0 * (__pyx_v_min_distance - __pyx_v_neighbor_distance));
 
-          /* "ConnectedMatterAgent.pyx":654
+          /* "ConnectedMatterAgent.pyx":649
  *                     # Penalize distances that are too small (< 1.0)
  *                     distance_penalty = 0
  *                     if neighbor_distance < min_distance:             # <<<<<<<<<<<<<<
@@ -17151,17 +17585,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
         }
 
-        /* "ConnectedMatterAgent.pyx":657
+        /* "ConnectedMatterAgent.pyx":652
  *                         distance_penalty = 10 * (min_distance - neighbor_distance)
  * 
  *                     adjusted_heuristic = self.block_heuristic(neighbor) + distance_penalty             # <<<<<<<<<<<<<<
  *                     f_score = tentative_g + adjusted_heuristic
  * 
  */
-        __pyx_t_11 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->block_heuristic(__pyx_v_self, __pyx_v_neighbor, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 657, __pyx_L1_error)
+        __pyx_t_11 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->block_heuristic(__pyx_v_self, __pyx_v_neighbor, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 652, __pyx_L1_error)
         __pyx_v_adjusted_heuristic = (__pyx_t_11 + __pyx_v_distance_penalty);
 
-        /* "ConnectedMatterAgent.pyx":658
+        /* "ConnectedMatterAgent.pyx":653
  * 
  *                     adjusted_heuristic = self.block_heuristic(neighbor) + distance_penalty
  *                     f_score = tentative_g + adjusted_heuristic             # <<<<<<<<<<<<<<
@@ -17170,31 +17604,31 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
         __pyx_v_f_score = (__pyx_v_tentative_g + __pyx_v_adjusted_heuristic);
 
-        /* "ConnectedMatterAgent.pyx":661
+        /* "ConnectedMatterAgent.pyx":656
  * 
  *                     # Add to open set
  *                     heapq.heappush(open_set, (f_score, tentative_g, neighbor))             # <<<<<<<<<<<<<<
  * 
  *         # If we exit the loop, either no path was found or time limit reached
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_heapq); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 661, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_heapq); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 656, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_heappush); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 661, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_heappush); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 656, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_1 = PyFloat_FromDouble(__pyx_v_f_score); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 661, __pyx_L1_error)
+        __pyx_t_1 = PyFloat_FromDouble(__pyx_v_f_score); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 656, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_5 = PyFloat_FromDouble(__pyx_v_tentative_g); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 661, __pyx_L1_error)
+        __pyx_t_5 = PyFloat_FromDouble(__pyx_v_tentative_g); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 656, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_14 = PyTuple_New(3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 661, __pyx_L1_error)
+        __pyx_t_14 = PyTuple_New(3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 656, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_GIVEREF(__pyx_t_1);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_1)) __PYX_ERR(0, 661, __pyx_L1_error);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_1)) __PYX_ERR(0, 656, __pyx_L1_error);
         __Pyx_GIVEREF(__pyx_t_5);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_14, 1, __pyx_t_5)) __PYX_ERR(0, 661, __pyx_L1_error);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_14, 1, __pyx_t_5)) __PYX_ERR(0, 656, __pyx_L1_error);
         __Pyx_INCREF(__pyx_v_neighbor);
         __Pyx_GIVEREF(__pyx_v_neighbor);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_14, 2, __pyx_v_neighbor)) __PYX_ERR(0, 661, __pyx_L1_error);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_14, 2, __pyx_v_neighbor)) __PYX_ERR(0, 656, __pyx_L1_error);
         __pyx_t_1 = 0;
         __pyx_t_5 = 0;
         __pyx_t_5 = NULL;
@@ -17216,13 +17650,13 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 2+__pyx_t_6);
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 661, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 656, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         }
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "ConnectedMatterAgent.pyx":642
+        /* "ConnectedMatterAgent.pyx":637
  *                 tentative_g = g_score[current] + 1
  * 
  *                 if neighbor not in g_score or tentative_g < g_score[neighbor]:             # <<<<<<<<<<<<<<
@@ -17231,7 +17665,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
       }
 
-      /* "ConnectedMatterAgent.pyx":635
+      /* "ConnectedMatterAgent.pyx":630
  * 
  *             # Process neighbor states (block moves)
  *             for neighbor in self.get_valid_block_moves(current):             # <<<<<<<<<<<<<<
@@ -17244,16 +17678,16 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
     __pyx_L3_continue:;
   }
 
-  /* "ConnectedMatterAgent.pyx":664
+  /* "ConnectedMatterAgent.pyx":659
  * 
  *         # If we exit the loop, either no path was found or time limit reached
  *         if time.time() - start_time >= time_limit:             # <<<<<<<<<<<<<<
  *             print("Block movement phase timed out!")
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 664, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 659, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 664, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 659, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -17274,37 +17708,37 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 0+__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 664, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 659, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_start_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 664, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_start_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 659, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = PyNumber_Subtract(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 664, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 659, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_time_limit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 664, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_time_limit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 659, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_GE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 664, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_GE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 659, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 664, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 659, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_8) {
 
-    /* "ConnectedMatterAgent.pyx":665
+    /* "ConnectedMatterAgent.pyx":660
  *         # If we exit the loop, either no path was found or time limit reached
  *         if time.time() - start_time >= time_limit:
  *             print("Block movement phase timed out!")             # <<<<<<<<<<<<<<
  * 
  *         # Return the best state we found
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 665, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 660, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "ConnectedMatterAgent.pyx":664
+    /* "ConnectedMatterAgent.pyx":659
  * 
  *         # If we exit the loop, either no path was found or time limit reached
  *         if time.time() - start_time >= time_limit:             # <<<<<<<<<<<<<<
@@ -17313,17 +17747,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
   }
 
-  /* "ConnectedMatterAgent.pyx":668
+  /* "ConnectedMatterAgent.pyx":663
  * 
  *         # Return the best state we found
  *         if came_from:             # <<<<<<<<<<<<<<
  *             # Find state with appropriate distance to centroid
  *             best_state = None
  */
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_v_came_from); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 668, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_v_came_from); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 663, __pyx_L1_error)
   if (__pyx_t_8) {
 
-    /* "ConnectedMatterAgent.pyx":670
+    /* "ConnectedMatterAgent.pyx":665
  *         if came_from:
  *             # Find state with appropriate distance to centroid
  *             best_state = None             # <<<<<<<<<<<<<<
@@ -17333,17 +17767,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
     __Pyx_INCREF(Py_None);
     __Pyx_DECREF_SET(__pyx_v_best_state, Py_None);
 
-    /* "ConnectedMatterAgent.pyx":671
+    /* "ConnectedMatterAgent.pyx":666
  *             # Find state with appropriate distance to centroid
  *             best_state = None
  *             best_distance_diff = float('inf')             # <<<<<<<<<<<<<<
  * 
  *             for state in came_from.keys():
  */
-    __pyx_t_11 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_11 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 671, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyUnicode_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_11 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 666, __pyx_L1_error)
     __pyx_v_best_distance_diff = __pyx_t_11;
 
-    /* "ConnectedMatterAgent.pyx":673
+    /* "ConnectedMatterAgent.pyx":668
  *             best_distance_diff = float('inf')
  * 
  *             for state in came_from.keys():             # <<<<<<<<<<<<<<
@@ -17351,7 +17785,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  *                 distance = (c_abs(state_centroid[0] - self.goal_centroid[0]) +
  */
     __pyx_t_13 = 0;
-    __pyx_t_4 = __Pyx_dict_iterator(__pyx_v_came_from, 1, __pyx_n_s_keys, (&__pyx_t_15), (&__pyx_t_16)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 673, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_dict_iterator(__pyx_v_came_from, 1, __pyx_n_s_keys, (&__pyx_t_15), (&__pyx_t_16)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 668, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3);
     __pyx_t_3 = __pyx_t_4;
@@ -17359,27 +17793,27 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
     while (1) {
       __pyx_t_17 = __Pyx_dict_iter_next(__pyx_t_3, __pyx_t_15, &__pyx_t_13, &__pyx_t_4, NULL, NULL, __pyx_t_16);
       if (unlikely(__pyx_t_17 == 0)) break;
-      if (unlikely(__pyx_t_17 == -1)) __PYX_ERR(0, 673, __pyx_L1_error)
+      if (unlikely(__pyx_t_17 == -1)) __PYX_ERR(0, 668, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_XDECREF_SET(__pyx_v_state, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "ConnectedMatterAgent.pyx":674
+      /* "ConnectedMatterAgent.pyx":669
  * 
  *             for state in came_from.keys():
  *                 state_centroid = self.calculate_centroid(list(state))             # <<<<<<<<<<<<<<
  *                 distance = (c_abs(state_centroid[0] - self.goal_centroid[0]) +
  *                             c_abs(state_centroid[1] - self.goal_centroid[1]))
  */
-      __pyx_t_4 = PySequence_List(__pyx_v_state); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 674, __pyx_L1_error)
+      __pyx_t_4 = PySequence_List(__pyx_v_state); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 669, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->calculate_centroid(__pyx_v_self, ((PyObject*)__pyx_t_4), 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 674, __pyx_L1_error)
+      __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->calculate_centroid(__pyx_v_self, ((PyObject*)__pyx_t_4), 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 669, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_XDECREF_SET(__pyx_v_state_centroid, ((PyObject*)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":675
+      /* "ConnectedMatterAgent.pyx":670
  *             for state in came_from.keys():
  *                 state_centroid = self.calculate_centroid(list(state))
  *                 distance = (c_abs(state_centroid[0] - self.goal_centroid[0]) +             # <<<<<<<<<<<<<<
@@ -17388,19 +17822,19 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
       if (unlikely(__pyx_v_state_centroid == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 675, __pyx_L1_error)
+        __PYX_ERR(0, 670, __pyx_L1_error)
       }
       if (unlikely(__pyx_v_self->goal_centroid == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 675, __pyx_L1_error)
+        __PYX_ERR(0, 670, __pyx_L1_error)
       }
-      __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_state_centroid, 0), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 675, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_state_centroid, 0), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 670, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 675, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 670, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":676
+      /* "ConnectedMatterAgent.pyx":671
  *                 state_centroid = self.calculate_centroid(list(state))
  *                 distance = (c_abs(state_centroid[0] - self.goal_centroid[0]) +
  *                             c_abs(state_centroid[1] - self.goal_centroid[1]))             # <<<<<<<<<<<<<<
@@ -17409,64 +17843,64 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
       if (unlikely(__pyx_v_state_centroid == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 676, __pyx_L1_error)
+        __PYX_ERR(0, 671, __pyx_L1_error)
       }
       if (unlikely(__pyx_v_self->goal_centroid == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 676, __pyx_L1_error)
+        __PYX_ERR(0, 671, __pyx_L1_error)
       }
-      __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_state_centroid, 1), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 676, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_state_centroid, 1), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 671, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_14 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 676, __pyx_L1_error)
+      __pyx_t_14 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 671, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_14);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":675
+      /* "ConnectedMatterAgent.pyx":670
  *             for state in came_from.keys():
  *                 state_centroid = self.calculate_centroid(list(state))
  *                 distance = (c_abs(state_centroid[0] - self.goal_centroid[0]) +             # <<<<<<<<<<<<<<
  *                             c_abs(state_centroid[1] - self.goal_centroid[1]))
  * 
  */
-      __pyx_t_2 = PyNumber_Add(__pyx_t_4, __pyx_t_14); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 675, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Add(__pyx_t_4, __pyx_t_14); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 670, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
       __Pyx_XDECREF_SET(__pyx_v_distance, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":679
+      /* "ConnectedMatterAgent.pyx":674
  * 
  *                 # We want a state that's as close as possible to our target distance range
  *                 if distance < min_distance:             # <<<<<<<<<<<<<<
  *                     distance_diff = min_distance - distance
  *                 elif distance > max_distance:
  */
-      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_min_distance); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 679, __pyx_L1_error)
+      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_min_distance); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 674, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_14 = PyObject_RichCompare(__pyx_v_distance, __pyx_t_2, Py_LT); __Pyx_XGOTREF(__pyx_t_14); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 679, __pyx_L1_error)
+      __pyx_t_14 = PyObject_RichCompare(__pyx_v_distance, __pyx_t_2, Py_LT); __Pyx_XGOTREF(__pyx_t_14); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 674, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_14); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 679, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_14); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 674, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
       if (__pyx_t_8) {
 
-        /* "ConnectedMatterAgent.pyx":680
+        /* "ConnectedMatterAgent.pyx":675
  *                 # We want a state that's as close as possible to our target distance range
  *                 if distance < min_distance:
  *                     distance_diff = min_distance - distance             # <<<<<<<<<<<<<<
  *                 elif distance > max_distance:
  *                     distance_diff = distance - max_distance
  */
-        __pyx_t_14 = PyFloat_FromDouble(__pyx_v_min_distance); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 680, __pyx_L1_error)
+        __pyx_t_14 = PyFloat_FromDouble(__pyx_v_min_distance); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 675, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
-        __pyx_t_2 = PyNumber_Subtract(__pyx_t_14, __pyx_v_distance); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 680, __pyx_L1_error)
+        __pyx_t_2 = PyNumber_Subtract(__pyx_t_14, __pyx_v_distance); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 675, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 680, __pyx_L1_error)
+        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 675, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_v_distance_diff = __pyx_t_11;
 
-        /* "ConnectedMatterAgent.pyx":679
+        /* "ConnectedMatterAgent.pyx":674
  * 
  *                 # We want a state that's as close as possible to our target distance range
  *                 if distance < min_distance:             # <<<<<<<<<<<<<<
@@ -17476,38 +17910,38 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
         goto __pyx_L23;
       }
 
-      /* "ConnectedMatterAgent.pyx":681
+      /* "ConnectedMatterAgent.pyx":676
  *                 if distance < min_distance:
  *                     distance_diff = min_distance - distance
  *                 elif distance > max_distance:             # <<<<<<<<<<<<<<
  *                     distance_diff = distance - max_distance
  *                 else:
  */
-      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_max_distance); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 681, __pyx_L1_error)
+      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_max_distance); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 676, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_14 = PyObject_RichCompare(__pyx_v_distance, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_14); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 681, __pyx_L1_error)
+      __pyx_t_14 = PyObject_RichCompare(__pyx_v_distance, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_14); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 676, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_14); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 681, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_14); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 676, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
       if (__pyx_t_8) {
 
-        /* "ConnectedMatterAgent.pyx":682
+        /* "ConnectedMatterAgent.pyx":677
  *                     distance_diff = min_distance - distance
  *                 elif distance > max_distance:
  *                     distance_diff = distance - max_distance             # <<<<<<<<<<<<<<
  *                 else:
  *                     # Distance is within our desired range
  */
-        __pyx_t_14 = PyFloat_FromDouble(__pyx_v_max_distance); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 682, __pyx_L1_error)
+        __pyx_t_14 = PyFloat_FromDouble(__pyx_v_max_distance); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 677, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
-        __pyx_t_2 = PyNumber_Subtract(__pyx_v_distance, __pyx_t_14); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 682, __pyx_L1_error)
+        __pyx_t_2 = PyNumber_Subtract(__pyx_v_distance, __pyx_t_14); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 677, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 682, __pyx_L1_error)
+        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 677, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_v_distance_diff = __pyx_t_11;
 
-        /* "ConnectedMatterAgent.pyx":681
+        /* "ConnectedMatterAgent.pyx":676
  *                 if distance < min_distance:
  *                     distance_diff = min_distance - distance
  *                 elif distance > max_distance:             # <<<<<<<<<<<<<<
@@ -17517,7 +17951,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
         goto __pyx_L23;
       }
 
-      /* "ConnectedMatterAgent.pyx":685
+      /* "ConnectedMatterAgent.pyx":680
  *                 else:
  *                     # Distance is within our desired range
  *                     best_state = state             # <<<<<<<<<<<<<<
@@ -17528,7 +17962,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
         __Pyx_INCREF(__pyx_v_state);
         __Pyx_DECREF_SET(__pyx_v_best_state, __pyx_v_state);
 
-        /* "ConnectedMatterAgent.pyx":686
+        /* "ConnectedMatterAgent.pyx":681
  *                     # Distance is within our desired range
  *                     best_state = state
  *                     break             # <<<<<<<<<<<<<<
@@ -17539,7 +17973,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
       }
       __pyx_L23:;
 
-      /* "ConnectedMatterAgent.pyx":688
+      /* "ConnectedMatterAgent.pyx":683
  *                     break
  * 
  *                 if distance_diff < best_distance_diff:             # <<<<<<<<<<<<<<
@@ -17549,7 +17983,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
       __pyx_t_8 = (__pyx_v_distance_diff < __pyx_v_best_distance_diff);
       if (__pyx_t_8) {
 
-        /* "ConnectedMatterAgent.pyx":689
+        /* "ConnectedMatterAgent.pyx":684
  * 
  *                 if distance_diff < best_distance_diff:
  *                     best_distance_diff = distance_diff             # <<<<<<<<<<<<<<
@@ -17558,7 +17992,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
         __pyx_v_best_distance_diff = __pyx_v_distance_diff;
 
-        /* "ConnectedMatterAgent.pyx":690
+        /* "ConnectedMatterAgent.pyx":685
  *                 if distance_diff < best_distance_diff:
  *                     best_distance_diff = distance_diff
  *                     best_state = state             # <<<<<<<<<<<<<<
@@ -17568,7 +18002,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
         __Pyx_INCREF(__pyx_v_state);
         __Pyx_DECREF_SET(__pyx_v_best_state, __pyx_v_state);
 
-        /* "ConnectedMatterAgent.pyx":688
+        /* "ConnectedMatterAgent.pyx":683
  *                     break
  * 
  *                 if distance_diff < best_distance_diff:             # <<<<<<<<<<<<<<
@@ -17580,32 +18014,32 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
     __pyx_L22_break:;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "ConnectedMatterAgent.pyx":692
+    /* "ConnectedMatterAgent.pyx":687
  *                     best_state = state
  * 
  *             if best_state:             # <<<<<<<<<<<<<<
  *                 best_centroid = self.calculate_centroid(list(best_state))
  *                 best_distance = (c_abs(best_centroid[0] - self.goal_centroid[0]) +
  */
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_v_best_state); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 692, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_v_best_state); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 687, __pyx_L1_error)
     if (__pyx_t_8) {
 
-      /* "ConnectedMatterAgent.pyx":693
+      /* "ConnectedMatterAgent.pyx":688
  * 
  *             if best_state:
  *                 best_centroid = self.calculate_centroid(list(best_state))             # <<<<<<<<<<<<<<
  *                 best_distance = (c_abs(best_centroid[0] - self.goal_centroid[0]) +
  *                                 c_abs(best_centroid[1] - self.goal_centroid[1]))
  */
-      __pyx_t_3 = PySequence_List(__pyx_v_best_state); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 693, __pyx_L1_error)
+      __pyx_t_3 = PySequence_List(__pyx_v_best_state); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 688, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->calculate_centroid(__pyx_v_self, ((PyObject*)__pyx_t_3), 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 693, __pyx_L1_error)
+      __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->calculate_centroid(__pyx_v_self, ((PyObject*)__pyx_t_3), 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 688, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_v_best_centroid = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":694
+      /* "ConnectedMatterAgent.pyx":689
  *             if best_state:
  *                 best_centroid = self.calculate_centroid(list(best_state))
  *                 best_distance = (c_abs(best_centroid[0] - self.goal_centroid[0]) +             # <<<<<<<<<<<<<<
@@ -17614,19 +18048,19 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
       if (unlikely(__pyx_v_best_centroid == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 694, __pyx_L1_error)
+        __PYX_ERR(0, 689, __pyx_L1_error)
       }
       if (unlikely(__pyx_v_self->goal_centroid == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 694, __pyx_L1_error)
+        __PYX_ERR(0, 689, __pyx_L1_error)
       }
-      __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_best_centroid, 0), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 694, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_best_centroid, 0), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 689, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 694, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 689, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":695
+      /* "ConnectedMatterAgent.pyx":690
  *                 best_centroid = self.calculate_centroid(list(best_state))
  *                 best_distance = (c_abs(best_centroid[0] - self.goal_centroid[0]) +
  *                                 c_abs(best_centroid[1] - self.goal_centroid[1]))             # <<<<<<<<<<<<<<
@@ -17635,50 +18069,50 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
       if (unlikely(__pyx_v_best_centroid == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 695, __pyx_L1_error)
+        __PYX_ERR(0, 690, __pyx_L1_error)
       }
       if (unlikely(__pyx_v_self->goal_centroid == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 695, __pyx_L1_error)
+        __PYX_ERR(0, 690, __pyx_L1_error)
       }
-      __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_best_centroid, 1), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 695, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Subtract(PyTuple_GET_ITEM(__pyx_v_best_centroid, 1), PyTuple_GET_ITEM(__pyx_v_self->goal_centroid, 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 690, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_14 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 695, __pyx_L1_error)
+      __pyx_t_14 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 690, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_14);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":694
+      /* "ConnectedMatterAgent.pyx":689
  *             if best_state:
  *                 best_centroid = self.calculate_centroid(list(best_state))
  *                 best_distance = (c_abs(best_centroid[0] - self.goal_centroid[0]) +             # <<<<<<<<<<<<<<
  *                                 c_abs(best_centroid[1] - self.goal_centroid[1]))
  *                 print(f"Best block position found with centroid distance: {best_distance}")
  */
-      __pyx_t_2 = PyNumber_Add(__pyx_t_3, __pyx_t_14); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 694, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Add(__pyx_t_3, __pyx_t_14); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 689, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
       __pyx_v_best_distance = __pyx_t_2;
       __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":696
+      /* "ConnectedMatterAgent.pyx":691
  *                 best_distance = (c_abs(best_centroid[0] - self.goal_centroid[0]) +
  *                                 c_abs(best_centroid[1] - self.goal_centroid[1]))
  *                 print(f"Best block position found with centroid distance: {best_distance}")             # <<<<<<<<<<<<<<
  *                 return self.reconstruct_path(came_from, best_state)
  * 
  */
-      __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_best_distance, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 696, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_best_distance, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 691, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_14 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Best_block_position_found_with_c, __pyx_t_2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 696, __pyx_L1_error)
+      __pyx_t_14 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Best_block_position_found_with_c, __pyx_t_2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 691, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_14);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_14); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 696, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_14); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 691, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "ConnectedMatterAgent.pyx":697
+      /* "ConnectedMatterAgent.pyx":692
  *                                 c_abs(best_centroid[1] - self.goal_centroid[1]))
  *                 print(f"Best block position found with centroid distance: {best_distance}")
  *                 return self.reconstruct_path(came_from, best_state)             # <<<<<<<<<<<<<<
@@ -17686,13 +18120,13 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  *         return [self.start_state]  # No movement possible
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->reconstruct_path(__pyx_v_self, __pyx_v_came_from, __pyx_v_best_state, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 697, __pyx_L1_error)
+      __pyx_t_2 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->reconstruct_path(__pyx_v_self, __pyx_v_came_from, __pyx_v_best_state, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 692, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_r = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
       goto __pyx_L0;
 
-      /* "ConnectedMatterAgent.pyx":692
+      /* "ConnectedMatterAgent.pyx":687
  *                     best_state = state
  * 
  *             if best_state:             # <<<<<<<<<<<<<<
@@ -17701,7 +18135,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":668
+    /* "ConnectedMatterAgent.pyx":663
  * 
  *         # Return the best state we found
  *         if came_from:             # <<<<<<<<<<<<<<
@@ -17710,7 +18144,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  */
   }
 
-  /* "ConnectedMatterAgent.pyx":699
+  /* "ConnectedMatterAgent.pyx":694
  *                 return self.reconstruct_path(came_from, best_state)
  * 
  *         return [self.start_state]  # No movement possible             # <<<<<<<<<<<<<<
@@ -17718,16 +18152,16 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_block_mov
  *     cpdef list smarter_morphing_phase(self, object start_state, double time_limit=15):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 699, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 694, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_self->start_state);
   __Pyx_GIVEREF(__pyx_v_self->start_state);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 0, __pyx_v_self->start_state)) __PYX_ERR(0, 699, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 0, __pyx_v_self->start_state)) __PYX_ERR(0, 694, __pyx_L1_error);
   __pyx_r = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "ConnectedMatterAgent.pyx":587
+  /* "ConnectedMatterAgent.pyx":582
  *         return total_distance + connectivity_bonus
  * 
  *     cpdef list block_movement_phase(self, double time_limit=15):             # <<<<<<<<<<<<<<
@@ -17818,12 +18252,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_time_limit);
           if (value) { values[0] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 587, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 582, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "block_movement_phase") < 0)) __PYX_ERR(0, 587, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "block_movement_phase") < 0)) __PYX_ERR(0, 582, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -17834,14 +18268,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       }
     }
     if (values[0]) {
-      __pyx_v_time_limit = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_time_limit == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 587, __pyx_L3_error)
+      __pyx_v_time_limit = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_time_limit == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 582, __pyx_L3_error)
     } else {
       __pyx_v_time_limit = ((double)15.0);
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("block_movement_phase", 0, 0, 1, __pyx_nargs); __PYX_ERR(0, 587, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("block_movement_phase", 0, 0, 1, __pyx_nargs); __PYX_ERR(0, 582, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -17880,7 +18314,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_26block_
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.time_limit = __pyx_v_time_limit;
-  __pyx_t_1 = __pyx_vtabptr_20ConnectedMatterAgent_ConnectedMatterAgent->block_movement_phase(__pyx_v_self, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 587, __pyx_L1_error)
+  __pyx_t_1 = __pyx_vtabptr_20ConnectedMatterAgent_ConnectedMatterAgent->block_movement_phase(__pyx_v_self, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 582, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -17897,7 +18331,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_26block_
   return __pyx_r;
 }
 
-/* "ConnectedMatterAgent.pyx":701
+/* "ConnectedMatterAgent.pyx":696
  *         return [self.start_state]  # No movement possible
  * 
  *     cpdef list smarter_morphing_phase(self, object start_state, double time_limit=15):             # <<<<<<<<<<<<<<
@@ -17966,11 +18400,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_smarter_morphing_phase); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 701, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_smarter_morphing_phase); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 696, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_20ConnectedMatterAgent_20ConnectedMatterAgent_29smarter_morphing_phase)) {
         __Pyx_XDECREF(__pyx_r);
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_time_limit); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 701, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_time_limit); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 696, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -17992,11 +18426,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 2+__pyx_t_6);
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 701, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 696, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         }
-        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 701, __pyx_L1_error)
+        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 696, __pyx_L1_error)
         __pyx_r = ((PyObject*)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -18015,14 +18449,14 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
     #endif
   }
 
-  /* "ConnectedMatterAgent.pyx":706
+  /* "ConnectedMatterAgent.pyx":701
  *         Uses beam search and intelligent move generation with support for simultaneous moves
  *         """
  *         print(f"Starting Smarter Morphing Phase with {self.min_simultaneous_moves}-{self.max_simultaneous_moves} simultaneous moves...")             # <<<<<<<<<<<<<<
  *         cdef double start_time = time.time()
  *         cdef double last_improvement_time = time.time()
  */
-  __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 706, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 701, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_7 = 0;
   __pyx_t_8 = 127;
@@ -18030,17 +18464,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
   __pyx_t_7 += 37;
   __Pyx_GIVEREF(__pyx_kp_u_Starting_Smarter_Morphing_Phase);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_Starting_Smarter_Morphing_Phase);
-  __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_self->min_simultaneous_moves, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 706, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_self->min_simultaneous_moves, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 701, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_2);
   __pyx_t_2 = 0;
-  __Pyx_INCREF(__pyx_kp_u__14);
+  __Pyx_INCREF(__pyx_kp_u__16);
   __pyx_t_7 += 1;
-  __Pyx_GIVEREF(__pyx_kp_u__14);
-  PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u__14);
-  __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_self->max_simultaneous_moves, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 706, __pyx_L1_error)
+  __Pyx_GIVEREF(__pyx_kp_u__16);
+  PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u__16);
+  __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_self->max_simultaneous_moves, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 701, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
@@ -18050,24 +18484,24 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
   __pyx_t_7 += 22;
   __Pyx_GIVEREF(__pyx_kp_u_simultaneous_moves);
   PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_kp_u_simultaneous_moves);
-  __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_1, 5, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 706, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_1, 5, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 701, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 706, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 701, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":707
+  /* "ConnectedMatterAgent.pyx":702
  *         """
  *         print(f"Starting Smarter Morphing Phase with {self.min_simultaneous_moves}-{self.max_simultaneous_moves} simultaneous moves...")
  *         cdef double start_time = time.time()             # <<<<<<<<<<<<<<
  *         cdef double last_improvement_time = time.time()
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 707, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 702, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 707, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 702, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -18088,24 +18522,24 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 0+__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 707, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 702, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
-  __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 707, __pyx_L1_error)
+  __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 702, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_start_time = __pyx_t_9;
 
-  /* "ConnectedMatterAgent.pyx":708
+  /* "ConnectedMatterAgent.pyx":703
  *         print(f"Starting Smarter Morphing Phase with {self.min_simultaneous_moves}-{self.max_simultaneous_moves} simultaneous moves...")
  *         cdef double start_time = time.time()
  *         cdef double last_improvement_time = time.time()             # <<<<<<<<<<<<<<
  * 
  *         # Initialize beam search
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 708, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 703, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 708, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 703, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -18126,82 +18560,82 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
     PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_6, 0+__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 708, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 703, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 708, __pyx_L1_error)
+  __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 703, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_last_improvement_time = __pyx_t_9;
 
-  /* "ConnectedMatterAgent.pyx":711
+  /* "ConnectedMatterAgent.pyx":706
  * 
  *         # Initialize beam search
  *         open_set = [(self.improved_morphing_heuristic(start_state), 0, start_state)]             # <<<<<<<<<<<<<<
  *         cdef set closed_set = set()
  * 
  */
-  __pyx_t_9 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->improved_morphing_heuristic(__pyx_v_self, __pyx_v_start_state, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 711, __pyx_L1_error)
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 711, __pyx_L1_error)
+  __pyx_t_9 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->improved_morphing_heuristic(__pyx_v_self, __pyx_v_start_state, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 706, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 706, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 711, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 706, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1)) __PYX_ERR(0, 711, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1)) __PYX_ERR(0, 706, __pyx_L1_error);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_int_0)) __PYX_ERR(0, 711, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_int_0)) __PYX_ERR(0, 706, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_start_state);
   __Pyx_GIVEREF(__pyx_v_start_state);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_start_state)) __PYX_ERR(0, 711, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_start_state)) __PYX_ERR(0, 706, __pyx_L1_error);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 711, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 706, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 0, __pyx_t_2)) __PYX_ERR(0, 711, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 0, __pyx_t_2)) __PYX_ERR(0, 706, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_v_open_set = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":712
+  /* "ConnectedMatterAgent.pyx":707
  *         # Initialize beam search
  *         open_set = [(self.improved_morphing_heuristic(start_state), 0, start_state)]
  *         cdef set closed_set = set()             # <<<<<<<<<<<<<<
  * 
  *         # Track path, g-scores, and best state
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 712, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 707, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_closed_set = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":715
+  /* "ConnectedMatterAgent.pyx":710
  * 
  *         # Track path, g-scores, and best state
  *         cdef dict g_score = {start_state: 0}             # <<<<<<<<<<<<<<
  *         cdef dict came_from = {start_state: None}
  * 
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 715, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 710, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_v_start_state, __pyx_int_0) < 0) __PYX_ERR(0, 715, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_v_start_state, __pyx_int_0) < 0) __PYX_ERR(0, 710, __pyx_L1_error)
   __pyx_v_g_score = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":716
+  /* "ConnectedMatterAgent.pyx":711
  *         # Track path, g-scores, and best state
  *         cdef dict g_score = {start_state: 0}
  *         cdef dict came_from = {start_state: None}             # <<<<<<<<<<<<<<
  * 
  *         # Track best state seen so far
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 716, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 711, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_v_start_state, Py_None) < 0) __PYX_ERR(0, 716, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_v_start_state, Py_None) < 0) __PYX_ERR(0, 711, __pyx_L1_error)
   __pyx_v_came_from = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":719
+  /* "ConnectedMatterAgent.pyx":714
  * 
  *         # Track best state seen so far
  *         cdef object best_state = start_state             # <<<<<<<<<<<<<<
@@ -18211,17 +18645,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
   __Pyx_INCREF(__pyx_v_start_state);
   __pyx_v_best_state = __pyx_v_start_state;
 
-  /* "ConnectedMatterAgent.pyx":720
+  /* "ConnectedMatterAgent.pyx":715
  *         # Track best state seen so far
  *         cdef object best_state = start_state
  *         cdef double best_heuristic = self.improved_morphing_heuristic(start_state)             # <<<<<<<<<<<<<<
  *         cdef double current_heuristic, f, g, tentative_g, f_score
  *         cdef int iterations = 0
  */
-  __pyx_t_9 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->improved_morphing_heuristic(__pyx_v_self, __pyx_v_start_state, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 720, __pyx_L1_error)
+  __pyx_t_9 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->improved_morphing_heuristic(__pyx_v_self, __pyx_v_start_state, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 715, __pyx_L1_error)
   __pyx_v_best_heuristic = __pyx_t_9;
 
-  /* "ConnectedMatterAgent.pyx":722
+  /* "ConnectedMatterAgent.pyx":717
  *         cdef double best_heuristic = self.improved_morphing_heuristic(start_state)
  *         cdef double current_heuristic, f, g, tentative_g, f_score
  *         cdef int iterations = 0             # <<<<<<<<<<<<<<
@@ -18230,7 +18664,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
   __pyx_v_iterations = 0;
 
-  /* "ConnectedMatterAgent.pyx":725
+  /* "ConnectedMatterAgent.pyx":720
  *         cdef object current, neighbor
  * 
  *         while open_set and time.time() - start_time < time_limit:             # <<<<<<<<<<<<<<
@@ -18238,15 +18672,15 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  * 
  */
   while (1) {
-    __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_v_open_set); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 725, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_v_open_set); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 720, __pyx_L1_error)
     if (__pyx_t_11) {
     } else {
       __pyx_t_10 = __pyx_t_11;
       goto __pyx_L5_bool_binop_done;
     }
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 725, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 720, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 725, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 720, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_2 = NULL;
@@ -18267,28 +18701,28 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
       __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 0+__pyx_t_6);
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 725, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 720, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_start_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 725, __pyx_L1_error)
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_start_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 720, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyNumber_Subtract(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 725, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Subtract(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 720, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_time_limit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 725, __pyx_L1_error)
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_time_limit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 720, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 725, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 720, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 725, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 720, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_10 = __pyx_t_11;
     __pyx_L5_bool_binop_done:;
     if (!__pyx_t_10) break;
 
-    /* "ConnectedMatterAgent.pyx":726
+    /* "ConnectedMatterAgent.pyx":721
  * 
  *         while open_set and time.time() - start_time < time_limit:
  *             iterations += 1             # <<<<<<<<<<<<<<
@@ -18297,16 +18731,16 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
     __pyx_v_iterations = (__pyx_v_iterations + 1);
 
-    /* "ConnectedMatterAgent.pyx":729
+    /* "ConnectedMatterAgent.pyx":724
  * 
  *             # Get state with lowest f-score
  *             f, g, current = heapq.heappop(open_set)             # <<<<<<<<<<<<<<
  * 
  *             # Skip if already processed
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_heapq); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 729, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_heapq); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 724, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_heappop); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 729, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_heappop); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 724, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -18327,7 +18761,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_open_set};
       __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 729, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 724, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
@@ -18337,7 +18771,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       if (unlikely(size != 3)) {
         if (size > 3) __Pyx_RaiseTooManyValuesError(3);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 729, __pyx_L1_error)
+        __PYX_ERR(0, 724, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -18353,17 +18787,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       __Pyx_INCREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_t_3);
       #else
-      __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 729, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 724, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 729, __pyx_L1_error)
+      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 724, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_3 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 729, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 724, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 729, __pyx_L1_error)
+      __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 724, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_12 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_5);
@@ -18373,7 +18807,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       __Pyx_GOTREF(__pyx_t_4);
       index = 2; __pyx_t_3 = __pyx_t_12(__pyx_t_5); if (unlikely(!__pyx_t_3)) goto __pyx_L7_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_3);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_12(__pyx_t_5), 3) < 0) __PYX_ERR(0, 729, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_12(__pyx_t_5), 3) < 0) __PYX_ERR(0, 724, __pyx_L1_error)
       __pyx_t_12 = NULL;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       goto __pyx_L8_unpacking_done;
@@ -18381,29 +18815,29 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_12 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 729, __pyx_L1_error)
+      __PYX_ERR(0, 724, __pyx_L1_error)
       __pyx_L8_unpacking_done:;
     }
-    __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 729, __pyx_L1_error)
+    __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 724, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 729, __pyx_L1_error)
+    __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 724, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_v_f = __pyx_t_9;
     __pyx_v_g = __pyx_t_13;
     __Pyx_XDECREF_SET(__pyx_v_current, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "ConnectedMatterAgent.pyx":732
+    /* "ConnectedMatterAgent.pyx":727
  * 
  *             # Skip if already processed
  *             if current in closed_set:             # <<<<<<<<<<<<<<
  *                 continue
  * 
  */
-    __pyx_t_10 = (__Pyx_PySet_ContainsTF(__pyx_v_current, __pyx_v_closed_set, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 732, __pyx_L1_error)
+    __pyx_t_10 = (__Pyx_PySet_ContainsTF(__pyx_v_current, __pyx_v_closed_set, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 727, __pyx_L1_error)
     if (__pyx_t_10) {
 
-      /* "ConnectedMatterAgent.pyx":733
+      /* "ConnectedMatterAgent.pyx":728
  *             # Skip if already processed
  *             if current in closed_set:
  *                 continue             # <<<<<<<<<<<<<<
@@ -18412,7 +18846,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
       goto __pyx_L3_continue;
 
-      /* "ConnectedMatterAgent.pyx":732
+      /* "ConnectedMatterAgent.pyx":727
  * 
  *             # Skip if already processed
  *             if current in closed_set:             # <<<<<<<<<<<<<<
@@ -18421,26 +18855,26 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":736
+    /* "ConnectedMatterAgent.pyx":731
  * 
  *             # Check if goal reached
  *             if current == self.goal_state:             # <<<<<<<<<<<<<<
  *                 print(f"Goal reached after {iterations} iterations!")
  *                 return self.reconstruct_path(came_from, current)
  */
-    __pyx_t_1 = PyObject_RichCompare(__pyx_v_current, __pyx_v_self->goal_state, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 736, __pyx_L1_error)
-    __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 736, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_v_current, __pyx_v_self->goal_state, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 731, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 731, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_10) {
 
-      /* "ConnectedMatterAgent.pyx":737
+      /* "ConnectedMatterAgent.pyx":732
  *             # Check if goal reached
  *             if current == self.goal_state:
  *                 print(f"Goal reached after {iterations} iterations!")             # <<<<<<<<<<<<<<
  *                 return self.reconstruct_path(came_from, current)
  * 
  */
-      __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 737, __pyx_L1_error)
+      __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 732, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_t_7 = 0;
       __pyx_t_8 = 127;
@@ -18448,7 +18882,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       __pyx_t_7 += 19;
       __Pyx_GIVEREF(__pyx_kp_u_Goal_reached_after);
       PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_Goal_reached_after);
-      __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_iterations, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 737, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_iterations, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 732, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_3);
@@ -18458,15 +18892,15 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       __pyx_t_7 += 12;
       __Pyx_GIVEREF(__pyx_kp_u_iterations);
       PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u_iterations);
-      __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_1, 3, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 737, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_1, 3, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 732, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 737, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 732, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "ConnectedMatterAgent.pyx":738
+      /* "ConnectedMatterAgent.pyx":733
  *             if current == self.goal_state:
  *                 print(f"Goal reached after {iterations} iterations!")
  *                 return self.reconstruct_path(came_from, current)             # <<<<<<<<<<<<<<
@@ -18474,13 +18908,13 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  *             # Check if this is the best state seen so far
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_1 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->reconstruct_path(__pyx_v_self, __pyx_v_came_from, __pyx_v_current, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 738, __pyx_L1_error)
+      __pyx_t_1 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->reconstruct_path(__pyx_v_self, __pyx_v_came_from, __pyx_v_current, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 733, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_r = ((PyObject*)__pyx_t_1);
       __pyx_t_1 = 0;
       goto __pyx_L0;
 
-      /* "ConnectedMatterAgent.pyx":736
+      /* "ConnectedMatterAgent.pyx":731
  * 
  *             # Check if goal reached
  *             if current == self.goal_state:             # <<<<<<<<<<<<<<
@@ -18489,17 +18923,17 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":741
+    /* "ConnectedMatterAgent.pyx":736
  * 
  *             # Check if this is the best state seen so far
  *             current_heuristic = self.improved_morphing_heuristic(current)             # <<<<<<<<<<<<<<
  *             if current_heuristic < best_heuristic:
  *                 best_state = current
  */
-    __pyx_t_13 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->improved_morphing_heuristic(__pyx_v_self, __pyx_v_current, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 741, __pyx_L1_error)
+    __pyx_t_13 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->improved_morphing_heuristic(__pyx_v_self, __pyx_v_current, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 736, __pyx_L1_error)
     __pyx_v_current_heuristic = __pyx_t_13;
 
-    /* "ConnectedMatterAgent.pyx":742
+    /* "ConnectedMatterAgent.pyx":737
  *             # Check if this is the best state seen so far
  *             current_heuristic = self.improved_morphing_heuristic(current)
  *             if current_heuristic < best_heuristic:             # <<<<<<<<<<<<<<
@@ -18509,7 +18943,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
     __pyx_t_10 = (__pyx_v_current_heuristic < __pyx_v_best_heuristic);
     if (__pyx_t_10) {
 
-      /* "ConnectedMatterAgent.pyx":743
+      /* "ConnectedMatterAgent.pyx":738
  *             current_heuristic = self.improved_morphing_heuristic(current)
  *             if current_heuristic < best_heuristic:
  *                 best_state = current             # <<<<<<<<<<<<<<
@@ -18519,7 +18953,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       __Pyx_INCREF(__pyx_v_current);
       __Pyx_DECREF_SET(__pyx_v_best_state, __pyx_v_current);
 
-      /* "ConnectedMatterAgent.pyx":744
+      /* "ConnectedMatterAgent.pyx":739
  *             if current_heuristic < best_heuristic:
  *                 best_state = current
  *                 best_heuristic = current_heuristic             # <<<<<<<<<<<<<<
@@ -18528,16 +18962,16 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
       __pyx_v_best_heuristic = __pyx_v_current_heuristic;
 
-      /* "ConnectedMatterAgent.pyx":745
+      /* "ConnectedMatterAgent.pyx":740
  *                 best_state = current
  *                 best_heuristic = current_heuristic
  *                 last_improvement_time = time.time()             # <<<<<<<<<<<<<<
  * 
  *                 # Print progress occasionally
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 745, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 740, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 745, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 740, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_3 = NULL;
@@ -18558,15 +18992,15 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
         PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
         __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 0+__pyx_t_6);
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 745, __pyx_L1_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 740, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
-      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 745, __pyx_L1_error)
+      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 740, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_last_improvement_time = __pyx_t_13;
 
-      /* "ConnectedMatterAgent.pyx":748
+      /* "ConnectedMatterAgent.pyx":743
  * 
  *                 # Print progress occasionally
  *                 if iterations % 500 == 0:             # <<<<<<<<<<<<<<
@@ -18576,14 +19010,14 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       __pyx_t_10 = (__Pyx_mod_long(__pyx_v_iterations, 0x1F4) == 0);
       if (__pyx_t_10) {
 
-        /* "ConnectedMatterAgent.pyx":749
+        /* "ConnectedMatterAgent.pyx":744
  *                 # Print progress occasionally
  *                 if iterations % 500 == 0:
  *                     print(f"Progress: h={best_heuristic}, iterations={iterations}")             # <<<<<<<<<<<<<<
  * 
  *             # Check for stagnation
  */
-        __pyx_t_1 = PyTuple_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 749, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 744, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __pyx_t_7 = 0;
         __pyx_t_8 = 127;
@@ -18591,9 +19025,9 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
         __pyx_t_7 += 12;
         __Pyx_GIVEREF(__pyx_kp_u_Progress_h);
         PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_Progress_h);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_best_heuristic); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 749, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_best_heuristic); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 744, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 749, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 744, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_8 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) > __pyx_t_8) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) : __pyx_t_8;
@@ -18605,21 +19039,21 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
         __pyx_t_7 += 13;
         __Pyx_GIVEREF(__pyx_kp_u_iterations_2);
         PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u_iterations_2);
-        __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_iterations, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 749, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_iterations, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 744, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
         __Pyx_GIVEREF(__pyx_t_3);
         PyTuple_SET_ITEM(__pyx_t_1, 3, __pyx_t_3);
         __pyx_t_3 = 0;
-        __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_1, 4, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 749, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_1, 4, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 744, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 749, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 744, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-        /* "ConnectedMatterAgent.pyx":748
+        /* "ConnectedMatterAgent.pyx":743
  * 
  *                 # Print progress occasionally
  *                 if iterations % 500 == 0:             # <<<<<<<<<<<<<<
@@ -18628,7 +19062,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
       }
 
-      /* "ConnectedMatterAgent.pyx":742
+      /* "ConnectedMatterAgent.pyx":737
  *             # Check if this is the best state seen so far
  *             current_heuristic = self.improved_morphing_heuristic(current)
  *             if current_heuristic < best_heuristic:             # <<<<<<<<<<<<<<
@@ -18637,16 +19071,16 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":752
+    /* "ConnectedMatterAgent.pyx":747
  * 
  *             # Check for stagnation
  *             if time.time() - last_improvement_time > time_limit * 0.3:             # <<<<<<<<<<<<<<
  *                 print("Search stagnated, restarting...")
  *                 # Clear the beam and start from the best state
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 752, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 747, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 752, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 747, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -18667,76 +19101,76 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
       __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 0+__pyx_t_6);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 752, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 747, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_last_improvement_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 752, __pyx_L1_error)
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_last_improvement_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 747, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 752, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 747, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyFloat_FromDouble((__pyx_v_time_limit * 0.3)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 752, __pyx_L1_error)
+    __pyx_t_4 = PyFloat_FromDouble((__pyx_v_time_limit * 0.3)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 747, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 752, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 747, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 752, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 747, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_10) {
 
-      /* "ConnectedMatterAgent.pyx":753
+      /* "ConnectedMatterAgent.pyx":748
  *             # Check for stagnation
  *             if time.time() - last_improvement_time > time_limit * 0.3:
  *                 print("Search stagnated, restarting...")             # <<<<<<<<<<<<<<
  *                 # Clear the beam and start from the best state
  *                 open_set = [(best_heuristic, g_score[best_state], best_state)]
  */
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 753, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 748, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "ConnectedMatterAgent.pyx":755
+      /* "ConnectedMatterAgent.pyx":750
  *                 print("Search stagnated, restarting...")
  *                 # Clear the beam and start from the best state
  *                 open_set = [(best_heuristic, g_score[best_state], best_state)]             # <<<<<<<<<<<<<<
  *                 last_improvement_time = time.time()
  * 
  */
-      __pyx_t_1 = PyFloat_FromDouble(__pyx_v_best_heuristic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 755, __pyx_L1_error)
+      __pyx_t_1 = PyFloat_FromDouble(__pyx_v_best_heuristic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 750, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v_g_score, __pyx_v_best_state); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 755, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v_g_score, __pyx_v_best_state); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 750, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 755, __pyx_L1_error)
+      __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 750, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_1);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 755, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(0, 750, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_4);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_4)) __PYX_ERR(0, 755, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_4)) __PYX_ERR(0, 750, __pyx_L1_error);
       __Pyx_INCREF(__pyx_v_best_state);
       __Pyx_GIVEREF(__pyx_v_best_state);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_best_state)) __PYX_ERR(0, 755, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_best_state)) __PYX_ERR(0, 750, __pyx_L1_error);
       __pyx_t_1 = 0;
       __pyx_t_4 = 0;
-      __pyx_t_4 = PyList_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 755, __pyx_L1_error)
+      __pyx_t_4 = PyList_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 750, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_3);
-      if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 0, __pyx_t_3)) __PYX_ERR(0, 755, __pyx_L1_error);
+      if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 0, __pyx_t_3)) __PYX_ERR(0, 750, __pyx_L1_error);
       __pyx_t_3 = 0;
       __Pyx_DECREF_SET(__pyx_v_open_set, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "ConnectedMatterAgent.pyx":756
+      /* "ConnectedMatterAgent.pyx":751
  *                 # Clear the beam and start from the best state
  *                 open_set = [(best_heuristic, g_score[best_state], best_state)]
  *                 last_improvement_time = time.time()             # <<<<<<<<<<<<<<
  * 
  *             # Limit iterations to prevent infinite loops
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 756, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 751, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 756, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 751, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_3 = NULL;
@@ -18757,15 +19191,15 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
         PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
         __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_6, 0+__pyx_t_6);
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 756, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 751, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       }
-      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 756, __pyx_L1_error)
+      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 751, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_v_last_improvement_time = __pyx_t_13;
 
-      /* "ConnectedMatterAgent.pyx":752
+      /* "ConnectedMatterAgent.pyx":747
  * 
  *             # Check for stagnation
  *             if time.time() - last_improvement_time > time_limit * 0.3:             # <<<<<<<<<<<<<<
@@ -18774,7 +19208,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":759
+    /* "ConnectedMatterAgent.pyx":754
  * 
  *             # Limit iterations to prevent infinite loops
  *             if iterations >= self.max_iterations:             # <<<<<<<<<<<<<<
@@ -18784,14 +19218,14 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
     __pyx_t_10 = (__pyx_v_iterations >= __pyx_v_self->max_iterations);
     if (__pyx_t_10) {
 
-      /* "ConnectedMatterAgent.pyx":760
+      /* "ConnectedMatterAgent.pyx":755
  *             # Limit iterations to prevent infinite loops
  *             if iterations >= self.max_iterations:
  *                 print(f"Reached max iterations ({self.max_iterations})")             # <<<<<<<<<<<<<<
  *                 break
  * 
  */
-      __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 760, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 755, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_7 = 0;
       __pyx_t_8 = 127;
@@ -18799,25 +19233,25 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       __pyx_t_7 += 24;
       __Pyx_GIVEREF(__pyx_kp_u_Reached_max_iterations);
       PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_kp_u_Reached_max_iterations);
-      __pyx_t_1 = __Pyx_PyUnicode_From_int(__pyx_v_self->max_iterations, 0, ' ', 'd'); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 760, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyUnicode_From_int(__pyx_v_self->max_iterations, 0, ' ', 'd'); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 755, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_1);
       __pyx_t_1 = 0;
-      __Pyx_INCREF(__pyx_kp_u__16);
+      __Pyx_INCREF(__pyx_kp_u__18);
       __pyx_t_7 += 1;
-      __Pyx_GIVEREF(__pyx_kp_u__16);
-      PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_kp_u__16);
-      __pyx_t_1 = __Pyx_PyUnicode_Join(__pyx_t_4, 3, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 760, __pyx_L1_error)
+      __Pyx_GIVEREF(__pyx_kp_u__18);
+      PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_kp_u__18);
+      __pyx_t_1 = __Pyx_PyUnicode_Join(__pyx_t_4, 3, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 755, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 760, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 755, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "ConnectedMatterAgent.pyx":761
+      /* "ConnectedMatterAgent.pyx":756
  *             if iterations >= self.max_iterations:
  *                 print(f"Reached max iterations ({self.max_iterations})")
  *                 break             # <<<<<<<<<<<<<<
@@ -18826,7 +19260,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
       goto __pyx_L4_break;
 
-      /* "ConnectedMatterAgent.pyx":759
+      /* "ConnectedMatterAgent.pyx":754
  * 
  *             # Limit iterations to prevent infinite loops
  *             if iterations >= self.max_iterations:             # <<<<<<<<<<<<<<
@@ -18835,28 +19269,28 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
     }
 
-    /* "ConnectedMatterAgent.pyx":763
+    /* "ConnectedMatterAgent.pyx":758
  *                 break
  * 
  *             closed_set.add(current)             # <<<<<<<<<<<<<<
  * 
  *             # Get all valid moves
  */
-    __pyx_t_14 = PySet_Add(__pyx_v_closed_set, __pyx_v_current); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 763, __pyx_L1_error)
+    __pyx_t_14 = PySet_Add(__pyx_v_closed_set, __pyx_v_current); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 758, __pyx_L1_error)
 
-    /* "ConnectedMatterAgent.pyx":766
+    /* "ConnectedMatterAgent.pyx":761
  * 
  *             # Get all valid moves
  *             neighbors = self.get_all_valid_moves(current)             # <<<<<<<<<<<<<<
  * 
  *             # Process each neighbor
  */
-    __pyx_t_4 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_all_valid_moves(__pyx_v_self, __pyx_v_current, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 766, __pyx_L1_error)
+    __pyx_t_4 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->get_all_valid_moves(__pyx_v_self, __pyx_v_current, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 761, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_XDECREF_SET(__pyx_v_neighbors, ((PyObject*)__pyx_t_4));
     __pyx_t_4 = 0;
 
-    /* "ConnectedMatterAgent.pyx":769
+    /* "ConnectedMatterAgent.pyx":764
  * 
  *             # Process each neighbor
  *             for neighbor in neighbors:             # <<<<<<<<<<<<<<
@@ -18865,7 +19299,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
     if (unlikely(__pyx_v_neighbors == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 769, __pyx_L1_error)
+      __PYX_ERR(0, 764, __pyx_L1_error)
     }
     __pyx_t_4 = __pyx_v_neighbors; __Pyx_INCREF(__pyx_t_4);
     __pyx_t_7 = 0;
@@ -18873,30 +19307,30 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_4);
         #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 769, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 764, __pyx_L1_error)
         #endif
         if (__pyx_t_7 >= __pyx_temp) break;
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_1 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely((0 < 0))) __PYX_ERR(0, 769, __pyx_L1_error)
+      __pyx_t_1 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely((0 < 0))) __PYX_ERR(0, 764, __pyx_L1_error)
       #else
-      __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_4, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 769, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_4, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 764, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       #endif
       __Pyx_XDECREF_SET(__pyx_v_neighbor, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "ConnectedMatterAgent.pyx":770
+      /* "ConnectedMatterAgent.pyx":765
  *             # Process each neighbor
  *             for neighbor in neighbors:
  *                 if neighbor in closed_set:             # <<<<<<<<<<<<<<
  *                     continue
  * 
  */
-      __pyx_t_10 = (__Pyx_PySet_ContainsTF(__pyx_v_neighbor, __pyx_v_closed_set, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 770, __pyx_L1_error)
+      __pyx_t_10 = (__Pyx_PySet_ContainsTF(__pyx_v_neighbor, __pyx_v_closed_set, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 765, __pyx_L1_error)
       if (__pyx_t_10) {
 
-        /* "ConnectedMatterAgent.pyx":771
+        /* "ConnectedMatterAgent.pyx":766
  *             for neighbor in neighbors:
  *                 if neighbor in closed_set:
  *                     continue             # <<<<<<<<<<<<<<
@@ -18905,7 +19339,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
         goto __pyx_L15_continue;
 
-        /* "ConnectedMatterAgent.pyx":770
+        /* "ConnectedMatterAgent.pyx":765
  *             # Process each neighbor
  *             for neighbor in neighbors:
  *                 if neighbor in closed_set:             # <<<<<<<<<<<<<<
@@ -18914,104 +19348,104 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
       }
 
-      /* "ConnectedMatterAgent.pyx":774
+      /* "ConnectedMatterAgent.pyx":769
  * 
  *                 # Calculate tentative g-score
  *                 tentative_g = g_score[current] + 1             # <<<<<<<<<<<<<<
  * 
  *                 if neighbor not in g_score or tentative_g < g_score[neighbor]:
  */
-      __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_g_score, __pyx_v_current); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 774, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_g_score, __pyx_v_current); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 769, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_3 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 774, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 769, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 774, __pyx_L1_error)
+      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 769, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_v_tentative_g = __pyx_t_13;
 
-      /* "ConnectedMatterAgent.pyx":776
+      /* "ConnectedMatterAgent.pyx":771
  *                 tentative_g = g_score[current] + 1
  * 
  *                 if neighbor not in g_score or tentative_g < g_score[neighbor]:             # <<<<<<<<<<<<<<
  *                     # This is a better path
  *                     came_from[neighbor] = current
  */
-      __pyx_t_11 = (__Pyx_PyDict_ContainsTF(__pyx_v_neighbor, __pyx_v_g_score, Py_NE)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 776, __pyx_L1_error)
+      __pyx_t_11 = (__Pyx_PyDict_ContainsTF(__pyx_v_neighbor, __pyx_v_g_score, Py_NE)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 771, __pyx_L1_error)
       if (!__pyx_t_11) {
       } else {
         __pyx_t_10 = __pyx_t_11;
         goto __pyx_L19_bool_binop_done;
       }
-      __pyx_t_3 = PyFloat_FromDouble(__pyx_v_tentative_g); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 776, __pyx_L1_error)
+      __pyx_t_3 = PyFloat_FromDouble(__pyx_v_tentative_g); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 771, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_g_score, __pyx_v_neighbor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 776, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_g_score, __pyx_v_neighbor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 771, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = PyObject_RichCompare(__pyx_t_3, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 776, __pyx_L1_error)
+      __pyx_t_2 = PyObject_RichCompare(__pyx_t_3, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 771, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 776, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 771, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_10 = __pyx_t_11;
       __pyx_L19_bool_binop_done:;
       if (__pyx_t_10) {
 
-        /* "ConnectedMatterAgent.pyx":778
+        /* "ConnectedMatterAgent.pyx":773
  *                 if neighbor not in g_score or tentative_g < g_score[neighbor]:
  *                     # This is a better path
  *                     came_from[neighbor] = current             # <<<<<<<<<<<<<<
  *                     g_score[neighbor] = tentative_g
  *                     f_score = tentative_g + self.improved_morphing_heuristic(neighbor)
  */
-        if (unlikely((PyDict_SetItem(__pyx_v_came_from, __pyx_v_neighbor, __pyx_v_current) < 0))) __PYX_ERR(0, 778, __pyx_L1_error)
+        if (unlikely((PyDict_SetItem(__pyx_v_came_from, __pyx_v_neighbor, __pyx_v_current) < 0))) __PYX_ERR(0, 773, __pyx_L1_error)
 
-        /* "ConnectedMatterAgent.pyx":779
+        /* "ConnectedMatterAgent.pyx":774
  *                     # This is a better path
  *                     came_from[neighbor] = current
  *                     g_score[neighbor] = tentative_g             # <<<<<<<<<<<<<<
  *                     f_score = tentative_g + self.improved_morphing_heuristic(neighbor)
  * 
  */
-        __pyx_t_2 = PyFloat_FromDouble(__pyx_v_tentative_g); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 779, __pyx_L1_error)
+        __pyx_t_2 = PyFloat_FromDouble(__pyx_v_tentative_g); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 774, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        if (unlikely((PyDict_SetItem(__pyx_v_g_score, __pyx_v_neighbor, __pyx_t_2) < 0))) __PYX_ERR(0, 779, __pyx_L1_error)
+        if (unlikely((PyDict_SetItem(__pyx_v_g_score, __pyx_v_neighbor, __pyx_t_2) < 0))) __PYX_ERR(0, 774, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "ConnectedMatterAgent.pyx":780
+        /* "ConnectedMatterAgent.pyx":775
  *                     came_from[neighbor] = current
  *                     g_score[neighbor] = tentative_g
  *                     f_score = tentative_g + self.improved_morphing_heuristic(neighbor)             # <<<<<<<<<<<<<<
  * 
  *                     # Add to open set
  */
-        __pyx_t_13 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->improved_morphing_heuristic(__pyx_v_self, __pyx_v_neighbor, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 780, __pyx_L1_error)
+        __pyx_t_13 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->improved_morphing_heuristic(__pyx_v_self, __pyx_v_neighbor, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 775, __pyx_L1_error)
         __pyx_v_f_score = (__pyx_v_tentative_g + __pyx_t_13);
 
-        /* "ConnectedMatterAgent.pyx":783
+        /* "ConnectedMatterAgent.pyx":778
  * 
  *                     # Add to open set
  *                     heapq.heappush(open_set, (f_score, tentative_g, neighbor))             # <<<<<<<<<<<<<<
  * 
  *             # Beam search pruning: keep only the best states
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_heapq); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 783, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_heapq); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 778, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_heappush); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 783, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_heappush); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 778, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_1 = PyFloat_FromDouble(__pyx_v_f_score); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 783, __pyx_L1_error)
+        __pyx_t_1 = PyFloat_FromDouble(__pyx_v_f_score); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 778, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_5 = PyFloat_FromDouble(__pyx_v_tentative_g); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 783, __pyx_L1_error)
+        __pyx_t_5 = PyFloat_FromDouble(__pyx_v_tentative_g); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 778, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_15 = PyTuple_New(3); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 783, __pyx_L1_error)
+        __pyx_t_15 = PyTuple_New(3); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 778, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_15);
         __Pyx_GIVEREF(__pyx_t_1);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_1)) __PYX_ERR(0, 783, __pyx_L1_error);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_1)) __PYX_ERR(0, 778, __pyx_L1_error);
         __Pyx_GIVEREF(__pyx_t_5);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 1, __pyx_t_5)) __PYX_ERR(0, 783, __pyx_L1_error);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 1, __pyx_t_5)) __PYX_ERR(0, 778, __pyx_L1_error);
         __Pyx_INCREF(__pyx_v_neighbor);
         __Pyx_GIVEREF(__pyx_v_neighbor);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 2, __pyx_v_neighbor)) __PYX_ERR(0, 783, __pyx_L1_error);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_15, 2, __pyx_v_neighbor)) __PYX_ERR(0, 778, __pyx_L1_error);
         __pyx_t_1 = 0;
         __pyx_t_5 = 0;
         __pyx_t_5 = NULL;
@@ -19033,13 +19467,13 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_6, 2+__pyx_t_6);
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 783, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 778, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "ConnectedMatterAgent.pyx":776
+        /* "ConnectedMatterAgent.pyx":771
  *                 tentative_g = g_score[current] + 1
  * 
  *                 if neighbor not in g_score or tentative_g < g_score[neighbor]:             # <<<<<<<<<<<<<<
@@ -19048,7 +19482,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
       }
 
-      /* "ConnectedMatterAgent.pyx":769
+      /* "ConnectedMatterAgent.pyx":764
  * 
  *             # Process each neighbor
  *             for neighbor in neighbors:             # <<<<<<<<<<<<<<
@@ -19059,30 +19493,30 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "ConnectedMatterAgent.pyx":786
+    /* "ConnectedMatterAgent.pyx":781
  * 
  *             # Beam search pruning: keep only the best states
  *             if len(open_set) > self.beam_width:             # <<<<<<<<<<<<<<
  *                 open_set = heapq.nsmallest(self.beam_width, open_set)
  *                 heapq.heapify(open_set)
  */
-    __pyx_t_7 = PyObject_Length(__pyx_v_open_set); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 786, __pyx_L1_error)
+    __pyx_t_7 = PyObject_Length(__pyx_v_open_set); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 781, __pyx_L1_error)
     __pyx_t_10 = (__pyx_t_7 > __pyx_v_self->beam_width);
     if (__pyx_t_10) {
 
-      /* "ConnectedMatterAgent.pyx":787
+      /* "ConnectedMatterAgent.pyx":782
  *             # Beam search pruning: keep only the best states
  *             if len(open_set) > self.beam_width:
  *                 open_set = heapq.nsmallest(self.beam_width, open_set)             # <<<<<<<<<<<<<<
  *                 heapq.heapify(open_set)
  * 
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heapq); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 787, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heapq); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 782, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_nsmallest); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 787, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_nsmallest); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 782, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->beam_width); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 787, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->beam_width); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 782, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_15 = NULL;
       __pyx_t_6 = 0;
@@ -19103,23 +19537,23 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
         __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_6, 2+__pyx_t_6);
         __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 787, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 782, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       }
       __Pyx_DECREF_SET(__pyx_v_open_set, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "ConnectedMatterAgent.pyx":788
+      /* "ConnectedMatterAgent.pyx":783
  *             if len(open_set) > self.beam_width:
  *                 open_set = heapq.nsmallest(self.beam_width, open_set)
  *                 heapq.heapify(open_set)             # <<<<<<<<<<<<<<
  * 
  *         # If we exit the loop, either no path was found or time limit reached
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_heapq); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 788, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_heapq); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 783, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_heapify); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 788, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_heapify); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 783, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_3 = NULL;
@@ -19140,13 +19574,13 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
         PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_open_set};
         __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 788, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 783, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       }
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "ConnectedMatterAgent.pyx":786
+      /* "ConnectedMatterAgent.pyx":781
  * 
  *             # Beam search pruning: keep only the best states
  *             if len(open_set) > self.beam_width:             # <<<<<<<<<<<<<<
@@ -19158,16 +19592,16 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
   }
   __pyx_L4_break:;
 
-  /* "ConnectedMatterAgent.pyx":791
+  /* "ConnectedMatterAgent.pyx":786
  * 
  *         # If we exit the loop, either no path was found or time limit reached
  *         if time.time() - start_time >= time_limit:             # <<<<<<<<<<<<<<
  *             print(f"Morphing phase timed out after {iterations} iterations!")
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 791, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 786, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 791, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 786, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -19188,33 +19622,33 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_6, 0+__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 791, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 786, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_start_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 791, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_start_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 786, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyNumber_Subtract(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 791, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 786, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_time_limit); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 791, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_time_limit); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 786, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_t_3, Py_GE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 791, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_t_3, Py_GE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 786, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 791, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 786, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_10) {
 
-    /* "ConnectedMatterAgent.pyx":792
+    /* "ConnectedMatterAgent.pyx":787
  *         # If we exit the loop, either no path was found or time limit reached
  *         if time.time() - start_time >= time_limit:
  *             print(f"Morphing phase timed out after {iterations} iterations!")             # <<<<<<<<<<<<<<
  * 
  *         # Return the best state found
  */
-    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 792, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 787, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_7 = 0;
     __pyx_t_8 = 127;
@@ -19222,7 +19656,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
     __pyx_t_7 += 31;
     __Pyx_GIVEREF(__pyx_kp_u_Morphing_phase_timed_out_after);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_kp_u_Morphing_phase_timed_out_after);
-    __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_iterations, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 792, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_iterations, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 787, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_7 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
@@ -19232,15 +19666,15 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
     __pyx_t_7 += 12;
     __Pyx_GIVEREF(__pyx_kp_u_iterations);
     PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_kp_u_iterations);
-    __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_4, 3, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 792, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_4, 3, __pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 787, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 792, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 787, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "ConnectedMatterAgent.pyx":791
+    /* "ConnectedMatterAgent.pyx":786
  * 
  *         # If we exit the loop, either no path was found or time limit reached
  *         if time.time() - start_time >= time_limit:             # <<<<<<<<<<<<<<
@@ -19249,7 +19683,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  */
   }
 
-  /* "ConnectedMatterAgent.pyx":795
+  /* "ConnectedMatterAgent.pyx":790
  * 
  *         # Return the best state found
  *         return self.reconstruct_path(came_from, best_state)             # <<<<<<<<<<<<<<
@@ -19257,13 +19691,13 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_smarter_m
  *     cpdef list reconstruct_path(self, dict came_from, object current):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->reconstruct_path(__pyx_v_self, __pyx_v_came_from, __pyx_v_best_state, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 795, __pyx_L1_error)
+  __pyx_t_4 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->reconstruct_path(__pyx_v_self, __pyx_v_came_from, __pyx_v_best_state, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 790, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = ((PyObject*)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "ConnectedMatterAgent.pyx":701
+  /* "ConnectedMatterAgent.pyx":696
  *         return [self.start_state]  # No movement possible
  * 
  *     cpdef list smarter_morphing_phase(self, object start_state, double time_limit=15):             # <<<<<<<<<<<<<<
@@ -19352,19 +19786,19 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 701, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 696, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_time_limit);
           if (value) { values[1] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 701, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 696, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "smarter_morphing_phase") < 0)) __PYX_ERR(0, 701, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "smarter_morphing_phase") < 0)) __PYX_ERR(0, 696, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -19377,14 +19811,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
     }
     __pyx_v_start_state = values[0];
     if (values[1]) {
-      __pyx_v_time_limit = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_time_limit == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 701, __pyx_L3_error)
+      __pyx_v_time_limit = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_time_limit == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 696, __pyx_L3_error)
     } else {
       __pyx_v_time_limit = ((double)15.0);
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("smarter_morphing_phase", 0, 1, 2, __pyx_nargs); __PYX_ERR(0, 701, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("smarter_morphing_phase", 0, 1, 2, __pyx_nargs); __PYX_ERR(0, 696, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -19423,7 +19857,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_28smarte
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.time_limit = __pyx_v_time_limit;
-  __pyx_t_1 = __pyx_vtabptr_20ConnectedMatterAgent_ConnectedMatterAgent->smarter_morphing_phase(__pyx_v_self, __pyx_v_start_state, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 701, __pyx_L1_error)
+  __pyx_t_1 = __pyx_vtabptr_20ConnectedMatterAgent_ConnectedMatterAgent->smarter_morphing_phase(__pyx_v_self, __pyx_v_start_state, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 696, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19440,7 +19874,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_28smarte
   return __pyx_r;
 }
 
-/* "ConnectedMatterAgent.pyx":797
+/* "ConnectedMatterAgent.pyx":792
  *         return self.reconstruct_path(came_from, best_state)
  * 
  *     cpdef list reconstruct_path(self, dict came_from, object current):             # <<<<<<<<<<<<<<
@@ -19480,7 +19914,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_reconstru
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_reconstruct_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 797, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_reconstruct_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 792, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_20ConnectedMatterAgent_20ConnectedMatterAgent_31reconstruct_path)) {
         __Pyx_XDECREF(__pyx_r);
@@ -19503,11 +19937,11 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_reconstru
           PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_v_came_from, __pyx_v_current};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 797, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 792, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
-        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 797, __pyx_L1_error)
+        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 792, __pyx_L1_error)
         __pyx_r = ((PyObject*)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -19526,19 +19960,19 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_reconstru
     #endif
   }
 
-  /* "ConnectedMatterAgent.pyx":801
+  /* "ConnectedMatterAgent.pyx":796
  *         Reconstruct the path from start to goal
  *         """
  *         cdef list path = []             # <<<<<<<<<<<<<<
  *         while current:
  *             path.append(list(current))
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 801, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 796, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_path = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":802
+  /* "ConnectedMatterAgent.pyx":797
  *         """
  *         cdef list path = []
  *         while current:             # <<<<<<<<<<<<<<
@@ -19546,22 +19980,22 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_reconstru
  *             current = came_from.get(current)
  */
   while (1) {
-    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_current); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 802, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_current); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 797, __pyx_L1_error)
     if (!__pyx_t_6) break;
 
-    /* "ConnectedMatterAgent.pyx":803
+    /* "ConnectedMatterAgent.pyx":798
  *         cdef list path = []
  *         while current:
  *             path.append(list(current))             # <<<<<<<<<<<<<<
  *             current = came_from.get(current)
  * 
  */
-    __pyx_t_1 = PySequence_List(__pyx_v_current); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 803, __pyx_L1_error)
+    __pyx_t_1 = PySequence_List(__pyx_v_current); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 798, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_path, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 803, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_path, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 798, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "ConnectedMatterAgent.pyx":804
+    /* "ConnectedMatterAgent.pyx":799
  *         while current:
  *             path.append(list(current))
  *             current = came_from.get(current)             # <<<<<<<<<<<<<<
@@ -19570,24 +20004,24 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_reconstru
  */
     if (unlikely(__pyx_v_came_from == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "get");
-      __PYX_ERR(0, 804, __pyx_L1_error)
+      __PYX_ERR(0, 799, __pyx_L1_error)
     }
-    __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_came_from, __pyx_v_current, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 804, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_came_from, __pyx_v_current, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 799, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_current, __pyx_t_1);
     __pyx_t_1 = 0;
   }
 
-  /* "ConnectedMatterAgent.pyx":806
+  /* "ConnectedMatterAgent.pyx":801
  *             current = came_from.get(current)
  * 
  *         path.reverse()             # <<<<<<<<<<<<<<
  *         return path
  * 
  */
-  __pyx_t_7 = PyList_Reverse(__pyx_v_path); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 806, __pyx_L1_error)
+  __pyx_t_7 = PyList_Reverse(__pyx_v_path); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 801, __pyx_L1_error)
 
-  /* "ConnectedMatterAgent.pyx":807
+  /* "ConnectedMatterAgent.pyx":802
  * 
  *         path.reverse()
  *         return path             # <<<<<<<<<<<<<<
@@ -19599,7 +20033,7 @@ static PyObject *__pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_reconstru
   __pyx_r = __pyx_v_path;
   goto __pyx_L0;
 
-  /* "ConnectedMatterAgent.pyx":797
+  /* "ConnectedMatterAgent.pyx":792
  *         return self.reconstruct_path(came_from, best_state)
  * 
  *     cpdef list reconstruct_path(self, dict came_from, object current):             # <<<<<<<<<<<<<<
@@ -19680,7 +20114,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 797, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 792, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -19688,14 +20122,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 797, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 792, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("reconstruct_path", 1, 2, 2, 1); __PYX_ERR(0, 797, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("reconstruct_path", 1, 2, 2, 1); __PYX_ERR(0, 792, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "reconstruct_path") < 0)) __PYX_ERR(0, 797, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "reconstruct_path") < 0)) __PYX_ERR(0, 792, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -19708,7 +20142,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("reconstruct_path", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 797, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("reconstruct_path", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 792, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -19722,7 +20156,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_came_from), (&PyDict_Type), 1, "came_from", 1))) __PYX_ERR(0, 797, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_came_from), (&PyDict_Type), 1, "came_from", 1))) __PYX_ERR(0, 792, __pyx_L1_error)
   __pyx_r = __pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_30reconstruct_path(((struct __pyx_obj_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self), __pyx_v_came_from, __pyx_v_current);
 
   /* function exit code */
@@ -19749,7 +20183,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_30recons
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("reconstruct_path", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_reconstruct_path(__pyx_v_self, __pyx_v_came_from, __pyx_v_current, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 797, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_20ConnectedMatterAgent_20ConnectedMatterAgent_reconstruct_path(__pyx_v_self, __pyx_v_came_from, __pyx_v_current, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 792, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19766,7 +20200,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_30recons
   return __pyx_r;
 }
 
-/* "ConnectedMatterAgent.pyx":809
+/* "ConnectedMatterAgent.pyx":804
  *         return path
  * 
  *     def search(self, double time_limit=30):             # <<<<<<<<<<<<<<
@@ -19827,12 +20261,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_time_limit);
           if (value) { values[0] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 809, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 804, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "search") < 0)) __PYX_ERR(0, 809, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "search") < 0)) __PYX_ERR(0, 804, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -19843,14 +20277,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       }
     }
     if (values[0]) {
-      __pyx_v_time_limit = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_time_limit == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 809, __pyx_L3_error)
+      __pyx_v_time_limit = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_time_limit == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 804, __pyx_L3_error)
     } else {
       __pyx_v_time_limit = ((double)30.0);
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("search", 0, 0, 1, __pyx_nargs); __PYX_ERR(0, 809, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("search", 0, 0, 1, __pyx_nargs); __PYX_ERR(0, 804, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -19897,7 +20331,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("search", 1);
 
-  /* "ConnectedMatterAgent.pyx":814
+  /* "ConnectedMatterAgent.pyx":809
  *         """
  *         # Allocate time for each phase
  *         cdef double block_time_limit = time_limit * 0.3  # 30% for block movement             # <<<<<<<<<<<<<<
@@ -19906,7 +20340,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
  */
   __pyx_v_block_time_limit = (__pyx_v_time_limit * 0.3);
 
-  /* "ConnectedMatterAgent.pyx":815
+  /* "ConnectedMatterAgent.pyx":810
  *         # Allocate time for each phase
  *         cdef double block_time_limit = time_limit * 0.3  # 30% for block movement
  *         cdef double morphing_time_limit = time_limit * 0.7  # 70% for morphing             # <<<<<<<<<<<<<<
@@ -19915,7 +20349,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
  */
   __pyx_v_morphing_time_limit = (__pyx_v_time_limit * 0.7);
 
-  /* "ConnectedMatterAgent.pyx":818
+  /* "ConnectedMatterAgent.pyx":813
  * 
  *         # Phase 1: Block Movement
  *         block_path = self.block_movement_phase(block_time_limit)             # <<<<<<<<<<<<<<
@@ -19924,12 +20358,12 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
  */
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.time_limit = __pyx_v_block_time_limit;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->block_movement_phase(__pyx_v_self, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 818, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->block_movement_phase(__pyx_v_self, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 813, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_block_path = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":820
+  /* "ConnectedMatterAgent.pyx":815
  *         block_path = self.block_movement_phase(block_time_limit)
  * 
  *         if not block_path:             # <<<<<<<<<<<<<<
@@ -19940,18 +20374,18 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
   __pyx_t_4 = (!__pyx_t_3);
   if (__pyx_t_4) {
 
-    /* "ConnectedMatterAgent.pyx":821
+    /* "ConnectedMatterAgent.pyx":816
  * 
  *         if not block_path:
  *             print("Block movement phase failed!")             # <<<<<<<<<<<<<<
  *             return None
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 821, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 816, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "ConnectedMatterAgent.pyx":822
+    /* "ConnectedMatterAgent.pyx":817
  *         if not block_path:
  *             print("Block movement phase failed!")
  *             return None             # <<<<<<<<<<<<<<
@@ -19962,7 +20396,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "ConnectedMatterAgent.pyx":820
+    /* "ConnectedMatterAgent.pyx":815
  *         block_path = self.block_movement_phase(block_time_limit)
  * 
  *         if not block_path:             # <<<<<<<<<<<<<<
@@ -19971,7 +20405,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
  */
   }
 
-  /* "ConnectedMatterAgent.pyx":825
+  /* "ConnectedMatterAgent.pyx":820
  * 
  *         # Get the final state from block movement phase
  *         cdef object block_final_state = frozenset(block_path[-1])             # <<<<<<<<<<<<<<
@@ -19980,14 +20414,14 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
  */
   if (unlikely(__pyx_v_block_path == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 825, __pyx_L1_error)
+    __PYX_ERR(0, 820, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyFrozenSet_New(PyList_GET_ITEM(__pyx_v_block_path, -1L)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 825, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyFrozenSet_New(PyList_GET_ITEM(__pyx_v_block_path, -1L)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 820, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_block_final_state = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":828
+  /* "ConnectedMatterAgent.pyx":823
  * 
  *         # Phase 2: Smarter Morphing
  *         morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)             # <<<<<<<<<<<<<<
@@ -19996,12 +20430,12 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
  */
   __pyx_t_5.__pyx_n = 1;
   __pyx_t_5.time_limit = __pyx_v_morphing_time_limit;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->smarter_morphing_phase(__pyx_v_self, __pyx_v_block_final_state, 0, &__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 828, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self->__pyx_vtab)->smarter_morphing_phase(__pyx_v_self, __pyx_v_block_final_state, 0, &__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 823, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_morphing_path = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "ConnectedMatterAgent.pyx":830
+  /* "ConnectedMatterAgent.pyx":825
  *         morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
  * 
  *         if not morphing_path:             # <<<<<<<<<<<<<<
@@ -20012,18 +20446,18 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
   __pyx_t_3 = (!__pyx_t_4);
   if (__pyx_t_3) {
 
-    /* "ConnectedMatterAgent.pyx":831
+    /* "ConnectedMatterAgent.pyx":826
  * 
  *         if not morphing_path:
  *             print("Morphing phase failed!")             # <<<<<<<<<<<<<<
  *             return block_path
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 831, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__20, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 826, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "ConnectedMatterAgent.pyx":832
+    /* "ConnectedMatterAgent.pyx":827
  *         if not morphing_path:
  *             print("Morphing phase failed!")
  *             return block_path             # <<<<<<<<<<<<<<
@@ -20035,7 +20469,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
     __pyx_r = __pyx_v_block_path;
     goto __pyx_L0;
 
-    /* "ConnectedMatterAgent.pyx":830
+    /* "ConnectedMatterAgent.pyx":825
  *         morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
  * 
  *         if not morphing_path:             # <<<<<<<<<<<<<<
@@ -20044,7 +20478,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
  */
   }
 
-  /* "ConnectedMatterAgent.pyx":835
+  /* "ConnectedMatterAgent.pyx":830
  * 
  *         # Combine paths (remove duplicate state at transition)
  *         cdef list combined_path = block_path[:-1] + morphing_path             # <<<<<<<<<<<<<<
@@ -20053,17 +20487,17 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
  */
   if (unlikely(__pyx_v_block_path == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 835, __pyx_L1_error)
+    __PYX_ERR(0, 830, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyList_GetSlice(__pyx_v_block_path, 0, -1L); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 835, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyList_GetSlice(__pyx_v_block_path, 0, -1L); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 830, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = PyNumber_Add(__pyx_t_1, __pyx_v_morphing_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 835, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Add(__pyx_t_1, __pyx_v_morphing_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 830, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_combined_path = ((PyObject*)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "ConnectedMatterAgent.pyx":837
+  /* "ConnectedMatterAgent.pyx":832
  *         cdef list combined_path = block_path[:-1] + morphing_path
  * 
  *         return combined_path             # <<<<<<<<<<<<<<
@@ -20075,7 +20509,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
   __pyx_r = __pyx_v_combined_path;
   goto __pyx_L0;
 
-  /* "ConnectedMatterAgent.pyx":809
+  /* "ConnectedMatterAgent.pyx":804
  *         return path
  * 
  *     def search(self, double time_limit=30):             # <<<<<<<<<<<<<<
@@ -20099,7 +20533,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_32search
   return __pyx_r;
 }
 
-/* "ConnectedMatterAgent.pyx":839
+/* "ConnectedMatterAgent.pyx":834
  *         return combined_path
  * 
  *     def visualize_path(self, list path, double interval=0.5):             # <<<<<<<<<<<<<<
@@ -20164,19 +20598,19 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 839, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 834, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_interval);
           if (value) { values[1] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 839, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 834, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "visualize_path") < 0)) __PYX_ERR(0, 839, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "visualize_path") < 0)) __PYX_ERR(0, 834, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -20189,14 +20623,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
     }
     __pyx_v_path = ((PyObject*)values[0]);
     if (values[1]) {
-      __pyx_v_interval = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_interval == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 839, __pyx_L3_error)
+      __pyx_v_interval = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_interval == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 834, __pyx_L3_error)
     } else {
       __pyx_v_interval = ((double)0.5);
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("visualize_path", 0, 1, 2, __pyx_nargs); __PYX_ERR(0, 839, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("visualize_path", 0, 1, 2, __pyx_nargs); __PYX_ERR(0, 834, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20210,7 +20644,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_path), (&PyList_Type), 1, "path", 1))) __PYX_ERR(0, 839, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_path), (&PyList_Type), 1, "path", 1))) __PYX_ERR(0, 834, __pyx_L1_error)
   __pyx_r = __pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visualize_path(((struct __pyx_obj_20ConnectedMatterAgent_ConnectedMatterAgent *)__pyx_v_self), __pyx_v_path, __pyx_v_interval);
 
   /* function exit code */
@@ -20265,7 +20699,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("visualize_path", 1);
 
-  /* "ConnectedMatterAgent.pyx":843
+  /* "ConnectedMatterAgent.pyx":838
  *         Visualize the path as an animation
  *         """
  *         if not path:             # <<<<<<<<<<<<<<
@@ -20276,18 +20710,18 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
 
-    /* "ConnectedMatterAgent.pyx":844
+    /* "ConnectedMatterAgent.pyx":839
  *         """
  *         if not path:
  *             print("No path to visualize")             # <<<<<<<<<<<<<<
  *             return
  * 
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 844, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 839, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "ConnectedMatterAgent.pyx":845
+    /* "ConnectedMatterAgent.pyx":840
  *         if not path:
  *             print("No path to visualize")
  *             return             # <<<<<<<<<<<<<<
@@ -20298,7 +20732,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "ConnectedMatterAgent.pyx":843
+    /* "ConnectedMatterAgent.pyx":838
  *         Visualize the path as an animation
  *         """
  *         if not path:             # <<<<<<<<<<<<<<
@@ -20307,22 +20741,22 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
  */
   }
 
-  /* "ConnectedMatterAgent.pyx":847
+  /* "ConnectedMatterAgent.pyx":842
  *             return
  * 
  *         fig, ax = plt.subplots(figsize=(7, 7))             # <<<<<<<<<<<<<<
  *         plt.ion()  # Turn on interactive mode
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_plt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 847, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_plt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 842, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_subplots); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 847, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_subplots); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 842, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 847, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 842, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_figsize, __pyx_tuple__20) < 0) __PYX_ERR(0, 847, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 847, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_figsize, __pyx_tuple__22) < 0) __PYX_ERR(0, 842, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 842, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -20332,7 +20766,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 847, __pyx_L1_error)
+      __PYX_ERR(0, 842, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -20345,15 +20779,15 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_t_4);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 847, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 842, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 847, __pyx_L1_error)
+    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 842, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     #endif
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_6 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 847, __pyx_L1_error)
+    __pyx_t_6 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 842, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_7 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_6);
@@ -20361,7 +20795,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __Pyx_GOTREF(__pyx_t_3);
     index = 1; __pyx_t_4 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_4)) goto __pyx_L4_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 2) < 0) __PYX_ERR(0, 847, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 2) < 0) __PYX_ERR(0, 842, __pyx_L1_error)
     __pyx_t_7 = NULL;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     goto __pyx_L5_unpacking_done;
@@ -20369,7 +20803,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 847, __pyx_L1_error)
+    __PYX_ERR(0, 842, __pyx_L1_error)
     __pyx_L5_unpacking_done:;
   }
   __pyx_v_fig = __pyx_t_3;
@@ -20377,16 +20811,16 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
   __pyx_v_ax = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "ConnectedMatterAgent.pyx":848
+  /* "ConnectedMatterAgent.pyx":843
  * 
  *         fig, ax = plt.subplots(figsize=(7, 7))
  *         plt.ion()  # Turn on interactive mode             # <<<<<<<<<<<<<<
  * 
  *         # Get bounds for plotting
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_plt); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 848, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_plt); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 843, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_ion); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 848, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_ion); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 843, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -20407,13 +20841,13 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
     __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_8, 0+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 848, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 843, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":851
+  /* "ConnectedMatterAgent.pyx":846
  * 
  *         # Get bounds for plotting
  *         cdef int min_x = 0             # <<<<<<<<<<<<<<
@@ -20422,7 +20856,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
  */
   __pyx_v_min_x = 0;
 
-  /* "ConnectedMatterAgent.pyx":852
+  /* "ConnectedMatterAgent.pyx":847
  *         # Get bounds for plotting
  *         cdef int min_x = 0
  *         cdef int max_x = self.grid_size[0] - 1             # <<<<<<<<<<<<<<
@@ -20431,15 +20865,15 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
  */
   if (unlikely(__pyx_v_self->grid_size == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 852, __pyx_L1_error)
+    __PYX_ERR(0, 847, __pyx_L1_error)
   }
-  __pyx_t_5 = __Pyx_PyInt_SubtractObjC(PyTuple_GET_ITEM(__pyx_v_self->grid_size, 0), __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 852, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_SubtractObjC(PyTuple_GET_ITEM(__pyx_v_self->grid_size, 0), __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 847, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 852, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 847, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_max_x = __pyx_t_9;
 
-  /* "ConnectedMatterAgent.pyx":853
+  /* "ConnectedMatterAgent.pyx":848
  *         cdef int min_x = 0
  *         cdef int max_x = self.grid_size[0] - 1
  *         cdef int min_y = 0             # <<<<<<<<<<<<<<
@@ -20448,7 +20882,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
  */
   __pyx_v_min_y = 0;
 
-  /* "ConnectedMatterAgent.pyx":854
+  /* "ConnectedMatterAgent.pyx":849
  *         cdef int max_x = self.grid_size[0] - 1
  *         cdef int min_y = 0
  *         cdef int max_y = self.grid_size[1] - 1             # <<<<<<<<<<<<<<
@@ -20457,22 +20891,22 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
  */
   if (unlikely(__pyx_v_self->grid_size == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 854, __pyx_L1_error)
+    __PYX_ERR(0, 849, __pyx_L1_error)
   }
-  __pyx_t_5 = __Pyx_PyInt_SubtractObjC(PyTuple_GET_ITEM(__pyx_v_self->grid_size, 1), __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 854, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_SubtractObjC(PyTuple_GET_ITEM(__pyx_v_self->grid_size, 1), __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 849, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 854, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 849, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_max_y = __pyx_t_9;
 
-  /* "ConnectedMatterAgent.pyx":857
+  /* "ConnectedMatterAgent.pyx":852
  * 
  *         # Show initial state
  *         ax.clear()             # <<<<<<<<<<<<<<
  *         ax.set_xlim(min_x - 0.5, max_x + 0.5)
  *         ax.set_ylim(min_y - 0.5, max_y + 0.5)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_clear); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 857, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_clear); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 852, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_8 = 0;
@@ -20492,24 +20926,24 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
     __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_8, 0+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 857, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 852, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":858
+  /* "ConnectedMatterAgent.pyx":853
  *         # Show initial state
  *         ax.clear()
  *         ax.set_xlim(min_x - 0.5, max_x + 0.5)             # <<<<<<<<<<<<<<
  *         ax.set_ylim(min_y - 0.5, max_y + 0.5)
  *         ax.grid(True)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_set_xlim); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 858, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_set_xlim); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 853, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_min_x - 0.5)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 858, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_min_x - 0.5)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 853, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = PyFloat_FromDouble((__pyx_v_max_x + 0.5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 858, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble((__pyx_v_max_x + 0.5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 853, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_10 = NULL;
   __pyx_t_8 = 0;
@@ -20531,24 +20965,24 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 858, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 853, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":859
+  /* "ConnectedMatterAgent.pyx":854
  *         ax.clear()
  *         ax.set_xlim(min_x - 0.5, max_x + 0.5)
  *         ax.set_ylim(min_y - 0.5, max_y + 0.5)             # <<<<<<<<<<<<<<
  *         ax.grid(True)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_set_ylim); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 859, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_set_ylim); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 854, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = PyFloat_FromDouble((__pyx_v_min_y - 0.5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 859, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble((__pyx_v_min_y - 0.5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 854, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_max_y + 0.5)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 859, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_max_y + 0.5)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 854, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_10 = NULL;
   __pyx_t_8 = 0;
@@ -20570,20 +21004,20 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 859, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 854, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":860
+  /* "ConnectedMatterAgent.pyx":855
  *         ax.set_xlim(min_x - 0.5, max_x + 0.5)
  *         ax.set_ylim(min_y - 0.5, max_y + 0.5)
  *         ax.grid(True)             # <<<<<<<<<<<<<<
  * 
  *         # Draw goal positions (as outlines)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_grid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 860, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_grid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 855, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_8 = 0;
@@ -20603,13 +21037,13 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     PyObject *__pyx_callargs[2] = {__pyx_t_4, Py_True};
     __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 860, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 855, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":863
+  /* "ConnectedMatterAgent.pyx":858
  * 
  *         # Draw goal positions (as outlines)
  *         for pos in self.goal_positions:             # <<<<<<<<<<<<<<
@@ -20618,7 +21052,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
  */
   if (unlikely(__pyx_v_self->goal_positions == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 863, __pyx_L1_error)
+    __PYX_ERR(0, 858, __pyx_L1_error)
   }
   __pyx_t_5 = __pyx_v_self->goal_positions; __Pyx_INCREF(__pyx_t_5);
   __pyx_t_11 = 0;
@@ -20626,66 +21060,66 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     {
       Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_5);
       #if !CYTHON_ASSUME_SAFE_MACROS
-      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 863, __pyx_L1_error)
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 858, __pyx_L1_error)
       #endif
       if (__pyx_t_11 >= __pyx_temp) break;
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 863, __pyx_L1_error)
+    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 858, __pyx_L1_error)
     #else
-    __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 863, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 858, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_XDECREF_SET(__pyx_v_pos, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "ConnectedMatterAgent.pyx":864
+    /* "ConnectedMatterAgent.pyx":859
  *         # Draw goal positions (as outlines)
  *         for pos in self.goal_positions:
  *             rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, fill=False, edgecolor='green', linewidth=2)             # <<<<<<<<<<<<<<
  *             ax.add_patch(rect)
  * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_plt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 864, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_plt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 859, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_Rectangle); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 864, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_Rectangle); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 859, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_pos, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 864, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_pos, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 859, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = __Pyx_PyFloat_SubtractObjC(__pyx_t_3, __pyx_float_0_5, 0.5, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 864, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyFloat_SubtractObjC(__pyx_t_3, __pyx_float_0_5, 0.5, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 859, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_pos, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 864, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_pos, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 859, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_10 = __Pyx_PyFloat_SubtractObjC(__pyx_t_3, __pyx_float_0_5, 0.5, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 864, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyFloat_SubtractObjC(__pyx_t_3, __pyx_float_0_5, 0.5, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 859, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 864, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 859, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_6)) __PYX_ERR(0, 864, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_6)) __PYX_ERR(0, 859, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_10);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_10)) __PYX_ERR(0, 864, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_10)) __PYX_ERR(0, 859, __pyx_L1_error);
     __pyx_t_6 = 0;
     __pyx_t_10 = 0;
-    __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 864, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 859, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_3)) __PYX_ERR(0, 864, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_3)) __PYX_ERR(0, 859, __pyx_L1_error);
     __Pyx_INCREF(__pyx_int_1);
     __Pyx_GIVEREF(__pyx_int_1);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_int_1)) __PYX_ERR(0, 864, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_int_1)) __PYX_ERR(0, 859, __pyx_L1_error);
     __Pyx_INCREF(__pyx_int_1);
     __Pyx_GIVEREF(__pyx_int_1);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 2, __pyx_int_1)) __PYX_ERR(0, 864, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 2, __pyx_int_1)) __PYX_ERR(0, 859, __pyx_L1_error);
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 864, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 859, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_fill, Py_False) < 0) __PYX_ERR(0, 864, __pyx_L1_error)
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_edgecolor, __pyx_n_u_green) < 0) __PYX_ERR(0, 864, __pyx_L1_error)
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_linewidth, __pyx_int_2) < 0) __PYX_ERR(0, 864, __pyx_L1_error)
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_10, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 864, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_fill, Py_False) < 0) __PYX_ERR(0, 859, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_edgecolor, __pyx_n_u_green) < 0) __PYX_ERR(0, 859, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_linewidth, __pyx_int_2) < 0) __PYX_ERR(0, 859, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_10, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 859, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
@@ -20693,14 +21127,14 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __Pyx_XDECREF_SET(__pyx_v_rect, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "ConnectedMatterAgent.pyx":865
+    /* "ConnectedMatterAgent.pyx":860
  *         for pos in self.goal_positions:
  *             rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, fill=False, edgecolor='green', linewidth=2)
  *             ax.add_patch(rect)             # <<<<<<<<<<<<<<
  * 
  *         # Draw current positions (blue squares)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_add_patch); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 865, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_add_patch); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 860, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_10 = NULL;
     __pyx_t_8 = 0;
@@ -20720,13 +21154,13 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
       PyObject *__pyx_callargs[2] = {__pyx_t_10, __pyx_v_rect};
       __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
       __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 865, __pyx_L1_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 860, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "ConnectedMatterAgent.pyx":863
+    /* "ConnectedMatterAgent.pyx":858
  * 
  *         # Draw goal positions (as outlines)
  *         for pos in self.goal_positions:             # <<<<<<<<<<<<<<
@@ -20736,7 +21170,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":868
+  /* "ConnectedMatterAgent.pyx":863
  * 
  *         # Draw current positions (blue squares)
  *         current_positions = path[0]             # <<<<<<<<<<<<<<
@@ -20745,26 +21179,26 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
  */
   if (unlikely(__pyx_v_path == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 868, __pyx_L1_error)
+    __PYX_ERR(0, 863, __pyx_L1_error)
   }
   __pyx_t_5 = PyList_GET_ITEM(__pyx_v_path, 0);
   __Pyx_INCREF(__pyx_t_5);
   __pyx_v_current_positions = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":869
+  /* "ConnectedMatterAgent.pyx":864
  *         # Draw current positions (blue squares)
  *         current_positions = path[0]
  *         rects = []             # <<<<<<<<<<<<<<
  *         for pos in current_positions:
  *             rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, facecolor='blue', alpha=0.7)
  */
-  __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 869, __pyx_L1_error)
+  __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 864, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_v_rects = ((PyObject*)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":870
+  /* "ConnectedMatterAgent.pyx":865
  *         current_positions = path[0]
  *         rects = []
  *         for pos in current_positions:             # <<<<<<<<<<<<<<
@@ -20776,9 +21210,9 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __pyx_t_11 = 0;
     __pyx_t_12 = NULL;
   } else {
-    __pyx_t_11 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_v_current_positions); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 870, __pyx_L1_error)
+    __pyx_t_11 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_v_current_positions); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 865, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_12 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_5); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 870, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_5); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 865, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_12)) {
@@ -20786,28 +21220,28 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_5);
           #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 870, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 865, __pyx_L1_error)
           #endif
           if (__pyx_t_11 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_6 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_6); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 870, __pyx_L1_error)
+        __pyx_t_6 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_6); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 865, __pyx_L1_error)
         #else
-        __pyx_t_6 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 870, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 865, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         #endif
       } else {
         {
           Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_5);
           #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 870, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 865, __pyx_L1_error)
           #endif
           if (__pyx_t_11 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_6); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 870, __pyx_L1_error)
+        __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_6); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 865, __pyx_L1_error)
         #else
-        __pyx_t_6 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 870, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 865, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         #endif
       }
@@ -20817,7 +21251,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 870, __pyx_L1_error)
+          else __PYX_ERR(0, 865, __pyx_L1_error)
         }
         break;
       }
@@ -20826,52 +21260,52 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __Pyx_XDECREF_SET(__pyx_v_pos, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "ConnectedMatterAgent.pyx":871
+    /* "ConnectedMatterAgent.pyx":866
  *         rects = []
  *         for pos in current_positions:
  *             rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, facecolor='blue', alpha=0.7)             # <<<<<<<<<<<<<<
  *             ax.add_patch(rect)
  *             rects.append(rect)
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_plt); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 871, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_plt); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 866, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_Rectangle); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 871, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_Rectangle); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 866, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_pos, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 871, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_pos, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 866, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_10 = __Pyx_PyFloat_SubtractObjC(__pyx_t_6, __pyx_float_0_5, 0.5, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 871, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyFloat_SubtractObjC(__pyx_t_6, __pyx_float_0_5, 0.5, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 866, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_pos, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 871, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_pos, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 866, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_4 = __Pyx_PyFloat_SubtractObjC(__pyx_t_6, __pyx_float_0_5, 0.5, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 871, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyFloat_SubtractObjC(__pyx_t_6, __pyx_float_0_5, 0.5, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 866, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 871, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 866, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_10);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_10)) __PYX_ERR(0, 871, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_10)) __PYX_ERR(0, 866, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_4);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_4)) __PYX_ERR(0, 871, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_4)) __PYX_ERR(0, 866, __pyx_L1_error);
     __pyx_t_10 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 871, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 866, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_6);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6)) __PYX_ERR(0, 871, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6)) __PYX_ERR(0, 866, __pyx_L1_error);
     __Pyx_INCREF(__pyx_int_1);
     __Pyx_GIVEREF(__pyx_int_1);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_int_1)) __PYX_ERR(0, 871, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_int_1)) __PYX_ERR(0, 866, __pyx_L1_error);
     __Pyx_INCREF(__pyx_int_1);
     __Pyx_GIVEREF(__pyx_int_1);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_int_1)) __PYX_ERR(0, 871, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_int_1)) __PYX_ERR(0, 866, __pyx_L1_error);
     __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 871, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 866, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_facecolor, __pyx_n_u_blue) < 0) __PYX_ERR(0, 871, __pyx_L1_error)
-    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_alpha, __pyx_float_0_7) < 0) __PYX_ERR(0, 871, __pyx_L1_error)
-    __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 871, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_facecolor, __pyx_n_u_blue) < 0) __PYX_ERR(0, 866, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_alpha, __pyx_float_0_7) < 0) __PYX_ERR(0, 866, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 866, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -20879,14 +21313,14 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __Pyx_XDECREF_SET(__pyx_v_rect, __pyx_t_10);
     __pyx_t_10 = 0;
 
-    /* "ConnectedMatterAgent.pyx":872
+    /* "ConnectedMatterAgent.pyx":867
  *         for pos in current_positions:
  *             rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, facecolor='blue', alpha=0.7)
  *             ax.add_patch(rect)             # <<<<<<<<<<<<<<
  *             rects.append(rect)
  * 
  */
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_add_patch); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 872, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_add_patch); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 867, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_4 = NULL;
     __pyx_t_8 = 0;
@@ -20906,22 +21340,22 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
       PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_rect};
       __pyx_t_10 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 872, __pyx_L1_error)
+      if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 867, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-    /* "ConnectedMatterAgent.pyx":873
+    /* "ConnectedMatterAgent.pyx":868
  *             rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, facecolor='blue', alpha=0.7)
  *             ax.add_patch(rect)
  *             rects.append(rect)             # <<<<<<<<<<<<<<
  * 
  *         ax.set_title(f"Step 0/{len(path)-1}")
  */
-    __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_rects, __pyx_v_rect); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 873, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_rects, __pyx_v_rect); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 868, __pyx_L1_error)
 
-    /* "ConnectedMatterAgent.pyx":870
+    /* "ConnectedMatterAgent.pyx":865
  *         current_positions = path[0]
  *         rects = []
  *         for pos in current_positions:             # <<<<<<<<<<<<<<
@@ -20931,23 +21365,23 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":875
+  /* "ConnectedMatterAgent.pyx":870
  *             rects.append(rect)
  * 
  *         ax.set_title(f"Step 0/{len(path)-1}")             # <<<<<<<<<<<<<<
  *         plt.draw()
  *         plt.pause(interval)
  */
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_set_title); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 875, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_set_title); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 870, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   if (unlikely(__pyx_v_path == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 875, __pyx_L1_error)
+    __PYX_ERR(0, 870, __pyx_L1_error)
   }
-  __pyx_t_11 = __Pyx_PyList_GET_SIZE(__pyx_v_path); if (unlikely(__pyx_t_11 == ((Py_ssize_t)-1))) __PYX_ERR(0, 875, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyUnicode_From_Py_ssize_t((__pyx_t_11 - 1), 0, ' ', 'd'); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 875, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyList_GET_SIZE(__pyx_v_path); if (unlikely(__pyx_t_11 == ((Py_ssize_t)-1))) __PYX_ERR(0, 870, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyUnicode_From_Py_ssize_t((__pyx_t_11 - 1), 0, ' ', 'd'); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 870, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Step_0, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 875, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Step_0, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 870, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_6 = NULL;
@@ -20969,22 +21403,22 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_10, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 875, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 870, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":876
+  /* "ConnectedMatterAgent.pyx":871
  * 
  *         ax.set_title(f"Step 0/{len(path)-1}")
  *         plt.draw()             # <<<<<<<<<<<<<<
  *         plt.pause(interval)
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_plt); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 876, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_plt); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 871, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_draw); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 876, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_draw); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 871, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   __pyx_t_10 = NULL;
@@ -21005,25 +21439,25 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     PyObject *__pyx_callargs[2] = {__pyx_t_10, NULL};
     __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_8, 0+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 876, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 871, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":877
+  /* "ConnectedMatterAgent.pyx":872
  *         ax.set_title(f"Step 0/{len(path)-1}")
  *         plt.draw()
  *         plt.pause(interval)             # <<<<<<<<<<<<<<
  * 
  *         # Animate the path
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_plt); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 877, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_plt); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 872, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_pause); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 877, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_pause); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 872, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_interval); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 877, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_interval); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 872, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_6 = NULL;
   __pyx_t_8 = 0;
@@ -21044,13 +21478,13 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_10, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 877, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 872, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":883
+  /* "ConnectedMatterAgent.pyx":878
  *         cdef list new_positions
  * 
  *         for i in range(1, len(path)):             # <<<<<<<<<<<<<<
@@ -21059,14 +21493,14 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
  */
   if (unlikely(__pyx_v_path == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 883, __pyx_L1_error)
+    __PYX_ERR(0, 878, __pyx_L1_error)
   }
-  __pyx_t_11 = __Pyx_PyList_GET_SIZE(__pyx_v_path); if (unlikely(__pyx_t_11 == ((Py_ssize_t)-1))) __PYX_ERR(0, 883, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyList_GET_SIZE(__pyx_v_path); if (unlikely(__pyx_t_11 == ((Py_ssize_t)-1))) __PYX_ERR(0, 878, __pyx_L1_error)
   __pyx_t_14 = __pyx_t_11;
   for (__pyx_t_9 = 1; __pyx_t_9 < __pyx_t_14; __pyx_t_9+=1) {
     __pyx_v_i = __pyx_t_9;
 
-    /* "ConnectedMatterAgent.pyx":885
+    /* "ConnectedMatterAgent.pyx":880
  *         for i in range(1, len(path)):
  *             # Update positions
  *             new_positions = path[i]             # <<<<<<<<<<<<<<
@@ -21075,15 +21509,15 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
  */
     if (unlikely(__pyx_v_path == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 885, __pyx_L1_error)
+      __PYX_ERR(0, 880, __pyx_L1_error)
     }
-    if (!(likely(PyList_CheckExact(PyList_GET_ITEM(__pyx_v_path, __pyx_v_i)))||((PyList_GET_ITEM(__pyx_v_path, __pyx_v_i)) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", PyList_GET_ITEM(__pyx_v_path, __pyx_v_i)))) __PYX_ERR(0, 885, __pyx_L1_error)
+    if (!(likely(PyList_CheckExact(PyList_GET_ITEM(__pyx_v_path, __pyx_v_i)))||((PyList_GET_ITEM(__pyx_v_path, __pyx_v_i)) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", PyList_GET_ITEM(__pyx_v_path, __pyx_v_i)))) __PYX_ERR(0, 880, __pyx_L1_error)
     __pyx_t_5 = PyList_GET_ITEM(__pyx_v_path, __pyx_v_i);
     __Pyx_INCREF(__pyx_t_5);
     __Pyx_XDECREF_SET(__pyx_v_new_positions, ((PyObject*)__pyx_t_5));
     __pyx_t_5 = 0;
 
-    /* "ConnectedMatterAgent.pyx":888
+    /* "ConnectedMatterAgent.pyx":883
  * 
  *             # Clear previous positions
  *             for rect in rects:             # <<<<<<<<<<<<<<
@@ -21096,27 +21530,27 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_5);
         #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 888, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 883, __pyx_L1_error)
         #endif
         if (__pyx_t_15 >= __pyx_temp) break;
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_10 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_15); __Pyx_INCREF(__pyx_t_10); __pyx_t_15++; if (unlikely((0 < 0))) __PYX_ERR(0, 888, __pyx_L1_error)
+      __pyx_t_10 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_15); __Pyx_INCREF(__pyx_t_10); __pyx_t_15++; if (unlikely((0 < 0))) __PYX_ERR(0, 883, __pyx_L1_error)
       #else
-      __pyx_t_10 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 888, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 883, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       #endif
       __Pyx_XDECREF_SET(__pyx_v_rect, __pyx_t_10);
       __pyx_t_10 = 0;
 
-      /* "ConnectedMatterAgent.pyx":889
+      /* "ConnectedMatterAgent.pyx":884
  *             # Clear previous positions
  *             for rect in rects:
  *                 rect.remove()             # <<<<<<<<<<<<<<
  * 
  *             # Draw new positions
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_rect, __pyx_n_s_remove); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 889, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_rect, __pyx_n_s_remove); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 884, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_6 = NULL;
       __pyx_t_8 = 0;
@@ -21136,13 +21570,13 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
         PyObject *__pyx_callargs[2] = {__pyx_t_6, NULL};
         __pyx_t_10 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_8, 0+__pyx_t_8);
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-        if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 889, __pyx_L1_error)
+        if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 884, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-      /* "ConnectedMatterAgent.pyx":888
+      /* "ConnectedMatterAgent.pyx":883
  * 
  *             # Clear previous positions
  *             for rect in rects:             # <<<<<<<<<<<<<<
@@ -21152,19 +21586,19 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "ConnectedMatterAgent.pyx":892
+    /* "ConnectedMatterAgent.pyx":887
  * 
  *             # Draw new positions
  *             rects = []             # <<<<<<<<<<<<<<
  *             for pos in new_positions:
  *                 rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, facecolor='blue', alpha=0.7)
  */
-    __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 892, __pyx_L1_error)
+    __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 887, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF_SET(__pyx_v_rects, ((PyObject*)__pyx_t_5));
     __pyx_t_5 = 0;
 
-    /* "ConnectedMatterAgent.pyx":893
+    /* "ConnectedMatterAgent.pyx":888
  *             # Draw new positions
  *             rects = []
  *             for pos in new_positions:             # <<<<<<<<<<<<<<
@@ -21173,7 +21607,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
  */
     if (unlikely(__pyx_v_new_positions == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 893, __pyx_L1_error)
+      __PYX_ERR(0, 888, __pyx_L1_error)
     }
     __pyx_t_5 = __pyx_v_new_positions; __Pyx_INCREF(__pyx_t_5);
     __pyx_t_15 = 0;
@@ -21181,65 +21615,65 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_5);
         #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 893, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 888, __pyx_L1_error)
         #endif
         if (__pyx_t_15 >= __pyx_temp) break;
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_10 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_15); __Pyx_INCREF(__pyx_t_10); __pyx_t_15++; if (unlikely((0 < 0))) __PYX_ERR(0, 893, __pyx_L1_error)
+      __pyx_t_10 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_15); __Pyx_INCREF(__pyx_t_10); __pyx_t_15++; if (unlikely((0 < 0))) __PYX_ERR(0, 888, __pyx_L1_error)
       #else
-      __pyx_t_10 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 893, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_15); __pyx_t_15++; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 888, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       #endif
       __Pyx_XDECREF_SET(__pyx_v_pos, __pyx_t_10);
       __pyx_t_10 = 0;
 
-      /* "ConnectedMatterAgent.pyx":894
+      /* "ConnectedMatterAgent.pyx":889
  *             rects = []
  *             for pos in new_positions:
  *                 rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, facecolor='blue', alpha=0.7)             # <<<<<<<<<<<<<<
  *                 ax.add_patch(rect)
  *                 rects.append(rect)
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_plt); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 894, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_plt); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 889, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_Rectangle); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 894, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_Rectangle); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 889, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_10 = __Pyx_GetItemInt(__pyx_v_pos, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 894, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_GetItemInt(__pyx_v_pos, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 889, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_6 = __Pyx_PyFloat_SubtractObjC(__pyx_t_10, __pyx_float_0_5, 0.5, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 894, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyFloat_SubtractObjC(__pyx_t_10, __pyx_float_0_5, 0.5, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 889, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_10 = __Pyx_GetItemInt(__pyx_v_pos, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 894, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_GetItemInt(__pyx_v_pos, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 889, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_3 = __Pyx_PyFloat_SubtractObjC(__pyx_t_10, __pyx_float_0_5, 0.5, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 894, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyFloat_SubtractObjC(__pyx_t_10, __pyx_float_0_5, 0.5, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 889, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 894, __pyx_L1_error)
+      __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 889, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_GIVEREF(__pyx_t_6);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_6)) __PYX_ERR(0, 894, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_6)) __PYX_ERR(0, 889, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_3);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_t_3)) __PYX_ERR(0, 894, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_t_3)) __PYX_ERR(0, 889, __pyx_L1_error);
       __pyx_t_6 = 0;
       __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 894, __pyx_L1_error)
+      __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 889, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_10);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_10)) __PYX_ERR(0, 894, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_10)) __PYX_ERR(0, 889, __pyx_L1_error);
       __Pyx_INCREF(__pyx_int_1);
       __Pyx_GIVEREF(__pyx_int_1);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_int_1)) __PYX_ERR(0, 894, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_int_1)) __PYX_ERR(0, 889, __pyx_L1_error);
       __Pyx_INCREF(__pyx_int_1);
       __Pyx_GIVEREF(__pyx_int_1);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_int_1)) __PYX_ERR(0, 894, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_int_1)) __PYX_ERR(0, 889, __pyx_L1_error);
       __pyx_t_10 = 0;
-      __pyx_t_10 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 894, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 889, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      if (PyDict_SetItem(__pyx_t_10, __pyx_n_s_facecolor, __pyx_n_u_blue) < 0) __PYX_ERR(0, 894, __pyx_L1_error)
-      if (PyDict_SetItem(__pyx_t_10, __pyx_n_s_alpha, __pyx_float_0_7) < 0) __PYX_ERR(0, 894, __pyx_L1_error)
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_10); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 894, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_10, __pyx_n_s_facecolor, __pyx_n_u_blue) < 0) __PYX_ERR(0, 889, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_10, __pyx_n_s_alpha, __pyx_float_0_7) < 0) __PYX_ERR(0, 889, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_10); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 889, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -21247,14 +21681,14 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
       __Pyx_XDECREF_SET(__pyx_v_rect, __pyx_t_6);
       __pyx_t_6 = 0;
 
-      /* "ConnectedMatterAgent.pyx":895
+      /* "ConnectedMatterAgent.pyx":890
  *             for pos in new_positions:
  *                 rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, facecolor='blue', alpha=0.7)
  *                 ax.add_patch(rect)             # <<<<<<<<<<<<<<
  *                 rects.append(rect)
  * 
  */
-      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_add_patch); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 895, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_add_patch); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 890, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __pyx_t_3 = NULL;
       __pyx_t_8 = 0;
@@ -21274,22 +21708,22 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
         PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_rect};
         __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_10, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 895, __pyx_L1_error)
+        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 890, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       }
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "ConnectedMatterAgent.pyx":896
+      /* "ConnectedMatterAgent.pyx":891
  *                 rect = plt.Rectangle((pos[1] - 0.5, pos[0] - 0.5), 1, 1, facecolor='blue', alpha=0.7)
  *                 ax.add_patch(rect)
  *                 rects.append(rect)             # <<<<<<<<<<<<<<
  * 
  *             ax.set_title(f"Step {i}/{len(path)-1}")
  */
-      __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_rects, __pyx_v_rect); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 896, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_rects, __pyx_v_rect); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 891, __pyx_L1_error)
 
-      /* "ConnectedMatterAgent.pyx":893
+      /* "ConnectedMatterAgent.pyx":888
  *             # Draw new positions
  *             rects = []
  *             for pos in new_positions:             # <<<<<<<<<<<<<<
@@ -21299,16 +21733,16 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "ConnectedMatterAgent.pyx":898
+    /* "ConnectedMatterAgent.pyx":893
  *                 rects.append(rect)
  * 
  *             ax.set_title(f"Step {i}/{len(path)-1}")             # <<<<<<<<<<<<<<
  *             plt.draw()
  *             plt.pause(interval)
  */
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_set_title); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 898, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_ax, __pyx_n_s_set_title); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 893, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_10 = PyTuple_New(4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 898, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_New(4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 893, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __pyx_t_15 = 0;
     __pyx_t_16 = 127;
@@ -21316,28 +21750,28 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     __pyx_t_15 += 5;
     __Pyx_GIVEREF(__pyx_kp_u_Step);
     PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_kp_u_Step);
-    __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_i, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 898, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyUnicode_From_int(__pyx_v_i, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 893, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_15 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_t_3);
     __pyx_t_3 = 0;
-    __Pyx_INCREF(__pyx_kp_u__21);
+    __Pyx_INCREF(__pyx_kp_u__23);
     __pyx_t_15 += 1;
-    __Pyx_GIVEREF(__pyx_kp_u__21);
-    PyTuple_SET_ITEM(__pyx_t_10, 2, __pyx_kp_u__21);
+    __Pyx_GIVEREF(__pyx_kp_u__23);
+    PyTuple_SET_ITEM(__pyx_t_10, 2, __pyx_kp_u__23);
     if (unlikely(__pyx_v_path == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      __PYX_ERR(0, 898, __pyx_L1_error)
+      __PYX_ERR(0, 893, __pyx_L1_error)
     }
-    __pyx_t_17 = __Pyx_PyList_GET_SIZE(__pyx_v_path); if (unlikely(__pyx_t_17 == ((Py_ssize_t)-1))) __PYX_ERR(0, 898, __pyx_L1_error)
-    __pyx_t_3 = __Pyx_PyUnicode_From_Py_ssize_t((__pyx_t_17 - 1), 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 898, __pyx_L1_error)
+    __pyx_t_17 = __Pyx_PyList_GET_SIZE(__pyx_v_path); if (unlikely(__pyx_t_17 == ((Py_ssize_t)-1))) __PYX_ERR(0, 893, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyUnicode_From_Py_ssize_t((__pyx_t_17 - 1), 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 893, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_15 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_10, 3, __pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_10, 4, __pyx_t_15, __pyx_t_16); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 898, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_10, 4, __pyx_t_15, __pyx_t_16); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 893, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __pyx_t_10 = NULL;
@@ -21359,22 +21793,22 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
       __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
       __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 898, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 893, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "ConnectedMatterAgent.pyx":899
+    /* "ConnectedMatterAgent.pyx":894
  * 
  *             ax.set_title(f"Step {i}/{len(path)-1}")
  *             plt.draw()             # <<<<<<<<<<<<<<
  *             plt.pause(interval)
  * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_plt); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 899, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_plt); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 894, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_draw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 899, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_draw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 894, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_6 = NULL;
@@ -21395,25 +21829,25 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
       PyObject *__pyx_callargs[2] = {__pyx_t_6, NULL};
       __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_8, 0+__pyx_t_8);
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 899, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 894, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "ConnectedMatterAgent.pyx":900
+    /* "ConnectedMatterAgent.pyx":895
  *             ax.set_title(f"Step {i}/{len(path)-1}")
  *             plt.draw()
  *             plt.pause(interval)             # <<<<<<<<<<<<<<
  * 
  *         plt.ioff()  # Turn off interactive mode
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_plt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 900, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_plt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_pause); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 900, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_pause); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_interval); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 900, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_interval); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_10 = NULL;
     __pyx_t_8 = 0;
@@ -21434,22 +21868,22 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
       __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
       __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 900, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 895, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
 
-  /* "ConnectedMatterAgent.pyx":902
+  /* "ConnectedMatterAgent.pyx":897
  *             plt.pause(interval)
  * 
  *         plt.ioff()  # Turn off interactive mode             # <<<<<<<<<<<<<<
  *         plt.show(block=True)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_plt); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 902, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_plt); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 897, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_ioff); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 902, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_ioff); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 897, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_6 = NULL;
@@ -21470,32 +21904,32 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent_20ConnectedMatterAgent_34visual
     PyObject *__pyx_callargs[2] = {__pyx_t_6, NULL};
     __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_8, 0+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 902, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 897, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "ConnectedMatterAgent.pyx":903
+  /* "ConnectedMatterAgent.pyx":898
  * 
  *         plt.ioff()  # Turn off interactive mode
  *         plt.show(block=True)             # <<<<<<<<<<<<<<
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_plt); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 903, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_plt); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 898, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 903, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 898, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 903, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 898, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_block, Py_True) < 0) __PYX_ERR(0, 903, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 903, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_block, Py_True) < 0) __PYX_ERR(0, 898, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 898, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "ConnectedMatterAgent.pyx":839
+  /* "ConnectedMatterAgent.pyx":834
  *         return combined_path
  * 
  *     def visualize_path(self, list path, double interval=0.5):             # <<<<<<<<<<<<<<
@@ -22201,7 +22635,7 @@ static PyObject *__pyx_pf_20ConnectedMatterAgent___pyx_unpickle_ConnectedMatterA
  */
   __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v___pyx_checksum); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_t_1, __pyx_tuple__22, Py_NE)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(2, 4, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_t_1, __pyx_tuple__24, Py_NE)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(2, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
@@ -23280,12 +23714,14 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_kp_u_Starting_Smarter_Morphing_Phase, __pyx_k_Starting_Smarter_Morphing_Phase, sizeof(__pyx_k_Starting_Smarter_Morphing_Phase), 0, 1, 0, 0},
     {&__pyx_kp_u_Step, __pyx_k_Step, sizeof(__pyx_k_Step), 0, 1, 0, 0},
     {&__pyx_kp_u_Step_0, __pyx_k_Step_0, sizeof(__pyx_k_Step_0), 0, 1, 0, 0},
-    {&__pyx_kp_u__14, __pyx_k__14, sizeof(__pyx_k__14), 0, 1, 0, 0},
+    {&__pyx_kp_u__12, __pyx_k__12, sizeof(__pyx_k__12), 0, 1, 0, 0},
+    {&__pyx_kp_u__13, __pyx_k__13, sizeof(__pyx_k__13), 0, 1, 0, 0},
     {&__pyx_kp_u__16, __pyx_k__16, sizeof(__pyx_k__16), 0, 1, 0, 0},
-    {&__pyx_kp_u__21, __pyx_k__21, sizeof(__pyx_k__21), 0, 1, 0, 0},
+    {&__pyx_kp_u__18, __pyx_k__18, sizeof(__pyx_k__18), 0, 1, 0, 0},
     {&__pyx_kp_u__23, __pyx_k__23, sizeof(__pyx_k__23), 0, 1, 0, 0},
-    {&__pyx_n_s__24, __pyx_k__24, sizeof(__pyx_k__24), 0, 0, 1, 1},
-    {&__pyx_n_s__62, __pyx_k__62, sizeof(__pyx_k__62), 0, 0, 1, 1},
+    {&__pyx_kp_u__25, __pyx_k__25, sizeof(__pyx_k__25), 0, 1, 0, 0},
+    {&__pyx_n_s__26, __pyx_k__26, sizeof(__pyx_k__26), 0, 0, 1, 1},
+    {&__pyx_n_s__64, __pyx_k__64, sizeof(__pyx_k__64), 0, 0, 1, 1},
     {&__pyx_n_s_add_patch, __pyx_k_add_patch, sizeof(__pyx_k_add_patch), 0, 0, 1, 1},
     {&__pyx_n_s_alpha, __pyx_k_alpha, sizeof(__pyx_k_alpha), 0, 0, 1, 1},
     {&__pyx_n_s_append, __pyx_k_append, sizeof(__pyx_k_append), 0, 0, 1, 1},
@@ -23322,6 +23758,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_fig, __pyx_k_fig, sizeof(__pyx_k_fig), 0, 0, 1, 1},
     {&__pyx_n_s_figsize, __pyx_k_figsize, sizeof(__pyx_k_figsize), 0, 0, 1, 1},
     {&__pyx_n_s_fill, __pyx_k_fill, sizeof(__pyx_k_fill), 0, 0, 1, 1},
+    {&__pyx_n_s_find_articulation_points, __pyx_k_find_articulation_points, sizeof(__pyx_k_find_articulation_points), 0, 0, 1, 1},
     {&__pyx_kp_u_gc, __pyx_k_gc, sizeof(__pyx_k_gc), 0, 1, 0, 0},
     {&__pyx_n_s_genexpr, __pyx_k_genexpr, sizeof(__pyx_k_genexpr), 0, 0, 1, 1},
     {&__pyx_n_s_get, __pyx_k_get, sizeof(__pyx_k_get), 0, 0, 1, 1},
@@ -23335,7 +23772,9 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_goal_positions, __pyx_k_goal_positions, sizeof(__pyx_k_goal_positions), 0, 0, 1, 1},
     {&__pyx_n_u_green, __pyx_k_green, sizeof(__pyx_k_green), 0, 1, 0, 1},
     {&__pyx_n_s_grid, __pyx_k_grid, sizeof(__pyx_k_grid), 0, 0, 1, 1},
+    {&__pyx_n_s_grid_height, __pyx_k_grid_height, sizeof(__pyx_k_grid_height), 0, 0, 1, 1},
     {&__pyx_n_s_grid_size, __pyx_k_grid_size, sizeof(__pyx_k_grid_size), 0, 0, 1, 1},
+    {&__pyx_n_s_grid_width, __pyx_k_grid_width, sizeof(__pyx_k_grid_width), 0, 0, 1, 1},
     {&__pyx_n_s_heapify, __pyx_k_heapify, sizeof(__pyx_k_heapify), 0, 0, 1, 1},
     {&__pyx_n_s_heappop, __pyx_k_heappop, sizeof(__pyx_k_heappop), 0, 0, 1, 1},
     {&__pyx_n_s_heappush, __pyx_k_heappush, sizeof(__pyx_k_heappush), 0, 0, 1, 1},
@@ -23353,6 +23792,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_is_connected, __pyx_k_is_connected, sizeof(__pyx_k_is_connected), 0, 0, 1, 1},
     {&__pyx_n_s_is_coroutine, __pyx_k_is_coroutine, sizeof(__pyx_k_is_coroutine), 0, 0, 1, 1},
     {&__pyx_n_s_is_valid_move_combination, __pyx_k_is_valid_move_combination, sizeof(__pyx_k_is_valid_move_combination), 0, 0, 1, 1},
+    {&__pyx_n_s_is_valid_state, __pyx_k_is_valid_state, sizeof(__pyx_k_is_valid_state), 0, 0, 1, 1},
     {&__pyx_kp_u_isenabled, __pyx_k_isenabled, sizeof(__pyx_k_isenabled), 0, 1, 0, 0},
     {&__pyx_kp_u_iterations, __pyx_k_iterations, sizeof(__pyx_k_iterations), 0, 1, 0, 0},
     {&__pyx_kp_u_iterations_2, __pyx_k_iterations_2, sizeof(__pyx_k_iterations_2), 0, 1, 0, 0},
@@ -23372,6 +23812,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_morphing_time_limit, __pyx_k_morphing_time_limit, sizeof(__pyx_k_morphing_time_limit), 0, 0, 1, 1},
     {&__pyx_n_s_moves, __pyx_k_moves, sizeof(__pyx_k_moves), 0, 0, 1, 1},
     {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
+    {&__pyx_n_s_neighbor_transforms, __pyx_k_neighbor_transforms, sizeof(__pyx_k_neighbor_transforms), 0, 0, 1, 1},
     {&__pyx_n_s_new, __pyx_k_new, sizeof(__pyx_k_new), 0, 0, 1, 1},
     {&__pyx_n_s_new_positions, __pyx_k_new_positions, sizeof(__pyx_k_new_positions), 0, 0, 1, 1},
     {&__pyx_n_s_np, __pyx_k_np, sizeof(__pyx_k_np), 0, 0, 1, 1},
@@ -23415,11 +23856,13 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_kp_u_simultaneous_moves, __pyx_k_simultaneous_moves, sizeof(__pyx_k_simultaneous_moves), 0, 1, 0, 0},
     {&__pyx_n_s_smarter_morphing_phase, __pyx_k_smarter_morphing_phase, sizeof(__pyx_k_smarter_morphing_phase), 0, 0, 1, 1},
     {&__pyx_n_s_spec, __pyx_k_spec, sizeof(__pyx_k_spec), 0, 0, 1, 1},
+    {&__pyx_n_s_split, __pyx_k_split, sizeof(__pyx_k_split), 0, 0, 1, 1},
     {&__pyx_n_s_start_positions, __pyx_k_start_positions, sizeof(__pyx_k_start_positions), 0, 0, 1, 1},
     {&__pyx_n_s_start_state, __pyx_k_start_state, sizeof(__pyx_k_start_state), 0, 0, 1, 1},
     {&__pyx_n_s_state, __pyx_k_state, sizeof(__pyx_k_state), 0, 0, 1, 1},
     {&__pyx_n_s_state_set, __pyx_k_state_set, sizeof(__pyx_k_state_set), 0, 0, 1, 1},
     {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
+    {&__pyx_n_s_strip, __pyx_k_strip, sizeof(__pyx_k_strip), 0, 0, 1, 1},
     {&__pyx_n_s_subplots, __pyx_k_subplots, sizeof(__pyx_k_subplots), 0, 0, 1, 1},
     {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
     {&__pyx_n_s_throw, __pyx_k_throw, sizeof(__pyx_k_throw), 0, 0, 1, 1},
@@ -23436,8 +23879,8 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
 /* #### Code section: cached_builtins ### */
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 50, __pyx_L1_error)
-  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 476, __pyx_L1_error)
-  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 593, __pyx_L1_error)
+  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 471, __pyx_L1_error)
+  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 588, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(1, 1042, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -23514,82 +23957,82 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "ConnectedMatterAgent.pyx":593
+  /* "ConnectedMatterAgent.pyx":588
  *         Modified to stop 1 grid cell before reaching the goal centroid
  *         """
  *         print("Starting Block Movement Phase...")             # <<<<<<<<<<<<<<
  *         cdef double start_time = time.time()
  * 
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_Starting_Block_Movement_Phase); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 593, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__12);
-  __Pyx_GIVEREF(__pyx_tuple__12);
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_u_Starting_Block_Movement_Phase); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 588, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__14);
+  __Pyx_GIVEREF(__pyx_tuple__14);
 
-  /* "ConnectedMatterAgent.pyx":665
+  /* "ConnectedMatterAgent.pyx":660
  *         # If we exit the loop, either no path was found or time limit reached
  *         if time.time() - start_time >= time_limit:
  *             print("Block movement phase timed out!")             # <<<<<<<<<<<<<<
  * 
  *         # Return the best state we found
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_Block_movement_phase_timed_out); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 665, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_u_Block_movement_phase_timed_out); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 660, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__15);
+  __Pyx_GIVEREF(__pyx_tuple__15);
 
-  /* "ConnectedMatterAgent.pyx":753
+  /* "ConnectedMatterAgent.pyx":748
  *             # Check for stagnation
  *             if time.time() - last_improvement_time > time_limit * 0.3:
  *                 print("Search stagnated, restarting...")             # <<<<<<<<<<<<<<
  *                 # Clear the beam and start from the best state
  *                 open_set = [(best_heuristic, g_score[best_state], best_state)]
  */
-  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_u_Search_stagnated_restarting); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 753, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
+  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_u_Search_stagnated_restarting); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 748, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
 
-  /* "ConnectedMatterAgent.pyx":821
+  /* "ConnectedMatterAgent.pyx":816
  * 
  *         if not block_path:
  *             print("Block movement phase failed!")             # <<<<<<<<<<<<<<
  *             return None
  * 
  */
-  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_u_Block_movement_phase_failed); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 821, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_u_Block_movement_phase_failed); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 816, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
 
-  /* "ConnectedMatterAgent.pyx":831
+  /* "ConnectedMatterAgent.pyx":826
  * 
  *         if not morphing_path:
  *             print("Morphing phase failed!")             # <<<<<<<<<<<<<<
  *             return block_path
  * 
  */
-  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_u_Morphing_phase_failed); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 831, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__18);
-  __Pyx_GIVEREF(__pyx_tuple__18);
+  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_kp_u_Morphing_phase_failed); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 826, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__20);
+  __Pyx_GIVEREF(__pyx_tuple__20);
 
-  /* "ConnectedMatterAgent.pyx":844
+  /* "ConnectedMatterAgent.pyx":839
  *         """
  *         if not path:
  *             print("No path to visualize")             # <<<<<<<<<<<<<<
  *             return
  * 
  */
-  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_u_No_path_to_visualize); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 844, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__19);
-  __Pyx_GIVEREF(__pyx_tuple__19);
+  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_u_No_path_to_visualize); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 839, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
 
-  /* "ConnectedMatterAgent.pyx":847
+  /* "ConnectedMatterAgent.pyx":842
  *             return
  * 
  *         fig, ax = plt.subplots(figsize=(7, 7))             # <<<<<<<<<<<<<<
  *         plt.ion()  # Turn on interactive mode
  * 
  */
-  __pyx_tuple__20 = PyTuple_Pack(2, __pyx_int_7, __pyx_int_7); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 847, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__20);
-  __Pyx_GIVEREF(__pyx_tuple__20);
+  __pyx_tuple__22 = PyTuple_Pack(2, __pyx_int_7, __pyx_int_7); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 842, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__22);
+  __Pyx_GIVEREF(__pyx_tuple__22);
 
   /* "(tree fragment)":4
  *     cdef object __pyx_PickleError
@@ -23598,9 +24041,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         from pickle import PickleError as __pyx_PickleError
  *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x7378a15, 0xfa5d7e6, 0x5f0ecc7) = (articulation_points_cache, beam_width, connectivity_check_cache, directions, goal_centroid, goal_positions, goal_state, grid_size, max_iterations, max_simultaneous_moves, min_simultaneous_moves, start_positions, start_state, topology, valid_moves_cache))" % __pyx_checksum
  */
-  __pyx_tuple__22 = PyTuple_Pack(3, __pyx_int_121080341, __pyx_int_262526950, __pyx_int_99675335); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(2, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__22);
-  __Pyx_GIVEREF(__pyx_tuple__22);
+  __pyx_tuple__24 = PyTuple_Pack(3, __pyx_int_121080341, __pyx_int_262526950, __pyx_int_99675335); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(2, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__24);
+  __Pyx_GIVEREF(__pyx_tuple__24);
 
   /* "ConnectedMatterAgent.pyx":4
  * import time
@@ -23609,9 +24052,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * from collections import deque
  * 
  */
-  __pyx_tuple__25 = PyTuple_Pack(2, __pyx_n_s_matplotlib, __pyx_n_s_pyplot); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__25);
-  __Pyx_GIVEREF(__pyx_tuple__25);
+  __pyx_tuple__27 = PyTuple_Pack(2, __pyx_n_s_matplotlib, __pyx_n_s_pyplot); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__27);
+  __Pyx_GIVEREF(__pyx_tuple__27);
 
   /* "ConnectedMatterAgent.pyx":132
  *         self.max_iterations = 10000  # Limit iterations to prevent infinite loops
@@ -23620,10 +24063,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         """Calculate the centroid (average position) of a set of positions"""
  *         if not positions:
  */
-  __pyx_tuple__26 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_positions); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 132, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__26);
-  __Pyx_GIVEREF(__pyx_tuple__26);
-  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_calculate_centroid, 132, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_tuple__28 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_positions); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__28);
+  __Pyx_GIVEREF(__pyx_tuple__28);
+  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_calculate_centroid, 132, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 132, __pyx_L1_error)
 
   /* "ConnectedMatterAgent.pyx":148
  *         return (x_sum / length, y_sum / length)
@@ -23632,7 +24075,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         """Check if all positions are connected using BFS"""
  *         if not positions:
  */
-  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_is_connected, 148, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_is_connected, 148, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 148, __pyx_L1_error)
 
   /* "ConnectedMatterAgent.pyx":186
  *         return is_connected_result
@@ -23641,10 +24084,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         """
  *         Find articulation points (critical points that if removed would disconnect the structure)
  */
-  __pyx_tuple__29 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_state_set); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 186, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__29);
-  __Pyx_GIVEREF(__pyx_tuple__29);
-  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__29, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_get_articulation_points, 186, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_tuple__31 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_state_set); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__31);
+  __Pyx_GIVEREF(__pyx_tuple__31);
+  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_get_articulation_points, 186, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(0, 186, __pyx_L1_error)
 
   /* "ConnectedMatterAgent.pyx":215
  *         return articulation_points
@@ -23653,10 +24096,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         """
  *         Generate valid moves for the entire block of elements
  */
-  __pyx_tuple__31 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_state); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 215, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__31);
-  __Pyx_GIVEREF(__pyx_tuple__31);
-  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_get_valid_block_moves, 215, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_tuple__33 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_state); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__33);
+  __Pyx_GIVEREF(__pyx_tuple__33);
+  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_get_valid_block_moves, 215, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(0, 215, __pyx_L1_error)
 
   /* "ConnectedMatterAgent.pyx":246
  *         return valid_moves
@@ -23665,155 +24108,155 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         """
  *         Generate valid morphing moves that maintain connectivity
  */
-  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_get_valid_morphing_moves, 246, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_get_valid_morphing_moves, 246, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(0, 246, __pyx_L1_error)
 
-  /* "ConnectedMatterAgent.pyx":333
+  /* "ConnectedMatterAgent.pyx":328
  *         return valid_moves
  * 
  *     cpdef bint _is_valid_move_combination(self, list moves, set state_set):             # <<<<<<<<<<<<<<
  *         """Check if a combination of moves is valid (no conflicts)"""
  *         # Extract source and target positions
  */
-  __pyx_tuple__34 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_moves, __pyx_n_s_state_set); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(0, 333, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__34);
-  __Pyx_GIVEREF(__pyx_tuple__34);
-  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__34, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_is_valid_move_combination, 333, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __pyx_tuple__36 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_moves, __pyx_n_s_state_set); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__36);
+  __Pyx_GIVEREF(__pyx_tuple__36);
+  __pyx_codeobj__37 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__36, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_is_valid_move_combination, 328, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__37)) __PYX_ERR(0, 328, __pyx_L1_error)
 
-  /* "ConnectedMatterAgent.pyx":353
+  /* "ConnectedMatterAgent.pyx":348
  *         return True
  * 
  *     cpdef set _apply_moves(self, set state_set, list moves):             # <<<<<<<<<<<<<<
  *         """Apply a list of moves to the state"""
  *         cdef set new_state = state_set.copy()
  */
-  __pyx_tuple__36 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_state_set, __pyx_n_s_moves); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(0, 353, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__36);
-  __Pyx_GIVEREF(__pyx_tuple__36);
-  __pyx_codeobj__37 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__36, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_apply_moves, 353, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__37)) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_tuple__38 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_state_set, __pyx_n_s_moves); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(0, 348, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__38);
+  __Pyx_GIVEREF(__pyx_tuple__38);
+  __pyx_codeobj__39 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__38, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_apply_moves, 348, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__39)) __PYX_ERR(0, 348, __pyx_L1_error)
 
-  /* "ConnectedMatterAgent.pyx":364
+  /* "ConnectedMatterAgent.pyx":359
  *         return new_state
  * 
  *     cpdef list get_smart_chain_moves(self, object state):             # <<<<<<<<<<<<<<
  *         """
  *         Generate chain moves where one block moves into the space of another
  */
-  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_get_smart_chain_moves, 364, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_get_smart_chain_moves, 359, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) __PYX_ERR(0, 359, __pyx_L1_error)
 
-  /* "ConnectedMatterAgent.pyx":440
+  /* "ConnectedMatterAgent.pyx":435
  *         return valid_moves
  * 
  *     cpdef list get_sliding_chain_moves(self, object state):             # <<<<<<<<<<<<<<
  *         """
  *         Generate sliding chain moves where multiple blocks move in sequence
  */
-  __pyx_codeobj__39 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_get_sliding_chain_moves, 440, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__39)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_get_sliding_chain_moves, 435, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(0, 435, __pyx_L1_error)
 
-  /* "ConnectedMatterAgent.pyx":495
+  /* "ConnectedMatterAgent.pyx":490
  *         return valid_moves
  * 
  *     cpdef list get_all_valid_moves(self, object state):             # <<<<<<<<<<<<<<
  *         """
  *         Combine all move generation methods to maximize options
  */
-  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_get_all_valid_moves, 495, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) __PYX_ERR(0, 495, __pyx_L1_error)
+  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_get_all_valid_moves, 490, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) __PYX_ERR(0, 490, __pyx_L1_error)
 
-  /* "ConnectedMatterAgent.pyx":513
+  /* "ConnectedMatterAgent.pyx":508
  *         return all_moves
  * 
  *     cpdef double block_heuristic(self, object state):             # <<<<<<<<<<<<<<
  *         """
  *         Heuristic for block movement phase:
  */
-  __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_block_heuristic, 513, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(0, 513, __pyx_L1_error)
+  __pyx_codeobj__43 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_block_heuristic, 508, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__43)) __PYX_ERR(0, 508, __pyx_L1_error)
 
-  /* "ConnectedMatterAgent.pyx":526
+  /* "ConnectedMatterAgent.pyx":521
  *         return c_abs(current_centroid[0] - self.goal_centroid[0]) + c_abs(current_centroid[1] - self.goal_centroid[1])
  * 
  *     cpdef double improved_morphing_heuristic(self, object state):             # <<<<<<<<<<<<<<
  *         """
  *         Improved heuristic for morphing phase:
  */
-  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_improved_morphing_heuristic, 526, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_improved_morphing_heuristic, 521, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) __PYX_ERR(0, 521, __pyx_L1_error)
 
-  /* "ConnectedMatterAgent.pyx":587
+  /* "ConnectedMatterAgent.pyx":582
  *         return total_distance + connectivity_bonus
  * 
  *     cpdef list block_movement_phase(self, double time_limit=15):             # <<<<<<<<<<<<<<
  *         """
  *         Phase 1: Move the entire block toward the goal centroid
  */
-  __pyx_tuple__43 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_time_limit); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 587, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__43);
-  __Pyx_GIVEREF(__pyx_tuple__43);
-  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__43, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_block_movement_phase, 587, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) __PYX_ERR(0, 587, __pyx_L1_error)
-  __pyx_tuple__45 = PyTuple_Pack(1, __pyx_float_15_0); if (unlikely(!__pyx_tuple__45)) __PYX_ERR(0, 587, __pyx_L1_error)
+  __pyx_tuple__45 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_time_limit); if (unlikely(!__pyx_tuple__45)) __PYX_ERR(0, 582, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__45);
   __Pyx_GIVEREF(__pyx_tuple__45);
+  __pyx_codeobj__46 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__45, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_block_movement_phase, 582, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__46)) __PYX_ERR(0, 582, __pyx_L1_error)
+  __pyx_tuple__47 = PyTuple_Pack(1, __pyx_float_15_0); if (unlikely(!__pyx_tuple__47)) __PYX_ERR(0, 582, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__47);
+  __Pyx_GIVEREF(__pyx_tuple__47);
 
-  /* "ConnectedMatterAgent.pyx":701
+  /* "ConnectedMatterAgent.pyx":696
  *         return [self.start_state]  # No movement possible
  * 
  *     cpdef list smarter_morphing_phase(self, object start_state, double time_limit=15):             # <<<<<<<<<<<<<<
  *         """
  *         Improved Phase 2: Morph the block into the goal shape while maintaining connectivity
  */
-  __pyx_tuple__46 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_start_state, __pyx_n_s_time_limit); if (unlikely(!__pyx_tuple__46)) __PYX_ERR(0, 701, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__46);
-  __Pyx_GIVEREF(__pyx_tuple__46);
-  __pyx_codeobj__47 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__46, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_smarter_morphing_phase, 701, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__47)) __PYX_ERR(0, 701, __pyx_L1_error)
+  __pyx_tuple__48 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_start_state, __pyx_n_s_time_limit); if (unlikely(!__pyx_tuple__48)) __PYX_ERR(0, 696, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__48);
+  __Pyx_GIVEREF(__pyx_tuple__48);
+  __pyx_codeobj__49 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__48, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_smarter_morphing_phase, 696, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__49)) __PYX_ERR(0, 696, __pyx_L1_error)
 
-  /* "ConnectedMatterAgent.pyx":797
+  /* "ConnectedMatterAgent.pyx":792
  *         return self.reconstruct_path(came_from, best_state)
  * 
  *     cpdef list reconstruct_path(self, dict came_from, object current):             # <<<<<<<<<<<<<<
  *         """
  *         Reconstruct the path from start to goal
  */
-  __pyx_tuple__48 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_came_from, __pyx_n_s_current); if (unlikely(!__pyx_tuple__48)) __PYX_ERR(0, 797, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__48);
-  __Pyx_GIVEREF(__pyx_tuple__48);
-  __pyx_codeobj__49 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__48, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_reconstruct_path, 797, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__49)) __PYX_ERR(0, 797, __pyx_L1_error)
+  __pyx_tuple__50 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_came_from, __pyx_n_s_current); if (unlikely(!__pyx_tuple__50)) __PYX_ERR(0, 792, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__50);
+  __Pyx_GIVEREF(__pyx_tuple__50);
+  __pyx_codeobj__51 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_reconstruct_path, 792, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__51)) __PYX_ERR(0, 792, __pyx_L1_error)
 
-  /* "ConnectedMatterAgent.pyx":809
+  /* "ConnectedMatterAgent.pyx":804
  *         return path
  * 
  *     def search(self, double time_limit=30):             # <<<<<<<<<<<<<<
  *         """
  *         Main search method combining block movement and smarter morphing
  */
-  __pyx_tuple__50 = PyTuple_Pack(8, __pyx_n_s_self, __pyx_n_s_time_limit, __pyx_n_s_block_time_limit, __pyx_n_s_morphing_time_limit, __pyx_n_s_block_path, __pyx_n_s_block_final_state, __pyx_n_s_morphing_path, __pyx_n_s_combined_path); if (unlikely(!__pyx_tuple__50)) __PYX_ERR(0, 809, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__50);
-  __Pyx_GIVEREF(__pyx_tuple__50);
-  __pyx_codeobj__51 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_search, 809, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__51)) __PYX_ERR(0, 809, __pyx_L1_error)
-  __pyx_tuple__52 = PyTuple_Pack(1, __pyx_float_30_0); if (unlikely(!__pyx_tuple__52)) __PYX_ERR(0, 809, __pyx_L1_error)
+  __pyx_tuple__52 = PyTuple_Pack(8, __pyx_n_s_self, __pyx_n_s_time_limit, __pyx_n_s_block_time_limit, __pyx_n_s_morphing_time_limit, __pyx_n_s_block_path, __pyx_n_s_block_final_state, __pyx_n_s_morphing_path, __pyx_n_s_combined_path); if (unlikely(!__pyx_tuple__52)) __PYX_ERR(0, 804, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__52);
   __Pyx_GIVEREF(__pyx_tuple__52);
+  __pyx_codeobj__53 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__52, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_search, 804, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__53)) __PYX_ERR(0, 804, __pyx_L1_error)
+  __pyx_tuple__54 = PyTuple_Pack(1, __pyx_float_30_0); if (unlikely(!__pyx_tuple__54)) __PYX_ERR(0, 804, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__54);
+  __Pyx_GIVEREF(__pyx_tuple__54);
 
-  /* "ConnectedMatterAgent.pyx":839
+  /* "ConnectedMatterAgent.pyx":834
  *         return combined_path
  * 
  *     def visualize_path(self, list path, double interval=0.5):             # <<<<<<<<<<<<<<
  *         """
  *         Visualize the path as an animation
  */
-  __pyx_tuple__53 = PyTuple_Pack(15, __pyx_n_s_self, __pyx_n_s_path, __pyx_n_s_interval, __pyx_n_s_fig, __pyx_n_s_ax, __pyx_n_s_min_x, __pyx_n_s_max_x, __pyx_n_s_min_y, __pyx_n_s_max_y, __pyx_n_s_pos, __pyx_n_s_rect, __pyx_n_s_current_positions, __pyx_n_s_rects, __pyx_n_s_i, __pyx_n_s_new_positions); if (unlikely(!__pyx_tuple__53)) __PYX_ERR(0, 839, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__53);
-  __Pyx_GIVEREF(__pyx_tuple__53);
-  __pyx_codeobj__54 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 15, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__53, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_visualize_path, 839, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__54)) __PYX_ERR(0, 839, __pyx_L1_error)
-  __pyx_tuple__55 = PyTuple_Pack(1, __pyx_float_0_5); if (unlikely(!__pyx_tuple__55)) __PYX_ERR(0, 839, __pyx_L1_error)
+  __pyx_tuple__55 = PyTuple_Pack(15, __pyx_n_s_self, __pyx_n_s_path, __pyx_n_s_interval, __pyx_n_s_fig, __pyx_n_s_ax, __pyx_n_s_min_x, __pyx_n_s_max_x, __pyx_n_s_min_y, __pyx_n_s_max_y, __pyx_n_s_pos, __pyx_n_s_rect, __pyx_n_s_current_positions, __pyx_n_s_rects, __pyx_n_s_i, __pyx_n_s_new_positions); if (unlikely(!__pyx_tuple__55)) __PYX_ERR(0, 834, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__55);
   __Pyx_GIVEREF(__pyx_tuple__55);
+  __pyx_codeobj__56 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 15, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__55, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ConnectedMatterAgent_pyx, __pyx_n_s_visualize_path, 834, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__56)) __PYX_ERR(0, 834, __pyx_L1_error)
+  __pyx_tuple__57 = PyTuple_Pack(1, __pyx_float_0_5); if (unlikely(!__pyx_tuple__57)) __PYX_ERR(0, 834, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__57);
+  __Pyx_GIVEREF(__pyx_tuple__57);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_tuple__56 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_dict_2, __pyx_n_s_use_setstate); if (unlikely(!__pyx_tuple__56)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__56);
-  __Pyx_GIVEREF(__pyx_tuple__56);
-  __pyx_codeobj__57 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__56, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__57)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_tuple__58 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_dict_2, __pyx_n_s_use_setstate); if (unlikely(!__pyx_tuple__58)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__58);
+  __Pyx_GIVEREF(__pyx_tuple__58);
+  __pyx_codeobj__59 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__58, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__59)) __PYX_ERR(2, 1, __pyx_L1_error)
 
   /* "(tree fragment)":16
  *     else:
@@ -23821,20 +24264,20 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_ConnectedMatterAgent__set_state(self, __pyx_state)
  */
-  __pyx_tuple__58 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__58)) __PYX_ERR(2, 16, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__58);
-  __Pyx_GIVEREF(__pyx_tuple__58);
-  __pyx_codeobj__59 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__58, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__59)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __pyx_tuple__60 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__60)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__60);
+  __Pyx_GIVEREF(__pyx_tuple__60);
+  __pyx_codeobj__61 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__60, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__61)) __PYX_ERR(2, 16, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_ConnectedMatterAgent(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_tuple__60 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__60)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__60);
-  __Pyx_GIVEREF(__pyx_tuple__60);
-  __pyx_codeobj__61 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__60, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_ConnectedMatterAg, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__61)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_tuple__62 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__62)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__62);
+  __Pyx_GIVEREF(__pyx_tuple__62);
+  __pyx_codeobj__63 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__62, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_ConnectedMatterAg, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__63)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -23846,6 +24289,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 static CYTHON_SMALL_CODE int __Pyx_InitConstants(void) {
   __pyx_umethod_PyDict_Type_get.type = (PyObject*)&PyDict_Type;
   __pyx_umethod_PyDict_Type_get.method_name = &__pyx_n_s_get;
+  __pyx_umethod_PyList_Type_copy.type = (PyObject*)&PyList_Type;
+  __pyx_umethod_PyList_Type_copy.method_name = &__pyx_n_s_copy;
   __pyx_umethod_PySet_Type_copy.type = (PyObject*)&PySet_Type;
   __pyx_umethod_PySet_Type_copy.method_name = &__pyx_n_s_copy;
   if (__Pyx_CreateStringTabAndInitStrings() < 0) __PYX_ERR(0, 1, __pyx_L1_error);
@@ -24401,7 +24846,7 @@ if (!__Pyx_RefNanny) {
  * from collections import deque
  * 
  */
-  __pyx_t_2 = __Pyx_ImportDottedModule(__pyx_n_s_matplotlib_pyplot, __pyx_tuple__25); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_ImportDottedModule(__pyx_n_s_matplotlib_pyplot, __pyx_tuple__27); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_plt, __pyx_t_2) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -24434,7 +24879,7 @@ if (!__Pyx_RefNanny) {
  *         """Calculate the centroid (average position) of a set of positions"""
  *         if not positions:
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_3calculate_centroid, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_calculate_c, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_3calculate_centroid, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_calculate_c, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_calculate_centroid, __pyx_t_3) < 0) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -24447,7 +24892,7 @@ if (!__Pyx_RefNanny) {
  *         """Check if all positions are connected using BFS"""
  *         if not positions:
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_5is_connected, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_is_connecte, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_5is_connected, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_is_connecte, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__30)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_is_connected, __pyx_t_3) < 0) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -24460,7 +24905,7 @@ if (!__Pyx_RefNanny) {
  *         """
  *         Find articulation points (critical points that if removed would disconnect the structure)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_7get_articulation_points, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_get_articul, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__30)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_7get_articulation_points, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_get_articul, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_get_articulation_points, __pyx_t_3) < 0) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -24473,7 +24918,7 @@ if (!__Pyx_RefNanny) {
  *         """
  *         Generate valid moves for the entire block of elements
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_9get_valid_block_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_get_valid_b, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_9get_valid_block_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_get_valid_b, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_get_valid_block_moves, __pyx_t_3) < 0) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -24486,169 +24931,169 @@ if (!__Pyx_RefNanny) {
  *         """
  *         Generate valid morphing moves that maintain connectivity
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_11get_valid_morphing_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_get_valid_m, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_11get_valid_morphing_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_get_valid_m, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__35)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_get_valid_morphing_moves, __pyx_t_3) < 0) __PYX_ERR(0, 246, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
-  /* "ConnectedMatterAgent.pyx":333
+  /* "ConnectedMatterAgent.pyx":328
  *         return valid_moves
  * 
  *     cpdef bint _is_valid_move_combination(self, list moves, set state_set):             # <<<<<<<<<<<<<<
  *         """Check if a combination of moves is valid (no conflicts)"""
  *         # Extract source and target positions
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_13_is_valid_move_combination, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent__is_valid_m, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__35)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_13_is_valid_move_combination, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent__is_valid_m, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__37)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 328, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_is_valid_move_combination, __pyx_t_3) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_is_valid_move_combination, __pyx_t_3) < 0) __PYX_ERR(0, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
-  /* "ConnectedMatterAgent.pyx":353
+  /* "ConnectedMatterAgent.pyx":348
  *         return True
  * 
  *     cpdef set _apply_moves(self, set state_set, list moves):             # <<<<<<<<<<<<<<
  *         """Apply a list of moves to the state"""
  *         cdef set new_state = state_set.copy()
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_15_apply_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent__apply_move, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__37)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_15_apply_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent__apply_move, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__39)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_apply_moves, __pyx_t_3) < 0) __PYX_ERR(0, 353, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_apply_moves, __pyx_t_3) < 0) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
-  /* "ConnectedMatterAgent.pyx":364
+  /* "ConnectedMatterAgent.pyx":359
  *         return new_state
  * 
  *     cpdef list get_smart_chain_moves(self, object state):             # <<<<<<<<<<<<<<
  *         """
  *         Generate chain moves where one block moves into the space of another
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_17get_smart_chain_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_get_smart_c, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__38)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_17get_smart_chain_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_get_smart_c, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 359, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_get_smart_chain_moves, __pyx_t_3) < 0) __PYX_ERR(0, 364, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_get_smart_chain_moves, __pyx_t_3) < 0) __PYX_ERR(0, 359, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
-  /* "ConnectedMatterAgent.pyx":440
+  /* "ConnectedMatterAgent.pyx":435
  *         return valid_moves
  * 
  *     cpdef list get_sliding_chain_moves(self, object state):             # <<<<<<<<<<<<<<
  *         """
  *         Generate sliding chain moves where multiple blocks move in sequence
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_19get_sliding_chain_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_get_sliding, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__39)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_19get_sliding_chain_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_get_sliding, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 435, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_get_sliding_chain_moves, __pyx_t_3) < 0) __PYX_ERR(0, 440, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_get_sliding_chain_moves, __pyx_t_3) < 0) __PYX_ERR(0, 435, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
-  /* "ConnectedMatterAgent.pyx":495
+  /* "ConnectedMatterAgent.pyx":490
  *         return valid_moves
  * 
  *     cpdef list get_all_valid_moves(self, object state):             # <<<<<<<<<<<<<<
  *         """
  *         Combine all move generation methods to maximize options
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_21get_all_valid_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_get_all_val, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 495, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_21get_all_valid_moves, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_get_all_val, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__42)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 490, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_get_all_valid_moves, __pyx_t_3) < 0) __PYX_ERR(0, 495, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_get_all_valid_moves, __pyx_t_3) < 0) __PYX_ERR(0, 490, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
-  /* "ConnectedMatterAgent.pyx":513
+  /* "ConnectedMatterAgent.pyx":508
  *         return all_moves
  * 
  *     cpdef double block_heuristic(self, object state):             # <<<<<<<<<<<<<<
  *         """
  *         Heuristic for block movement phase:
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_23block_heuristic, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_block_heuri, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 513, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_23block_heuristic, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_block_heuri, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__43)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 508, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_block_heuristic, __pyx_t_3) < 0) __PYX_ERR(0, 513, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_block_heuristic, __pyx_t_3) < 0) __PYX_ERR(0, 508, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
-  /* "ConnectedMatterAgent.pyx":526
+  /* "ConnectedMatterAgent.pyx":521
  *         return c_abs(current_centroid[0] - self.goal_centroid[0]) + c_abs(current_centroid[1] - self.goal_centroid[1])
  * 
  *     cpdef double improved_morphing_heuristic(self, object state):             # <<<<<<<<<<<<<<
  *         """
  *         Improved heuristic for morphing phase:
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_25improved_morphing_heuristic, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_improved_mo, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__42)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_25improved_morphing_heuristic, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_improved_mo, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_improved_morphing_heuristic, __pyx_t_3) < 0) __PYX_ERR(0, 526, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_improved_morphing_heuristic, __pyx_t_3) < 0) __PYX_ERR(0, 521, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
-  /* "ConnectedMatterAgent.pyx":587
+  /* "ConnectedMatterAgent.pyx":582
  *         return total_distance + connectivity_bonus
  * 
  *     cpdef list block_movement_phase(self, double time_limit=15):             # <<<<<<<<<<<<<<
  *         """
  *         Phase 1: Move the entire block toward the goal centroid
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_27block_movement_phase, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_block_movem, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 587, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_27block_movement_phase, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_block_movem, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__46)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 582, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__45);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_block_movement_phase, __pyx_t_3) < 0) __PYX_ERR(0, 587, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__47);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_block_movement_phase, __pyx_t_3) < 0) __PYX_ERR(0, 582, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
-  /* "ConnectedMatterAgent.pyx":701
+  /* "ConnectedMatterAgent.pyx":696
  *         return [self.start_state]  # No movement possible
  * 
  *     cpdef list smarter_morphing_phase(self, object start_state, double time_limit=15):             # <<<<<<<<<<<<<<
  *         """
  *         Improved Phase 2: Morph the block into the goal shape while maintaining connectivity
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_29smarter_morphing_phase, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_smarter_mor, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__47)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 701, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_29smarter_morphing_phase, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_smarter_mor, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__49)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 696, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__45);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_smarter_morphing_phase, __pyx_t_3) < 0) __PYX_ERR(0, 701, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__47);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_smarter_morphing_phase, __pyx_t_3) < 0) __PYX_ERR(0, 696, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
-  /* "ConnectedMatterAgent.pyx":797
+  /* "ConnectedMatterAgent.pyx":792
  *         return self.reconstruct_path(came_from, best_state)
  * 
  *     cpdef list reconstruct_path(self, dict came_from, object current):             # <<<<<<<<<<<<<<
  *         """
  *         Reconstruct the path from start to goal
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_31reconstruct_path, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_reconstruct, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__49)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 797, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_31reconstruct_path, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_reconstruct, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 792, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_reconstruct_path, __pyx_t_3) < 0) __PYX_ERR(0, 797, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_reconstruct_path, __pyx_t_3) < 0) __PYX_ERR(0, 792, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
-  /* "ConnectedMatterAgent.pyx":809
+  /* "ConnectedMatterAgent.pyx":804
  *         return path
  * 
  *     def search(self, double time_limit=30):             # <<<<<<<<<<<<<<
  *         """
  *         Main search method combining block movement and smarter morphing
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_33search, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_search, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 809, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_33search, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_search, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__53)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 804, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__52);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_search, __pyx_t_3) < 0) __PYX_ERR(0, 809, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__54);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_search, __pyx_t_3) < 0) __PYX_ERR(0, 804, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
-  /* "ConnectedMatterAgent.pyx":839
+  /* "ConnectedMatterAgent.pyx":834
  *         return combined_path
  * 
  *     def visualize_path(self, list path, double interval=0.5):             # <<<<<<<<<<<<<<
  *         """
  *         Visualize the path as an animation
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_35visualize_path, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_visualize_p, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__54)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 839, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_35visualize_path, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent_visualize_p, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__56)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 834, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__55);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_visualize_path, __pyx_t_3) < 0) __PYX_ERR(0, 839, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__57);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_visualize_path, __pyx_t_3) < 0) __PYX_ERR(0, 834, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent);
 
@@ -24657,7 +25102,7 @@ if (!__Pyx_RefNanny) {
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_37__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent___reduce_cy, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__57)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_37__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent___reduce_cy, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__59)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -24669,7 +25114,7 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_ConnectedMatterAgent__set_state(self, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_39__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent___setstate, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__59)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_20ConnectedMatterAgent_39__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_ConnectedMatterAgent___setstate, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__61)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_20ConnectedMatterAgent_ConnectedMatterAgent, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(2, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -24680,7 +25125,7 @@ if (!__Pyx_RefNanny) {
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_1__pyx_unpickle_ConnectedMatterAgent, 0, __pyx_n_s_pyx_unpickle_ConnectedMatterAg, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__61)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_20ConnectedMatterAgent_1__pyx_unpickle_ConnectedMatterAgent, 0, __pyx_n_s_pyx_unpickle_ConnectedMatterAg, NULL, __pyx_n_s_ConnectedMatterAgent, __pyx_d, ((PyObject *)__pyx_codeobj__63)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_ConnectedMatterAg, __pyx_t_3) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -26969,6 +27414,11 @@ static CYTHON_INLINE int __Pyx_set_iter_next(
     return 0;
 }
 
+/* RaiseNoneIterError */
+static CYTHON_INLINE void __Pyx_RaiseNoneNotIterableError(void) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
+}
+
 /* CallUnboundCMethod0 */
 static PyObject* __Pyx__CallUnboundCMethod0(__Pyx_CachedCFunction* cfunc, PyObject* self) {
     PyObject *args, *result = NULL;
@@ -27197,11 +27647,6 @@ static PyObject* __Pyx_PyObject_CallMethod0(PyObject* obj, PyObject* method_name
     Py_DECREF(method);
 bad:
     return result;
-}
-
-/* RaiseNoneIterError */
-static CYTHON_INLINE void __Pyx_RaiseNoneNotIterableError(void) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
 }
 
 /* UnpackTupleError */
@@ -28100,7 +28545,7 @@ static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
         if (unlikely(!module_name_str)) { goto modbad; }
         module_name = PyUnicode_FromString(module_name_str);
         if (unlikely(!module_name)) { goto modbad; }
-        module_dot = PyUnicode_Concat(module_name, __pyx_kp_u__23);
+        module_dot = PyUnicode_Concat(module_name, __pyx_kp_u__25);
         if (unlikely(!module_dot)) { goto modbad; }
         full_name = PyUnicode_Concat(module_dot, name);
         if (unlikely(!full_name)) { goto modbad; }
@@ -28813,7 +29258,7 @@ static PyObject *__Pyx_ImportDottedModule_WalkParts(PyObject *module, PyObject *
 #endif
 static PyObject *__Pyx__ImportDottedModule(PyObject *name, PyObject *parts_tuple) {
 #if PY_MAJOR_VERSION < 3
-    PyObject *module, *from_list, *star = __pyx_n_s__24;
+    PyObject *module, *from_list, *star = __pyx_n_s__26;
     CYTHON_UNUSED_VAR(parts_tuple);
     from_list = PyList_New(1);
     if (unlikely(!from_list))
@@ -31530,7 +31975,7 @@ __Pyx_PyType_GetName(PyTypeObject* tp)
     if (unlikely(name == NULL) || unlikely(!PyUnicode_Check(name))) {
         PyErr_Clear();
         Py_XDECREF(name);
-        name = __Pyx_NewRef(__pyx_n_s__62);
+        name = __Pyx_NewRef(__pyx_n_s__64);
     }
     return name;
 }

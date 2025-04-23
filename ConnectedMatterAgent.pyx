@@ -253,81 +253,76 @@ cdef class ConnectedMatterAgent:
             return self.valid_moves_cache[state_key]
             
         # Get single block moves first
-        cdef list single_moves = []
-        cdef set state_set = set(state)
-        cdef set movable_points
-        cdef set articulation_points
-        cdef tuple point, new_pos, adj_pos
-        cdef int dx, dy, adj_dx, adj_dy
-        cdef bint has_adjacent
-        cdef set new_state_set, temp_state
-        
-        # Find non-critical points that can move without breaking connectivity
-        articulation_points = self.get_articulation_points(state_set)
-        movable_points = state_set - articulation_points
-        
-        # If all points are critical, try moving one anyway but verify connectivity 
-        if not movable_points and articulation_points:
-            for point in articulation_points:
-                # Try removing and see if structure remains connected
-                temp_state = state_set.copy()
-                temp_state.remove(point)
-                if self.is_connected(list(temp_state)):
-                    movable_points.add(point)
-        
-        # Generate single block moves
-        for point in movable_points:
-            # Try moving in each direction
-            for dx, dy in self.directions:
-                new_pos = (point[0] + dx, point[1] + dy)
-                
-                # Skip if out of bounds
-                if not (0 <= new_pos[0] < self.grid_size[0] and 
-                        0 <= new_pos[1] < self.grid_size[1]):
-                    continue
-                
-                # Skip if already occupied
-                if new_pos in state_set:
-                    continue
-                
-                # Create new state by moving the point
-                new_state_set = state_set.copy()
-                new_state_set.remove(point)
-                new_state_set.add(new_pos)
-                
-                # Check if new position is adjacent to at least one other point
-                has_adjacent = False
-                for adj_dx, adj_dy in self.directions:
-                    adj_pos = (new_pos[0] + adj_dx, new_pos[1] + adj_dy)
-                    if adj_pos in new_state_set and adj_pos != new_pos:
-                        has_adjacent = True
-                        break
-                
-                # Only consider moves that maintain connectivity
-                if has_adjacent and self.is_connected(list(new_state_set)):
-                    single_moves.append((point, new_pos))
-                    
-        # Start with empty valid moves list
+        cdef list occupied_positions = state
+        cdef set occupied_set = set(occupied_positions)
+        cdef list potential_moves = []
         cdef list valid_moves = []
-        cdef int k
+        cdef tuple pos, neighbor, new_pos
+        cdef int x, y, nx, ny
+        cdef list neighbors_list
+        cdef bint is_valid
+    
+    # Find all boundary positions - these are where morphing can occur
+        cdef list boundary_positions = []
+        for pos in occupied_positions:
+            x, y = pos
+            neighbors_count = 0
         
-        # Generate multi-block moves
-        for k in range(self.min_simultaneous_moves, min(self.max_simultaneous_moves + 1, len(single_moves) + 1)):
-            # Generate combinations of k moves (using the external helper function)
-            for combo in _generate_move_combinations(single_moves, k):
-                # Check if the combination is valid (no conflicts)
-                if self._is_valid_move_combination(combo, state_set):
-                    # Apply the combination and check connectivity
-                    new_state = self._apply_moves(state_set, combo)
-                    if self.is_connected(list(new_state)):
-                        valid_moves.append(frozenset(new_state))
+            for dx, dy in self.neighbor_transforms:
+                nx, ny = x + dx, y + dy
+                neighbor = (nx, ny)
+                if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height:
+                    if neighbor in occupied_set:
+                        neighbors_count += 1
         
-        # If no valid moves with min_simultaneous_moves, fallback to single moves if allowed
-        if not valid_moves and self.min_simultaneous_moves == 1:
-            valid_moves = [frozenset(self._apply_moves(state_set, [move])) for move in single_moves]
+            if neighbors_count < len(self.neighbor_transforms):
+                boundary_positions.append(pos)
+    
+    # For each boundary position, find potential new positions
+        for pos in boundary_positions:
+            x, y = pos
+            neighbors_list = []
         
-        # Cache results
-        self.valid_moves_cache[state_key] = valid_moves
+            for dx, dy in self.neighbor_transforms:
+                nx, ny = x + dx, y + dy
+                neighbor = (nx, ny)
+            
+                if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height and neighbor not in occupied_set:
+                # Check if removing pos and adding neighbor maintains connectivity
+                    new_occupied = occupied_positions.copy()
+                    new_occupied.remove(pos)
+                    new_occupied.append(neighbor)
+                
+                    if self.is_connected(new_occupied):
+                    # Further check to ensure that pos is not an articulation point
+                    # or that removing it doesn't break connectivity
+                        articulation_points = self.find_articulation_points(occupied_positions)
+                    
+                    # FIX: Convert string articulation points to tuples if needed
+                        articulation_points_fixed = []
+                        for point in articulation_points:
+                            if isinstance(point, str):
+                            # Parse the string into a tuple - assuming format like "(x,y)"
+                            # Remove parentheses and split by comma
+                                coords = point.strip('()').split(',')
+                                point_tuple = (int(coords[0]), int(coords[1]))
+                                articulation_points_fixed.append(point_tuple)
+                            else:
+                                articulation_points_fixed.append(point)
+                    
+                        if pos not in articulation_points_fixed:
+                            potential_moves.append((pos, neighbor))
+    
+    # Filter potential moves to ensure connectivity
+        for pos, new_pos in potential_moves:
+        # Create a new state by moving from pos to new_pos
+            new_state = occupied_positions.copy()
+            new_state.remove(pos)
+            new_state.append(new_pos)
+        
+            if self.is_valid_state(new_state):
+                valid_moves.append((pos, new_pos))
+    
         return valid_moves
     
     cpdef bint _is_valid_move_combination(self, list moves, set state_set):
