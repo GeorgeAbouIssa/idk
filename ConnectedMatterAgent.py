@@ -1,103 +1,10 @@
 import heapq
 import time
-import numpy as np
 import matplotlib.pyplot as plt
 from collections import deque
 
-# Cython imports
-cimport numpy as np
-from libc.math cimport abs as c_abs
-from libc.stdlib cimport malloc, free
-
-# Helper function for DFS (outside the class)
-cdef void _dfs(tuple u, list time, set state_set, set articulation_points, 
-              set visited, dict discovery, dict low, dict parent, list directions):
-    cdef int children = 0
-    cdef tuple v
-    cdef int dx, dy
-    
-    visited.add(u)
-    discovery[u] = low[u] = time[0]
-    time[0] += 1
-    
-    # Visit all neighbors
-    for dx, dy in directions:
-        v = (u[0] + dx, u[1] + dy)
-        if v in state_set:
-            if v not in visited:
-                children += 1
-                parent[v] = u
-                _dfs(v, time, state_set, articulation_points, visited, discovery, low, parent, directions)
-                
-                # Check if subtree rooted with v has a connection to ancestors of u
-                low[u] = min(low[u], low[v])
-                
-                # u is an articulation point if:
-                # 1) u is root and has two or more children
-                # 2) u is not root and low value of one of its children >= discovery value of u
-                if parent.get(u) is None and children > 1:
-                    articulation_points.add(u)
-                if parent.get(u) is not None and low[v] >= discovery[u]:
-                    articulation_points.add(u)
-                    
-            elif v != parent.get(u):  # Update low value of u for parent function calls
-                low[u] = min(low[u], discovery[v])
-
-# Helper function to find min value in a row (replaces lambda)
-cdef int min_value_in_row(list distances, int row_index):
-    cdef int min_val = distances[row_index][0]
-    cdef int j
-    for j in range(1, len(distances[row_index])):
-        if distances[row_index][j] < min_val:
-            min_val = distances[row_index][j]
-    return min_val
-
-# Helper for sorting indices by row minimums
-cdef list sort_indices_by_row_min(list distances, int length):
-    cdef list result = list(range(length))
-    cdef int i, j, temp
-    
-    # Simple bubble sort implementation
-    for i in range(length):
-        for j in range(0, length-i-1):
-            if min_value_in_row(distances, result[j]) > min_value_in_row(distances, result[j+1]):
-                temp = result[j]
-                result[j] = result[j+1]
-                result[j+1] = temp
-                
-    return result
-
-# Helper function to generate move combinations
-cdef list _generate_move_combinations(list single_moves, int k, int start_idx=0):
-    cdef list result = []
-    cdef int i
-    cdef object move
-    cdef list combo
-    
-    if k == 1:
-        return [[move] for move in single_moves[start_idx:]]
-    
-    for i in range(start_idx, len(single_moves) - k + 1):
-        move = single_moves[i]
-        for combo in _generate_move_combinations(single_moves, k-1, i+1):
-            result.append([move] + combo)
-    
-    return result
-
-cdef class ConnectedMatterAgent:
-    # Class attributes with type declarations
-    cdef tuple grid_size
-    cdef list start_positions, goal_positions
-    cdef str topology
-    cdef int max_simultaneous_moves, min_simultaneous_moves
-    cdef list directions
-    cdef object start_state, goal_state  # frozenset
-    cdef tuple goal_centroid
-    cdef dict valid_moves_cache, articulation_points_cache, connectivity_check_cache
-    cdef int beam_width, max_iterations
-
-    def __init__(self, tuple grid_size, list start_positions, list goal_positions, 
-                str topology="moore", int max_simultaneous_moves=1, int min_simultaneous_moves=1):
+class ConnectedMatterAgent:
+    def __init__(self, grid_size, start_positions, goal_positions, topology="moore", max_simultaneous_moves=1, min_simultaneous_moves=1):
         self.grid_size = grid_size
         self.start_positions = list(start_positions)
         self.goal_positions = list(goal_positions)
@@ -116,6 +23,7 @@ cdef class ConnectedMatterAgent:
         self.goal_state = frozenset((x, y) for x, y in goal_positions)
         
         # Calculate the centroid of the goal positions for block movement phase
+        # Using exact position calculation instead of average to ensure precise positioning
         self.goal_centroid = self.calculate_centroid(self.goal_positions)
         
         # Cache for valid moves to avoid recomputation
@@ -129,23 +37,15 @@ cdef class ConnectedMatterAgent:
         self.beam_width = 500  # Increased beam width for better exploration
         self.max_iterations = 10000  # Limit iterations to prevent infinite loops
         
-    cpdef tuple calculate_centroid(self, list positions):
+    def calculate_centroid(self, positions):
         """Calculate the centroid (average position) of a set of positions"""
         if not positions:
             return (0, 0)
-        
-        cdef double x_sum = 0
-        cdef double y_sum = 0
-        cdef int length = len(positions)
-        cdef int i
-        
-        for i in range(length):
-            x_sum += positions[i][0]
-            y_sum += positions[i][1]
-            
-        return (x_sum / length, y_sum / length)
+        x_sum = sum(pos[0] for pos in positions)
+        y_sum = sum(pos[1] for pos in positions)
+        return (x_sum / len(positions), y_sum / len(positions))
     
-    cpdef bint is_connected(self, list positions):
+    def is_connected(self, positions):
         """Check if all positions are connected using BFS"""
         if not positions:
             return True
@@ -163,9 +63,6 @@ cdef class ConnectedMatterAgent:
         visited = {start}
         queue = deque([start])
         
-        cdef tuple current, neighbor
-        cdef int dx, dy
-        
         while queue:
             current = queue.popleft()
             
@@ -177,18 +74,18 @@ cdef class ConnectedMatterAgent:
                     queue.append(neighbor)
         
         # All positions should be visited if connected
-        cdef bint is_connected_result = len(visited) == len(positions_set)
+        is_connected = len(visited) == len(positions_set)
         
         # Cache the result
-        self.connectivity_check_cache[positions_hash] = is_connected_result
-        return is_connected_result
+        self.connectivity_check_cache[positions_hash] = is_connected
+        return is_connected
     
-    cpdef set get_articulation_points(self, set state_set):
+    def get_articulation_points(self, state_set):
         """
         Find articulation points (critical points that if removed would disconnect the structure)
         Uses a modified DFS algorithm
         """
-        cdef int state_hash = hash(frozenset(state_set))
+        state_hash = hash(frozenset(state_set))
         if state_hash in self.articulation_points_cache:
             return self.articulation_points_cache[state_hash]
             
@@ -196,33 +93,57 @@ cdef class ConnectedMatterAgent:
             self.articulation_points_cache[state_hash] = set(state_set)
             return set(state_set)
             
-        cdef set articulation_points = set()
-        cdef set visited = set()
-        cdef dict discovery = {}
-        cdef dict low = {}
-        cdef dict parent = {}
-        cdef list time = [0]  # Using list to allow modification inside nested function
-        cdef tuple point
+        articulation_points = set()
+        visited = set()
+        discovery = {}
+        low = {}
+        parent = {}
+        time = [0]  # Using list to allow modification inside nested function
         
-        # Call DFS for all vertices (using the external helper function)
+        def dfs(u, time):
+            children = 0
+            visited.add(u)
+            discovery[u] = low[u] = time[0]
+            time[0] += 1
+            
+            # Visit all neighbors
+            for dx, dy in self.directions:
+                v = (u[0] + dx, u[1] + dy)
+                if v in state_set:
+                    if v not in visited:
+                        children += 1
+                        parent[v] = u
+                        dfs(v, time)
+                        
+                        # Check if subtree rooted with v has a connection to ancestors of u
+                        low[u] = min(low[u], low[v])
+                        
+                        # u is an articulation point if:
+                        # 1) u is root and has two or more children
+                        # 2) u is not root and low value of one of its children >= discovery value of u
+                        if parent.get(u) is None and children > 1:
+                            articulation_points.add(u)
+                        if parent.get(u) is not None and low[v] >= discovery[u]:
+                            articulation_points.add(u)
+                            
+                    elif v != parent.get(u):  # Update low value of u for parent function calls
+                        low[u] = min(low[u], discovery[v])
+        
+        # Call DFS for all vertices
         for point in state_set:
             if point not in visited:
-                _dfs(point, time, state_set, articulation_points, visited, discovery, low, parent, self.directions)
+                dfs(point, time)
                 
         self.articulation_points_cache[state_hash] = articulation_points
         return articulation_points
     
-    cpdef list get_valid_block_moves(self, object state):
+    def get_valid_block_moves(self, state):
         """
         Generate valid moves for the entire block of elements
         A valid block move shifts all elements in the same direction while maintaining connectivity
         """
-        cdef list valid_moves = []
-        cdef list state_list = list(state)
-        cdef int dx, dy
-        cdef list new_positions
-        cdef bint all_valid
-        cdef object new_state
+        valid_moves = []
+        state_list = list(state)
         
         # Try moving the entire block in each direction
         for dx, dy in self.directions:
@@ -230,11 +151,8 @@ cdef class ConnectedMatterAgent:
             new_positions = [(pos[0] + dx, pos[1] + dy) for pos in state_list]
             
             # Check if all new positions are valid (within bounds and not occupied)
-            all_valid = True
-            for pos in new_positions:
-                if not (0 <= pos[0] < self.grid_size[0] and 0 <= pos[1] < self.grid_size[1]):
-                    all_valid = False
-                    break
+            all_valid = all(0 <= pos[0] < self.grid_size[0] and 
+                            0 <= pos[1] < self.grid_size[1] for pos in new_positions)
             
             # Only consider moves that keep all positions within bounds
             if all_valid:
@@ -244,84 +162,103 @@ cdef class ConnectedMatterAgent:
         return valid_moves
     
     def get_valid_morphing_moves(self, state):
-    # Convert state to a list if it's a frozenset or any other iterable
-        cdef list occupied_positions = list(state)
-        cdef set occupied_set = set(occupied_positions)
-        cdef list potential_moves = []
-        cdef list valid_moves = []
-        cdef tuple pos, neighbor, new_pos
-        cdef int x, y, nx, ny
-        cdef list neighbors_list
-        cdef bint is_valid
-    
-    # Find all boundary positions - these are where morphing can occur
-        cdef list boundary_positions = []
-        for pos in occupied_positions:
-            x, y = pos
-            neighbors_count = 0
-        
-            for dx, dy in self.neighbor_transforms:
-                nx, ny = x + dx, y + dy
-                neighbor = (nx, ny)
-                if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height:
-                    if neighbor in occupied_set:
-                        neighbors_count += 1
-        
-            if neighbors_count < len(self.neighbor_transforms):
-                boundary_positions.append(pos)
-    
-    # For each boundary position, find potential new positions
-        for pos in boundary_positions:
-            x, y = pos
-            neighbors_list = []
-        
-            for dx, dy in self.neighbor_transforms:
-                nx, ny = x + dx, y + dy
-                neighbor = (nx, ny)
+        """
+        Generate valid morphing moves that maintain connectivity
+        Supports multiple simultaneous block movements with minimum requirement
+        """
+        state_key = hash(state)
+        if state_key in self.valid_moves_cache:
+            return self.valid_moves_cache[state_key]
             
-                if 0 <= nx < self.grid_width and 0 <= ny < self.grid_height and neighbor not in occupied_set:
-                # Check if removing pos and adding neighbor maintains connectivity
-                    new_occupied = occupied_positions.copy()
-                    new_occupied.remove(pos)
-                    new_occupied.append(neighbor)
-                
-                    if self.is_connected(new_occupied):
-                    # Further check to ensure that pos is not an articulation point
-                    # or that removing it doesn't break connectivity
-                        articulation_points = self.find_articulation_points(occupied_positions)
-                    
-                    # Handle articulation points that might be strings
-                        articulation_points_fixed = []
-                        for point in articulation_points:
-                            if isinstance(point, str):
-                            # Parse the string into a tuple - assuming format like "(x,y)"
-                                coords = point.strip('()').split(',')
-                                point_tuple = (int(coords[0]), int(coords[1]))
-                                articulation_points_fixed.append(point_tuple)
-                            else:
-                                articulation_points_fixed.append(point)
-                    
-                        if pos not in articulation_points_fixed:
-                            potential_moves.append((pos, neighbor))
-    
-    # Filter potential moves to ensure connectivity
-        for pos, new_pos in potential_moves:
-            # Create a new state by moving from pos to new_pos
-            new_state = occupied_positions.copy()
-            new_state.remove(pos)
-            new_state.append(new_pos)
+        # Get single block moves first
+        single_moves = []
+        state_set = set(state)
         
-            if self.is_valid_state(new_state):
-                valid_moves.append((pos, new_pos))
-    
+        # Find non-critical points that can move without breaking connectivity
+        articulation_points = self.get_articulation_points(state_set)
+        movable_points = state_set - articulation_points
+        
+        # If all points are critical, try moving one anyway but verify connectivity 
+        if not movable_points and articulation_points:
+            for point in articulation_points:
+                # Try removing and see if structure remains connected
+                temp_state = state_set.copy()
+                temp_state.remove(point)
+                if self.is_connected(temp_state):
+                    movable_points.add(point)
+        
+        # Generate single block moves
+        for point in movable_points:
+            # Try moving in each direction
+            for dx, dy in self.directions:
+                new_pos = (point[0] + dx, point[1] + dy)
+                
+                # Skip if out of bounds
+                if not (0 <= new_pos[0] < self.grid_size[0] and 
+                        0 <= new_pos[1] < self.grid_size[1]):
+                    continue
+                
+                # Skip if already occupied
+                if new_pos in state_set:
+                    continue
+                
+                # Create new state by moving the point
+                new_state_set = state_set.copy()
+                new_state_set.remove(point)
+                new_state_set.add(new_pos)
+                
+                # Check if new position is adjacent to at least one other point
+                has_adjacent = False
+                for adj_dx, adj_dy in self.directions:
+                    adj_pos = (new_pos[0] + adj_dx, new_pos[1] + adj_dy)
+                    if adj_pos in new_state_set and adj_pos != new_pos:
+                        has_adjacent = True
+                        break
+                
+                # Only consider moves that maintain connectivity
+                if has_adjacent and self.is_connected(new_state_set):
+                    single_moves.append((point, new_pos))
+                    
+        # Start with empty valid moves list
+        valid_moves = []
+        
+        # Generate multi-block moves
+        for k in range(self.min_simultaneous_moves, min(self.max_simultaneous_moves + 1, len(single_moves) + 1)):
+            # Generate combinations of k moves
+            for combo in self._generate_move_combinations(single_moves, k):
+                # Check if the combination is valid (no conflicts)
+                if self._is_valid_move_combination(combo, state_set):
+                    # Apply the combination and check connectivity
+                    new_state = self._apply_moves(state_set, combo)
+                    if self.is_connected(new_state):
+                        valid_moves.append(frozenset(new_state))
+        
+        # If no valid moves with min_simultaneous_moves, fallback to single moves if allowed
+        if not valid_moves and self.min_simultaneous_moves == 1:
+            valid_moves = [frozenset(self._apply_moves(state_set, [move])) for move in single_moves]
+        
+        # Cache results
+        self.valid_moves_cache[state_key] = valid_moves
         return valid_moves
     
-    cpdef bint _is_valid_move_combination(self, list moves, set state_set):
+    def _generate_move_combinations(self, single_moves, k):
+        """Generate all combinations of k moves from the list of single moves"""
+        if k == 1:
+            return [[move] for move in single_moves]
+        
+        result = []
+        for i in range(len(single_moves) - k + 1):
+            move = single_moves[i]
+            for combo in self._generate_move_combinations(single_moves[i+1:], k-1):
+                result.append([move] + combo)
+        
+        return result
+    
+    def _is_valid_move_combination(self, moves, state_set):
         """Check if a combination of moves is valid (no conflicts)"""
         # Extract source and target positions
-        cdef set sources = set()
-        cdef set targets = set()
-        cdef tuple src, tgt
+        sources = set()
+        targets = set()
         
         for src, tgt in moves:
             # Check for overlapping sources or targets
@@ -336,28 +273,21 @@ cdef class ConnectedMatterAgent:
         
         return True
     
-    cpdef set _apply_moves(self, set state_set, list moves):
+    def _apply_moves(self, state_set, moves):
         """Apply a list of moves to the state"""
-        cdef set new_state = state_set.copy()
-        cdef tuple src, tgt
-        
+        new_state = state_set.copy()
         for src, tgt in moves:
             new_state.remove(src)
             new_state.add(tgt)
-        
         return new_state
     
-    cpdef list get_smart_chain_moves(self, object state):
+    def get_smart_chain_moves(self, state):
         """
         Generate chain moves where one block moves into the space of another
         while that block moves elsewhere, maintaining connectivity
         """
-        cdef set state_set = set(state)
-        cdef list valid_moves = []
-        cdef tuple pos, closest_goal, next_pos, chain_pos
-        cdef double min_dist, dist
-        cdef int dx, dy, chain_dx, chain_dy
-        cdef set new_state_set
+        state_set = set(state)
+        valid_moves = []
         
         # For each block, try to move it toward a goal position
         for pos in state_set:
@@ -367,7 +297,7 @@ cdef class ConnectedMatterAgent:
             
             for goal_pos in self.goal_state:
                 if goal_pos not in state_set:  # Only consider unoccupied goals
-                    dist = c_abs(pos[0] - goal_pos[0]) + c_abs(pos[1] - goal_pos[1])
+                    dist = abs(pos[0] - goal_pos[0]) + abs(pos[1] - goal_pos[1])
                     if dist < min_dist:
                         min_dist = dist
                         closest_goal = goal_pos
@@ -408,7 +338,7 @@ cdef class ConnectedMatterAgent:
                     new_state_set.add(chain_pos)
                     
                     # Check if new state is connected
-                    if self.is_connected(list(new_state_set)):
+                    if self.is_connected(new_state_set):
                         valid_moves.append(frozenset(new_state_set))
             
             # If next position is unoccupied, try direct move
@@ -418,22 +348,18 @@ cdef class ConnectedMatterAgent:
                 new_state_set.add(next_pos)
                 
                 # Check if new state is connected
-                if self.is_connected(list(new_state_set)):
+                if self.is_connected(new_state_set):
                     valid_moves.append(frozenset(new_state_set))
         
         return valid_moves
     
-    cpdef list get_sliding_chain_moves(self, object state):
+    def get_sliding_chain_moves(self, state):
         """
         Generate sliding chain moves where multiple blocks move in sequence
         to navigate tight spaces
         """
-        cdef set state_set = set(state)
-        cdef list valid_moves = []
-        cdef tuple pos, current_pos, next_pos, target_pos
-        cdef int dx, dy, i
-        cdef set articulation_points, new_state_set
-        cdef list path
+        state_set = set(state)
+        valid_moves = []
         
         # For each block, try to initiate a sliding chain
         for pos in state_set:
@@ -470,7 +396,7 @@ cdef class ConnectedMatterAgent:
                         new_state_set.add(target_pos)
                         
                         # Check if new state is connected
-                        if self.is_connected(list(new_state_set)):
+                        if self.is_connected(new_state_set):
                             valid_moves.append(frozenset(new_state_set))
                         
                         # No need to continue if we can't reach this position
@@ -478,25 +404,25 @@ cdef class ConnectedMatterAgent:
         
         return valid_moves
     
-    cpdef list get_all_valid_moves(self, object state):
+    def get_all_valid_moves(self, state):
         """
         Combine all move generation methods to maximize options
         """
         # Start with basic morphing moves
-        cdef list basic_moves = self.get_valid_morphing_moves(state)
+        basic_moves = self.get_valid_morphing_moves(state)
         
         # Add chain moves
-        cdef list chain_moves = self.get_smart_chain_moves(state)
+        chain_moves = self.get_smart_chain_moves(state)
         
         # Add sliding chain moves
-        cdef list sliding_moves = self.get_sliding_chain_moves(state)
+        sliding_moves = self.get_sliding_chain_moves(state)
         
         # Combine all moves (frozensets automatically handle duplicates)
-        cdef list all_moves = list(set(basic_moves + chain_moves + sliding_moves))
+        all_moves = list(set(basic_moves + chain_moves + sliding_moves))
         
         return all_moves
     
-    cpdef double block_heuristic(self, object state):
+    def block_heuristic(self, state):
         """
         Heuristic for block movement phase:
         Calculate Manhattan distance from current centroid to goal centroid
@@ -504,12 +430,12 @@ cdef class ConnectedMatterAgent:
         if not state:
             return float('inf')
             
-        cdef tuple current_centroid = self.calculate_centroid(list(state))
+        current_centroid = self.calculate_centroid(state)
         
         # Pure Manhattan distance between centroids without the +1 offset
-        return c_abs(current_centroid[0] - self.goal_centroid[0]) + c_abs(current_centroid[1] - self.goal_centroid[1])
+        return abs(current_centroid[0] - self.goal_centroid[0]) + abs(current_centroid[1] - self.goal_centroid[1])
     
-    cpdef double improved_morphing_heuristic(self, object state):
+    def improved_morphing_heuristic(self, state):
         """
         Improved heuristic for morphing phase:
         Uses bipartite matching to find optimal assignment of blocks to goal positions
@@ -517,35 +443,30 @@ cdef class ConnectedMatterAgent:
         if not state:
             return float('inf')
             
-        cdef list state_list = list(state)
-        cdef list goal_list = list(self.goal_state)
+        state_list = list(state)
+        goal_list = list(self.goal_state)
         
         # Early exit if states have different sizes
         if len(state_list) != len(goal_list):
             return float('inf')
         
         # Build distance matrix
-        cdef list distances = []
-        cdef list row
-        cdef tuple pos, goal_pos
-        cdef int dist
-        
+        distances = []
         for pos in state_list:
             row = []
             for goal_pos in goal_list:
                 # Manhattan distance
-                dist = c_abs(pos[0] - goal_pos[0]) + c_abs(pos[1] - goal_pos[1])
+                dist = abs(pos[0] - goal_pos[0]) + abs(pos[1] - goal_pos[1])
                 row.append(dist)
             distances.append(row)
         
         # Use greedy assignment algorithm
-        cdef double total_distance = 0
-        cdef set assigned_cols = set()
-        cdef int i, j, best_j, matching_positions
-        cdef double min_dist, connectivity_bonus
+        total_distance = 0
+        assigned_cols = set()
         
-        # Sort rows by minimum distance (using our helper function)
-        cdef list row_indices = sort_indices_by_row_min(distances, len(state_list))
+        # Sort rows by minimum distance
+        row_indices = list(range(len(state_list)))
+        row_indices.sort(key=lambda i: min(distances[i]))
         
         for i in row_indices:
             # Find closest unassigned goal position
@@ -570,46 +491,41 @@ cdef class ConnectedMatterAgent:
         
         return total_distance + connectivity_bonus
     
-    cpdef list block_movement_phase(self, double time_limit=15):
+    def block_movement_phase(self, time_limit=15):
         """
         Phase 1: Move the entire block toward the goal centroid
         Returns the path of states to get near the goal area
         Modified to stop 1 grid cell before reaching the goal centroid
         """
         print("Starting Block Movement Phase...")
-        cdef double start_time = time.time()
+        start_time = time.time()
 
-        # Initialize A* search
+    # Initialize A* search
         open_set = [(self.block_heuristic(self.start_state), 0, self.start_state)]
-        cdef set closed_set = set()
+        closed_set = set()
 
-        # Track path and g-scores
-        cdef dict g_score = {self.start_state: 0}
-        cdef dict came_from = {self.start_state: None}
+    # Track path and g-scores
+        g_score = {self.start_state: 0}
+        came_from = {self.start_state: None}
 
-        # Modified: We want to stop 1 grid cell before reaching the centroid
-        # Instead of using a small threshold, we'll check if distance is between 1.0 and 2.0
-        # This ensures we're approximately 1 grid cell away from the goal centroid
-        cdef double min_distance = 1.0
-        cdef double max_distance = 1.0
-        cdef double f, g, centroid_distance, neighbor_distance, tentative_g, f_score
-        cdef double distance_diff, best_distance_diff, distance_penalty, adjusted_heuristic
-        cdef object current, neighbor
-        cdef tuple current_centroid, neighbor_centroid, best_centroid
-        cdef object best_state = None
+    # Modified: We want to stop 1 grid cell before reaching the centroid
+    # Instead of using a small threshold, we'll check if distance is between 1.0 and 2.0
+    # This ensures we're approximately 1 grid cell away from the goal centroid
+        min_distance = 1.0
+        max_distance = 1.0
 
         while open_set and time.time() - start_time < time_limit:
             # Get state with lowest f-score
             f, g, current = heapq.heappop(open_set)
     
-            # Skip if already processed
+        # Skip if already processed
             if current in closed_set:
                 continue
         
-            # Check if we're at the desired distance from the goal centroid
-            current_centroid = self.calculate_centroid(list(current))
-            centroid_distance = (c_abs(current_centroid[0] - self.goal_centroid[0]) + 
-                            c_abs(current_centroid[1] - self.goal_centroid[1]))
+        # Check if we're at the desired distance from the goal centroid
+            current_centroid = self.calculate_centroid(current)
+            centroid_distance = (abs(current_centroid[0] - self.goal_centroid[0]) + 
+                            abs(current_centroid[1] - self.goal_centroid[1]))
                         
             if min_distance <= centroid_distance <= max_distance:
                 print(f"Block stopped 1 grid cell before goal centroid. Distance: {centroid_distance}")
@@ -617,12 +533,12 @@ cdef class ConnectedMatterAgent:
         
             closed_set.add(current)
     
-            # Process neighbor states (block moves)
+        # Process neighbor states (block moves)
             for neighbor in self.get_valid_block_moves(current):
                 if neighbor in closed_set:
                     continue
             
-                # Calculate tentative g-score
+            # Calculate tentative g-score
                 tentative_g = g_score[current] + 1
         
                 if neighbor not in g_score or tentative_g < g_score[neighbor]:
@@ -630,12 +546,12 @@ cdef class ConnectedMatterAgent:
                     came_from[neighbor] = current
                     g_score[neighbor] = tentative_g
                 
-                    # Modified: Adjust heuristic to prefer states that are close to but not at the centroid
-                    neighbor_centroid = self.calculate_centroid(list(neighbor))
-                    neighbor_distance = (c_abs(neighbor_centroid[0] - self.goal_centroid[0]) + 
-                                   c_abs(neighbor_centroid[1] - self.goal_centroid[1]))
+                # Modified: Adjust heuristic to prefer states that are close to but not at the centroid
+                    neighbor_centroid = self.calculate_centroid(neighbor)
+                    neighbor_distance = (abs(neighbor_centroid[0] - self.goal_centroid[0]) + 
+                                   abs(neighbor_centroid[1] - self.goal_centroid[1]))
                 
-                    # Penalize distances that are too small (< 1.0)
+                # Penalize distances that are too small (< 1.0)
                     distance_penalty = 0
                     if neighbor_distance < min_distance:
                         distance_penalty = 10 * (min_distance - neighbor_distance)
@@ -643,31 +559,31 @@ cdef class ConnectedMatterAgent:
                     adjusted_heuristic = self.block_heuristic(neighbor) + distance_penalty
                     f_score = tentative_g + adjusted_heuristic
             
-                    # Add to open set
+                # Add to open set
                     heapq.heappush(open_set, (f_score, tentative_g, neighbor))
 
-        # If we exit the loop, either no path was found or time limit reached
+    # If we exit the loop, either no path was found or time limit reached
         if time.time() - start_time >= time_limit:
             print("Block movement phase timed out!")
     
-        # Return the best state we found
+    # Return the best state we found
         if came_from:
-            # Find state with appropriate distance to centroid
+        # Find state with appropriate distance to centroid
             best_state = None
             best_distance_diff = float('inf')
         
             for state in came_from.keys():
-                state_centroid = self.calculate_centroid(list(state))
-                distance = (c_abs(state_centroid[0] - self.goal_centroid[0]) + 
-                            c_abs(state_centroid[1] - self.goal_centroid[1]))
+                state_centroid = self.calculate_centroid(state)
+                distance = (abs(state_centroid[0] - self.goal_centroid[0]) + 
+                            abs(state_centroid[1] - self.goal_centroid[1]))
             
-                # We want a state that's as close as possible to our target distance range
+            # We want a state that's as close as possible to our target distance range
                 if distance < min_distance:
                     distance_diff = min_distance - distance
                 elif distance > max_distance:
                     distance_diff = distance - max_distance
                 else:
-                    # Distance is within our desired range
+                # Distance is within our desired range
                     best_state = state
                     break
                 
@@ -676,37 +592,36 @@ cdef class ConnectedMatterAgent:
                     best_state = state
         
             if best_state:
-                best_centroid = self.calculate_centroid(list(best_state))
-                best_distance = (c_abs(best_centroid[0] - self.goal_centroid[0]) + 
-                                c_abs(best_centroid[1] - self.goal_centroid[1]))
+                best_centroid = self.calculate_centroid(best_state)
+                best_distance = (abs(best_centroid[0] - self.goal_centroid[0]) + 
+                                abs(best_centroid[1] - self.goal_centroid[1]))
                 print(f"Best block position found with centroid distance: {best_distance}")
                 return self.reconstruct_path(came_from, best_state)
     
         return [self.start_state]  # No movement possible
     
-    cpdef list smarter_morphing_phase(self, object start_state, double time_limit=15):
+    def smarter_morphing_phase(self, start_state, time_limit=15):
         """
         Improved Phase 2: Morph the block into the goal shape while maintaining connectivity
         Uses beam search and intelligent move generation with support for simultaneous moves
         """
         print(f"Starting Smarter Morphing Phase with {self.min_simultaneous_moves}-{self.max_simultaneous_moves} simultaneous moves...")
-        cdef double start_time = time.time()
-        cdef double last_improvement_time = time.time()
+        start_time = time.time()
         
         # Initialize beam search
         open_set = [(self.improved_morphing_heuristic(start_state), 0, start_state)]
-        cdef set closed_set = set()
+        closed_set = set()
         
         # Track path, g-scores, and best state
-        cdef dict g_score = {start_state: 0}
-        cdef dict came_from = {start_state: None}
+        g_score = {start_state: 0}
+        came_from = {start_state: None}
         
         # Track best state seen so far
-        cdef object best_state = start_state
-        cdef double best_heuristic = self.improved_morphing_heuristic(start_state)
-        cdef double current_heuristic, f, g, tentative_g, f_score
-        cdef int iterations = 0
-        cdef object current, neighbor
+        best_state = start_state
+        best_heuristic = self.improved_morphing_heuristic(start_state)
+        
+        iterations = 0
+        last_improvement_time = time.time()
         
         while open_set and time.time() - start_time < time_limit:
             iterations += 1
@@ -780,11 +695,11 @@ cdef class ConnectedMatterAgent:
         # Return the best state found
         return self.reconstruct_path(came_from, best_state)
     
-    cpdef list reconstruct_path(self, dict came_from, object current):
+    def reconstruct_path(self, came_from, current):
         """
         Reconstruct the path from start to goal
         """
-        cdef list path = []
+        path = []
         while current:
             path.append(list(current))
             current = came_from.get(current)
@@ -792,83 +707,37 @@ cdef class ConnectedMatterAgent:
         path.reverse()
         return path
     
-    def search(self, double time_limit=1000):
-        cdef double start_time
-        cdef double elapsed_time
-        cdef double block_time_limit
-        cdef double morphing_time_limit
-        cdef list path
-        cdef list block_path
-        cdef list morphing_path
-        cdef list block_final_state
-        cdef double distance_to_goal
+    def search(self, time_limit=30):
+        """
+        Main search method combining block movement and smarter morphing
+        """
+        # Allocate time for each phase
+        block_time_limit = time_limit * 0.3  # 30% for block movement
+        morphing_time_limit = time_limit * 0.7  # 70% for morphing
+        
+        # Phase 1: Block Movement
+        block_path = self.block_movement_phase(block_time_limit)
+        
+        if not block_path:
+            print("Block movement phase failed!")
+            return None
+        
+        # Get the final state from block movement phase
+        block_final_state = frozenset(block_path[-1])
+        
+        # Phase 2: Smarter Morphing
+        morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
+        
+        if not morphing_path:
+            print("Morphing phase failed!")
+            return block_path
+        
+        # Combine paths (remove duplicate state at transition)
+        combined_path = block_path[:-1] + morphing_path
+        
+        return combined_path
     
-        try:
-        # Record start time
-            start_time = time.time()
-            elapsed_time = 0
-            block_time_limit = time_limit * 0.7  # Use 70% of time for block movement
-            morphing_time_limit = time_limit * 0.3  # Reserve 30% for morphing
-            path = []
-            block_path = []
-            morphing_path = []
-        
-            print("Starting Block Movement Phase...")
-        
-        # First try to move blocks close to goal without changing shape
-            block_path = self.block_movement_phase(block_time_limit)
-        
-            if block_path:
-                path.extend(block_path)
-            # Get final state after block movement
-                block_final_state = path[-1][1] if path else self.current_state
-            
-            # Calculate distance to goal centroid
-                distance_to_goal = self.calculate_centroid_distance(block_final_state, self.goal_state)
-            
-                if distance_to_goal <= 0.1:  # If close enough to goal, we're done
-                    print(f"Goal reached with block movement alone! Distance: {distance_to_goal}")
-                    return path
-                elif distance_to_goal <= 1.5:  # If reasonably close, try morphing
-                    print(f"Block stopped {distance_to_goal} grid cells before goal centroid. Distance: {distance_to_goal}")
-                    print("Starting Smarter Morphing Phase with 1-1 simultaneous moves...")
-                    morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
-                    if morphing_path:
-                        path.extend(morphing_path)
-                        return path
-                    else:
-                        print("Morphing phase could not find a path to goal.")
-                else:
-                    print(f"Best block position found with centroid distance: {distance_to_goal}")
-                    print("Starting Smarter Morphing Phase with 1-1 simultaneous moves...")
-                    morphing_path = self.smarter_morphing_phase(block_final_state, morphing_time_limit)
-                    if morphing_path:
-                        path.extend(morphing_path)
-                        return path
-                    else:
-                        print("Morphing phase could not find a path to goal.")
-            else:
-                print("Block movement phase could not find a path.")
-            # Try morphing directly from initial state
-                print("Starting Smarter Morphing Phase from initial state...")
-                morphing_path = self.smarter_morphing_phase(self.current_state, time_limit)
-                if morphing_path:
-                    path = morphing_path
-                    return path
-                else:
-                    print("Morphing phase could not find a path to goal.")
-        
-        # If we get here, no solution was found
-            print("No solution found within time limit. Returning best partial path if available.")
-            return path if path else None
-        
-        except Exception as e:
-            import traceback
-            print(f"Error in search algorithm: {str(e)}")
-            print(traceback.format_exc())
-        # Return whatever partial path we have instead of crashing
-            return []
-    def visualize_path(self, list path, double interval=0.5):
+    def visualize_path(self, path, interval=0.5):
         """
         Visualize the path as an animation
         """
@@ -880,10 +749,8 @@ cdef class ConnectedMatterAgent:
         plt.ion()  # Turn on interactive mode
     
         # Get bounds for plotting
-        cdef int min_x = 0
-        cdef int max_x = self.grid_size[0] - 1
-        cdef int min_y = 0
-        cdef int max_y = self.grid_size[1] - 1
+        min_x, max_x = 0, self.grid_size[0] - 1
+        min_y, max_y = 0, self.grid_size[1] - 1
     
         # Show initial state
         ax.clear()
@@ -909,9 +776,6 @@ cdef class ConnectedMatterAgent:
         plt.pause(interval)
     
         # Animate the path
-        cdef int i
-        cdef list new_positions
-        
         for i in range(1, len(path)):
             # Update positions
             new_positions = path[i]
