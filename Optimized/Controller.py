@@ -26,6 +26,7 @@ class SearchController:
         # Create visualizer with default animation speed
         self.animation_speed = 0.05  # Default animation speed (seconds)
         self.vis = Visualizer(grid_size, [], self.start_positions, self.animation_speed)
+        self.vis.controller = self  # Add this line
         self.vis.draw_grid()
         plt.show(block=False)  # Show grid before printing anything
 

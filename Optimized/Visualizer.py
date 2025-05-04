@@ -105,6 +105,11 @@ class Visualizer:
             self.ax.set_aspect('equal')
             self.ax.set_xlim(0, self.grid_size[1])
             self.ax.set_ylim(0, self.grid_size[0])
+            
+            # ADD THESE TWO LINES to show obstacles and goal during animation
+            if hasattr(self, 'controller'):
+                self.highlight_obstacles(self.controller.obstacles)
+                self.highlight_goal_shape(self.controller.goal_positions)
         
             # Restore text annotation
             self.text_annotation = self.ax.text(
@@ -126,15 +131,6 @@ class Visualizer:
                 
             plt.pause(self.animation_speed)  # Use customizable animation speed
             self.current_step += 1  # Move to the next step
-
-        # Animation completed
-        if self.current_step >= len(self.path):
-            self.animation_done = True
-            self.button.label.set_text("Restart")
-            self.update_text("Start another search.", color="green")
-
-        plt.draw()
-
     def highlight_goal_shape(self, goal_positions):
         """Highlight the goal shape with a dim green color"""
         for pos in goal_positions:

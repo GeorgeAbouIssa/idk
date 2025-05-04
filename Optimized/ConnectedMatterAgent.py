@@ -50,7 +50,7 @@ class ConnectedMatterAgent:
         
         # Enhanced parameters for improved search
         self.beam_width = 800  # Increased beam width for better exploration
-        self.max_iterations = 100000  # Limit iterations to prevent infinite loops
+        self.max_iterations = 200000  # Limit iterations to prevent infinite loops
         
         # For obstacle pathfinding optimization
         self.distance_map_cache = {}
