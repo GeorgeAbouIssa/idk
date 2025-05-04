@@ -2,35 +2,20 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Button
 import numpy as np
 
-cdef class Visualizer:
-    cdef public object fig
-    cdef public object ax
-    cdef public object button_ax
-    cdef public object button
-    cdef public object text_annotation
-    cdef public tuple grid_size
-    cdef public list path
-    cdef public list start_positions
-    cdef public double animation_speed
-    cdef public bint paused
-    cdef public bint animation_done
-    cdef public int current_step
-    cdef public bint animation_started
-
-    def __init__(self, tuple grid_size, list path, list start_positions, double animation_speed=0.05):
+class Visualizer:
+    def __init__(self, grid_size, path, start_positions):
         self.grid_size = grid_size
-        self.path = path
+        self.path = path  # Ensure path is passed correctly
         self.start_positions = start_positions
-        self.animation_speed = animation_speed
-        self.paused = False
-        self.animation_done = False
-        self.current_step = 0
-        self.animation_started = False
+        self.paused = False  # Track pause state
+        self.animation_done = False  # Track if animation is complete
+        self.current_step = 0  # Keep track of the animation step
+        self.animation_started = False  # Track if animation has started
 
-        self.fig, self.ax = plt.subplots(figsize=(12, 10))
-        self.fig.subplots_adjust(left=0.2, right=0.8, bottom=0.2, top=0.95)
+        self.fig, self.ax = plt.subplots(figsize=(8, 8))  # Larger figure to accommodate the radio buttons
+        self.fig.subplots_adjust(left=0.1, right=0.9, bottom=0.2, top=0.9)  # Adjust margins to center the grid
 
-        # Create button
+        # Create button (moved to the right side to make room for radio buttons)
         self.button_ax = self.fig.add_axes([0.7, 0.05, 0.2, 0.075])
         self.button = Button(self.button_ax, "Search")
         
@@ -40,14 +25,14 @@ cdef class Visualizer:
             ha="center", fontsize=12, fontweight="bold"
         )
 
-        self.draw_grid()
+        self.draw_grid()  # Ensure the grid is drawn initially
 
-    def draw_grid(self, bint highlight_initial=True, bint highlight_goal=False):
+    def draw_grid(self, highlight_initial=True, highlight_goal=False):
         """Draws the grid and optionally highlights positions."""
         self.ax.clear()
         self.ax.set_xticks(np.arange(self.grid_size[1] + 1), minor=False)
         self.ax.set_yticks(np.arange(self.grid_size[0] + 1), minor=False)
-        self.ax.grid(which="major", color="black", linestyle='-', linewidth=0.5)
+        self.ax.grid(which="major", color="black", linestyle='-', linewidth=1)
         self.ax.tick_params(which="both", bottom=False, left=False, labelbottom=False, labelleft=False)
         self.ax.set_aspect('equal')
         self.ax.set_xlim(0, self.grid_size[1])
@@ -63,11 +48,11 @@ cdef class Visualizer:
         )
         plt.draw()
         
-    def update_text(self, str message, str color="black"):
+    def update_text(self, message, color="black"):
         """Updates the status message above the grid dynamically with color."""
         self.text_annotation.set_text(message)
-        self.text_annotation.set_color(color)
-        plt.draw()
+        self.text_annotation.set_color(color)  # Set text color
+        plt.draw()  # Force update
 
     def handle_button_click(self, event):
         """Handles the button click event for start, pause, resume, and restart."""
@@ -79,7 +64,7 @@ cdef class Visualizer:
             # Restart the animation
             self.animation_done = False
             self.animation_started = False
-            self.current_step = 0
+            self.current_step = 0  # Reset animation step
             self.button.label.set_text("Start")
             self.update_text("Select a shape for search.", color="blue")
         elif not self.animation_started:
@@ -97,7 +82,7 @@ cdef class Visualizer:
             else:
                 self.button.label.set_text("Pause")
                 self.update_text("Animating...", color="black")
-                self.animate_path()
+                self.animate_path()  # Resume immediately
 
     def animate_path(self):
         """Animates the path step by step."""
@@ -105,59 +90,47 @@ cdef class Visualizer:
             self.update_text("No paths found", color="red")
             return
 
-        # Continue from the current step instead of restarting
+    # Continue from the current step instead of restarting
         while self.current_step < len(self.path):
             if self.paused:
                 return  # Stop animation if paused
 
-            # Draw the current step
+        # Draw the current step
             self.ax.clear()  # Clear the grid
             self.ax.set_xticks(np.arange(self.grid_size[1] + 1), minor=False)
             self.ax.set_yticks(np.arange(self.grid_size[0] + 1), minor=False)
-            self.ax.grid(which="major", color="black", linestyle='-', linewidth=0.5)
+            self.ax.grid(which="major", color="black", linestyle='-', linewidth=1)
             self.ax.tick_params(which="both", bottom=False, left=False, labelbottom=False, labelleft=False)
             self.ax.set_aspect('equal')
             self.ax.set_xlim(0, self.grid_size[1])
             self.ax.set_ylim(0, self.grid_size[0])
         
-            # Restore text annotation
+        # Restore text annotation
             self.text_annotation = self.ax.text(
                 self.grid_size[1] / 2, self.grid_size[0] + 0.3, 
                 "Animating...", ha="center", fontsize=12, fontweight="bold"
             )
 
-            # Get current positions in the path
+        # Get current positions in the path
             positions = self.path[self.current_step]
         
-            # Check for overlaps
+        # Check for overlaps
             if len(set(positions)) < len(positions):
                 self.update_text("Warning: Node overlap detected!", color="red")
         
-            # Draw each position without labels
+        # Draw each position without labels
             for pos in positions:
                 x, y = pos
                 self.ax.add_patch(plt.Rectangle((y, x), 1, 1, color='grey'))
+            # No more text labels
         
-            plt.pause(self.animation_speed)
-            self.current_step += 1
+            plt.pause(0.05)  # Slow down animation for visibility
+            self.current_step += 1  # Move to the next step
 
-        # Animation completed
+    # Animation completed
         if self.current_step >= len(self.path):
             self.animation_done = True
             self.button.label.set_text("Restart")
             self.update_text("Start another search.", color="green")
 
         plt.draw()
-
-    def highlight_goal_shape(self, list goal_positions):
-        """Highlight the goal shape with a dim green color"""
-        cdef float x, y
-        for pos in goal_positions:
-            x, y = pos
-            rect = plt.Rectangle((y, x), 1, 1, color='green', alpha=0.3)
-            self.ax.add_patch(rect)
-        plt.draw()
-
-    def set_animation_speed(self, double speed):
-        """Update the animation speed"""
-        self.animation_speed = speed
